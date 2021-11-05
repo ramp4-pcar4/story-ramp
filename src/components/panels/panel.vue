@@ -6,6 +6,8 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
+
+import { BasePanel } from '@/definitions';
 import TextPanelV from './text-panel.vue';
 
 enum panelTypes {
@@ -21,13 +23,13 @@ enum panelTypes {
     }
 })
 export default class PanelV extends Vue {
-    @Prop() config!: any; // TODO: replace with a proper TypeScript type
+    @Prop() config!: BasePanel;
 
     /**
      * Returns the corresponding component for this panel.
      */
     getTemplate() {
-        const panelTemplates: any = {
+        const panelTemplates = {
             text: TextPanelV,
             [panelTypes.map]: undefined,
             [panelTypes.multimedia]: undefined,
