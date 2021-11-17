@@ -515,6 +515,11 @@
     },
 
     "properties": {
+        "title": {
+            "type": "string",
+            "description": "The title of the story map."
+        },
+
         "introSlide": {
             "type": "object",
             "description": "The introductory slide",
@@ -576,5 +581,5 @@
         }
     },
 
-    "required": ["introSlide", "slides"]
+    "required": ["title", "introSlide", "slides"]
 }
