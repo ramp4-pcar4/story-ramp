@@ -24,7 +24,7 @@ Le présent aperçu de substance analyse les quantités totales d’éthylène g
                 {
                     caption:
                         'Source: Gettyimages, Richard Goerge (2021), a [dégivrage d’un avion avant le décollage](https://www.gettyimages.ca/detail/photo/plane-deicing-royalty-free-image/547930075?adppopup=true)',
-                    src: 'ea24000c-7dc3-49a9-baac-c55d28dcaeb9/assets/fr/1-Plane deiced.jpg',
+                    src: '/ea24000c-7dc3-49a9-baac-c55d28dcaeb9/assets/fr/1-Plane deiced.jpg',
                     type: 'image',
                     altText: 'Dégivrage d’un avion avant le décollage'
                 }
@@ -114,7 +114,7 @@ En 2019, la province comptant le plus grand nombre d’installations ayant décl
                     type: 'text'
                 },
                 {
-                    config: 'ea24000c-7dc3-49a9-baac-c55d28dcaeb9/ramp-config/fr/locations.json',
+                    config: '/ea24000c-7dc3-49a9-baac-c55d28dcaeb9/ramp-config/fr/locations.json',
                     type: 'map'
                 }
             ]
@@ -131,7 +131,7 @@ En 2019, la province comptant le plus grand nombre d’installations ayant décl
                     type: 'chart',
                     charts: [
                         {
-                            src: 'ea24000c-7dc3-49a9-baac-c55d28dcaeb9/charts/fr/EG_releases_2019_fr.csv',
+                            src: '/ea24000c-7dc3-49a9-baac-c55d28dcaeb9/charts/fr/EG_releases_2019_fr.csv',
 
                             options: {
                                 title: `Figure 1 : Pourcentage des rejets totaux d'éthylène glycol pour 2019, par secteur`,
@@ -156,7 +156,7 @@ En 2019, la province comptant le plus grand nombre d’installations ayant décl
                     charts: [
                         {
                             src:
-                                'ea24000c-7dc3-49a9-baac-c55d28dcaeb9/charts/fr/Total releases of ethylene glycol for 2019, by province_fr.csv',
+                                '/ea24000c-7dc3-49a9-baac-c55d28dcaeb9/charts/fr/Total releases of ethylene glycol for 2019, by province_fr.csv',
 
                             options: {
                                 title: `Figure 2: Rejets totaux d'éthylène glycol pour 2019, par province`,
@@ -180,7 +180,7 @@ Dans l’ensemble, les rejets totaux d’éthylène glycol ont augmenté entre 2
                     type: 'text'
                 },
                 {
-                    config: 'ea24000c-7dc3-49a9-baac-c55d28dcaeb9/ramp-config/fr/total_releases2019.json',
+                    config: '/ea24000c-7dc3-49a9-baac-c55d28dcaeb9/ramp-config/fr/total_releases2019.json',
                     type: 'map'
                 }
             ]
@@ -200,7 +200,7 @@ Pour ce qui est des rejets dans l’eau, nous observons une tendance générale 
                     charts: [
                         {
                             src:
-                                'ea24000c-7dc3-49a9-baac-c55d28dcaeb9/charts/fr/Ethlyene glycol release trends, by sector 2010-2019 (tonnes)_fr.csv',
+                                '/ea24000c-7dc3-49a9-baac-c55d28dcaeb9/charts/fr/Ethlyene glycol release trends, by sector 2010-2019 (tonnes)_fr.csv',
 
                             options: {
                                 title: `Figure 3: Tendances des rejets d'éthylène glycol, par secteur 2010-2019 (tonnes)`,
@@ -225,7 +225,7 @@ Pour ce qui est des rejets dans l’eau, nous observons une tendance générale 
                     charts: [
                         {
                             src:
-                                'ea24000c-7dc3-49a9-baac-c55d28dcaeb9/charts/fr/Percentage of ethylene glycol disposal and recycling, by sector (2019).csv',
+                                '/ea24000c-7dc3-49a9-baac-c55d28dcaeb9/charts/fr/Percentage of ethylene glycol disposal and recycling, by sector (2019).csv',
 
                             options: {
                                 title: `Figure 4: Pourcentage des éliminations et du recyclage d'éthylène glycol, par secteur (2019)`,
@@ -246,7 +246,7 @@ Pour ce qui est des rejets dans l’eau, nous observons une tendance générale 
                     type: 'text'
                 },
                 {
-                    config: 'ea24000c-7dc3-49a9-baac-c55d28dcaeb9/ramp-config/fr/total_quantities2019.json',
+                    config: '/ea24000c-7dc3-49a9-baac-c55d28dcaeb9/ramp-config/fr/total_quantities2019.json',
                     type: 'map'
                 }
             ]
@@ -268,7 +268,7 @@ Obtenez plus de détails sur le [transport aérien](https://tc.canada.ca/fr/serv
                     charts: [
                         {
                             src:
-                                'ea24000c-7dc3-49a9-baac-c55d28dcaeb9/charts/fr/Ethlyene glycol disposal and recycling trends, by sector 2010-2019 (tonnes)_fr.csv',
+                                '/ea24000c-7dc3-49a9-baac-c55d28dcaeb9/charts/fr/Ethlyene glycol disposal and recycling trends, by sector 2010-2019 (tonnes)_fr.csv',
 
                             options: {
                                 title: `Figure 5 : Tendances des élimination et du recyclage d'éthylène glycol, par secteur 2010-2019 (tonnes)`,

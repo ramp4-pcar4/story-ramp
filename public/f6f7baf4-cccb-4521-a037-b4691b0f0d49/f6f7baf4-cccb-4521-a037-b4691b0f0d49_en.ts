@@ -39,7 +39,7 @@ This overview of the pulp and paper sector reproduces the key points presented i
                     type: 'text'
                 },
                 {
-                    src: 'f6f7baf4-cccb-4521-a037-b4691b0f0d49/assets/en/PP_sector.jpg',
+                    src: '/f6f7baf4-cccb-4521-a037-b4691b0f0d49/assets/en/PP_sector.jpg',
                     altText: 'A stock image of a pulp and paper facility.',
                     type: 'image'
                 }
@@ -54,7 +54,7 @@ This overview of the pulp and paper sector reproduces the key points presented i
                     type: 'text'
                 },
                 {
-                    config: 'f6f7baf4-cccb-4521-a037-b4691b0f0d49/ramp-config/en/locations.json',
+                    config: '/f6f7baf4-cccb-4521-a037-b4691b0f0d49/ramp-config/en/locations.json',
                     type: 'map'
                 }
             ]
@@ -84,7 +84,7 @@ Several pollutants reportable under NPRI are released to the environment as by-p
                 {
                     caption:
                         'Source: Gettyimages, Dorling Kindersley (2021), [Diagram of a paper making factory](https://www.gettyimages.ca/detail/illustration/diagram-of-a-paper-making-factory-royalty-free-illustration/75488548?adppopup=true)',
-                    src: 'f6f7baf4-cccb-4521-a037-b4691b0f0d49/assets/en/Mechanical_process_EN.png',
+                    src: '/f6f7baf4-cccb-4521-a037-b4691b0f0d49/assets/en/Mechanical_process_EN.png',
                     type: 'image',
                     altText:
                         'Step 1. Preparation of raw material: wood chips are mechanically shredded. Step 2. Pulping and bleaching. Step 3. Pulp is finished in the paper machine. Step 4. Shipping of the final product.'
@@ -106,7 +106,7 @@ Some of the wood fibre that is traditionally used for making pulp and paper can 
                 {
                     caption:
                         'Source: Gettyimages, Dorling Kindersley (2021), [Diagram of a paper making factory](https://www.gettyimages.ca/detail/illustration/diagram-of-a-paper-making-factory-royalty-free-illustration/75488548?adppopup=true)',
-                    src: 'f6f7baf4-cccb-4521-a037-b4691b0f0d49/assets/en/Chemical_process_EN.png',
+                    src: '/f6f7baf4-cccb-4521-a037-b4691b0f0d49/assets/en/Chemical_process_EN.png',
                     type: 'image',
                     altText:
                         'Step 1. Preparation of raw material: wood fibres are separated using chemical and high temperature treatments. Step 2. Pulping and bleaching. Step 3. Pulp is finished in the paper machine. Step 4. Shipping of the final product.'
@@ -127,7 +127,7 @@ Some pulp and paper industry facilities include a wastewater treatment system an
                     type: 'text'
                 },
                 {
-                    src: 'f6f7baf4-cccb-4521-a037-b4691b0f0d49/assets/en/Subprocess.jpg',
+                    src: '/f6f7baf4-cccb-4521-a037-b4691b0f0d49/assets/en/Subprocess.jpg',
                     altText: 'A stock image of a pulp and paper facility, aerial view.',
                     type: 'image'
                 }
@@ -155,7 +155,7 @@ Some pulp and paper industry facilities include a wastewater treatment system an
                     title:
                         'Total releases and disposals of pulp and paper facilities that reported to the NPRI from 2010 to 2019',
                     config:
-                        'f6f7baf4-cccb-4521-a037-b4691b0f0d49/ramp-config/en/total_releases_and_disposals_of_pnp_2010-2019.json',
+                        '/f6f7baf4-cccb-4521-a037-b4691b0f0d49/ramp-config/en/total_releases_and_disposals_of_pnp_2010-2019.json',
                     type: 'map',
                     timeSlider: {
                         range: [2010, 2019],
@@ -177,7 +177,7 @@ Some pulp and paper industry facilities include a wastewater treatment system an
                     title:
                         'Total criteria air contaminants released by pulp and paper facilities that reported to the NPRI from 2010 to 2019',
                     config:
-                        'f6f7baf4-cccb-4521-a037-b4691b0f0d49/ramp-config/en/total_criteria_air_contaminants_of_pnp_2010-2019.json',
+                        '/f6f7baf4-cccb-4521-a037-b4691b0f0d49/ramp-config/en/total_criteria_air_contaminants_of_pnp_2010-2019.json',
                     type: 'map',
                     timeSlider: {
                         range: [2010, 2019],
@@ -205,7 +205,7 @@ In pulp and paper mills, ammonia (NH<sub>3</sub>) is generally neither manufactu
                     type: 'chart',
                     charts: [
                         {
-                            src: 'f6f7baf4-cccb-4521-a037-b4691b0f0d49/charts/en/CAC_en.csv',
+                            src: '/f6f7baf4-cccb-4521-a037-b4691b0f0d49/charts/en/CAC_en.csv',
 
                             options: {
                                 xAxisLabel: '',
@@ -240,7 +240,7 @@ TRS is generally neither manufactured nor processed in high quantity. However, t
                     title:
                         'Total reduced sulphur released by pulp and paper facilities that reported to the NPRI from 2010 to 2019',
                     config:
-                        'f6f7baf4-cccb-4521-a037-b4691b0f0d49/ramp-config/en/total_reduced_sulphur_of_pnp_2010-2019.json',
+                        '/f6f7baf4-cccb-4521-a037-b4691b0f0d49/ramp-config/en/total_reduced_sulphur_of_pnp_2010-2019.json',
                     type: 'map',
                     timeSlider: {
                         range: [2010, 2019],
@@ -272,7 +272,7 @@ TRS is generally neither manufactured nor processed in high quantity. However, t
                     type: 'text'
                 },
                 {
-                    src: 'f6f7baf4-cccb-4521-a037-b4691b0f0d49/assets/en/trs_en.png',
+                    src: '/f6f7baf4-cccb-4521-a037-b4691b0f0d49/assets/en/trs_en.png',
                     type: 'image',
                     altText: 'A graphical pie chart representation of the data table in the previous slide.'
                 }
@@ -294,7 +294,7 @@ Pulp and paper facilities are required to conduct [Environmental Effects Monitor
                     title:
                         'Phosphorus and nitrates released by pulp and paper facilities that reported to the NPRI from 2010 to 2019',
                     config:
-                        'f6f7baf4-cccb-4521-a037-b4691b0f0d49/ramp-config/en/phosphorus_and_nitrates_of_pnp_2010-2019.json',
+                        '/f6f7baf4-cccb-4521-a037-b4691b0f0d49/ramp-config/en/phosphorus_and_nitrates_of_pnp_2010-2019.json',
                     type: 'map',
                     timeSlider: {
                         range: [2010, 2019],
@@ -316,7 +316,7 @@ Pulp and paper facilities are required to conduct [Environmental Effects Monitor
                     title:
                         'Total disposals and transfers of pulp and paper facilities that reported to the NPRI from 2010 to 2019',
                     config:
-                        'f6f7baf4-cccb-4521-a037-b4691b0f0d49/ramp-config/en/total_disposals_and_transfers_of_pnp_2010-2019.json',
+                        '/f6f7baf4-cccb-4521-a037-b4691b0f0d49/ramp-config/en/total_disposals_and_transfers_of_pnp_2010-2019.json',
                     type: 'map',
                     timeSlider: {
                         range: [2010, 2019],
@@ -335,7 +335,7 @@ Pulp and paper facilities are required to conduct [Environmental Effects Monitor
                     type: 'text'
                 },
                 {
-                    src: 'f6f7baf4-cccb-4521-a037-b4691b0f0d49/assets/en/substances_recovered_en.png',
+                    src: '/f6f7baf4-cccb-4521-a037-b4691b0f0d49/assets/en/substances_recovered_en.png',
                     altText:
                         'Pie chart 1. Proportion of substances directly released in the environment and recovered substances: Proportion of substances directly released in the environment- 96%, Proportion of recovered substances- 4%; Pie chart 2. Proportion of substances subject to a recovery process: Off-site disposal- 36%, On-site disposal- 44%, Recycling- 17%, Treatment- 3%.',
                     type: 'image'
@@ -358,7 +358,7 @@ Pulp and paper facilities are required to conduct [Environmental Effects Monitor
                     type: 'text'
                 },
                 {
-                    src: 'f6f7baf4-cccb-4521-a037-b4691b0f0d49/assets/en/Regulations.jpg',
+                    src: '/f6f7baf4-cccb-4521-a037-b4691b0f0d49/assets/en/Regulations.jpg',
                     altText: 'A stock image of a pulp and paper facility.',
                     type: 'image'
                 }
@@ -383,7 +383,7 @@ Learn more about [pollution prevention](https://www.canada.ca/en/environment-cli
                     type: 'text'
                 },
                 {
-                    config: 'f6f7baf4-cccb-4521-a037-b4691b0f0d49/ramp-config/en/pollution_prevention_activities.json',
+                    config: '/f6f7baf4-cccb-4521-a037-b4691b0f0d49/ramp-config/en/pollution_prevention_activities.json',
                     type: 'map'
                 }
             ]
@@ -405,7 +405,7 @@ The [2019 State of Canada’s Forests report](https://www.nrcan.gc.ca/our-natura
                     type: 'text'
                 },
                 {
-                    src: 'f6f7baf4-cccb-4521-a037-b4691b0f0d49/assets/en/Futur.jpg',
+                    src: '/f6f7baf4-cccb-4521-a037-b4691b0f0d49/assets/en/Futur.jpg',
                     altText: 'An image of a large pile of lumber.',
                     type: 'image'
                 }

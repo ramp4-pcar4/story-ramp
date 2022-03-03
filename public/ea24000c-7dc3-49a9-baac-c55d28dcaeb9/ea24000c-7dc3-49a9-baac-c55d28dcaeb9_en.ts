@@ -22,7 +22,7 @@ This substance overview explores the total quantities of Ethylene Glycol reporte
                     type: 'text'
                 },
                 {
-                    src: 'ea24000c-7dc3-49a9-baac-c55d28dcaeb9/assets/en/1-Plane deiced.jpg',
+                    src: '/ea24000c-7dc3-49a9-baac-c55d28dcaeb9/assets/en/1-Plane deiced.jpg',
                     type: 'image',
                     caption:
                         'Source: Gettyimages, Richard Goerge (2021), a [passenger plane being deiced prior a takeoff](https://www.gettyimages.ca/detail/photo/plane-deicing-royalty-free-image/547930075?adppopup=true)',
@@ -104,7 +104,7 @@ The rapid degradation, low concentrations in terms of toxicity, seasonality of r
                 {
                     scrollguard: true,
                     title: 'Location of NPRI facilities that reported ethylene glycol releases in 2019 by sector',
-                    config: 'ea24000c-7dc3-49a9-baac-c55d28dcaeb9/ramp-config/en/locations.json',
+                    config: '/ea24000c-7dc3-49a9-baac-c55d28dcaeb9/ramp-config/en/locations.json',
                     type: 'map'
                 }
             ]
@@ -121,7 +121,7 @@ The rapid degradation, low concentrations in terms of toxicity, seasonality of r
                     type: 'chart',
                     charts: [
                         {
-                            src: 'ea24000c-7dc3-49a9-baac-c55d28dcaeb9/charts/en/EG_releases_2019_en.csv',
+                            src: '/ea24000c-7dc3-49a9-baac-c55d28dcaeb9/charts/en/EG_releases_2019_en.csv',
 
                             options: {
                                 title: 'Figure 1: Percentage of total ethylene glycol releases for 2019, by sector',
@@ -146,7 +146,7 @@ The rapid degradation, low concentrations in terms of toxicity, seasonality of r
                     charts: [
                         {
                             src:
-                                'ea24000c-7dc3-49a9-baac-c55d28dcaeb9/charts/en/Total releases of ethylene glycol for 2019, by province_en.csv',
+                                '/ea24000c-7dc3-49a9-baac-c55d28dcaeb9/charts/en/Total releases of ethylene glycol for 2019, by province_en.csv',
 
                             options: {
                                 title: 'Figure 2: Total releases of ethylene glycol for 2019, by province',
@@ -170,7 +170,7 @@ Overall, total releases of ethylene glycol have increased between 2010 and 2019,
                     type: 'text'
                 },
                 {
-                    config: 'ea24000c-7dc3-49a9-baac-c55d28dcaeb9/ramp-config/en/total_releases2019.json',
+                    config: '/ea24000c-7dc3-49a9-baac-c55d28dcaeb9/ramp-config/en/total_releases2019.json',
                     type: 'map'
                 }
             ]
@@ -190,7 +190,7 @@ As for water releases, we are seeing an overall decreasing trend, driven by decr
                     charts: [
                         {
                             src:
-                                'ea24000c-7dc3-49a9-baac-c55d28dcaeb9/charts/en/Ethlyene glycol release trends, by sector 2010-2019 (tonnes)_en.csv',
+                                '/ea24000c-7dc3-49a9-baac-c55d28dcaeb9/charts/en/Ethlyene glycol release trends, by sector 2010-2019 (tonnes)_en.csv',
 
                             options: {
                                 title: 'Figure 3: Ethylene glycol release trends, by sector 2010-2019 (tonnes)',
@@ -215,7 +215,7 @@ As for water releases, we are seeing an overall decreasing trend, driven by decr
                     charts: [
                         {
                             src:
-                                'ea24000c-7dc3-49a9-baac-c55d28dcaeb9/charts/en/Percentage of ethylene glycol disposal and recycling, by sector (2019).csv',
+                                '/ea24000c-7dc3-49a9-baac-c55d28dcaeb9/charts/en/Percentage of ethylene glycol disposal and recycling, by sector (2019).csv',
 
                             options: {
                                 title: `Figure 4: Percentage of ethylene glycol disposal and recycling, by sector (2019)`,
@@ -236,7 +236,7 @@ As for water releases, we are seeing an overall decreasing trend, driven by decr
                     type: 'text'
                 },
                 {
-                    config: 'ea24000c-7dc3-49a9-baac-c55d28dcaeb9/ramp-config/en/total_quantities2019.json',
+                    config: '/ea24000c-7dc3-49a9-baac-c55d28dcaeb9/ramp-config/en/total_quantities2019.json',
                     type: 'map'
                 }
             ]
@@ -258,7 +258,7 @@ You can read more on [Air Transportation](https://tc.canada.ca/en/corporate-serv
                     charts: [
                         {
                             src:
-                                'ea24000c-7dc3-49a9-baac-c55d28dcaeb9/charts/en/Ethlyene glycol disposal and recycling trends, by sector 2010-2019 (tonnes)_en.csv',
+                                '/ea24000c-7dc3-49a9-baac-c55d28dcaeb9/charts/en/Ethlyene glycol disposal and recycling trends, by sector 2010-2019 (tonnes)_en.csv',
 
                             options: {
                                 title:

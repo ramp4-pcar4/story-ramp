@@ -21,7 +21,7 @@ Les entreprises, les établissements et d’autres entités partout au Canada do
                 },
                 {
                     src:
-                        '00000000-0000-0000-0000-000000000000/assets/fr/NPRIpictogramme-2016data-FR__1552505700147__w975.jpg',
+                        '/00000000-0000-0000-0000-000000000000/assets/fr/NPRIpictogramme-2016data-FR__1552505700147__w975.jpg',
                     type: 'image'
                 }
             ]
@@ -46,7 +46,7 @@ Cette carte montre une étendue potentielle généralisée des trois zones de sa
                     type: 'text'
                 },
                 {
-                    config: '00000000-0000-0000-0000-000000000000/ramp-config/fr/OilSandsDeposits.json',
+                    config: '/00000000-0000-0000-0000-000000000000/ramp-config/fr/OilSandsDeposits.json',
                     type: 'map',
                     scrollguard: true
                 }
@@ -66,7 +66,7 @@ L’exploitation à ciel ouvert consiste à creuser de grandes surfaces à l’a
                 },
                 {
                     src:
-                        '00000000-0000-0000-0000-000000000000/assets/fr/GettyImages-187242601__1554821412825__w1920.jpg',
+                        '/00000000-0000-0000-0000-000000000000/assets/fr/GettyImages-187242601__1554821412825__w1920.jpg',
                     type: 'image'
                 }
             ]
@@ -82,7 +82,7 @@ Les installations in situ ont une empreinte physique beaucoup plus petite que le
                     type: 'text'
                 },
                 {
-                    src: '00000000-0000-0000-0000-000000000000/assets/fr/Slide 3 - mine vs insitu.jpg',
+                    src: '/00000000-0000-0000-0000-000000000000/assets/fr/Slide 3 - mine vs insitu.jpg',
                     type: 'image'
                 }
             ]
@@ -105,7 +105,7 @@ Les installations in situ ont une empreinte physique beaucoup plus petite que le
                     type: 'text'
                 },
                 {
-                    config: '00000000-0000-0000-0000-000000000000/ramp-config/fr/OilSandsFacilityLocations2019.json',
+                    config: '/00000000-0000-0000-0000-000000000000/ramp-config/fr/OilSandsFacilityLocations2019.json',
                     type: 'map'
                 }
             ]
@@ -130,32 +130,33 @@ Les sept installations d’exploitation minière à ciel ouvert des sables bitum
                 {
                     images: [
                         {
-                            src: '00000000-0000-0000-0000-000000000000/assets/fr/substances/AuroraNorth_RelDisp_FR.PNG',
+                            src:
+                                '/00000000-0000-0000-0000-000000000000/assets/fr/substances/AuroraNorth_RelDisp_FR.PNG',
                             type: 'image'
                         },
                         {
-                            src: '00000000-0000-0000-0000-000000000000/assets/fr/substances/FortHills_RelDisp_FR.PNG',
+                            src: '/00000000-0000-0000-0000-000000000000/assets/fr/substances/FortHills_RelDisp_FR.PNG',
                             type: 'image'
                         },
                         {
-                            src: '00000000-0000-0000-0000-000000000000/assets/fr/substances/Horizon_RelDisp_FR.PNG',
+                            src: '/00000000-0000-0000-0000-000000000000/assets/fr/substances/Horizon_RelDisp_FR.PNG',
                             type: 'image'
                         },
                         {
-                            src: '00000000-0000-0000-0000-000000000000/assets/fr/substances/Kearl_RelDisp_FR.PNG',
+                            src: '/00000000-0000-0000-0000-000000000000/assets/fr/substances/Kearl_RelDisp_FR.PNG',
                             type: 'image'
                         },
                         {
                             src:
-                                '00000000-0000-0000-0000-000000000000/assets/fr/substances/MuskegJackpine_RelDisp_FR.PNG',
+                                '/00000000-0000-0000-0000-000000000000/assets/fr/substances/MuskegJackpine_RelDisp_FR.PNG',
                             type: 'image'
                         },
                         {
-                            src: '00000000-0000-0000-0000-000000000000/assets/fr/substances/Suncor_RelDisp_FR.PNG',
+                            src: '/00000000-0000-0000-0000-000000000000/assets/fr/substances/Suncor_RelDisp_FR.PNG',
                             type: 'image'
                         },
                         {
-                            src: '00000000-0000-0000-0000-000000000000/assets/fr/substances/Syncrude_RelDisp_FR.PNG',
+                            src: '/00000000-0000-0000-0000-000000000000/assets/fr/substances/Syncrude_RelDisp_FR.PNG',
                             type: 'image'
                         }
                     ],
@@ -232,7 +233,7 @@ Explorez chaque installation avec l’imagerie par satellite.`,
                 },
                 {
                     config:
-                        '00000000-0000-0000-0000-000000000000/ramp-config/en/ReleasesandDisposalsbyMiningFacilitiesin2019(satellite).json',
+                        '/00000000-0000-0000-0000-000000000000/ramp-config/en/ReleasesandDisposalsbyMiningFacilitiesin2019(satellite).json',
                     type: 'map'
                 }
             ]
@@ -246,7 +247,7 @@ Explorez chaque installation avec l’imagerie par satellite.`,
                     type: 'text'
                 },
                 {
-                    src: '00000000-0000-0000-0000-000000000000/assets/fr/slide 6 trends in mining.jpg',
+                    src: '/00000000-0000-0000-0000-000000000000/assets/fr/slide 6 trends in mining.jpg',
                     type: 'image'
                 }
             ]
@@ -272,7 +273,7 @@ Bien que les résidus déclarés par ces mines contiennent de grandes quantités
                     type: 'text'
                 },
                 {
-                    src: '00000000-0000-0000-0000-000000000000/assets/fr/Top10SubstancesTailings2019.png',
+                    src: '/00000000-0000-0000-0000-000000000000/assets/fr/Top10SubstancesTailings2019.png',
                     type: 'image'
                 }
             ]
@@ -296,31 +297,31 @@ Bien que les résidus déclarés par ces mines contiennent de grandes quantités
                 {
                     images: [
                         {
-                            src: '00000000-0000-0000-0000-000000000000/assets/fr/tailings/AuroraNorth_Tailings_FR.PNG',
+                            src: '/00000000-0000-0000-0000-000000000000/assets/fr/tailings/AuroraNorth_Tailings_FR.PNG',
                             type: 'image'
                         },
                         {
-                            src: '00000000-0000-0000-0000-000000000000/assets/fr/tailings/FortHills_Tailings_FR.PNG',
+                            src: '/00000000-0000-0000-0000-000000000000/assets/fr/tailings/FortHills_Tailings_FR.PNG',
                             type: 'image'
                         },
                         {
-                            src: '00000000-0000-0000-0000-000000000000/assets/fr/tailings/Horizon_Tailings_FR.PNG',
+                            src: '/00000000-0000-0000-0000-000000000000/assets/fr/tailings/Horizon_Tailings_FR.PNG',
                             type: 'image'
                         },
                         {
-                            src: '00000000-0000-0000-0000-000000000000/assets/fr/tailings/Kearl_Tailings_FR.PNG',
+                            src: '/00000000-0000-0000-0000-000000000000/assets/fr/tailings/Kearl_Tailings_FR.PNG',
                             type: 'image'
                         },
                         {
-                            src: '00000000-0000-0000-0000-000000000000/assets/fr/tailings/Muskeg_Tailings_FR.PNG',
+                            src: '/00000000-0000-0000-0000-000000000000/assets/fr/tailings/Muskeg_Tailings_FR.PNG',
                             type: 'image'
                         },
                         {
-                            src: '00000000-0000-0000-0000-000000000000/assets/fr/tailings/Suncor_Tailings_FR.PNG',
+                            src: '/00000000-0000-0000-0000-000000000000/assets/fr/tailings/Suncor_Tailings_FR.PNG',
                             type: 'image'
                         },
                         {
-                            src: '00000000-0000-0000-0000-000000000000/assets/fr/tailings/Syncrude_Tailings_FR.PNG',
+                            src: '/00000000-0000-0000-0000-000000000000/assets/fr/tailings/Syncrude_Tailings_FR.PNG',
                             type: 'image'
                         }
                     ],
@@ -343,7 +344,7 @@ Explorez chaque installation avec l’imagerie par satellite.`,
                 },
                 {
                     config:
-                        '00000000-0000-0000-0000-000000000000/ramp-config/fr/ReleasesandDisposalsbyMiningFacilitiesin2019(satellite).json',
+                        '/00000000-0000-0000-0000-000000000000/ramp-config/fr/ReleasesandDisposalsbyMiningFacilitiesin2019(satellite).json',
                     type: 'map'
                 }
             ]
@@ -360,7 +361,7 @@ Explorez chaque installation avec l’imagerie par satellite.`,
                 },
                 {
                     config:
-                        '00000000-0000-0000-0000-000000000000/ramp-config/en/TailingsfromMiningFacilities2010to2019(timeslider).json',
+                        '/00000000-0000-0000-0000-000000000000/ramp-config/en/TailingsfromMiningFacilities2010to2019(timeslider).json',
                     type: 'map'
                 }
             ]
@@ -378,7 +379,7 @@ En comparaison avec l’exploitation minière à ciel ouvert, l’exploitation i
                     type: 'text'
                 },
                 {
-                    src: '00000000-0000-0000-0000-000000000000/assets/fr/Slide 10 - SAGD vs CSS.jpg',
+                    src: '/00000000-0000-0000-0000-000000000000/assets/fr/Slide 10 - SAGD vs CSS.jpg',
                     type: 'image'
                 }
             ]
@@ -402,7 +403,7 @@ Les rejets atmosphériques déclarés par les installations in situ sont presque
                 },
                 {
                     config:
-                        '00000000-0000-0000-0000-000000000000/ramp-config/fr/ReleasestoAirbyInSituFacilitiesforAllSubstancesin2019.json',
+                        '/00000000-0000-0000-0000-000000000000/ramp-config/fr/ReleasestoAirbyInSituFacilitiesforAllSubstancesin2019.json',
                     type: 'map'
                 }
             ]
@@ -419,7 +420,7 @@ Ce changement dans le nombre d’installations déclarantes au fil du temps suit
                 },
                 {
                     config:
-                        '00000000-0000-0000-0000-000000000000/ramp-config/fr/ReleasestoAirbyInSituFacilitiesforAllSubstances2010to2019(timeslider).json',
+                        '/00000000-0000-0000-0000-000000000000/ramp-config/fr/ReleasestoAirbyInSituFacilitiesforAllSubstances2010to2019(timeslider).json',
                     type: 'map'
                 }
             ]
@@ -438,7 +439,7 @@ Bien que les installations in situ aient signalé un accroissement des émission
                 },
                 {
                     src:
-                        '00000000-0000-0000-0000-000000000000/assets/fr/Slide%2013%20Insitu%20trends%20-%20French__1554407015712__w628.jpg',
+                        '/00000000-0000-0000-0000-000000000000/assets/fr/Slide%2013%20Insitu%20trends%20-%20French__1554407015712__w628.jpg',
                     type: 'image'
                 }
             ]
@@ -458,7 +459,7 @@ Les installations d’exploitation minière à ciel ouvert des sables bitumineux
                     type: 'text'
                 },
                 {
-                    src: '00000000-0000-0000-0000-000000000000/assets/fr/slide%2014%20-%20athabasca.jpg',
+                    src: '/00000000-0000-0000-0000-000000000000/assets/fr/slide%2014%20-%20athabasca.jpg',
                     type: 'image'
                 }
             ]

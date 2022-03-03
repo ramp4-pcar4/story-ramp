@@ -19,5 +19,20 @@ module.exports = {
             title: 'Scenarios de PCAR'
         }
     },
-    publicPath: ''
+    devServer: {
+        historyApiFallback: {
+            //index: 'index-ca-en.html'
+            verbose: true,
+            rewrites: [
+                {
+                    from: /^\/en\/[^.]*$/,
+                    to: '/index-ca-en.html'
+                },
+                {
+                    from: /^\/fr\/[^.]*$/,
+                    to: '/index-ca-fr.html'
+                }
+            ]
+        }
+    }
 };

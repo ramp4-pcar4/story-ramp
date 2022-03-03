@@ -21,7 +21,7 @@ const routes = [
 
 export default new Router({
     routes: routes,
-    // mode: 'history', // TODO: uncomment to change to history mode for nicer URLs (eliminating middle hash) see #100
+    mode: 'history',
     scrollBehavior: function (to: Route) {
         if (to.hash) {
             return {

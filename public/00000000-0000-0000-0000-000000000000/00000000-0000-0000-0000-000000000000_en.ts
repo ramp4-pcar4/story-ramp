@@ -21,7 +21,7 @@ Businesses, institutions and other facilities across Canada must report their re
                 },
                 {
                     src:
-                        '00000000-0000-0000-0000-000000000000/assets/en/NPRIpictogramme-2016data-EN__1553797637582__w1430.jpg',
+                        '/00000000-0000-0000-0000-000000000000/assets/en/NPRIpictogramme-2016data-EN__1553797637582__w1430.jpg',
                     type: 'image',
                     caption: 'This is a caption for the image.'
                 }
@@ -53,7 +53,7 @@ Fun stuff.`,
                             id: 'panel-2',
                             panel: {
                                 src:
-                                    '00000000-0000-0000-0000-000000000000/assets/en/GettyImages-187242601__1554821467033__w1920.jpg',
+                                    '/00000000-0000-0000-0000-000000000000/assets/en/GettyImages-187242601__1554821467033__w1920.jpg',
                                 type: 'image'
                             }
                         },
@@ -61,7 +61,7 @@ Fun stuff.`,
                             id: 'panel-3',
                             panel: {
                                 config:
-                                    '00000000-0000-0000-0000-000000000000/ramp-config/en/OilSandsFacilityLocations2019.json',
+                                    '/00000000-0000-0000-0000-000000000000/ramp-config/en/OilSandsFacilityLocations2019.json',
                                 type: 'map',
                                 scrollguard: true
                             }
@@ -89,7 +89,7 @@ This map shows a generalized potential extent of the three oil sands areas. The 
                     type: 'text'
                 },
                 {
-                    config: '00000000-0000-0000-0000-000000000000/ramp-config/en/OilSandsDeposits.json',
+                    config: '/00000000-0000-0000-0000-000000000000/ramp-config/en/OilSandsDeposits.json',
                     type: 'map',
                     scrollguard: true
                 }
@@ -109,7 +109,7 @@ Surface mining involves digging up large areas with large excavators. The result
                 },
                 {
                     src:
-                        '00000000-0000-0000-0000-000000000000/assets/en/GettyImages-187242601__1554821467033__w1920.jpg',
+                        '/00000000-0000-0000-0000-000000000000/assets/en/GettyImages-187242601__1554821467033__w1920.jpg',
                     type: 'image',
                     fullscreen: false
                 }
@@ -126,7 +126,7 @@ Thermal in-situ facilities have a much smaller physical footprint than surface m
                     type: 'text'
                 },
                 {
-                    src: '00000000-0000-0000-0000-000000000000/assets/en/Slide 3 - mine vs insitu.jpg',
+                    src: '/00000000-0000-0000-0000-000000000000/assets/en/Slide 3 - mine vs insitu.jpg',
                     type: 'image'
                 }
             ]
@@ -149,7 +149,7 @@ Thermal in-situ facilities have a much smaller physical footprint than surface m
                     type: 'text'
                 },
                 {
-                    config: '00000000-0000-0000-0000-000000000000/ramp-config/en/OilSandsFacilityLocations2019.json',
+                    config: '/00000000-0000-0000-0000-000000000000/ramp-config/en/OilSandsFacilityLocations2019.json',
                     type: 'map',
                     title: 'Map Title Test'
                 }
@@ -175,32 +175,32 @@ The seven oil sands surface mining facilities that reported to the NPRI are list
                 {
                     images: [
                         {
-                            src: '00000000-0000-0000-0000-000000000000/assets/en/substances/1_AuroraNorth_RelDisp.PNG',
+                            src: '/00000000-0000-0000-0000-000000000000/assets/en/substances/1_AuroraNorth_RelDisp.PNG',
                             type: 'image'
                         },
                         {
-                            src: '00000000-0000-0000-0000-000000000000/assets/en/substances/2_FortHills_RelDisp.PNG',
+                            src: '/00000000-0000-0000-0000-000000000000/assets/en/substances/2_FortHills_RelDisp.PNG',
                             type: 'image'
                         },
                         {
-                            src: '00000000-0000-0000-0000-000000000000/assets/en/substances/3_Horizon_RelDisp.PNG',
+                            src: '/00000000-0000-0000-0000-000000000000/assets/en/substances/3_Horizon_RelDisp.PNG',
                             type: 'image'
                         },
                         {
-                            src: '00000000-0000-0000-0000-000000000000/assets/en/substances/4_Kearl_RelDisp.PNG',
+                            src: '/00000000-0000-0000-0000-000000000000/assets/en/substances/4_Kearl_RelDisp.PNG',
                             type: 'image'
                         },
                         {
                             src:
-                                '00000000-0000-0000-0000-000000000000/assets/en/substances/5_MuskegJackpine_R5_RelDisp.PNG',
+                                '/00000000-0000-0000-0000-000000000000/assets/en/substances/5_MuskegJackpine_R5_RelDisp.PNG',
                             type: 'image'
                         },
                         {
-                            src: '00000000-0000-0000-0000-000000000000/assets/en/substances/6_Suncor_RelDisp.PNG',
+                            src: '/00000000-0000-0000-0000-000000000000/assets/en/substances/6_Suncor_RelDisp.PNG',
                             type: 'image'
                         },
                         {
-                            src: '00000000-0000-0000-0000-000000000000/assets/en/substances/7_Syncrude_RelDisp.PNG',
+                            src: '/00000000-0000-0000-0000-000000000000/assets/en/substances/7_Syncrude_RelDisp.PNG',
                             type: 'image'
                         }
                     ],
@@ -273,7 +273,7 @@ You can explore each facility using satellite imagery.`,
                 },
                 {
                     config:
-                        '00000000-0000-0000-0000-000000000000/ramp-config/en/ReleasesandDisposalsbyMiningFacilitiesin2019(satellite).json',
+                        '/00000000-0000-0000-0000-000000000000/ramp-config/en/ReleasesandDisposalsbyMiningFacilitiesin2019(satellite).json',
                     type: 'map'
                 }
             ]
@@ -287,7 +287,7 @@ You can explore each facility using satellite imagery.`,
                     type: 'text'
                 },
                 {
-                    src: '00000000-0000-0000-0000-000000000000/assets/en/slide 6 - mining trends.jpg',
+                    src: '/00000000-0000-0000-0000-000000000000/assets/en/slide 6 - mining trends.jpg',
                     type: 'image'
                 }
             ]
@@ -312,7 +312,7 @@ While the tailings reported by these mines have large amounts of manganese, ammo
                     type: 'text'
                 },
                 {
-                    src: '00000000-0000-0000-0000-000000000000/assets/en/Top10SubstancesTailings2019.png',
+                    src: '/00000000-0000-0000-0000-000000000000/assets/en/Top10SubstancesTailings2019.png',
                     type: 'image'
                 }
             ]
@@ -334,31 +334,31 @@ While the tailings reported by these mines have large amounts of manganese, ammo
                 {
                     images: [
                         {
-                            src: '00000000-0000-0000-0000-000000000000/assets/en/tailings/AuroraNorth_Tailings.PNG',
+                            src: '/00000000-0000-0000-0000-000000000000/assets/en/tailings/AuroraNorth_Tailings.PNG',
                             type: 'image'
                         },
                         {
-                            src: '00000000-0000-0000-0000-000000000000/assets/en/tailings/FortHills_Tailings.PNG',
+                            src: '/00000000-0000-0000-0000-000000000000/assets/en/tailings/FortHills_Tailings.PNG',
                             type: 'image'
                         },
                         {
-                            src: '00000000-0000-0000-0000-000000000000/assets/en/tailings/Horizon_Tailings.PNG',
+                            src: '/00000000-0000-0000-0000-000000000000/assets/en/tailings/Horizon_Tailings.PNG',
                             type: 'image'
                         },
                         {
-                            src: '00000000-0000-0000-0000-000000000000/assets/en/tailings/Kearl_Tailings.PNG',
+                            src: '/00000000-0000-0000-0000-000000000000/assets/en/tailings/Kearl_Tailings.PNG',
                             type: 'image'
                         },
                         {
-                            src: '00000000-0000-0000-0000-000000000000/assets/en/tailings/Muskeg_Tailings.PNG',
+                            src: '/00000000-0000-0000-0000-000000000000/assets/en/tailings/Muskeg_Tailings.PNG',
                             type: 'image'
                         },
                         {
-                            src: '00000000-0000-0000-0000-000000000000/assets/en/tailings/Suncor_Tailings.PNG',
+                            src: '/00000000-0000-0000-0000-000000000000/assets/en/tailings/Suncor_Tailings.PNG',
                             type: 'image'
                         },
                         {
-                            src: '00000000-0000-0000-0000-000000000000/assets/en/tailings/Syncrude_Tailings.PNG',
+                            src: '/00000000-0000-0000-0000-000000000000/assets/en/tailings/Syncrude_Tailings.PNG',
                             type: 'image'
                         }
                     ],
@@ -380,7 +380,7 @@ You can explore each facility using satellite imagery.`,
                 },
                 {
                     config:
-                        '00000000-0000-0000-0000-000000000000/ramp-config/en/ReleasesandDisposalsbyMiningFacilitiesin2019(satellite).json',
+                        '/00000000-0000-0000-0000-000000000000/ramp-config/en/ReleasesandDisposalsbyMiningFacilitiesin2019(satellite).json',
                     type: 'map'
                 }
             ]
@@ -395,7 +395,7 @@ You can explore each facility using satellite imagery.`,
                 },
                 {
                     config:
-                        '00000000-0000-0000-0000-000000000000/ramp-config/en/TailingsfromMiningFacilities2010to2019(timeslider).json',
+                        '/00000000-0000-0000-0000-000000000000/ramp-config/en/TailingsfromMiningFacilities2010to2019(timeslider).json',
                     type: 'map'
                 }
             ]
@@ -413,7 +413,7 @@ Compared to surface mining, in-situ operations are much more energy intensive, a
                     type: 'text'
                 },
                 {
-                    src: '00000000-0000-0000-0000-000000000000/assets/en/Slide 10 - SAGD vs CSS.jpg',
+                    src: '/00000000-0000-0000-0000-000000000000/assets/en/Slide 10 - SAGD vs CSS.jpg',
                     type: 'image'
                 }
             ]
@@ -437,7 +437,7 @@ The air releases reported by in-situ facilities is almost entirely (98%) criteri
                 },
                 {
                     config:
-                        '00000000-0000-0000-0000-000000000000/ramp-config/en/ReleasestoAirbyInSituFacilitiesforAllSubstancesin2019.json',
+                        '/00000000-0000-0000-0000-000000000000/ramp-config/en/ReleasestoAirbyInSituFacilitiesforAllSubstancesin2019.json',
                     type: 'map'
                 }
             ]
@@ -454,7 +454,7 @@ This change in the number of facilities reporting over time follows changes in t
                 },
                 {
                     config:
-                        '00000000-0000-0000-0000-000000000000/ramp-config/en/ReleasestoAirbyInSituFacilitiesforAllSubstances2010to2019(timeslider).json',
+                        '/00000000-0000-0000-0000-000000000000/ramp-config/en/ReleasestoAirbyInSituFacilitiesforAllSubstances2010to2019(timeslider).json',
                     type: 'map'
                 }
             ]
@@ -473,7 +473,7 @@ While in-situ facilities have reported an increase in reported CAC emissions, th
                 },
                 {
                     src:
-                        '00000000-0000-0000-0000-000000000000/assets/en/Slide%2013%20-%20InSitu%20Trends__1554406944277__w594.jpg',
+                        '/00000000-0000-0000-0000-000000000000/assets/en/Slide%2013%20-%20InSitu%20Trends__1554406944277__w594.jpg',
                     type: 'image'
                 }
             ]
@@ -494,7 +494,7 @@ Oil sands surface mining facilities in Alberta take much of their water from the
                 },
                 {
                     src:
-                        '00000000-0000-0000-0000-000000000000/assets/en/GettyImages-516166467__1554821531978__w1920.jpg',
+                        '/00000000-0000-0000-0000-000000000000/assets/en/GettyImages-516166467__1554821531978__w1920.jpg',
                     type: 'image'
                 }
             ]
@@ -542,7 +542,7 @@ These easy-to-use files let you dig deeper into the data in a variety of ways
                 },
                 {
                     type: 'chart',
-                    charts: [{ src: '00000000-0000-0000-0000-000000000000/charts/en/chartConfig.json' }]
+                    charts: [{ src: '/00000000-0000-0000-0000-000000000000/charts/en/chartConfig.json' }]
                 }
             ]
         },

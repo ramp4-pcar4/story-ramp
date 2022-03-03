@@ -21,7 +21,7 @@ Les entreprises, les établissements et d’autres entités partout au Canada do
                 },
                 {
                     src:
-                        '410b88da-0ed1-4749-903f-5e76c24e2e5f/assets/fr/NPRIpictogramme-2016data-FR__1552505700147__w975.jpg',
+                        '/410b88da-0ed1-4749-903f-5e76c24e2e5f/assets/fr/NPRIpictogramme-2016data-FR__1552505700147__w975.jpg',
                     type: 'image',
                     altText: `Image décrivant le flux industriel des rejets sur place dans l'air, l'eau et le sol, des éliminations sur place, des éliminations hors site et des transferts hors site.`
                 }
@@ -47,7 +47,7 @@ Cette carte montre une étendue potentielle généralisée des trois zones de sa
                     type: 'text'
                 },
                 {
-                    config: '410b88da-0ed1-4749-903f-5e76c24e2e5f/ramp-config/fr/OilSandsDeposits.json',
+                    config: '/410b88da-0ed1-4749-903f-5e76c24e2e5f/ramp-config/fr/OilSandsDeposits.json',
                     type: 'map'
                 }
             ]
@@ -66,7 +66,7 @@ L’exploitation à ciel ouvert consiste à creuser de grandes surfaces à l’a
                 },
                 {
                     src:
-                        '410b88da-0ed1-4749-903f-5e76c24e2e5f/assets/fr/GettyImages-187242601__1554821412825__w1920.jpg',
+                        '/410b88da-0ed1-4749-903f-5e76c24e2e5f/assets/fr/GettyImages-187242601__1554821412825__w1920.jpg',
                     type: 'image',
                     altText: `Image montrant une vue aérienne d'une installation d'extraction de sables bitumineux.`
                 }
@@ -83,7 +83,7 @@ Les installations in situ ont une empreinte physique beaucoup plus petite que le
                     type: 'text'
                 },
                 {
-                    src: '410b88da-0ed1-4749-903f-5e76c24e2e5f/assets/fr/Slide 3 - mine vs insitu.jpg',
+                    src: '/410b88da-0ed1-4749-903f-5e76c24e2e5f/assets/fr/Slide 3 - mine vs insitu.jpg',
                     type: 'image',
                     altText: `Schéma montrant le processus d'extraction impliquant le pompage de vapeur à haute pression dans les profondeurs souterraines.`
                 }
@@ -107,7 +107,7 @@ Les installations in situ ont une empreinte physique beaucoup plus petite que le
                     type: 'text'
                 },
                 {
-                    config: '410b88da-0ed1-4749-903f-5e76c24e2e5f/ramp-config/fr/OilSandsFacilityLocations2019.json',
+                    config: '/410b88da-0ed1-4749-903f-5e76c24e2e5f/ramp-config/fr/OilSandsFacilityLocations2019.json',
                     type: 'map'
                 }
             ]
@@ -134,7 +134,7 @@ Les sept installations d’exploitation minière à ciel ouvert des sables bitum
                     charts: [
                         {
                             src:
-                                '410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/fr/substances/1.Imperial Oil Resources Limited-Kearl Oil Sands Processing Plant and Mine.csv',
+                                '/410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/fr/substances/1.Imperial Oil Resources Limited-Kearl Oil Sands Processing Plant and Mine.csv',
                             options: {
                                 title: `Usine de Transformation e Mine Kearl D'imperial 2019 Rejets et Éliminations (tonnes)`,
                                 subtitle: '',
@@ -143,7 +143,7 @@ Les sept installations d’exploitation minière à ciel ouvert des sables bitum
                         },
                         {
                             src:
-                                '410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/fr/substances/2.Suncor Energy Oil Sands Limited Partnership-Suncor Energy Inc. Oil Sands.csv',
+                                '/410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/fr/substances/2.Suncor Energy Oil Sands Limited Partnership-Suncor Energy Inc. Oil Sands.csv',
                             options: {
                                 title: `Sables bitumineux de Suncor Energy Inc. 2019 Rejets et Éliminations (tonnes)`,
                                 subtitle: '',
@@ -152,7 +152,7 @@ Les sept installations d’exploitation minière à ciel ouvert des sables bitum
                         },
                         {
                             src:
-                                '410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/fr/substances/3.Syncrude Canada Ltd.-Syncrude Canada Ltd.csv',
+                                '/410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/fr/substances/3.Syncrude Canada Ltd.-Syncrude Canada Ltd.csv',
                             options: {
                                 title: `Site de la Mine Syncrude Canada Ltd. 2019 Rejets et Éliminations (tonnes)`,
                                 subtitle: '',
@@ -161,7 +161,7 @@ Les sept installations d’exploitation minière à ciel ouvert des sables bitum
                         },
                         {
                             src:
-                                '410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/fr/substances/4.Syncrude Canada Ltd.-Aurora North Mine Site.csv',
+                                '/410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/fr/substances/4.Syncrude Canada Ltd.-Aurora North Mine Site.csv',
                             options: {
                                 title: `Site de la Mine Aurora Nord de Syncrude Canada 2019 Rejets et Éliminations (tonnes)`,
                                 subtitle: '',
@@ -170,7 +170,7 @@ Les sept installations d’exploitation minière à ciel ouvert des sables bitum
                         },
                         {
                             src:
-                                '410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/fr/substances/5.Canadian Natural Upgrading Limited Muskeg River Mine and Jackpine Mine.csv',
+                                '/410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/fr/substances/5.Canadian Natural Upgrading Limited Muskeg River Mine and Jackpine Mine.csv',
                             options: {
                                 title: `Canadian Natural Upgrading Mine de la Rivière Muskeg et Mine Jackpine 2019 Rejets et Éliminations (tonnes)`,
                                 subtitle: '',
@@ -179,7 +179,7 @@ Les sept installations d’exploitation minière à ciel ouvert des sables bitum
                         },
                         {
                             src:
-                                '410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/fr/substances/6.Canadian Natural Resources Limited-Horizon Oil Sands Processing Plant and Mine.csv',
+                                '/410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/fr/substances/6.Canadian Natural Resources Limited-Horizon Oil Sands Processing Plant and Mine.csv',
                             options: {
                                 title: `Canadian Natural Resources Usine de Transformations et Mine Horizon 2019 Rejets et Éliminations (tonnes)`,
                                 subtitle: '',
@@ -188,7 +188,7 @@ Les sept installations d’exploitation minière à ciel ouvert des sables bitum
                         },
                         {
                             src:
-                                '410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/fr/substances/7.Fort Hills Energy L.P.-Fort Hills Oil Sands.csv',
+                                '/410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/fr/substances/7.Fort Hills Energy L.P.-Fort Hills Oil Sands.csv',
                             options: {
                                 title: `Mine de sables bitumineux Fort Hills 2019 Rejets et Éliminations (tonnes)`,
                                 subtitle: '',
@@ -215,7 +215,7 @@ Explorez chaque installation avec l’imagerie par satellite.`,
                 },
                 {
                     config:
-                        '410b88da-0ed1-4749-903f-5e76c24e2e5f/ramp-config/fr/ReleasesandDisposalsbyMiningFacilitiesin2019(satellite).json',
+                        '/410b88da-0ed1-4749-903f-5e76c24e2e5f/ramp-config/fr/ReleasesandDisposalsbyMiningFacilitiesin2019(satellite).json',
                     type: 'map'
                 }
             ]
@@ -233,7 +233,7 @@ Explorez chaque installation avec l’imagerie par satellite.`,
                     charts: [
                         {
                             src:
-                                '410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/fr/Criteria air contaminant releases from oil sands mines_1.csv',
+                                '/410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/fr/Criteria air contaminant releases from oil sands mines_1.csv',
                             options: {
                                 xAxisLabel: '',
                                 yAxisLabel: 'Rejets de PCA (mille tonnes)',
@@ -245,7 +245,7 @@ Explorez chaque installation avec l’imagerie par satellite.`,
                         },
                         {
                             src:
-                                '410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/fr/Criteria air contaminant releases from oil sands mines_2.csv',
+                                '/410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/fr/Criteria air contaminant releases from oil sands mines_2.csv',
                             options: {
                                 xAxisLabel: '',
                                 yAxisLabel: 'Nombre de barils par année',
@@ -257,7 +257,7 @@ Explorez chaque installation avec l’imagerie par satellite.`,
                         },
                         {
                             src:
-                                '410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/fr/Criteria air contaminant releases from oil sands mines_3.csv',
+                                '/410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/fr/Criteria air contaminant releases from oil sands mines_3.csv',
                             options: {
                                 xAxisLabel: '',
                                 yAxisLabel: 'Rejets de PCA par 1000 barils',
@@ -295,7 +295,7 @@ Bien que les résidus déclarés par ces mines contiennent de grandes quantités
                     type: 'chart',
                     charts: [
                         {
-                            src: '410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/fr/Mine tailings reported.csv',
+                            src: '/410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/fr/Mine tailings reported.csv',
 
                             options: {
                                 xAxisLabel: 'Substances',
@@ -330,7 +330,7 @@ Bien que les résidus déclarés par ces mines contiennent de grandes quantités
                     charts: [
                         {
                             src:
-                                '410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/fr/tailings/1.Syncrude Canada Ltd., Aurora North Mine Site 2019 Tailings.csv',
+                                '/410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/fr/tailings/1.Syncrude Canada Ltd., Aurora North Mine Site 2019 Tailings.csv',
                             options: {
                                 title: `Syncrude Canada Ltd., Aurora North Mine Site 2019 Résidus miniers (tonnes)`,
                                 subtitle: '',
@@ -339,7 +339,7 @@ Bien que les résidus déclarés par ces mines contiennent de grandes quantités
                         },
                         {
                             src:
-                                '410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/fr/tailings/2.Fort Hill Energy L.P., Fort Hills Oil Sands 2019 Tailings.csv',
+                                '/410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/fr/tailings/2.Fort Hill Energy L.P., Fort Hills Oil Sands 2019 Tailings.csv',
                             options: {
                                 title: `Mine de sables bitumineux Fort Hills 2019 Résidus miniers (tonnes)`,
                                 subtitle: '',
@@ -348,7 +348,7 @@ Bien que les résidus déclarés par ces mines contiennent de grandes quantités
                         },
                         {
                             src:
-                                '410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/fr/tailings/3.Canadian Natural Resources Limited, Horizon Oil Sands Processing Plant and Mine 2019 Tailings.csv',
+                                '/410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/fr/tailings/3.Canadian Natural Resources Limited, Horizon Oil Sands Processing Plant and Mine 2019 Tailings.csv',
                             options: {
                                 title: `Canadian Natural Resources usine de transformation et Mine Horizon 2019 Résidus miniers (tonnes)`,
                                 subtitle: '',
@@ -357,7 +357,7 @@ Bien que les résidus déclarés par ces mines contiennent de grandes quantités
                         },
                         {
                             src:
-                                '410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/fr/tailings/4.Imperial Oil Resources Limited, Kearl Oil Sands Processing Plant and Mine 2019 Tailings.csv',
+                                '/410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/fr/tailings/4.Imperial Oil Resources Limited, Kearl Oil Sands Processing Plant and Mine 2019 Tailings.csv',
                             options: {
                                 title: `Usine de transformation et Mine Kearl D'Imperial Oil 2019 Résidus miniers (tonnes)`,
                                 subtitle: '',
@@ -366,7 +366,7 @@ Bien que les résidus déclarés par ces mines contiennent de grandes quantités
                         },
                         {
                             src:
-                                '410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/fr/tailings/5.Canadian Natural Upgrading Limited Muskeg River Mine and Jackpine Mine 2019 Tailings.csv',
+                                '/410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/fr/tailings/5.Canadian Natural Upgrading Limited Muskeg River Mine and Jackpine Mine 2019 Tailings.csv',
                             options: {
                                 title: `Canadian Natural Upgrading Mine de la Rivière Muskeg et Mine Jackpine 2019 Résidus miniers (tonnes)`,
                                 subtitle: '',
@@ -375,7 +375,7 @@ Bien que les résidus déclarés par ces mines contiennent de grandes quantités
                         },
                         {
                             src:
-                                '410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/fr/tailings/6.Suncor Energy Oil Sands Limited Partnership, Suncor Energy Inc. Oil Sands Tailings.csv',
+                                '/410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/fr/tailings/6.Suncor Energy Oil Sands Limited Partnership, Suncor Energy Inc. Oil Sands Tailings.csv',
                             options: {
                                 title: `Sables bitumineux de Suncor Energy Inc. 2019 Résidus miniers (tonnes)`,
                                 subtitle: '',
@@ -384,7 +384,7 @@ Bien que les résidus déclarés par ces mines contiennent de grandes quantités
                         },
                         {
                             src:
-                                '410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/fr/tailings/7.Syncrude Canada Ltd., Syncrude Canada Ltd. 2019 Tailings.csv',
+                                '/410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/fr/tailings/7.Syncrude Canada Ltd., Syncrude Canada Ltd. 2019 Tailings.csv',
                             options: {
                                 title: `Syncrude Canada Ltd., Syncrude Canada Ltd. 2019 Résidus miniers (tonnes)`,
                                 subtitle: '',
@@ -407,7 +407,7 @@ Explorez chaque installation avec l’imagerie par satellite.`,
                 },
                 {
                     config:
-                        '410b88da-0ed1-4749-903f-5e76c24e2e5f/ramp-config/fr/ReleasesandDisposalsbyMiningFacilitiesin2019(satellite).json',
+                        '/410b88da-0ed1-4749-903f-5e76c24e2e5f/ramp-config/fr/ReleasesandDisposalsbyMiningFacilitiesin2019(satellite).json',
                     type: 'map'
                 }
             ]
@@ -424,7 +424,7 @@ Explorez chaque installation avec l’imagerie par satellite.`,
                 },
                 {
                     config:
-                        '410b88da-0ed1-4749-903f-5e76c24e2e5f/ramp-config/fr/TailingsfromMiningFacilities2010to2019(timeslider).json',
+                        '/410b88da-0ed1-4749-903f-5e76c24e2e5f/ramp-config/fr/TailingsfromMiningFacilities2010to2019(timeslider).json',
                     type: 'map',
                     timeSlider: {
                         range: [2010, 2019],
@@ -447,7 +447,7 @@ En comparaison avec l’exploitation minière à ciel ouvert, l’exploitation i
                     type: 'text'
                 },
                 {
-                    src: '410b88da-0ed1-4749-903f-5e76c24e2e5f/assets/fr/Slide 10 - SAGD vs CSS.jpg',
+                    src: '/410b88da-0ed1-4749-903f-5e76c24e2e5f/assets/fr/Slide 10 - SAGD vs CSS.jpg',
                     type: 'image',
                     altText: `Schéma illustrant les processus de drainage par gravité au moyen de vapeur et de stimulation cyclique par la vapeur dans l'extraction des sables bitumineux.`
                 }
@@ -472,7 +472,7 @@ Les rejets atmosphériques déclarés par les installations in situ sont presque
                 },
                 {
                     config:
-                        '410b88da-0ed1-4749-903f-5e76c24e2e5f/ramp-config/fr/ReleasestoAirbyInSituFacilitiesforAllSubstancesin2019.json',
+                        '/410b88da-0ed1-4749-903f-5e76c24e2e5f/ramp-config/fr/ReleasestoAirbyInSituFacilitiesforAllSubstancesin2019.json',
                     type: 'map'
                 }
             ]
@@ -489,7 +489,7 @@ Ce changement dans le nombre d’installations déclarantes au fil du temps suit
                 },
                 {
                     config:
-                        '410b88da-0ed1-4749-903f-5e76c24e2e5f/ramp-config/fr/ReleasestoAirbyInSituFacilitiesforAllSubstances2010to2019(timeslider).json',
+                        '/410b88da-0ed1-4749-903f-5e76c24e2e5f/ramp-config/fr/ReleasestoAirbyInSituFacilitiesforAllSubstances2010to2019(timeslider).json',
                     type: 'map',
                     timeSlider: {
                         range: [2010, 2019],
@@ -516,7 +516,7 @@ Bien que les installations in situ aient signalé un accroissement des émission
                     charts: [
                         {
                             src:
-                                '410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/fr/NPRI releases from thermal in-situ facilities_1.csv',
+                                '/410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/fr/NPRI releases from thermal in-situ facilities_1.csv',
 
                             options: {
                                 //xAxisLabel: 'Year',
@@ -528,7 +528,7 @@ Bien que les installations in situ aient signalé un accroissement des émission
                         },
                         {
                             src:
-                                '410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/fr/NPRI releases from thermal in-situ facilities_2.csv',
+                                '/410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/fr/NPRI releases from thermal in-situ facilities_2.csv',
                             options: {
                                 //xAxisLabel: 'Year',
                                 yAxisLabel: 'Nombre de barils par année',
@@ -558,7 +558,7 @@ Les installations d’exploitation minière à ciel ouvert des sables bitumineux
                     type: 'text'
                 },
                 {
-                    src: '410b88da-0ed1-4749-903f-5e76c24e2e5f/assets/fr/slide%2014%20-%20athabasca.jpg',
+                    src: '/410b88da-0ed1-4749-903f-5e76c24e2e5f/assets/fr/slide%2014%20-%20athabasca.jpg',
                     type: 'image',
                     altText: 'Vue aérienne de la rivière Athabasca.'
                 }

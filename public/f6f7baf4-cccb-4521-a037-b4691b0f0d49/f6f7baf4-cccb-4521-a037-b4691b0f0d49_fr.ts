@@ -38,7 +38,7 @@ Cet aperçu de secteur sur les pâtes et papiers reprend les points saillants du
                     type: 'text'
                 },
                 {
-                    src: 'f6f7baf4-cccb-4521-a037-b4691b0f0d49/assets/fr/PP_sector.jpg',
+                    src: '/f6f7baf4-cccb-4521-a037-b4691b0f0d49/assets/fr/PP_sector.jpg',
                     altText: `Image d'une usine de pâte et papier.`,
                     type: 'image'
                 }
@@ -53,7 +53,7 @@ Cet aperçu de secteur sur les pâtes et papiers reprend les points saillants du
                     type: 'text'
                 },
                 {
-                    config: 'f6f7baf4-cccb-4521-a037-b4691b0f0d49/ramp-config/fr/locations.json',
+                    config: '/f6f7baf4-cccb-4521-a037-b4691b0f0d49/ramp-config/fr/locations.json',
                     type: 'map'
                 }
             ]
@@ -84,7 +84,7 @@ Plusieurs polluants rejetés dans l’environnement par la fabrication de pâtes
                     caption:
                         'Source: Gettyimages, Dorling Kindersley (2021), [schéma d’une usine de fabrication de papier](https://www.gettyimages.ca/detail/illustration/diagram-of-a-paper-making-factory-royalty-free-illustration/75488548?adppopup=true)',
 
-                    src: 'f6f7baf4-cccb-4521-a037-b4691b0f0d49/assets/fr/Mechanical_process_FR.png',
+                    src: '/f6f7baf4-cccb-4521-a037-b4691b0f0d49/assets/fr/Mechanical_process_FR.png',
                     type: 'image',
                     altText:
                         'Étape 1. Préparation de la matière première : broyage mécanique des copeaux de bois. Étape 2. Mise en pâte et blanchiment. Étape 3. Finition de la pâte dans la machine à papier. Étape 4. Expédition du produit final.'
@@ -107,7 +107,7 @@ La grande majorité de la pâte chimique produite au Canada est blanchie. La pâ
                     caption:
                         'Source: Gettyimages, Dorling Kindersley (2021), [schéma d’une usine de fabrication de papier](https://www.gettyimages.ca/detail/illustration/diagram-of-a-paper-making-factory-royalty-free-illustration/75488548?adppopup=true)',
 
-                    src: 'f6f7baf4-cccb-4521-a037-b4691b0f0d49/assets/fr/Chemical_process_FR.png',
+                    src: '/f6f7baf4-cccb-4521-a037-b4691b0f0d49/assets/fr/Chemical_process_FR.png',
                     type: 'image',
                     altText:
                         'Étape 1. Préparation de la matière première : séparation des fibres de bois à l’aide de produits chimiques et de cuisson à haute température. Étape 2. Mise en pâte et blanchiment. Étape 3. Finition de la pâte dans la machine à papier. Étape 4. Expédition du produit final.'
@@ -129,7 +129,7 @@ Certaines installations du secteur industriel des pâtes et papiers possèdent u
                     type: 'text'
                 },
                 {
-                    src: 'f6f7baf4-cccb-4521-a037-b4691b0f0d49/assets/fr/Subprocess.jpg',
+                    src: '/f6f7baf4-cccb-4521-a037-b4691b0f0d49/assets/fr/Subprocess.jpg',
                     altText: `Vue aérienne d'une usine de pâte et papier`,
                     type: 'image'
                 }
@@ -158,7 +158,7 @@ Certaines installations du secteur industriel des pâtes et papiers possèdent u
                     title:
                         'Rejets et éliminations totaux des installations de pâtes et papiers déclarant à l’INRP de 2010 à 2019',
                     config:
-                        'f6f7baf4-cccb-4521-a037-b4691b0f0d49/ramp-config/fr/total_releases_and_disposals_of_pnp_2010-2019.json',
+                        '/f6f7baf4-cccb-4521-a037-b4691b0f0d49/ramp-config/fr/total_releases_and_disposals_of_pnp_2010-2019.json',
                     type: 'map',
                     timeSlider: {
                         range: [2010, 2019],
@@ -180,7 +180,7 @@ Certaines installations du secteur industriel des pâtes et papiers possèdent u
                     title:
                         'Principaux contaminants atmosphériques totaux rejetés par les installations de pâtes et papiers déclarant à l’INRP de 2010 à 2019',
                     config:
-                        'f6f7baf4-cccb-4521-a037-b4691b0f0d49/ramp-config/fr/total_criteria_air_contaminants_of_pnp_2010-2019.json',
+                        '/f6f7baf4-cccb-4521-a037-b4691b0f0d49/ramp-config/fr/total_criteria_air_contaminants_of_pnp_2010-2019.json',
                     type: 'map',
                     timeSlider: {
                         range: [2010, 2019],
@@ -208,7 +208,7 @@ Dans les usines de pâtes et papiers, l’ammoniac (NH<sub>3</sub>) n’est gén
                     type: 'chart',
                     charts: [
                         {
-                            src: 'f6f7baf4-cccb-4521-a037-b4691b0f0d49/charts/fr/CAC_fr.csv',
+                            src: '/f6f7baf4-cccb-4521-a037-b4691b0f0d49/charts/fr/CAC_fr.csv',
 
                             options: {
                                 xAxisLabel: '',
@@ -243,7 +243,7 @@ Le SRT n’est généralement pas fabriqué ni traité en grande quantité, mais
                 {
                     title: `Rejets de soufre réduit total par les installations de pâtes et papiers déclarant à l’INRP de 2010 à 2019`,
                     config:
-                        'f6f7baf4-cccb-4521-a037-b4691b0f0d49/ramp-config/fr/total_reduced_sulphur_of_pnp_2010-2019.json',
+                        '/f6f7baf4-cccb-4521-a037-b4691b0f0d49/ramp-config/fr/total_reduced_sulphur_of_pnp_2010-2019.json',
                     type: 'map',
                     timeSlider: {
                         range: [2010, 2019],
@@ -275,7 +275,7 @@ Le SRT n’est généralement pas fabriqué ni traité en grande quantité, mais
                     type: 'text'
                 },
                 {
-                    src: 'f6f7baf4-cccb-4521-a037-b4691b0f0d49/assets/fr/trs_fr.png',
+                    src: '/f6f7baf4-cccb-4521-a037-b4691b0f0d49/assets/fr/trs_fr.png',
                     type: 'image',
                     altText: '[fr-] A graphical pie chart representation of the data table in the previous slide.'
                 }
@@ -296,7 +296,7 @@ Les installations de pâtes et papiers doivent effectuer des [études de suivis 
                 {
                     title: `Rejets de phosphore et de nitrates par les installations de pâtes et papiers déclarant à l’INRP de 2010 à 2019`,
                     config:
-                        'f6f7baf4-cccb-4521-a037-b4691b0f0d49/ramp-config/fr/phosphorus_and_nitrates_of_pnp_2010-2019.json',
+                        '/f6f7baf4-cccb-4521-a037-b4691b0f0d49/ramp-config/fr/phosphorus_and_nitrates_of_pnp_2010-2019.json',
                     type: 'map',
                     timeSlider: {
                         range: [2010, 2019],
@@ -317,7 +317,7 @@ Les installations de pâtes et papiers doivent effectuer des [études de suivis 
                 {
                     title: `Éliminations et transferts totaux par les installations de pâtes et papiers déclarant à l’INRP de 2010 à 2019`,
                     config:
-                        'f6f7baf4-cccb-4521-a037-b4691b0f0d49/ramp-config/fr/total_disposals_and_transfers_of_pnp_2010-2019.json',
+                        '/f6f7baf4-cccb-4521-a037-b4691b0f0d49/ramp-config/fr/total_disposals_and_transfers_of_pnp_2010-2019.json',
                     type: 'map',
                     timeSlider: {
                         range: [2010, 2019],
@@ -336,7 +336,7 @@ Les installations de pâtes et papiers doivent effectuer des [études de suivis 
                     type: 'text'
                 },
                 {
-                    src: 'f6f7baf4-cccb-4521-a037-b4691b0f0d49/assets/fr/substances_recovered_fr.png',
+                    src: '/f6f7baf4-cccb-4521-a037-b4691b0f0d49/assets/fr/substances_recovered_fr.png',
                     altText:
                         'Diagramme circulaire 1. Proportion des activités de récupération parmi le total des substances : Proportion des substances rejetées directement dans l’environnement- 96%, Proportion des substances récupérées- 4%; Diagramme circulaire 2. Proportion des substances soumises à un procédé de récupération: Élimination hors site- 36%, Élimination sur place- 44%, Recyclage- 17%, Traitement- 3%.',
                     type: 'image'
@@ -366,7 +366,7 @@ Les installations de pâtes et papiers doivent effectuer des [études de suivis 
                     type: 'text'
                 },
                 {
-                    src: 'f6f7baf4-cccb-4521-a037-b4691b0f0d49/assets/fr/Regulations.jpg',
+                    src: '/f6f7baf4-cccb-4521-a037-b4691b0f0d49/assets/fr/Regulations.jpg',
                     altText: `Image d'une usine de pâte et papier`,
                     type: 'image'
                 }
@@ -392,7 +392,7 @@ Apprenez-en plus sur la [prévention de la pollution](https://www.canada.ca/fr/e
                     type: 'text'
                 },
                 {
-                    config: 'f6f7baf4-cccb-4521-a037-b4691b0f0d49/ramp-config/fr/pollution_prevention_activities.json',
+                    config: '/f6f7baf4-cccb-4521-a037-b4691b0f0d49/ramp-config/fr/pollution_prevention_activities.json',
                     type: 'map'
                 }
             ]
@@ -414,7 +414,7 @@ Le rapport sur [L’état des forêts au Canada 2019](https://www.rncan.gc.ca/ou
                     type: 'text'
                 },
                 {
-                    src: 'f6f7baf4-cccb-4521-a037-b4691b0f0d49/assets/fr/Futur.jpg',
+                    src: '/f6f7baf4-cccb-4521-a037-b4691b0f0d49/assets/fr/Futur.jpg',
                     altText: `Image d'une pile de bois.`,
                     type: 'image'
                 }

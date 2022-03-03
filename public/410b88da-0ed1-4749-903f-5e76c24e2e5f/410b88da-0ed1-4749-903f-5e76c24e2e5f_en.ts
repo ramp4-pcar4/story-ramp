@@ -21,7 +21,7 @@ Businesses, institutions and other facilities across Canada must report their re
                 },
                 {
                     src:
-                        '410b88da-0ed1-4749-903f-5e76c24e2e5f/assets/en/NPRIpictogramme-2016data-EN__1553797637582__w1430.jpg',
+                        '/410b88da-0ed1-4749-903f-5e76c24e2e5f/assets/en/NPRIpictogramme-2016data-EN__1553797637582__w1430.jpg',
                     type: 'image',
                     altText:
                         'An image describing the flow from industry of on-site releases to air, water, and land, on-site disposals, off-site disposals, and off-site transfers.'
@@ -47,7 +47,7 @@ This map shows a generalized overview of the three oil sands areas. The actual g
                     type: 'text'
                 },
                 {
-                    config: '410b88da-0ed1-4749-903f-5e76c24e2e5f/ramp-config/en/OilSandsDeposits.json',
+                    config: '/410b88da-0ed1-4749-903f-5e76c24e2e5f/ramp-config/en/OilSandsDeposits.json',
                     type: 'map'
                 }
             ]
@@ -66,7 +66,7 @@ Surface mining involves digging up large areas with large excavators. The result
                 },
                 {
                     src:
-                        '410b88da-0ed1-4749-903f-5e76c24e2e5f/assets/en/GettyImages-187242601__1554821467033__w1920.jpg',
+                        '/410b88da-0ed1-4749-903f-5e76c24e2e5f/assets/en/GettyImages-187242601__1554821467033__w1920.jpg',
                     type: 'image',
                     altText: 'An image showing an aerial view of an oil sands extraction facility.'
                 }
@@ -83,7 +83,7 @@ Thermal in-situ facilities have a much smaller physical footprint than surface m
                     type: 'text'
                 },
                 {
-                    src: '410b88da-0ed1-4749-903f-5e76c24e2e5f/assets/en/Slide 3 - mine vs insitu.jpg',
+                    src: '/410b88da-0ed1-4749-903f-5e76c24e2e5f/assets/en/Slide 3 - mine vs insitu.jpg',
                     type: 'image',
                     altText:
                         'A diagram showing the extraction process involving pumping high-pressure steam deep underground.'
@@ -109,7 +109,7 @@ Thermal in-situ facilities have a much smaller physical footprint than surface m
                     type: 'text'
                 },
                 {
-                    config: '410b88da-0ed1-4749-903f-5e76c24e2e5f/ramp-config/en/OilSandsFacilityLocations2019.json',
+                    config: '/410b88da-0ed1-4749-903f-5e76c24e2e5f/ramp-config/en/OilSandsFacilityLocations2019.json',
                     type: 'map'
                 }
             ]
@@ -136,7 +136,7 @@ The seven oil sands surface mining facilities that reported to the NPRI are list
                     charts: [
                         {
                             src:
-                                '410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/en/substances/1.Imperial Oil Resources Limited-Kearl Oil Sands Processing Plant and Mine.csv',
+                                '/410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/en/substances/1.Imperial Oil Resources Limited-Kearl Oil Sands Processing Plant and Mine.csv',
                             options: {
                                 title: `Imperial Oil Resources Limited, Kearl Oil Sands Processing Plant and Mine 2019 Releases and Disposals (Tonnes)`,
                                 subtitle: '',
@@ -145,7 +145,7 @@ The seven oil sands surface mining facilities that reported to the NPRI are list
                         },
                         {
                             src:
-                                '410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/en/substances/2.Suncor Energy Oil Sands Limited Partnership-Suncor Energy Inc. Oil Sands.csv',
+                                '/410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/en/substances/2.Suncor Energy Oil Sands Limited Partnership-Suncor Energy Inc. Oil Sands.csv',
                             options: {
                                 title: `Suncor Energy Oil Sands Limited Partnership, Suncor Energy Inc. Oil Sands 2019 Releases and Disposals (Tonnes)`,
                                 subtitle: '',
@@ -154,7 +154,7 @@ The seven oil sands surface mining facilities that reported to the NPRI are list
                         },
                         {
                             src:
-                                '410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/en/substances/3.Syncrude Canada Ltd.-Syncrude Canada Ltd.csv',
+                                '/410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/en/substances/3.Syncrude Canada Ltd.-Syncrude Canada Ltd.csv',
                             options: {
                                 title: `Syncrude Canada Ltd., Syncrude Canada Ltd 2019 Releases and Disposals (Tonnes)`,
                                 subtitle: '',
@@ -163,7 +163,7 @@ The seven oil sands surface mining facilities that reported to the NPRI are list
                         },
                         {
                             src:
-                                '410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/en/substances/4.Syncrude Canada Ltd.-Aurora North Mine Site.csv',
+                                '/410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/en/substances/4.Syncrude Canada Ltd.-Aurora North Mine Site.csv',
                             options: {
                                 title: `Syncrude Canada Ltd., Aurora North Mine Site 2019 Releases and Disposals (Tonnes)`,
                                 subtitle: '',
@@ -172,7 +172,7 @@ The seven oil sands surface mining facilities that reported to the NPRI are list
                         },
                         {
                             src:
-                                '410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/en/substances/5.Canadian Natural Upgrading Limited Muskeg River Mine and Jackpine Mine 2019 Tailings.csv',
+                                '/410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/en/substances/5.Canadian Natural Upgrading Limited Muskeg River Mine and Jackpine Mine 2019 Tailings.csv',
                             options: {
                                 title: `Canadian Natural Upgrading Ltd., Canadian Natural Upgrading Limited Muskeg River Mine and Jackpine Mine 2019 Releases and Disposals (Tonnes)`,
                                 subtitle: '',
@@ -181,7 +181,7 @@ The seven oil sands surface mining facilities that reported to the NPRI are list
                         },
                         {
                             src:
-                                '410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/en/substances/6.Canadian Natural Resources Limited-Horizon Oil Sands Processing Plant and Mine.csv',
+                                '/410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/en/substances/6.Canadian Natural Resources Limited-Horizon Oil Sands Processing Plant and Mine.csv',
                             options: {
                                 title: `Canadian Natural Resources Limited, Horizon Oil Sands Processing Plant and Mine 2019 Releases and Dispostals (Tonnes)`,
                                 subtitle: '',
@@ -190,7 +190,7 @@ The seven oil sands surface mining facilities that reported to the NPRI are list
                         },
                         {
                             src:
-                                '410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/en/substances/7.Fort Hills Energy L.P.-Fort Hills Oil Sands.csv',
+                                '/410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/en/substances/7.Fort Hills Energy L.P.-Fort Hills Oil Sands.csv',
                             options: {
                                 title: `Fort Hills Energy L.P., Fort Hills Oil Sands, 2019 Releases and Dispostals (Tonnes)`,
                                 subtitle: '',
@@ -216,7 +216,7 @@ You can explore each facility using satellite imagery.`,
                 },
                 {
                     config:
-                        '410b88da-0ed1-4749-903f-5e76c24e2e5f/ramp-config/en/ReleasesandDisposalsbyMiningFacilitiesin2019(satellite).json',
+                        '/410b88da-0ed1-4749-903f-5e76c24e2e5f/ramp-config/en/ReleasesandDisposalsbyMiningFacilitiesin2019(satellite).json',
                     type: 'map'
                 }
             ]
@@ -234,7 +234,7 @@ You can explore each facility using satellite imagery.`,
                     charts: [
                         {
                             src:
-                                '410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/en/Criteria air contaminant releases from oil sands mines_1.csv',
+                                '/410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/en/Criteria air contaminant releases from oil sands mines_1.csv',
 
                             options: {
                                 xAxisLabel: 'Year',
@@ -246,7 +246,7 @@ You can explore each facility using satellite imagery.`,
                         },
                         {
                             src:
-                                '410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/en/Criteria air contaminant releases from oil sands mines_2.csv',
+                                '/410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/en/Criteria air contaminant releases from oil sands mines_2.csv',
                             options: {
                                 xAxisLabel: 'Year',
                                 yAxisLabel: 'Barrels per year (thousands)',
@@ -258,7 +258,7 @@ You can explore each facility using satellite imagery.`,
                         },
                         {
                             src:
-                                '410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/en/Criteria air contaminant releases from oil sands mines_3.csv',
+                                '/410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/en/Criteria air contaminant releases from oil sands mines_3.csv',
                             options: {
                                 xAxisLabel: 'Year',
                                 yAxisLabel: 'Releases per 1000 barrels',
@@ -295,7 +295,7 @@ While the tailings reported by these mines have large amounts of manganese, ammo
                     type: 'chart',
                     charts: [
                         {
-                            src: '410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/en/Mine tailings reported.csv',
+                            src: '/410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/en/Mine tailings reported.csv',
                             options: {
                                 xAxisLabel: 'Substances',
                                 yAxisLabel: 'Releases (thousands tonnes)',
@@ -327,7 +327,7 @@ While the tailings reported by these mines have large amounts of manganese, ammo
                     charts: [
                         {
                             src:
-                                '410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/en/tailings/1.Syncrude Canada Ltd., Aurora North Mine Site 2019 Tailings.csv',
+                                '/410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/en/tailings/1.Syncrude Canada Ltd., Aurora North Mine Site 2019 Tailings.csv',
                             options: {
                                 title: `Syncrude Canada Ltd., Aurora North Mine Site 2019 Tailings (Tonnes)`,
                                 subtitle: '',
@@ -336,7 +336,7 @@ While the tailings reported by these mines have large amounts of manganese, ammo
                         },
                         {
                             src:
-                                '410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/en/tailings/2.Fort Hill Energy L.P., Fort Hills Oil Sands 2019 Tailings.csv',
+                                '/410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/en/tailings/2.Fort Hill Energy L.P., Fort Hills Oil Sands 2019 Tailings.csv',
                             options: {
                                 title: `Fort Hill Energy L.P., Fort Hills Oil Sands 2019 Tailings (Tonnes)`,
                                 subtitle: '',
@@ -345,7 +345,7 @@ While the tailings reported by these mines have large amounts of manganese, ammo
                         },
                         {
                             src:
-                                '410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/en/tailings/3.Canadian Natural Resources Limited, Horizon Oil Sands Processing Plant and Mine 2019 Tailings.csv',
+                                '/410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/en/tailings/3.Canadian Natural Resources Limited, Horizon Oil Sands Processing Plant and Mine 2019 Tailings.csv',
                             options: {
                                 title: `Canadian Natural Resources Limited, Horizon Oil Sands Processing Plant and Mine 2019 Tailings (Tonnes)`,
                                 subtitle: '',
@@ -354,7 +354,7 @@ While the tailings reported by these mines have large amounts of manganese, ammo
                         },
                         {
                             src:
-                                '410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/en/tailings/4.Imperial Oil Resources Limited, Kearl Oil Sands Processing Plant and Mine 2019 Tailings.csv',
+                                '/410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/en/tailings/4.Imperial Oil Resources Limited, Kearl Oil Sands Processing Plant and Mine 2019 Tailings.csv',
                             options: {
                                 title: `Imperial Oil Resources Limited, Kearl Oil Sands Processing Plant and Mine 2019 Tailings (Tonnes)`,
                                 subtitle: '',
@@ -363,7 +363,7 @@ While the tailings reported by these mines have large amounts of manganese, ammo
                         },
                         {
                             src:
-                                '410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/en/tailings/5.Canadian Natural Upgrading Limited Muskeg River Mine and Jackpine Mine 2019 Tailings.csv',
+                                '/410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/en/tailings/5.Canadian Natural Upgrading Limited Muskeg River Mine and Jackpine Mine 2019 Tailings.csv',
                             options: {
                                 title: `Canadian Natural Upgrading Ltd., Canadian Natural Upgrading Limited Muskeg River Mine and Jackpine Mine 2019 Tailings (Tonnes)`,
                                 subtitle: '',
@@ -372,7 +372,7 @@ While the tailings reported by these mines have large amounts of manganese, ammo
                         },
                         {
                             src:
-                                '410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/en/tailings/6.Suncor Energy Oil Sands Limited Partnership, Suncor Energy Inc. Oil Sands Tailings.csv',
+                                '/410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/en/tailings/6.Suncor Energy Oil Sands Limited Partnership, Suncor Energy Inc. Oil Sands Tailings.csv',
                             options: {
                                 title: `Suncor Energy Oil Sands Limited Partnership, Suncor Energy Inc. Oil Sands Tailings (Tonnes)`,
                                 subtitle: '',
@@ -381,7 +381,7 @@ While the tailings reported by these mines have large amounts of manganese, ammo
                         },
                         {
                             src:
-                                '410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/en/tailings/7.Syncrude Canada Ltd., Syncrude Canada Ltd. 2019 Tailings.csv',
+                                '/410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/en/tailings/7.Syncrude Canada Ltd., Syncrude Canada Ltd. 2019 Tailings.csv',
                             options: {
                                 title: `Syncrude Canada Ltd., Syncrude Canada Ltd. 2019 Tailings (Tonnes)`,
                                 subtitle: '',
@@ -404,7 +404,7 @@ You can explore each facility using satellite imagery.`,
                 },
                 {
                     config:
-                        '410b88da-0ed1-4749-903f-5e76c24e2e5f/ramp-config/en/ReleasesandDisposalsbyMiningFacilitiesin2019(satellite).json',
+                        '/410b88da-0ed1-4749-903f-5e76c24e2e5f/ramp-config/en/ReleasesandDisposalsbyMiningFacilitiesin2019(satellite).json',
                     type: 'map'
                 }
             ]
@@ -419,7 +419,7 @@ You can explore each facility using satellite imagery.`,
                 },
                 {
                     config:
-                        '410b88da-0ed1-4749-903f-5e76c24e2e5f/ramp-config/en/TailingsfromMiningFacilities2010to2019(timeslider).json',
+                        '/410b88da-0ed1-4749-903f-5e76c24e2e5f/ramp-config/en/TailingsfromMiningFacilities2010to2019(timeslider).json',
                     type: 'map',
                     timeSlider: {
                         range: [2010, 2019],
@@ -442,7 +442,7 @@ Compared to surface mining, in-situ operations are much more energy intensive, a
                     type: 'text'
                 },
                 {
-                    src: '410b88da-0ed1-4749-903f-5e76c24e2e5f/assets/en/Slide 10 - SAGD vs CSS.jpg',
+                    src: '/410b88da-0ed1-4749-903f-5e76c24e2e5f/assets/en/Slide 10 - SAGD vs CSS.jpg',
                     type: 'image',
                     altText:
                         'A diagram demonstrating steam assisted gravity drainage and cyclic steam stimulation processes in oil sands extraction.'
@@ -468,7 +468,7 @@ The air releases reported by in-situ facilities is almost entirely (98%) criteri
                 },
                 {
                     config:
-                        '410b88da-0ed1-4749-903f-5e76c24e2e5f/ramp-config/en/ReleasestoAirbyInSituFacilitiesforAllSubstancesin2019.json',
+                        '/410b88da-0ed1-4749-903f-5e76c24e2e5f/ramp-config/en/ReleasestoAirbyInSituFacilitiesforAllSubstancesin2019.json',
                     type: 'map'
                 }
             ]
@@ -485,7 +485,7 @@ This change in the number of facilities reporting over time follows changes in t
                 },
                 {
                     config:
-                        '410b88da-0ed1-4749-903f-5e76c24e2e5f/ramp-config/en/ReleasestoAirbyInSituFacilitiesforAllSubstances2010to2019(timeslider).json',
+                        '/410b88da-0ed1-4749-903f-5e76c24e2e5f/ramp-config/en/ReleasestoAirbyInSituFacilitiesforAllSubstances2010to2019(timeslider).json',
                     type: 'map',
                     timeSlider: {
                         range: [2010, 2019],
@@ -512,7 +512,7 @@ While in-situ facilities have reported an increase in reported CAC emissions, th
                     charts: [
                         {
                             src:
-                                '410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/en/NPRI releases from thermal in-situ facilities_1.csv',
+                                '/410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/en/NPRI releases from thermal in-situ facilities_1.csv',
 
                             options: {
                                 xAxisLabel: 'Year',
@@ -524,7 +524,7 @@ While in-situ facilities have reported an increase in reported CAC emissions, th
                         },
                         {
                             src:
-                                '410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/en/NPRI releases from thermal in-situ facilities_2.csv',
+                                '/410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/en/NPRI releases from thermal in-situ facilities_2.csv',
                             options: {
                                 xAxisLabel: 'Year',
                                 yAxisLabel: 'Barrels per year',
@@ -554,7 +554,7 @@ Oil sands surface mining facilities in Alberta take much of their water from the
                 },
                 {
                     src:
-                        '410b88da-0ed1-4749-903f-5e76c24e2e5f/assets/en/GettyImages-516166467__1554821531978__w1920.jpg',
+                        '/410b88da-0ed1-4749-903f-5e76c24e2e5f/assets/en/GettyImages-516166467__1554821531978__w1920.jpg',
                     type: 'image',
                     altText: 'An aerial view of the Athabasca River.'
                 }
