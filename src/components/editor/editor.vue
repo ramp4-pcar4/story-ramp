@@ -20,6 +20,8 @@
         <label>{{ $t('editor.contextLink') }}:</label> <input type="text" v-model="contextLink" /> <br />
         <label>{{ $t('editor.contextLabel') }}:</label> <input type="text" v-model="contextLabel" /> <br />
         <label>{{ $t('editor.dateModified') }}:</label> <input type="date" v-model="dateModified" /> <br />
+
+        <chart-editor></chart-editor>
     </div>
 </template>
 
@@ -29,10 +31,12 @@ import { Route } from 'vue-router';
 
 import { StoryRampConfig } from '@/definitions';
 import Circle2 from 'vue-loading-spinner/src/components/Circle2.vue';
+import ChartEditorV from './chart-editor.vue';
 
 @Component({
     components: {
-        spinner: Circle2
+        spinner: Circle2,
+        'chart-editor': ChartEditorV
     }
 })
 export default class EditorV extends Vue {
