@@ -20,7 +20,6 @@ module.exports = {
         '@typescript-eslint/no-var-requires': 'off'
     },
     globals: {
-        RAMP: 'readonly',
-        highed: 'readonly'
+        RAMP: 'readonly'
     }
 };
