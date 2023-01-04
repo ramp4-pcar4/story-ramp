@@ -56,7 +56,6 @@ export interface DQVChartConfig {
         csvURL: string;
         enablePolling: boolean;
     };
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     plotOptions?: any;
     exporting?: {
         buttons: {
@@ -179,16 +178,7 @@ export interface ChartPanel extends BasePanel {
 
 export interface ChartConfig {
     src: string;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     config?: any;
     name?: string;
     options?: DQVOptions;
-}
-
-export interface ImageFile {
-    id: string;
-    src: string;
-    altText: string;
-    width?: number;
-    height?: number;
 }

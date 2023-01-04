@@ -12,6 +12,4 @@ declare global {
     }
 
     const RAMP: any;
-
-    const highed: any;
 }
