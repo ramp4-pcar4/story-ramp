@@ -68,7 +68,7 @@
                     "type": "text"
                 },
                 {
-                    "config": "00000000-0000-0000-0000-000000000000/ramp-config/en/OilSandsDeposits.json",
+                    "config": "00000000-0000-0000-0000-000000000000/ramp-config/maina.js",
                     "type": "map",
                     "scrollguard": true
                 }
