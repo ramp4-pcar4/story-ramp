@@ -219,4 +219,5 @@ export function initialize(panel) {
 
     // add export fixtures
     rInstance.fixture.add('export');
+    return rInstance;
 }

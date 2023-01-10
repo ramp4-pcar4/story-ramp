@@ -227,5 +227,5 @@ export function initialize(panel) {
     // add export fixtures
     rInstance.fixture.add('export');
 
-    // add timeslider fixture here
+    return rInstance;
 }
