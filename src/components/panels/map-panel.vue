@@ -4,9 +4,7 @@
             {{ config.title }}
         </div>
 
-        <div :id="`ramp-map-${slideIdx}`" class="w-full bg-gray-200 h-story">
-
-        </div>
+        <div :id="`ramp-map-${slideIdx}`" class="w-full bg-gray-200 h-story"></div>
     </div>
 </template>
 
@@ -30,16 +28,16 @@ export default class MapPanelV extends Vue {
     mapComponent: Element | undefined = undefined;
 
     mounted(): void {
-        this.init()
+        this.init();
     }
 
     init(): void {
         // Find the correct map component based on whether there's a title component.
         this.mapComponent = this.config.title ? this.$el.children[1] : this.$el.children[0];
 
-        let src = require(`./../../../public/00000000-0000-0000-0000-000000000000/ramp-config/maina.js`);
+        const src = require('./../../../public/00000000-0000-0000-0000-000000000000/ramp-config/' + this.config.config);
 
-        src.run(this.mapComponent);
+        src.initialize(this.mapComponent);
 
         // script.setAttribute('type', 'module');
         // script.setAttribute('src', src);

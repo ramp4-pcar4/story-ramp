@@ -16,14 +16,6 @@ let config = {
                         }
                     }
                 ],
-                caption: {
-                    mapCoords: {
-                        formatter: 'WEB_LAMBERT'
-                    },
-                    scaleBar: {
-                        imperialScale: true
-                    }
-                },
                 mapMouseThrottle: 200,
                 lodSets: [
                     {
@@ -154,30 +146,37 @@ let config = {
             },
             layers: [
                 {
-                    id: 'polys',
-                    layerType: 'esri-map-image',
+                    id: 'peaceriver',
+                    layerType: 'esri-feature',
                     url:
-                        'https://section917.canadacentral.cloudapp.azure.com/arcgis/rest/services/StoryRAMP/410b88da_0ed1_4749_903f_5e76c24e2e5f/MapServer/',
-                    sublayers: [
-                        {
-                            index: 16,
-                            state: {
-                                opacity: 0.5
-                            }
-                        },
-                        {
-                            index: 17,
-                            state: {
-                                opacity: 0.5
-                            }
-                        },
-                        {
-                            index: 18,
-                            state: {
-                                opacity: 0.5
-                            }
-                        }
-                    ]
+                        'https://section917.canadacentral.cloudapp.azure.com/arcgis/rest/services/StoryRAMP/410b88da_0ed1_4749_903f_5e76c24e2e5f/MapServer/16',
+                    state: {
+                        opacity: 0.5,
+                        visibility: true,
+                        hovertips: false
+                    }
+                },
+                {
+                    id: 'athabasca',
+                    layerType: 'esri-feature',
+                    url:
+                        'https://section917.canadacentral.cloudapp.azure.com/arcgis/rest/services/StoryRAMP/410b88da_0ed1_4749_903f_5e76c24e2e5f/MapServer/17',
+                    state: {
+                        opacity: 0.5,
+                        visibility: true,
+                        hovertips: false
+                    }
+                },
+                {
+                    id: 'coldlake',
+                    layerType: 'esri-feature',
+                    url:
+                        'https://section917.canadacentral.cloudapp.azure.com/arcgis/rest/services/StoryRAMP/410b88da_0ed1_4749_903f_5e76c24e2e5f/MapServer/18',
+                    state: {
+                        opacity: 0.5,
+                        visibility: true,
+                        hovertips: false
+                    }
                 }
             ],
             fixtures: {
@@ -185,13 +184,20 @@ let config = {
                     root: {
                         children: [
                             {
-                                layerId: 'polys'
+                                layerId: 'peaceriver'
+                            },
+                            {
+                                layerId: 'athabasca'
+                            },
+                            {
+                                layerId: 'coldlake'
                             }
                         ]
-                    }
+                    },
+                    legendHeaderControls: ['groupToggle', 'visibilityToggle']
                 },
                 appbar: {
-                    items: ['legend']
+                    items: ['legend', 'export']
                 },
                 mapnav: {
                     items: ['fullscreen', 'geolocator', 'help', 'home', 'legend']
@@ -201,6 +207,16 @@ let config = {
                         default: 350,
                         'details-items': 400
                     }
+                },
+                export: {
+                    title: {
+                        value: 'Oil Sands Deposits in Canada',
+                        selectable: false
+                    },
+                    legend: {
+                        selected: false
+                    },
+                    fileName: 'ramp-pcar-4-map-carte'
                 },
                 help: {
                     location: '../help'
@@ -217,112 +233,9 @@ let options = {
     startRequired: false
 };
 
-export function run(panel) {
+export function initialize(panel) {
     const rInstance = RAMP.createInstance(panel, config, options);
-
-    // rInstance.fixture.addDefaultFixtures().then(() => {
-    //     rInstance.panel.open('legend');
-    //     rInstance.panel.pin('legend');
-    // });
-
-    rInstance.$element.component('WFSLayer-Custom', {
-        props: ['identifyData'],
-        template: `
-        <div>
-            <span>This is an example template that contains an image.</span>
-            <img src="https://i.imgur.com/WtY0tdC.gif" />
-        </div>
-    `
-    });
-
-    rInstance.$element.component('Water-Quantity-Template', {
-        props: ['identifyData'],
-        template: `
-        <div style="align-items: center; justify-content: center; font-size: 14px; font-family: Arial, sans-serif;">
-            <div v-html="renderHeader()" />
-            <div v-html="createSection('Station ID', 'StationID')" />
-            <div v-html="createSection('Province', 'E_Province')" />
-            <div v-html="createSection('Report Year', 'Report_Year')" />
-            <div v-if="this.identifyData.loaded">
-                <div style="display: flex; flex-direction: row; color: #a0aec0; font-weight: bold; padding-top: 5px;">
-                    <div style="flex: 1 1 0%; width: 100%;">
-                        Latitude
-                    </div>
-                    <div style="flex: 1 1 0%; width: 100%;">
-                        Longitude
-                    </div>
-                </div>
-                <div style="display: flex; flex-direction: row;">
-                    <div style="flex: 1 1 0%; width: 100%;">
-                        {{this.identifyData.data['Latitude']}}
-                    </div>
-                    <div style="flex: 1 1 0%; width: 100%;">
-                        {{this.identifyData.data['Longitude']}}
-                    </div>
-                </div>
-                <div style="display: flex; flex-direction: column; padding-top: 5px; color: #4299e1;">
-                    <span style="font-weight: bold; color: #a0aec0;">Links</span>
-                    <span v-html="this.identifyData.data['E_DetailPageURL']"></span>
-                    <span v-html="this.identifyData.data['E_URL_Historical']"></span>
-                    <span v-html="this.identifyData.data['E_URL_RealTime']"></span>
-                </div>
-            </div>
-        </div>
-    `,
-        methods: {
-            renderHeader() {
-                if (!this.identifyData.loaded) {
-                    return `
-                <span style="display: flex; font-size: 20px; background-color: #e21e5e; color: white; padding: 4px; text-align: center;">
-                    Loading...
-                </span>
-                `;
-                } else if (this.identifyData.data['Symbol'] === '3') {
-                    return `
-                    <span style="display: flex; font-size: 20px; background-color: #e53e3e; color: white; padding: 4px; text-align: center;">
-                        ${this.identifyData.data['StationName']}
-                    </span>
-                `;
-                } else {
-                    return `
-                    <span style="display: flex; font-size: 20px; background-color: #3182ce; color: white; padding: 4px; text-align: center;">
-                        ${this.identifyData.data['StationName']}
-                    </span>
-                `;
-                }
-            },
-            createSection(title, id) {
-                var val = this.identifyData.loaded ? this.identifyData.data[id] : 'Loading...';
-
-                return `
-            <div style="display: flex; flex-direction: column; padding-top: 5px;">
-                <span style="color: #a0aec0; font-weight: bold;">
-                    ${title}
-                </span>
-                <span>
-                    ${val}
-                </span>
-            </div>
-            `;
-            }
-        }
-    });
 
     // add export fixtures
     rInstance.fixture.add('export');
-
-    // add areas of interest fixture
-    rInstance.fixture.add('areas-of-interest');
-
-    // load map if startRequired is true
-    rInstance.start();
-
-    function animateToggle() {
-        if (rInstance.$vApp.$el.classList.contains('animation-enabled')) {
-            rInstance.$vApp.$el.classList.remove('animation-enabled');
-        } else {
-            rInstance.$vApp.$el.classList.add('animation-enabled');
-        }
-        document.getElementById('animate-status').innerText = 'Animate: ' + rInstance.animate;
-    }
 }
