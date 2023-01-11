@@ -34,20 +34,19 @@ export default class MapPanelV extends Vue {
     init(): void {
         // Find the correct map component based on whether there's a title component.
         this.mapComponent = this.config.title ? this.$el.children[1] : this.$el.children[0];
-        console.log(this.config)
 
-        const src = require('./../../../public/00000000-0000-0000-0000-000000000000/ramp-config/' + this.config.config);
+        // reduce build size by being as specific as possible with path
+        const src = require('./../../../public/samples/' + this.config.config + '.js');
 
         const rInstance = src.initialize(this.mapComponent);
 
         // Add the scrollguard fixture and enable it if desired.
         // If the scrollguard was already added previously, add does nothing, so no harm done!
-        if(this.config.scrollguard) {
+        if (this.config.scrollguard) {
             rInstance.fixture.add('scrollguard').then((scrollguardFixture: any) => {
-                scrollguardFixture.setEnabled(true)
-            })
+                scrollguardFixture.setEnabled(true);
+            });
         }
-
 
         // script.setAttribute('type', 'module');
         // script.setAttribute('src', src);
@@ -154,8 +153,8 @@ export default class MapPanelV extends Vue {
     width: 100%;
 }
 
-$font-list: 'Montserrat', -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica,
-    Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji;
+$font-list: 'Montserrat', -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji,
+    Segoe UI Emoji;
 
 ::v-deep .ramp-app {
     height: 100%;
