@@ -111,7 +111,7 @@ export default class StoryV extends Vue {
     }
 
     fetchConfig(uid: string, lang: string): void {
-        fetch(`${uid}/${uid}_${lang}.json`)
+        fetch(`samples/${uid}/${uid}_${lang}.json`)
             .then((res) => {
                 res.json().then((config: any) => {
                     this.config = config;
