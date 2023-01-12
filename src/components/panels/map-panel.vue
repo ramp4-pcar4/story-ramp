@@ -64,11 +64,6 @@ export default class MapPanelV extends Vue {
             rInstance.fixture.add('time-slider', TimeSliderFixture).then((ts: TimeSliderFixture) => { ts.initTimeSlider(this.config.timeSlider!, this.$i18n)})
 
         }
-
-        // remove rv-focus-trap from map
-        //     const mapInstance = document.getElementById(`ramp-map-${this.slideIdx}`);
-        //     mapInstance?.removeAttribute('rv-trap-focus');
-        // });
     }
 }
 </script>

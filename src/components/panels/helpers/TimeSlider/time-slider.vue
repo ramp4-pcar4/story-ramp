@@ -184,7 +184,7 @@ export default class TimeSlider extends Vue {
 
     minimizeToggle(): void {
         this.minimized = !this.minimized;
-        (this.$el.parentElement as HTMLElement).style.minHeight = this.minimized
+        (this.$el.parentElement as HTMLElement).style.height = this.minimized
             ? window.matchMedia('(max-width: 640px)').matches
                 ? '32px'
                 : '50px'
