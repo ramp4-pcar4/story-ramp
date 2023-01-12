@@ -12,7 +12,7 @@
 import { MapPanel } from '@/definitions';
 import { Component, Vue, Prop } from 'vue-property-decorator';
 // @ts-ignore
-import { TimeSliderFixture } from '@/components/panels/helpers/TimeSlider/index'
+import { TimeSliderFixture } from '@/components/panels/helpers/TimeSlider/index';
 
 @Component({
     components: {}
@@ -61,8 +61,9 @@ export default class MapPanelV extends Vue {
         }
 
         if (this.config.timeSlider) {
-            rInstance.fixture.add('time-slider', TimeSliderFixture).then((ts: TimeSliderFixture) => { ts.initTimeSlider(this.config.timeSlider!, this.$i18n)})
-
+            rInstance.fixture.add('time-slider', TimeSliderFixture).then((ts: TimeSliderFixture) => {
+                ts.initTimeSlider(this.config.timeSlider!, this.$i18n);
+            });
         }
 
         // remove rv-focus-trap from map
