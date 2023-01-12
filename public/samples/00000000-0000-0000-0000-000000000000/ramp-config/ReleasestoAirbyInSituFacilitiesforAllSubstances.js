@@ -158,11 +158,11 @@ let config = {
             },
             layers: [
                 {
-                    id: 'ReleasestoAirbyInSituFacilitiesforAllSubstancesin2019',
+                    id: 'ReleasestoAirbyInSituFacilitiesforAllSubstances',
                     name: 'Releases to Air',
                     layerType: 'esri-feature',
                     url:
-                        'https://section917.canadacentral.cloudapp.azure.com/arcgis/rest/services/StoryRAMP/00000000_0000_0000_0000_000000000000/MapServer/5',
+                        'https://maps-cartes.ec.gc.ca/arcgis/rest/services/StoryRAMP/410b88da_0ed1_4749_903f_5e76c24e2e5f/MapServer/6',
                     state: {
                         opacity: 0.75
                     }
@@ -173,9 +173,9 @@ let config = {
                     root: {
                         children: [
                             {
-                                layerId: 'ReleasestoAirbyInSituFacilitiesforAllSubstancesin2019',
+                                layerId: 'ReleasestoAirbyInSituFacilitiesforAllSubstances',
                                 symbologyExpanded: true,
-                                description: 'Releases to Air by In Situ Facilities for All Substances in 2019 (tonnes)'
+                                description: 'Releases to Air by In Situ Facilities for All Substances (tonnes)'
                             }
                         ]
                     },

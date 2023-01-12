@@ -340,8 +340,13 @@
                     "type": "text"
                 },
                 {
-                    "config": "00000000-0000-0000-0000-000000000000/ramp-config/ReleasestoAirbyInSituFacilitiesforAllSubstancesin2019",
-                    "type": "map"
+                    "config": "00000000-0000-0000-0000-000000000000/ramp-config/ReleasestoAirbyInSituFacilitiesforAllSubstances",
+                    "type": "map",
+                    "timeSlider": {
+                        "range": [2010, 2019],
+                        "start": [2019, 2019],
+                        "attribute": "Reporting_Year___Année"
+                    }
                 }
             ]
         },

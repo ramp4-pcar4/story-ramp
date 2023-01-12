@@ -4,16 +4,15 @@
             {{ config.title }}
         </div>
 
-        <div :id="`ramp-map-${slideIdx}`" class="w-full bg-gray-200 h-story"></div>
+        <div :id="`ramp-map-${slideIdx}`" class="w-full bg-gray-200 h-story rv-map"></div>
     </div>
 </template>
 
 <script lang="ts">
 import { MapPanel } from '@/definitions';
 import { Component, Vue, Prop } from 'vue-property-decorator';
-
-import TimeSlider from '@/components/panels/helpers/time-slider.vue';
-import Scrollguard from '@/components/panels/helpers/scrollguard.vue';
+// @ts-ignore
+import { TimeSliderFixture } from '@/components/panels/helpers/TimeSlider/index'
 
 @Component({
     components: {}
@@ -28,7 +27,20 @@ export default class MapPanelV extends Vue {
     mapComponent: Element | undefined = undefined;
 
     mounted(): void {
-        this.init();
+        const observer = new IntersectionObserver(
+            ([e]) => {
+                if (e.isIntersecting) {
+                    this.intersectTimeoutHandle = setTimeout(() => {
+                        this.init();
+                        observer.disconnect();
+                    }, 350);
+                } else {
+                    clearTimeout(this.intersectTimeoutHandle);
+                }
+            },
+            { threshold: [0] }
+        );
+        observer.observe(this.$el);
     }
 
     init(): void {
@@ -48,96 +60,10 @@ export default class MapPanelV extends Vue {
             });
         }
 
-        // script.setAttribute('type', 'module');
-        // script.setAttribute('src', src);
-        // console.log(script);
+        if (this.config.timeSlider) {
+            rInstance.fixture.add('time-slider', TimeSliderFixture).then((ts: TimeSliderFixture) => { ts.initTimeSlider(this.config.timeSlider!, this.$i18n)})
 
-        // this.mapComponent.appendChild(script);
-
-        // new RAMP.Map(this.mapComponent, this.config.config);
-
-        // RAMP.mapAdded.pipe().subscribe(async (mapi: any) => {
-        //     if (this.config.scrollguard && mapi.id === this.mapComponent?.id) {
-        //         const scrollguardPanel = mapi.panels.create('scrollguard');
-        //         const scrollguardComponent = new Vue({
-        //             render: (h) =>
-        //                 h('scrollguard', {
-        //                     props: {
-        //                         lang: this.lang
-        //                     }
-        //                 }),
-        //             components: {
-        //                 scrollguard: Scrollguard
-        //             },
-        //             i18n: this.$i18n
-        //         }).$mount();
-        //         scrollguardPanel.body = scrollguardComponent.$el;
-        //         scrollguardPanel.element.css({
-        //             opacity: 0.45,
-        //             zindex: 100,
-        //             top: 0,
-        //             left: 0,
-        //             position: 'absolute'
-        //         });
-
-        //         (this.mapComponent as HTMLElement).addEventListener(
-        //             'wheel',
-        //             (event) => {
-        //                 if (!event.ctrlKey) {
-        //                     // This is not working in Firefox for some reason.
-        //                     event.stopPropagation();
-
-        //                     // If CTRL is not pressed, display the scrollguard.
-        //                     scrollguardPanel.open();
-
-        //                     // Only set the timeout if it's not already set, otherwise the panel will be glitchy.
-        //                     if (!this.scrollguardOpen) {
-        //                         window.setTimeout(() => {
-        //                             scrollguardPanel.close();
-        //                             this.scrollguardOpen = false;
-        //                         }, 3000);
-        //                     }
-
-        //                     this.scrollguardOpen = true;
-        //                 } else {
-        //                     scrollguardPanel.close();
-        //                     this.scrollguardOpen = false;
-        //                 }
-        //             },
-        //             {
-        //                 capture: true
-        //             }
-        //         );
-        //     }
-
-        //     if (this.config.timeSlider && mapi.id === this.mapComponent?.id) {
-        //         const timeSliderPanel = mapi.panels.create('time-slider-container');
-        //         const timeSliderComponent = new Vue({
-        //             render: (h) =>
-        //                 h('time-slider', {
-        //                     props: {
-        //                         config: this.config.timeSlider,
-        //                         mapi
-        //                     }
-        //                 }),
-        //             components: {
-        //                 // eslint-disable-next-line vue/no-unused-components
-        //                 'time-slider': TimeSlider
-        //             },
-        //             i18n: this.$i18n
-        //         }).$mount();
-        //         timeSliderPanel.body = timeSliderComponent.$el;
-        //         timeSliderPanel.element.css({
-        //             bottom: '73px',
-        //             right: '60px',
-        //             left: 'auto',
-        //             top: 'auto',
-        //             width: '50%',
-        //             padding: '5px',
-        //             'min-height': window.matchMedia('(max-width: 640px)').matches ? '90px' : '110px'
-        //         });
-        //         timeSliderPanel.open();
-        //     }
+        }
 
         // remove rv-focus-trap from map
         //     const mapInstance = document.getElementById(`ramp-map-${this.slideIdx}`);
@@ -189,10 +115,11 @@ $font-list: 'Montserrat', -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica
         max-height: 40vh;
 
         ::v-deep .time-slider-container {
-            left: 0px !important;
-            right: 38px !important;
-            bottom: 29px !important;
+            left: 52px !important;
+            right: 60px !important;
+            bottom: 36px !important;
             width: auto !important;
+            height: 90px !important;
         }
     }
 
