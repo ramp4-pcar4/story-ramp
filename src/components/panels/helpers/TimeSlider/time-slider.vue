@@ -184,13 +184,12 @@ export default class TimeSlider extends Vue {
 
     minimizeToggle(): void {
         this.minimized = !this.minimized;
-        (this.$el.parentElement as HTMLElement).style.height = this.minimized
-            ? window.matchMedia('(max-width: 640px)').matches
-                ? '32px'
-                : '50px'
-            : window.matchMedia('(max-width: 640px)').matches
-            ? '90px'
-            : '110px';
+        if (this.minimized) {
+            (this.$el.parentElement as HTMLElement).classList.add('minimized');
+        }
+        else {
+            (this.$el.parentElement as HTMLElement).classList.remove('minimized');
+        }
     }
 }
 </script>
@@ -199,9 +198,8 @@ export default class TimeSlider extends Vue {
 .time-slider {
     @import './../../../../../node_modules/nouislider/dist/nouislider';
 
-    @apply absolute w-full left-0 flex flex-col items-center bg-white;
+    @apply absolute w-full h-full left-0 flex flex-col items-center bg-white;
 
-    height: 150px;
     pointer-events: all;
 
     .noUi-target {

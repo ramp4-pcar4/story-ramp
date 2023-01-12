@@ -3,7 +3,7 @@
         :class="
             config.type !== 'text'
                 ? `sticky ${
-                      config.type === 'map' ? 'top-16 overflow-auto' : 'top-8'
+                      config.type === 'map' ? 'top-16 overflow-x-auto overflow-y-hidden' : 'top-8'
                   } sm:self-start flex-2 order-1 sm:order-2 z-40`
                 : 'flex flex-1 order-2 sm:order-1'
         "

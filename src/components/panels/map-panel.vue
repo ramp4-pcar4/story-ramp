@@ -73,6 +73,21 @@ export default class MapPanelV extends Vue {
 .rv-map {
     height: calc(100vh - 4rem) !important;
     width: 100%;
+    ::v-deep .time-slider-container {
+        bottom: 53px;
+        right: 60px;
+        left: auto;
+        top: auto;
+        width: 55%;
+        padding: 5px;
+        height: 110px;
+        position: absolute;
+        z-index: 5;
+    }
+
+    ::v-deep .time-slider-container.minimized {
+        height: 50px;
+    }
 }
 
 $font-list: 'Montserrat', -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji,
@@ -109,13 +124,18 @@ $font-list: 'Montserrat', -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica
 @media screen and (max-width: 640px) {
     .rv-map {
         max-height: 40vh;
+        overflow: hidden                                 ;
 
         ::v-deep .time-slider-container {
             left: 52px !important;
             right: 60px !important;
-            bottom: 36px !important;
+            bottom: 41px !important;
             width: auto !important;
-            height: 90px !important;
+            max-height: 90px;
+        }
+
+        ::v-deep .time-slider-container.minimized {
+            height: 32px;
         }
     }
 

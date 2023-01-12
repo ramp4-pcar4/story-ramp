@@ -25,15 +25,6 @@ export class TimeSliderFixture {
                 },
                 i18n: i18n
             }).$mount();
-            this.timeSliderPanel.style.bottom = '48px';
-            this.timeSliderPanel.style.right = '60px';
-            this.timeSliderPanel.style.left = 'auto';
-            this.timeSliderPanel.style.top = 'auto';
-            this.timeSliderPanel.style.width = '55%';
-            this.timeSliderPanel.style.padding = '5px;'
-            this.timeSliderPanel.style.height = '110px';
-            this.timeSliderPanel.style.position = 'absolute'
-            this.timeSliderPanel.style.zIndex = '5';
             this.timeSliderPanel.classList.add('time-slider-container')
             this.timeSliderPanel.appendChild(timeSliderComponent.$el);
             (this as any).$vApp.$el.querySelector('.inner-shell')?.appendChild(this.timeSliderPanel)
