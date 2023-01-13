@@ -60,7 +60,7 @@ export default class ChartV extends Vue {
             // get input given by src path
             const extension = this.config.src.split('.').pop();
             if (extension === 'json') {
-                fetch(this.config.src).then((data) => {
+                fetch(`samples/${this.config.src}`).then((data) => {
                     // parse JSON data
                     data.json().then(
                         (res: DQVChartConfig) => {

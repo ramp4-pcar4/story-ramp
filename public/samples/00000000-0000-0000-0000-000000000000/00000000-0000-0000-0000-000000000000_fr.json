@@ -32,7 +32,7 @@
                     "type": "text"
                 },
                 {
-                    "config": "00000000-0000-0000-0000-000000000000/ramp-config/fr/OilSandsDeposits.json",
+                    "config": "00000000-0000-0000-0000-000000000000/ramp-config/OilSandsDeposits",
                     "type": "map",
                     "scrollguard": true
                 }
@@ -75,7 +75,7 @@
                     "type": "text"
                 },
                 {
-                    "config": "00000000-0000-0000-0000-000000000000/ramp-config/fr/OilSandsFacilityLocations2019.json",
+                    "config": "00000000-0000-0000-0000-000000000000/ramp-config/OilSandsFacilityLocations2019",
                     "type": "map"
                 }
             ]
@@ -173,7 +173,7 @@
                     "type": "text"
                 },
                 {
-                    "config": "00000000-0000-0000-0000-000000000000/ramp-config/en/ReleasesandDisposalsbyMiningFacilitiesin2019(satellite).json",
+                    "config": "00000000-0000-0000-0000-000000000000/ramp-config/ReleasesandDisposalsbyMiningFacilitiesin2019(satellite)",
                     "type": "map"
                 }
             ]
@@ -260,7 +260,7 @@
                     "type": "text"
                 },
                 {
-                    "config": "00000000-0000-0000-0000-000000000000/ramp-config/fr/ReleasesandDisposalsbyMiningFacilitiesin2019(satellite).json",
+                    "config": "00000000-0000-0000-0000-000000000000/ramp-config/ReleasesandDisposalsbyMiningFacilitiesin2019(satellite)",
                     "type": "map"
                 }
             ]
@@ -274,7 +274,7 @@
                     "type": "text"
                 },
                 {
-                    "config": "00000000-0000-0000-0000-000000000000/ramp-config/en/TailingsfromMiningFacilities2010to2019(timeslider).json",
+                    "config": "00000000-0000-0000-0000-000000000000/ramp-config/TailingsfromMiningFacilities2010to2019(timeslider)",
                     "type": "map"
                 }
             ]
@@ -302,7 +302,7 @@
                     "type": "text"
                 },
                 {
-                    "config": "00000000-0000-0000-0000-000000000000/ramp-config/fr/ReleasestoAirbyInSituFacilitiesforAllSubstancesin2019.json",
+                    "config": "00000000-0000-0000-0000-000000000000/ramp-config/ReleasestoAirbyInSituFacilitiesforAllSubstancesin2019",
                     "type": "map"
                 }
             ]
@@ -316,7 +316,7 @@
                     "type": "text"
                 },
                 {
-                    "config": "00000000-0000-0000-0000-000000000000/ramp-config/fr/ReleasestoAirbyInSituFacilitiesforAllSubstances2010to2019(timeslider).json",
+                    "config": "00000000-0000-0000-0000-000000000000/ramp-config/ReleasestoAirbyInSituFacilitiesforAllSubstances2010to2019(timeslider)",
                     "type": "map"
                 }
             ]

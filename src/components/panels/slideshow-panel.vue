@@ -4,7 +4,7 @@
             <hooper ref="carousel" v-if="width !== -1" class="h-full bg-white" :infiniteScroll="config.loop">
                 <slide v-for="(image, index) in config.images" :key="index" :index="index" class="self-center">
                     <img
-                        :src="image.src"
+                        :src="`samples/${image.src}`"
                         :alt="image.altText || ''"
                         :style="{ width: `${image.width}px`, height: `${image.height}px` }"
                         class="m-auto story-graphic carousel-image"

@@ -2,7 +2,7 @@
     <div class="graphic self-start justify-center flex flex-col h-full align-middle py-5 w-full">
         <full-screen :expandable="config.fullscreen" :type="config.type">
             <img
-                :src="config.src"
+                :src="`samples/${config.src}`"
                 :class="config.class"
                 :alt="config.altText || ''"
                 :style="{ width: `${config.width}px`, height: `${config.height}px` }"
