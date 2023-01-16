@@ -200,7 +200,7 @@ let config = {
                     fileName: 'ramp-pcar-4-map-carte'
                 },
                 help: {
-                    location: '../help'
+                    location: './help'
                 }
             },
             system: { animate: true }
