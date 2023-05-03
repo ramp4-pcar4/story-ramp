@@ -121,6 +121,7 @@ export interface TimeSliderConfig {
     range: number[];
     start: number[];
     attribute: string;
+    layers?: string[];
 }
 
 export interface DynamicPanel extends BasePanel {
