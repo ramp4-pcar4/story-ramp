@@ -177,7 +177,8 @@ export default class MapPanelV extends Vue {
 }
 
 @media screen and (max-width: 640px) {
-    .rv-map {
+    .rv-map,
+    .rv-map-title {
         max-height: 40vh;
 
         ::v-deep .time-slider-container {
