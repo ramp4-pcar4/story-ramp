@@ -1,6 +1,11 @@
 <template>
     <div class="py-24 mx-auto text-center max-w-9xl" id="intro">
-        <img class="inline-block" :src="config.logo.src" :alt="config.logo.altText" />
+        <img
+            v-if="config.logo && config.logo.src"
+            class="inline-block"
+            :src="config.logo.src"
+            :alt="config.logo.altText"
+        />
 
         <h1 class="m-10 text-5xl font-bold text-gray-800">
             {{ config.title }}
