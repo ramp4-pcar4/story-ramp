@@ -18,9 +18,13 @@
                     "type": "text"
                 },
                 {
-                    "src": "00000000-0000-0000-0000-000000000000/assets/en/NPRIpictogramme-2016data-EN__1553797637582__w1430.jpg",
                     "type": "image",
-                    "caption": "This is a caption for the image."
+                    "images": [
+                        {
+                            "src": "00000000-0000-0000-0000-000000000000/assets/en/NPRIpictogramme-2016data-EN__1553797637582__w1430.jpg",
+                            "caption": "This is a caption for the image."
+                        }
+                    ]
                 }
             ]
         },
@@ -43,8 +47,12 @@
                         {
                             "id": "panel-2",
                             "panel": {
-                                "src": "00000000-0000-0000-0000-000000000000/assets/en/GettyImages-187242601__1554821467033__w1920.jpg",
-                                "type": "image"
+                                "type": "image",
+                                "images": [
+                                    {
+                                        "src": "00000000-0000-0000-0000-000000000000/assets/en/GettyImages-187242601__1554821467033__w1920.jpg"
+                                    }
+                                ]
                             }
                         },
                         {
@@ -82,6 +90,47 @@
             ]
         },
         {
+            "title": "Dynamic Slideshow Test",
+            "panel": [
+                {
+                    "title": "This is a dynamic slideshow!",
+                    "content": "It is a slideshow that supports text, images, charts, and maps. \n\nNavigate through all the slides to see all the types in action.\n\nMore fun stuff.",
+                    "type": "text"
+                },
+                {
+                    "type": "slideshow",
+                    "items": [
+                        {
+                            "type": "text",
+                            "config": {
+                                "title": "Lorem Ipsum",
+                                "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris efficitur lectus dui, vitae hendrerit lacus laoreet vitae. Integer gravida lorem non tortor aliquam porta. Sed ipsum lacus, tristique eu lacus in, malesuada tincidunt mi. Duis vel dolor hendrerit, ornare dui eget, tristique nunc. Fusce eget nunc mauris. Mauris velit justo, lacinia ut metus id, rhoncus accumsan velit. Morbi fermentum lectus in magna ornare, ut placerat mauris eleifend. Integer nec erat arcu.\n\nMorbi turpis lectus, aliquam ut arcu ac, ultricies tristique mi. Vestibulum faucibus sapien non felis ultrices, a tempus urna dapibus. Fusce eget massa non lacus finibus hendrerit id a quam. Aliquam vestibulum posuere rutrum. Quisque vehicula maximus aliquet. Donec aliquet ornare posuere. Fusce a erat vitae eros scelerisque sodales. Nullam posuere arcu a elit consequat egestas. In tincidunt erat sed dolor pulvinar dignissim in in felis. Sed mollis eu arcu quis ornare. Phasellus dignissim odio elit. Nam dictum ante tellus. Suspendisse mollis eleifend dolor quis pulvinar. Proin posuere arcu feugiat rutrum dapibus."
+                            }
+                        },
+                        {
+                            "type": "image",
+                            "config": {
+                                "src": "00000000-0000-0000-0000-000000000000/assets/en/GettyImages-187242601__1554821467033__w1920.jpg"
+                            }
+                        },
+                        {
+                            "type": "chart",
+                            "config": {
+                                "src": "00000000-0000-0000-0000-000000000000/charts/en/chartConfig.json"
+                            }
+                        },
+                        {
+                            "type": "map",
+                            "config": {
+                                "config": "00000000-0000-0000-0000-000000000000/ramp-config/en/OilSandsFacilityLocations2019.json",
+                                "scrollguard": true
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
             "title": "Oil sands deposits",
             "panel": [
                 {
@@ -105,9 +154,13 @@
                     "type": "text"
                 },
                 {
-                    "src": "00000000-0000-0000-0000-000000000000/assets/en/GettyImages-187242601__1554821467033__w1920.jpg",
                     "type": "image",
-                    "fullscreen": false
+                    "images": [
+                        {
+                            "src": "00000000-0000-0000-0000-000000000000/assets/en/GettyImages-187242601__1554821467033__w1920.jpg",
+                            "fullscreen": false
+                        }
+                    ]
                 }
             ]
         },
@@ -120,8 +173,8 @@
                     "type": "text"
                 },
                 {
-                    "src": "00000000-0000-0000-0000-000000000000/assets/en/Slide 3 - mine vs insitu.jpg",
-                    "type": "image"
+                    "type": "image",
+                    "images": [{ "src": "00000000-0000-0000-0000-000000000000/assets/en/Slide 3 - mine vs insitu.jpg" }]
                 }
             ]
         },
@@ -151,42 +204,35 @@
                 {
                     "images": [
                         {
-                            "src": "00000000-0000-0000-0000-000000000000/assets/en/substances/1_AuroraNorth_RelDisp.PNG",
-                            "type": "image"
+                            "src": "00000000-0000-0000-0000-000000000000/assets/en/substances/1_AuroraNorth_RelDisp.PNG"
                         },
                         {
-                            "src": "00000000-0000-0000-0000-000000000000/assets/en/substances/2_FortHills_RelDisp.PNG",
-                            "type": "image"
+                            "src": "00000000-0000-0000-0000-000000000000/assets/en/substances/2_FortHills_RelDisp.PNG"
                         },
                         {
-                            "src": "00000000-0000-0000-0000-000000000000/assets/en/substances/3_Horizon_RelDisp.PNG",
-                            "type": "image"
+                            "src": "00000000-0000-0000-0000-000000000000/assets/en/substances/3_Horizon_RelDisp.PNG"
                         },
                         {
-                            "src": "00000000-0000-0000-0000-000000000000/assets/en/substances/4_Kearl_RelDisp.PNG",
-                            "type": "image"
+                            "src": "00000000-0000-0000-0000-000000000000/assets/en/substances/4_Kearl_RelDisp.PNG"
                         },
                         {
-                            "src": "00000000-0000-0000-0000-000000000000/assets/en/substances/5_MuskegJackpine_R5_RelDisp.PNG",
-                            "type": "image"
+                            "src": "00000000-0000-0000-0000-000000000000/assets/en/substances/5_MuskegJackpine_R5_RelDisp.PNG"
                         },
                         {
-                            "src": "00000000-0000-0000-0000-000000000000/assets/en/substances/6_Suncor_RelDisp.PNG",
-                            "type": "image"
+                            "src": "00000000-0000-0000-0000-000000000000/assets/en/substances/6_Suncor_RelDisp.PNG"
                         },
                         {
-                            "src": "00000000-0000-0000-0000-000000000000/assets/en/substances/7_Syncrude_RelDisp.PNG",
-                            "type": "image"
+                            "src": "00000000-0000-0000-0000-000000000000/assets/en/substances/7_Syncrude_RelDisp.PNG"
                         }
                     ],
                     "loop": true,
                     "caption": "NPRI substances reported for oil sands mining facilities",
-                    "type": "slideshow"
+                    "type": "image"
                 }
             ]
         },
         {
-            "title": "Reported mine tailings from oil sands surface mining facilities",
+            "title": "Chart gallery sample test",
             "panel": [
                 {
                     "title": "Reported mine tailings from oil sands surface mining facilities",
@@ -197,15 +243,14 @@
                     "type": "chart",
                     "charts": [
                         {
-                            "src": "410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/en/tailings/1.Syncrude Canada Ltd., Aurora North Mine Site 2019 Tailings.csv",
+                            "src": "00000000-0000-0000-0000-000000000000/charts/en/Criteria air contaminant releases from oil sands mines_3.csv",
                             "options": {
                                 "title": "Syncrude Canada Ltd., Aurora North Mine Site 2019 Tailings (Tonnes)",
-                                "subtitle": "",
-                                "type": "pie"
+                                "subtitle": ""
                             }
                         },
                         {
-                            "src": "410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/en/tailings/2.Fort Hill Energy L.P., Fort Hills Oil Sands 2019 Tailings.csv",
+                            "src": "00000000-0000-0000-0000-000000000000/charts/en/Mine tailings reported.csv",
                             "options": {
                                 "title": "Fort Hill Energy L.P., Fort Hills Oil Sands 2019 Tailings (Tonnes)",
                                 "subtitle": "",
@@ -213,11 +258,10 @@
                             }
                         },
                         {
-                            "src": "410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/en/tailings/3.Canadian Natural Resources Limited, Horizon Oil Sands Processing Plant and Mine 2019 Tailings.csv",
+                            "src": "00000000-0000-0000-0000-000000000000/charts/en/NPRI releases from thermal in-situ facilities_1.csv",
                             "options": {
                                 "title": "Canadian Natural Resources Limited, Horizon Oil Sands Processing Plant and Mine 2019 Tailings (Tonnes)",
-                                "subtitle": "",
-                                "type": "pie"
+                                "subtitle": ""
                             }
                         }
                     ]
@@ -247,8 +291,8 @@
                     "type": "text"
                 },
                 {
-                    "src": "00000000-0000-0000-0000-000000000000/assets/en/slide 6 - mining trends.jpg",
-                    "type": "image"
+                    "type": "image",
+                    "images": [{ "src": "00000000-0000-0000-0000-000000000000/assets/en/slide 6 - mining trends.jpg" }]
                 }
             ]
         },
@@ -261,8 +305,12 @@
                     "type": "text"
                 },
                 {
-                    "src": "00000000-0000-0000-0000-000000000000/assets/en/Top10SubstancesTailings2019.png",
-                    "type": "image"
+                    "type": "image",
+                    "images": [
+                        {
+                            "src": "00000000-0000-0000-0000-000000000000/assets/en/Top10SubstancesTailings2019.png"
+                        }
+                    ]
                 }
             ]
         },
@@ -277,37 +325,30 @@
                 {
                     "images": [
                         {
-                            "src": "00000000-0000-0000-0000-000000000000/assets/en/tailings/AuroraNorth_Tailings.PNG",
-                            "type": "image"
+                            "src": "00000000-0000-0000-0000-000000000000/assets/en/tailings/AuroraNorth_Tailings.PNG"
                         },
                         {
-                            "src": "00000000-0000-0000-0000-000000000000/assets/en/tailings/FortHills_Tailings.PNG",
-                            "type": "image"
+                            "src": "00000000-0000-0000-0000-000000000000/assets/en/tailings/FortHills_Tailings.PNG"
                         },
                         {
-                            "src": "00000000-0000-0000-0000-000000000000/assets/en/tailings/Horizon_Tailings.PNG",
-                            "type": "image"
+                            "src": "00000000-0000-0000-0000-000000000000/assets/en/tailings/Horizon_Tailings.PNG"
                         },
                         {
-                            "src": "00000000-0000-0000-0000-000000000000/assets/en/tailings/Kearl_Tailings.PNG",
-                            "type": "image"
+                            "src": "00000000-0000-0000-0000-000000000000/assets/en/tailings/Kearl_Tailings.PNG"
                         },
                         {
-                            "src": "00000000-0000-0000-0000-000000000000/assets/en/tailings/Muskeg_Tailings.PNG",
-                            "type": "image"
+                            "src": "00000000-0000-0000-0000-000000000000/assets/en/tailings/Muskeg_Tailings.PNG"
                         },
                         {
-                            "src": "00000000-0000-0000-0000-000000000000/assets/en/tailings/Suncor_Tailings.PNG",
-                            "type": "image"
+                            "src": "00000000-0000-0000-0000-000000000000/assets/en/tailings/Suncor_Tailings.PNG"
                         },
                         {
-                            "src": "00000000-0000-0000-0000-000000000000/assets/en/tailings/Syncrude_Tailings.PNG",
-                            "type": "image"
+                            "src": "00000000-0000-0000-0000-000000000000/assets/en/tailings/Syncrude_Tailings.PNG"
                         }
                     ],
                     "loop": true,
                     "caption": "Reported mine tailings from oil sands surface mining facilities",
-                    "type": "slideshow"
+                    "type": "image"
                 }
             ]
         },
@@ -348,8 +389,8 @@
                     "type": "text"
                 },
                 {
-                    "src": "00000000-0000-0000-0000-000000000000/assets/en/Slide 10 - SAGD vs CSS.jpg",
-                    "type": "image"
+                    "type": "image",
+                    "images": [{ "src": "00000000-0000-0000-0000-000000000000/assets/en/Slide 10 - SAGD vs CSS.jpg" }]
                 }
             ]
         },
@@ -377,7 +418,12 @@
                 },
                 {
                     "config": "00000000-0000-0000-0000-000000000000/ramp-config/en/ReleasestoAirbyInSituFacilitiesforAllSubstances2010to2019(timeslider).json",
-                    "type": "map"
+                    "type": "map",
+                    "timeSlider": {
+                        "range": [2010, 2019],
+                        "start": [2010, 2019],
+                        "attribute": "Reporting_Year___Année"
+                    }
                 }
             ]
         },
@@ -390,8 +436,12 @@
                     "type": "text"
                 },
                 {
-                    "src": "00000000-0000-0000-0000-000000000000/assets/en/Slide%2013%20-%20InSitu%20Trends__1554406944277__w594.jpg",
-                    "type": "image"
+                    "type": "image",
+                    "images": [
+                        {
+                            "src": "00000000-0000-0000-0000-000000000000/assets/en/Slide%2013%20-%20InSitu%20Trends__1554406944277__w594.jpg"
+                        }
+                    ]
                 }
             ]
         },
@@ -404,8 +454,12 @@
                     "type": "text"
                 },
                 {
-                    "src": "00000000-0000-0000-0000-000000000000/assets/en/GettyImages-516166467__1554821531978__w1920.jpg",
-                    "type": "image"
+                    "type": "image",
+                    "images": [
+                        {
+                            "src": "00000000-0000-0000-0000-000000000000/assets/en/GettyImages-516166467__1554821531978__w1920.jpg"
+                        }
+                    ]
                 }
             ]
         },
@@ -440,15 +494,6 @@
                         },
                         {
                             "src": "ea24000c-7dc3-49a9-baac-c55d28dcaeb9/charts/en/Ethlyene.glycol.release.trends.by.sector.2010-2019.tonnes.csv"
-                        },
-                        {
-                            "src": "410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/en/tailings/2.Fort Hill Energy L.P., Fort Hills Oil Sands 2019 Tailings.csv",
-                            "options": {
-                                "title": "Fort Hill Energy L.P., Fort Hills Oil Sands 2019 Tailings (Tonnes)",
-                                "subtitle": "",
-                                "type": "pie",
-                                "colours": ["green", "#FAEBD7", "indigo", "#FFD700", "orange", "red"]
-                            }
                         }
                     ]
                 }
@@ -466,8 +511,7 @@
                     "type": "chart",
                     "charts": [
                         {
-                            "src": "ea24000c-7dc3-49a9-baac-c55d28dcaeb9/charts/en/Ethlyene.glycol.release.trends.by.sector.2010-2019.tonnes.csv",
-
+                            "src": "00000000-0000-0000-0000-000000000000/charts/en/NPRI releases from thermal in-situ facilities_1.csv",
                             "options": {
                                 "xAxisLabel": "X Axis Test From Config",
                                 "yAxisLabel": "Y Axis Test From Config",

@@ -28,6 +28,21 @@ export interface SeriesData {
     type?: string;
 }
 
+export interface PieSeriesData {
+    name: string;
+    data: PieDataRow[];
+}
+
+export interface PieDataRow {
+    name: string;
+    y?: number;
+}
+
+export interface LineSeriesData {
+    name: string;
+    data: number[];
+}
+
 export interface DQVChartConfig {
     chart: {
         type: string;
@@ -55,7 +70,9 @@ export interface DQVChartConfig {
     data?: {
         csvURL: string;
         enablePolling: boolean;
+        csv?: string;
     };
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     plotOptions?: any;
     exporting?: {
         buttons: {
@@ -65,7 +82,7 @@ export interface DQVChartConfig {
         };
         enabled: boolean;
     };
-    series?: SeriesData[] | { data: SeriesData[] };
+    series?: PieSeriesData | LineSeriesData[];
 }
 
 export interface Intro {
@@ -74,7 +91,7 @@ export interface Intro {
         altText?: string;
     };
     title: string;
-    subtitle?: string;
+    subtitle: string;
     blurb?: string;
 }
 
@@ -102,21 +119,28 @@ export interface BasePanel {
     width?: number;
 }
 
-export interface TextPanel extends BasePanel {
+export interface TextPanel extends BasePanel, TextConfig {
     type: PanelType.Text;
+}
+
+export interface TextConfig {
     title: string;
-    titleTag: string;
+    titleTag?: string;
     content: string; // in md format
 }
 
-export interface MapPanel extends BasePanel {
+export interface MapPanel extends BasePanel, MapConfig {
     type: PanelType.Map;
+}
+
+export interface MapConfig {
     config: string;
     fullscreen?: boolean;
     timeSlider?: TimeSliderConfig;
     title: string;
     scrollguard: boolean;
 }
+
 export interface TimeSliderConfig {
     range: number[];
     start: number[];
@@ -127,7 +151,7 @@ export interface TimeSliderConfig {
 export interface DynamicPanel extends BasePanel {
     type: PanelType.Dynamic;
     title: string;
-    titleTag: string;
+    titleTag?: string;
     content: string;
     children: DynamicChildItem[];
 }
@@ -139,9 +163,17 @@ export interface DynamicChildItem {
 
 export interface ImagePanel extends BasePanel {
     type: PanelType.Image;
+    images: Array<ImageConfig>;
+    fullscreen?: boolean;
+    loop?: boolean;
+    caption?: string;
+}
+
+export interface ImageConfig {
     src: string;
     width?: number;
     height?: number;
+    temp?: string;
     class?: string;
     fullscreen?: boolean;
     altText?: string;
@@ -165,10 +197,15 @@ export interface AudioPanel extends BasePanel {
 
 export interface SlideshowPanel extends BasePanel {
     type: PanelType.Slideshow;
-    images: ImagePanel[];
+    items: Array<SlideshowItem>;
     fullscreen?: boolean;
     loop?: boolean;
     caption?: string;
+}
+
+export interface SlideshowItem {
+    type: string;
+    config: ImageConfig | ChartConfig | MapConfig | TextConfig;
 }
 
 export interface ChartPanel extends BasePanel {
@@ -179,7 +216,26 @@ export interface ChartPanel extends BasePanel {
 
 export interface ChartConfig {
     src: string;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     config?: any;
     name?: string;
     options?: DQVOptions;
+}
+
+export interface ImageFile {
+    id: string;
+    src: string;
+    altText: string;
+    caption?: string;
+    width?: number;
+    height?: number;
+}
+
+export interface DefaultConfigs {
+    text: TextPanel;
+    image: ImagePanel;
+    slideshow: SlideshowPanel;
+    chart: ChartPanel;
+    dynamic: DynamicPanel;
+    map: MapPanel;
 }
