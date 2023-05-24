@@ -56,6 +56,21 @@ export default class ChartV extends Vue {
             this.chartOptions = this.config.config;
             this.title = this.chartOptions.title.text;
             this.loading = false;
+
+            // Set up hamburger menu options.
+            if (this.chartOptions.exporting) {
+                this.chartOptions.exporting.buttons.contextButton = {
+                    menuItems: this.menuOptions
+                };
+            } else {
+                this.chartOptions.exporting = {
+                    buttons: {
+                        contextButton: {
+                            menuItems: this.menuOptions
+                        }
+                    }
+                };
+            }
         } else if (this.config.src) {
             // get input given by src path
             const extension = this.config.src.split('.').pop();
@@ -67,6 +82,21 @@ export default class ChartV extends Vue {
                             this.chartOptions = res;
                             this.title = this.chartOptions.title.text;
                             this.loading = false;
+
+                            // Set up hamburger menu options.
+                            if (this.chartOptions.exporting) {
+                                this.chartOptions.exporting.buttons.contextButton = {
+                                    menuItems: this.menuOptions
+                                };
+                            } else {
+                                this.chartOptions.exporting = {
+                                    buttons: {
+                                        contextButton: {
+                                            menuItems: this.menuOptions
+                                        }
+                                    }
+                                };
+                            }
                         },
                         (err) => {
                             console.error(`Error fetching chart JSON file: ${err}`);

@@ -63,7 +63,7 @@ export interface DQVChartConfig {
                 menuItems: string[];
             };
         };
-        enabled: boolean;
+        enabled?: boolean;
     };
     series?: SeriesData[] | { data: SeriesData[] };
 }
