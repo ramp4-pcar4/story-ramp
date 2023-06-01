@@ -37,6 +37,7 @@ export default class ChartV extends Vue {
     chartOptions: DQVChartConfig = {} as DQVChartConfig;
     title = '';
     loading = true;
+
     menuOptions = [
         'viewFullscreen',
         'printChart',
@@ -51,11 +52,33 @@ export default class ChartV extends Vue {
     ];
 
     mounted(): void {
+        const isMobile = this.$el.clientWidth <= 640;
+
+        // If the client width is over 640 (not on mobile), add the `View Data Table` option to charts.
+        if (!isMobile) {
+            this.menuOptions.push('viewData');
+        }
+
         if (this.config.config) {
             // configured JSON structure if exists - for highcharts demo purposes
             this.chartOptions = this.config.config;
             this.title = this.chartOptions.title.text;
             this.loading = false;
+
+            // Set up hamburger menu options.
+            if (this.chartOptions.exporting) {
+                this.chartOptions.exporting.buttons.contextButton = {
+                    menuItems: this.menuOptions
+                };
+            } else {
+                this.chartOptions.exporting = {
+                    buttons: {
+                        contextButton: {
+                            menuItems: this.menuOptions
+                        }
+                    }
+                };
+            }
         } else if (this.config.src) {
             // get input given by src path
             const extension = this.config.src.split('.').pop();
@@ -67,6 +90,21 @@ export default class ChartV extends Vue {
                             this.chartOptions = res;
                             this.title = this.chartOptions.title.text;
                             this.loading = false;
+
+                            // Set up hamburger menu options.
+                            if (this.chartOptions.exporting) {
+                                this.chartOptions.exporting.buttons.contextButton = {
+                                    menuItems: this.menuOptions
+                                };
+                            } else {
+                                this.chartOptions.exporting = {
+                                    buttons: {
+                                        contextButton: {
+                                            menuItems: this.menuOptions
+                                        }
+                                    }
+                                };
+                            }
                         },
                         (err) => {
                             console.error(`Error fetching chart JSON file: ${err}`);
@@ -224,6 +262,14 @@ export default class ChartV extends Vue {
 <style lang="scss">
 .dv-chart-container {
     overflow: hidden;
+}
+.highcharts-data-table table {
+    background: white;
+    width: 100%;
+    margin-bottom: 20px;
+}
+.highcharts-table-caption {
+    display: none;
 }
 
 @media screen and (max-width: 640px) {
