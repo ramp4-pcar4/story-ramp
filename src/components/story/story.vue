@@ -16,7 +16,7 @@
     </div>
 
     <div v-else-if="loadStatus === 'loaded'">
-        <div class="storyramp-app bg-white">
+        <div class="storyramp-app bg-white" v-if="config !== undefined">
             <header class="story-header sticky top-0 w-full h-16 leading-9 bg-white border-b border-gray-200">
                 <div class="flex w-full sm:px-6 py-3 mx-auto">
                     <MobileMenuV
@@ -113,7 +113,7 @@ export default class StoryV extends Vue {
     fetchConfig(uid: string, lang: string): void {
         fetch(`${uid}/${uid}_${lang}.json`)
             .then((res) => {
-                res.json().then((config: any) => {
+                res.json().then((config: StoryRampConfig) => {
                     this.config = config;
                     this.loadStatus = 'loaded';
                     // set page title

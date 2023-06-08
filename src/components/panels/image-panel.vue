@@ -21,7 +21,7 @@
 
 <script lang="ts">
 import { ImagePanel } from '@/definitions';
-import { Component, Vue, Prop } from 'vue-property-decorator';
+import { Component, Prop, Vue } from 'vue-property-decorator';
 
 import MarkdownIt from 'markdown-it';
 import FullscreenV from '@/components/panels/helpers/fullscreen.vue';
@@ -44,7 +44,7 @@ export default class ImagePanelV extends Vue {
                   if (image.isIntersecting) {
                       (this.$refs.img as Element).setAttribute('src', this.config.src);
                       this.$forceUpdate();
-                      this.observer!.disconnect();
+                      (this.observer as IntersectionObserver).disconnect();
                   }
               })
             : undefined;

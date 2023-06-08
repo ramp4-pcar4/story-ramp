@@ -4,10 +4,11 @@
             class="side-menu"
             :active-chapter-index="activeChapterIndex"
             :slides="config.slides"
+            :editor="!!configFileStructure"
             :lang="lang"
         />
 
-        <Scrollama class="relative story-scrollama" @step-enter="stepEnter">
+        <Scrollama class="relative story-scrollama w-full" @step-enter="stepEnter">
             <div
                 v-for="(slide, idx) in config.slides"
                 class="flex pt-24"
@@ -16,7 +17,7 @@
                 :id="`${idx}-${slide.title.toLowerCase().replaceAll(' ', '-')}`"
                 :name="`${idx}-${slide.title.toLowerCase().replaceAll(' ', '-')}`"
             >
-                <slide :config="slide" :slideIdx="idx" :lang="lang"></slide>
+                <slide :config="slide" :configFileStructure="configFileStructure" :slideIdx="idx" :lang="lang"></slide>
             </div>
         </Scrollama>
     </div>
@@ -25,11 +26,11 @@
 <script lang="ts">
 import 'intersection-observer';
 import Scrollama from 'vue-scrollama';
-import { Component, Vue, Prop } from 'vue-property-decorator';
+import { Component, Prop, Vue } from 'vue-property-decorator';
+import { ConfigFileStructure, StoryRampConfig } from '@/definitions';
 
 import ChapterMenuV from './chapter-menu.vue';
 import SlideV from './slide.vue';
-import { StoryRampConfig } from '@/definitions';
 
 @Component({
     components: {
@@ -40,6 +41,7 @@ import { StoryRampConfig } from '@/definitions';
 })
 export default class StoryContentV extends Vue {
     @Prop() config!: StoryRampConfig;
+    @Prop() configFileStructure!: ConfigFileStructure;
     @Prop() lang!: string;
 
     activeChapterIndex = -1;
