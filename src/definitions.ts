@@ -1,3 +1,5 @@
+import JSZip from 'jszip';
+
 export interface StoryRampConfig {
     title: string;
     lang: string;
@@ -6,6 +8,21 @@ export interface StoryRampConfig {
     contextLink: string;
     contextLabel: string;
     dateModified: string;
+}
+
+export interface ConfigFileStructure {
+    uuid: string;
+    zip: JSZip;
+    configs: { [key: string]: StoryRampConfig };
+    assets: {
+        [key: string]: JSZip;
+    };
+    charts: {
+        [key: string]: JSZip;
+    };
+    rampConfig: {
+        [key: string]: JSZip;
+    };
 }
 
 export interface DQVOptions {
@@ -26,6 +43,21 @@ export interface SeriesData {
     y?: number;
     data?: number[];
     type?: string;
+}
+
+export interface PieSeriesData {
+    name: string;
+    data: PieDataRow[];
+}
+
+export interface PieDataRow {
+    name: string;
+    y?: number;
+}
+
+export interface LineSeriesData {
+    name: string;
+    data: number[];
 }
 
 export interface DQVChartConfig {
@@ -50,12 +82,13 @@ export interface DQVChartConfig {
         title: {
             text: string;
         };
-        categories: [];
+        categories: (number | string)[];
     };
     data?: {
         csvURL: string;
         enablePolling: boolean;
     };
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     plotOptions?: any;
     exporting?: {
         buttons: {
@@ -175,10 +208,12 @@ export interface ChartPanel extends BasePanel {
     type: PanelType.Chart;
     charts: ChartConfig[];
     fullscreen?: boolean;
+    loop?: boolean;
 }
 
 export interface ChartConfig {
     src: string;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     config?: any;
     name?: string;
     options?: DQVOptions;

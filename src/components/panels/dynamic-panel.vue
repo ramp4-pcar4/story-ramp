@@ -1,5 +1,5 @@
 <template>
-    <div :id="this.$vnode.key" class="story-slide w-full h-full flex sm:flex-row flex-col">
+    <div :id="$vnode.key" class="story-slide w-full h-full flex sm:flex-row flex-col">
         <Scrollama class="flex-1 order-2 sm:order-1 prose max-w-none my-5">
             <component
                 :is="config.titleTag || 'h2'"
@@ -49,7 +49,7 @@ import Scrollama from 'vue-scrollama';
 import MarkdownIt from 'markdown-it';
 
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import { DynamicPanel, BasePanel } from '@/definitions';
+import { BasePanel, DynamicPanel } from '@/definitions';
 
 @Component({
     components: {
@@ -71,7 +71,9 @@ export default class DynamicPanelV extends Vue {
     md = new MarkdownIt({ html: true });
 
     mounted(): void {
-        document.querySelectorAll('.storyramp-app a:not([target])').forEach((el: any) => (el.target = '_blank'));
+        document
+            .querySelectorAll('.storyramp-app a:not([target])')
+            .forEach((el: Element) => ((el as HTMLAnchorElement).target = '_blank'));
 
         this.addDynamicURLs();
     }
@@ -81,14 +83,15 @@ export default class DynamicPanelV extends Vue {
      */
     addDynamicURLs(): void {
         // Find all URLs that contain the `panel` attribute.
-        const urls = Array.from(this.$el.querySelectorAll('a[panel]'));
-        urls.forEach((el: any) => {
+        const urls: HTMLAnchorElement[] = Array.from(this.$el.querySelectorAll('a[panel]'));
+        urls.forEach((el: HTMLAnchorElement) => {
             // Find the target panel and add an event listener to the URL.
-            const target = el.attributes['panel'].value;
+            const target = el.attributes.getNamedItem('panel')?.value;
 
             // Change the target to self so clicking the link doesn't open in a new window. Also add a
             // dotted underline to indicate that clicking this link will stay in this window.
-            el.style = 'text-decoration-style: dotted; text-underline-offset: 3px;';
+            el.style.setProperty('text-decoration-style', 'dotted');
+            el.style.setProperty('text-underline-offset', '3px');
             el.href = 'javascript:;';
             el.target = '_self';
 

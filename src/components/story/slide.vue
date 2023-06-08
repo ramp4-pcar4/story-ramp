@@ -1,9 +1,10 @@
 <template>
-    <div :id="this.$vnode.key" class="story-slide h-full flex sm:flex-row flex-col">
+    <div :id="$vnode.key" class="story-slide h-full flex sm:flex-row flex-col">
         <panel
             v-for="(panel, idx) in config.panel"
             :key="idx"
             :config="panel"
+            :configFileStructure="configFileStructure"
             :index="idx"
             :ratio="defaultRatio"
             :slideIdx="slideIdx"
@@ -13,10 +14,9 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from 'vue-property-decorator';
-
+import { Component, Prop, Vue } from 'vue-property-decorator';
+import { ConfigFileStructure, PanelType, Slide } from '@/definitions';
 import PanelV from '@/components/panels/panel.vue';
-import { PanelType, Slide } from '@/definitions';
 
 @Component({
     components: {
@@ -25,6 +25,7 @@ import { PanelType, Slide } from '@/definitions';
 })
 export default class SlideV extends Vue {
     @Prop() config!: Slide;
+    @Prop() configFileStructure!: ConfigFileStructure;
     @Prop() slideIdx!: number;
     @Prop() lang!: string;
 
