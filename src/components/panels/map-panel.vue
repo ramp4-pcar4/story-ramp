@@ -23,11 +23,11 @@
 </template>
 
 <script lang="ts">
-import { MapPanel } from '@/definitions';
+import { MapPanel } from '@storylines/definitions';
 import { Component, Vue, Prop } from 'vue-property-decorator';
 
-import TimeSlider from '@/components/panels/helpers/time-slider.vue';
-import Scrollguard from '@/components/panels/helpers/scrollguard.vue';
+import TimeSlider from '@storylines/components/panels/helpers/time-slider.vue';
+import Scrollguard from '@storylines/components/panels/helpers/scrollguard.vue';
 
 @Component({
     components: {}

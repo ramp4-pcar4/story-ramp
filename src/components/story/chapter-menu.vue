@@ -95,7 +95,7 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
-import { Slide } from '@/definitions';
+import { Slide } from '@storylines/definitions';
 
 @Component
 export default class ChapterMenuV extends Vue {

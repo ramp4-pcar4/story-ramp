@@ -29,7 +29,7 @@ import { Component, Vue, Prop } from 'vue-property-decorator';
 
 import ChapterMenuV from './chapter-menu.vue';
 import SlideV from './slide.vue';
-import { StoryRampConfig } from '@/definitions';
+import { StoryRampConfig } from '@storylines/definitions';
 
 @Component({
     components: {

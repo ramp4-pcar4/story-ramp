@@ -49,7 +49,7 @@ import Scrollama from 'vue-scrollama';
 import MarkdownIt from 'markdown-it';
 
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import { DynamicPanel, BasePanel } from '@/definitions';
+import { DynamicPanel, BasePanel } from '@storylines/definitions';
 
 @Component({
     components: {

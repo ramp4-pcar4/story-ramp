@@ -14,7 +14,7 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
-import { ChartConfig, DQVChartConfig, SeriesData } from '@/definitions';
+import { ChartConfig, DQVChartConfig, SeriesData } from '@storylines/definitions';
 
 import { Chart } from 'highcharts-vue';
 import Highcharts from 'highcharts';

@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import { AudioPanel } from '@/definitions';
+import { AudioPanel } from '@storylines/definitions';
 import { Component, Vue, Prop } from 'vue-property-decorator';
 
 @Component({})

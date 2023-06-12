@@ -42,7 +42,7 @@
 </template>
 
 <script lang="ts">
-import { Intro } from '@/definitions';
+import { Intro } from '@storylines/definitions';
 import { Component, Vue, Prop } from 'vue-property-decorator';
 
 @Component({})

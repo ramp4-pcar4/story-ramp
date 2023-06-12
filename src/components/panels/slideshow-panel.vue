@@ -39,8 +39,8 @@ import 'hooper/dist/hooper.css';
 
 import MarkdownIt from 'markdown-it';
 
-import { SlideshowPanel } from '@/definitions';
-import FullscreenV from '@/components/panels/helpers/fullscreen.vue';
+import { SlideshowPanel } from '@storylines/definitions';
+import FullscreenV from '@storylines/components/panels/helpers/fullscreen.vue';
 
 @Component({
     components: {

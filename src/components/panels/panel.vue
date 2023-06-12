@@ -15,7 +15,7 @@
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
 
-import { PanelType, BasePanel } from '@/definitions';
+import { PanelType, BasePanel } from '@storylines/definitions';
 import TextPanelV from './text-panel.vue';
 import MapPanelV from './map-panel.vue';
 import ImagePanelV from './image-panel.vue';

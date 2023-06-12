@@ -32,8 +32,8 @@ import { Component, Vue, Prop } from 'vue-property-decorator';
 import { Hooper, Slide, Navigation as HooperNavigation, Pagination as HooperPagination } from 'hooper';
 import 'hooper/dist/hooper.css';
 
-import { ChartPanel } from '@/definitions';
-import ChartV from '@/components/panels/helpers/chart.vue';
+import { ChartPanel } from '@storylines/definitions';
+import ChartV from '@storylines/components/panels/helpers/chart.vue';
 
 @Component({
     components: {

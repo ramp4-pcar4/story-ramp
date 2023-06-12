@@ -64,10 +64,10 @@ import { Component, Vue } from 'vue-property-decorator';
 import { Route } from 'vue-router';
 
 import MobileMenuV from './mobile-menu.vue';
-import StoryContentV from '@/components/story/story-content.vue';
-import IntroV from '@/components/story/introduction.vue';
+import StoryContentV from '@storylines/components/story/story-content.vue';
+import IntroV from '@storylines/components/story/introduction.vue';
 
-import { StoryRampConfig } from '@/definitions';
+import { StoryRampConfig } from '@storylines/definitions';
 import Circle2 from 'vue-loading-spinner/src/components/Circle2.vue';
 
 @Component({

@@ -61,7 +61,7 @@
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator';
 import noUiSlider, { API, PipsMode } from 'nouislider';
-import { TimeSliderConfig } from '@/definitions';
+import { TimeSliderConfig } from '@storylines/definitions';
 
 @Component
 export default class TimeSlider extends Vue {
