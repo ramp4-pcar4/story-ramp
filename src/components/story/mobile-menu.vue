@@ -88,7 +88,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import { Slide } from '@/definitions';
+import { Slide } from '@storylines/definitions';
 
 @Component
 export default class SideMenuV extends Vue {

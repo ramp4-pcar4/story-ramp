@@ -21,7 +21,7 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { VueConstructor } from 'vue/types/umd';
-import { BasePanel, ConfigFileStructure, PanelType } from '@/definitions';
+import { BasePanel, ConfigFileStructure, PanelType } from '@storylines/definitions';
 
 import TextPanelV from './text-panel.vue';
 import MapPanelV from './map-panel.vue';
