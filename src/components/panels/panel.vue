@@ -2,20 +2,27 @@
     <div
         :class="
             config.type !== 'text'
-                ? `sticky ${config.type === 'map' ? 'top-16' : 'top-8'} sm:self-start flex-2 order-1 sm:order-2 z-50`
+                ? `sticky ${config.type === 'map' ? 'top-16' : 'top-8'} sm:self-start flex-2 order-1 sm:order-2 z-40`
                 : 'flex order-2 sm:order-1'
         "
         class="flex-col relative"
     >
         <slot></slot>
-        <component :is="getTemplate()" :config="config" :slideIdx="slideIdx" :lang="lang"></component>
+        <component
+            :is="getTemplate()"
+            :config="config"
+            :configFileStructure="configFileStructure"
+            :slideIdx="slideIdx"
+            :lang="lang"
+        ></component>
     </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from 'vue-property-decorator';
+import { Component, Prop, Vue } from 'vue-property-decorator';
+import { VueConstructor } from 'vue/types/umd';
+import { BasePanel, ConfigFileStructure, PanelType } from '@/definitions';
 
-import { PanelType, BasePanel } from '@/definitions';
 import TextPanelV from './text-panel.vue';
 import MapPanelV from './map-panel.vue';
 import ImagePanelV from './image-panel.vue';
@@ -33,6 +40,7 @@ import LoadingPanelV from './loading-panel.vue';
 })
 export default class PanelV extends Vue {
     @Prop() config!: BasePanel;
+    @Prop() configFileStructure!: ConfigFileStructure;
     @Prop() ratio!: boolean;
     @Prop() slideIdx!: number;
     @Prop() lang!: string;
@@ -40,8 +48,8 @@ export default class PanelV extends Vue {
     /**
      * Returns the corresponding component for this panel.
      */
-    getTemplate(): string {
-        const panelTemplates: any = {
+    getTemplate(): VueConstructor {
+        const panelTemplates: Record<PanelType | string, VueConstructor> = {
             [PanelType.Text]: TextPanelV,
             [PanelType.Map]: MapPanelV,
             [PanelType.Image]: ImagePanelV,
