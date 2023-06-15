@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import StoryV from '@/components/story/story.vue';
+import StoryV from '@storylines/components/story/story.vue';
 import Router, { Route } from 'vue-router';
 
 Vue.use(Router);

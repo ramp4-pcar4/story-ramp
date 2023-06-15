@@ -20,11 +20,11 @@
 </template>
 
 <script lang="ts">
-import { ImagePanel } from '@/definitions';
+import { ImagePanel } from '@storylines/definitions';
 import { Component, Prop, Vue } from 'vue-property-decorator';
 
 import MarkdownIt from 'markdown-it';
-import FullscreenV from '@/components/panels/helpers/fullscreen.vue';
+import FullscreenV from '@storylines/components/panels/helpers/fullscreen.vue';
 
 @Component({
     components: {

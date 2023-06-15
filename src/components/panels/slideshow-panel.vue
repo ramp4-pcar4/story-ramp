@@ -41,12 +41,11 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
+import { ConfigFileStructure, SlideshowPanel } from '@storylines/definitions';
 import { Hooper, Navigation as HooperNavigation, Pagination as HooperPagination, Slide } from 'hooper';
 import 'hooper/dist/hooper.css';
 
 import MarkdownIt from 'markdown-it';
-
-import { ConfigFileStructure, SlideshowPanel } from '@/definitions';
 import FullscreenV from '@/components/panels/helpers/fullscreen.vue';
 import ImagePanelV from '@/components/panels/image-panel.vue';
 

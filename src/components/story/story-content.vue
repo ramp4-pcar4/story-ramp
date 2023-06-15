@@ -27,7 +27,7 @@
 import 'intersection-observer';
 import Scrollama from 'vue-scrollama';
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import { ConfigFileStructure, StoryRampConfig } from '@/definitions';
+import { ConfigFileStructure, StoryRampConfig } from '@storylines/definitions';
 
 import ChapterMenuV from './chapter-menu.vue';
 import SlideV from './slide.vue';

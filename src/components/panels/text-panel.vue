@@ -13,7 +13,7 @@ import Scrollama from 'vue-scrollama';
 import MarkdownIt from 'markdown-it';
 
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import { TextPanel } from '@/definitions';
+import { TextPanel } from '@storylines/definitions';
 
 @Component({
     components: {

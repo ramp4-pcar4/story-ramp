@@ -74,7 +74,7 @@
 </template>
 
 <script lang="ts">
-import { ConfigFileStructure, Intro } from '@/definitions';
+import { ConfigFileStructure, Intro } from '@storylines/definitions';
 import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component({})

@@ -60,7 +60,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import { TimeSliderConfig } from '@/definitions';
+import { TimeSliderConfig } from '@storylines/definitions';
 import noUiSlider, { API, PipsMode } from 'nouislider';
 
 @Component

@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = {
     pages: {
         index: {
@@ -20,6 +22,13 @@ module.exports = {
         }
     },
     publicPath: '',
+    configureWebpack: {
+        resolve: {
+            alias: {
+                '@storylines': path.resolve(__dirname, 'src/')
+            }
+        }
+    },
     chainWebpack: (config) => {
         config.module
             .rule('lint')
