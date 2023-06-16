@@ -46,8 +46,8 @@ import { Hooper, Navigation as HooperNavigation, Pagination as HooperPagination,
 import 'hooper/dist/hooper.css';
 
 import MarkdownIt from 'markdown-it';
-import FullscreenV from '@/components/panels/helpers/fullscreen.vue';
-import ImagePanelV from '@/components/panels/image-panel.vue';
+import FullscreenV from '@storylines/components/panels/helpers/fullscreen.vue';
+import ImagePanelV from '@storylines/components/panels/image-panel.vue';
 
 @Component({
     components: {
