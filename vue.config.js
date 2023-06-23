@@ -22,12 +22,26 @@ module.exports = {
         }
     },
     publicPath: '',
-    configureWebpack: {
-        resolve: {
-            alias: {
-                '@storylines': path.resolve(__dirname, 'src/')
-            }
+    configureWebpack: (config) => {
+        // check if we are building the project for plugin to be used in the storylines editor
+        if (config.mode === 'development') {
+            config.entry = {
+                app: './storylines-plugin.js'
+            };
+            
+            config.output.library = 'StorylinesViewer';
+            config.output.libraryTarget = 'umd';
+            config.output.umdNamedDefine = true;
+            // config.externals = {
+            //     vue: 'vue',
+            //     'vue-tippy': 'vue-tippy',
+            //     'highcharts-vue': 'highcharts-vue',
+            //     'vue-papa-parse': 'vue-papa-parse',
+            //     'vue-progressive-image': 'vue-progressive-image',
+            //     'vue-fullscreen': 'vue-fullscreen'
+            // };
         }
+        config.resolve.alias['@storylines'] = path.resolve(__dirname, 'src/');
     },
     chainWebpack: (config) => {
         config.module
@@ -35,7 +49,9 @@ module.exports = {
             .test(/lang\.csv$/)
             .use('eslint')
             .loader('dsv-loader')
-            .end()
+            .end();
+
+        config.module
             .rule('html')
             .test(/(.)*.(html)$/)
             .use('html-loader')

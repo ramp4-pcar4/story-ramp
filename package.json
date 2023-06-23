@@ -1,10 +1,11 @@
 {
     "name": "story-ramp",
-    "version": "0.1.0",
+    "version": "1.0.0",
     "private": true,
     "scripts": {
         "serve": "vue-cli-service serve",
         "build": "vue-cli-service build",
+        "build-plugin": "vue-cli-service build --target lib --name storylines-viewer ./storylines-plugin.js",
         "lint": "vue-cli-service lint"
     },
     "dependencies": {
