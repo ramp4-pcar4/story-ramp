@@ -177,7 +177,7 @@ $font-list: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         font-weight: bold;
     }
 
-    .prose a:not([panel])::after {
+    .prose a:not([panel]):not([target='_self'])::after {
         content: url('../../assets/popout.svg');
     }
 
