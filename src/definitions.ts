@@ -133,6 +133,7 @@ export enum PanelType {
 export interface BasePanel {
     type: string;
     width?: number;
+    customStyles?: string; // css string
 }
 
 export interface TextPanel extends BasePanel {

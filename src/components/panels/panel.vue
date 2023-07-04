@@ -14,6 +14,7 @@
             :configFileStructure="configFileStructure"
             :slideIdx="slideIdx"
             :lang="lang"
+            :style="config.customStyles"
         ></component>
     </div>
 </template>
