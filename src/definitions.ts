@@ -140,6 +140,7 @@ export interface TextPanel extends BasePanel {
     title: string;
     titleTag: string;
     content: string; // in md format
+    customStyles?: string; // css string
 }
 
 export interface MapPanel extends BasePanel {
