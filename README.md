@@ -2,6 +2,12 @@
 
 This project is an implementation of [RAMP2 FGP Visualiser](https://github.com/fgpv-vpgf/fgpv-vpgf), [Highcharts](https://www.highcharts.com/), and a number of other libraries, with the goal to provide a standards and guidelines compliant alternative to ArcGIS StoryMap, suitable for use in the Government of Canada's web presence. 
 
+## Usage
+
+To use the Storylines plugin in your Vue project, follow these steps: 
+
+TODO
+
 ## Project setup
 
 ```
@@ -18,6 +24,12 @@ npm run serve
 
 ```
 npm run build
+```
+
+### Build as a Vue plugin
+
+```
+npm run build-plugin
 ```
 
 ### Customize configuration

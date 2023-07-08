@@ -1,22 +1,27 @@
 {
-    "name": "story-ramp",
-    "version": "1.0.0",
-    "private": true,
+    "name": "ramp-storylines",
+    "description": "A user-configurable story product featuring interactive maps, charts and dynamic multimedia content alongside text.",
+    "version": "0.2.6",
+    "private": false,
+    "license": "MIT",
+    "repository": "https://github.com/ramp4-pcar4/story-ramp",
+    "bugs": "https://github.com/ramp4-pcar4/story-ramp/issues",
     "scripts": {
         "serve": "vue-cli-service serve",
         "build": "vue-cli-service build",
-        "build-plugin": "vue-cli-service build --target lib --name storylines-viewer ./storylines-plugin.js",
+        "build-plugin": "vue-cli-service build --plugin --target lib --name storylines-viewer ./storylines-plugin.ts",
         "lint": "vue-cli-service lint"
     },
+    "main": "dist/storylines-viewer.umd.min.js",
+    "files": [
+        "dist"
+    ],
     "dependencies": {
-        "@tailwindcss/typography": "^0.4.0",
-        "@types/highcharts": "^7.0.0",
         "core-js": "^3.6.5",
         "highcharts": "^9.3.2",
         "highcharts-vue": "^1.4.0",
         "hooper": "^0.3.4",
         "intersection-observer": "^0.12.0",
-        "jszip": "^3.10.1",
         "markdown-it": "^12.0.6",
         "nouislider": "^15.5.0",
         "vue": "^2.6.11",
@@ -32,6 +37,8 @@
         "vue-tippy": "^4.10.0"
     },
     "devDependencies": {
+        "@tailwindcss/typography": "^0.4.0",
+        "@types/highcharts": "^7.0.0",
         "@types/markdown-it": "^12.0.1",
         "@typescript-eslint/eslint-plugin": "^4.18.0",
         "@typescript-eslint/parser": "^4.18.0",
@@ -46,6 +53,7 @@
         "eslint": "^6.7.2",
         "eslint-plugin-prettier": "^3.3.1",
         "eslint-plugin-vue": "^6.2.2",
+        "jszip": "^3.10.1",
         "html-loader": "^0.5.5",
         "postcss": "^7.0.35",
         "prettier": "^2.2.1",

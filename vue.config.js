@@ -23,23 +23,19 @@ module.exports = {
     },
     publicPath: '',
     configureWebpack: (config) => {
-        // check if we are building the project for plugin to be used in the storylines editor
-        if (config.mode === 'development') {
+        // check if we are building the project for plugin
+        if (process.argv.includes('--plugin')) {
             config.entry = {
-                app: './storylines-plugin.js'
+                app: './storylines-plugin.ts'
             };
-            
+
             config.output.library = 'StorylinesViewer';
             config.output.libraryTarget = 'umd';
             config.output.umdNamedDefine = true;
-            // config.externals = {
-            //     vue: 'vue',
-            //     'vue-tippy': 'vue-tippy',
-            //     'highcharts-vue': 'highcharts-vue',
-            //     'vue-papa-parse': 'vue-papa-parse',
-            //     'vue-progressive-image': 'vue-progressive-image',
-            //     'vue-fullscreen': 'vue-fullscreen'
-            // };
+
+            config.externals = {
+                vue: 'vue'
+            };
         }
         config.resolve.alias['@storylines'] = path.resolve(__dirname, 'src/');
     },

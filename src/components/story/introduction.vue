@@ -15,7 +15,7 @@
         </p>
 
         <!-- using router-link causes a page refresh which breaks editor preview mode -->
-        <button @click="scrollToStory" v-if="!!configFileStructure">
+        <button class="inline-block mt-10 scroll-arrow" @click="scrollToStory" v-if="!!configFileStructure || !!plugin">
             <svg
                 class="w-auto h-24 m-auto"
                 width="90"
@@ -81,6 +81,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 export default class IntroV extends Vue {
     @Prop() config!: Intro;
     @Prop() configFileStructure!: ConfigFileStructure;
+    @Prop() plugin!: boolean;
 
     mounted(): void {
         // obtain logo from ZIP file if it exists
