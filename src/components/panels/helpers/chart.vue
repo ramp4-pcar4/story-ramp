@@ -193,9 +193,9 @@ export default class ChartV extends Vue {
             complete: (res: any) => {
                 // construct highcharts objects based on chart type
                 if (dqvOptions?.type === 'pie') {
-                    this.makePieChart(res.data, (defaultOptions as unknown) as DQVChartConfig);
+                    this.makePieChart(res.data, defaultOptions as DQVChartConfig);
                 } else {
-                    this.makeLineChart(res.meta.fields, res.data, (defaultOptions as unknown) as DQVChartConfig);
+                    this.makeLineChart(res.meta.fields, res.data, defaultOptions as DQVChartConfig);
                 }
             }
         });

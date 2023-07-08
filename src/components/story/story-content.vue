@@ -4,7 +4,7 @@
             class="side-menu"
             :active-chapter-index="activeChapterIndex"
             :slides="config.slides"
-            :editor="!!configFileStructure"
+            :plugin="!!configFileStructure || !!plugin"
             :lang="lang"
         />
 
@@ -43,6 +43,7 @@ export default class StoryContentV extends Vue {
     @Prop() config!: StoryRampConfig;
     @Prop() configFileStructure!: ConfigFileStructure;
     @Prop() lang!: string;
+    @Prop() plugin!: boolean;
 
     activeChapterIndex = -1;
 
