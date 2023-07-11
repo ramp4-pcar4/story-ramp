@@ -185,9 +185,13 @@ export interface ImagePanel extends BasePanel {
 
 export interface VideoPanel extends BasePanel {
     type: PanelType.Video;
+    title: string;
+    src: string;
+    videoType: 'local' | 'external' | 'YouTube';
+    thumbnailUrl?: string;
+    transcript?: string;
     width?: number;
     height?: number;
-    src: string;
     caption?: string;
 }
 
