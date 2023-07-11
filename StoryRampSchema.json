@@ -260,8 +260,12 @@
 
         "multimediaVideo": {
             "type": "object",
-            "description": "A multimedia video component.",
+            "description": "A multimedia video component. Built leveraging WET media player (https://wet-boew.github.io/wet-boew/docs/ref/multimedia/multimedia-en.html).",
             "properties": {
+                "title": {
+                    "type": "string",
+                    "description": "The title for the video."
+                },
                 "width": {
                     "type": "number",
                     "description": "The image width."
@@ -272,7 +276,23 @@
                 },
                 "src": {
                     "type": "string",
-                    "description": "** TODO: the plan just has 'type' here, how do we want to distinguish mp4 vs youtube, etc?"
+                    "description": "The source for the video."
+                },
+                "videoType": {
+                    "type": "string",
+                    "enum": ["local", "external", "YouTube"]
+                },
+                "shareUrl": {
+                    "type": "string",
+                    "description": "Optional link to share video."
+                },
+                "thumbnailUrl": {
+                    "type": "string",
+                    "description": "Optional link for providing URL for video thumbnail image. Limited to non-YouTube videos."
+                },
+                "transcript": {
+                    "type": "string",
+                    "description": "The source for the transcript in HTML."
                 },
                 "caption": {
                     "type": "string",
@@ -283,7 +303,7 @@
                     "enum": ["video"]
                 }
             },
-            "required": ["src", "type"]
+            "required": ["src", "type", "videoType"]
         },
 
         "multimediaAudio": {
