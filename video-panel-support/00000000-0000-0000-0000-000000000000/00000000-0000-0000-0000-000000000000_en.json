@@ -91,9 +91,10 @@
                             "id": "panel-7",
                             "panel": {
                                 "type": "video",
-                                "title": "Local hosted Video",
+                                "title": "Local video test",
                                 "videoType": "local",
-                                "src": ""
+                                "src": "https://wet-boew.github.io/wet-boew-attachments/videos/video1-en.mp4",
+                                "fullscreen": false
                             }
                         }
                     ]
