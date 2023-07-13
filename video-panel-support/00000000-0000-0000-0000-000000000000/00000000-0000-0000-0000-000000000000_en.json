@@ -30,7 +30,7 @@
                 {
                     "title": "This Slide Is Dynamic!",
                     "type": "dynamic",
-                    "content": "You can click on one of the following links to change the right panel.\n\n- <a panel='panel-1'>Text Panel</a>\n- <a panel='panel-2'>Image Panel</a>\n- <a panel='panel-3'>Charts Panel</a>\n- <a panel='panel-4'>Map Panel</a>\n- <a panel='panel-5'>Longer text section with table</a>\n- <a href='#/en/00000000-0000-0000-0000-000000000000#2-oil-sands-deposits' target='_self'>Self target link</a>\n- <a panel='panel-6'>Video from YouTube</a>\n- <a panel='panel-7'>Video locally hosted</a> d\n\nFun stuff.",
+                    "content": "You can click on one of the following links to change the right panel.\n\n- <a panel='panel-1'>Text Panel</a>\n- <a panel='panel-2'>Image Panel</a>\n- <a panel='panel-3'>Charts Panel</a>\n- <a panel='panel-4'>Map Panel</a>\n- <a panel='panel-5'>Longer text section with table</a>\n- <a href='#/en/00000000-0000-0000-0000-000000000000#2-oil-sands-deposits' target='_self'>Self target link</a>\n- <a panel='panel-6'>Video from YouTube</a>\n- <a panel='panel-7'>Video externally hosted</a>\n- <a panel='panel-8'>Video locally hosted</a>\n\nFun stuff.",
                     "children": [
                         {
                             "id": "panel-1",
@@ -84,17 +84,27 @@
                                 "type": "video",
                                 "title": "Special YT Video",
                                 "videoType": "YouTube",
-                                "src": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                                "src": "https://www.youtube.com/embed/dQw4w9WgXcQ"
                             }
                         },
                         {
                             "id": "panel-7",
                             "panel": {
                                 "type": "video",
-                                "title": "Local video test",
+                                "title": "Overtime job",
+                                "videoType": "external",
+                                "caption": "00000000-0000-0000-0000-000000000000/assets/en/video1-en.mp4.vtt",
+                                "src": "https://wet-boew.github.io/wet-boew-attachments/videos/video1-en.mp4"
+                            }
+                        },
+                        {
+                            "id": "panel-8",
+                            "panel": {
+                                "type": "video",
+                                "title": "Overtime job",
                                 "videoType": "local",
-                                "src": "https://wet-boew.github.io/wet-boew-attachments/videos/video1-en.mp4",
-                                "fullscreen": false
+                                "caption": "00000000-0000-0000-0000-000000000000/assets/en/video1-en.mp4.vtt",
+                                "src": "00000000-0000-0000-0000-000000000000/assets/en/video1-en.mp4"
                             }
                         }
                     ]
@@ -113,7 +123,8 @@
                     "type": "video",
                     "title": "Special YouTube video",
                     "videoType": "YouTube",
-                    "src": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                    "src": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+                    "height": 700
                 }
             ]
         },
@@ -130,7 +141,27 @@
                     "title": "Overtime job",
                     "videoType": "external",
                     "src": "https://wet-boew.github.io/wet-boew-attachments/videos/video1-en.mp4",
-                    "fullscreen": false
+                    "caption": "00000000-0000-0000-0000-000000000000/assets/en/video1-en.mp4.vtt",
+                    "height": 500
+                }
+            ]
+        },
+        {
+            "title": "Video Panel 3",
+            "panel": [
+                {
+                    "title": "Video Test for local source content",
+                    "content": "This is a video demo from local video stored in assets folder.",
+                    "type": "text"
+                },
+                {
+                    "type": "video",
+                    "title": "Overtime job",
+                    "videoType": "local",
+                    "src": "00000000-0000-0000-0000-000000000000/assets/en/video1-en.mp4",
+                    "caption": "00000000-0000-0000-0000-000000000000/assets/en/video1-en.mp4.vtt",
+                    "transcript": "00000000-0000-0000-0000-000000000000/assets/en/cpts-lg-en.html",
+                    "height": 500
                 }
             ]
         },
