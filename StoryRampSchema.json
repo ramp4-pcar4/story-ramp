@@ -262,28 +262,44 @@
             "type": "object",
             "description": "A multimedia video component.",
             "properties": {
+                "title": {
+                    "type": "string",
+                    "description": "The title for the video."
+                },
                 "width": {
                     "type": "number",
-                    "description": "The image width."
+                    "description": "The video width."
                 },
                 "height": {
                     "type": "number",
-                    "description": "The image height."
+                    "description": "The video height. Only for Youtube videos. Changing height for external/local videos won't work due to the aspect ratio of the original video needing to be kept the same."
                 },
                 "src": {
                     "type": "string",
-                    "description": "** TODO: the plan just has 'type' here, how do we want to distinguish mp4 vs youtube, etc?"
+                    "description": "The source for the video. External and YouTube videos should be a URL, while local video files must be contained in the assets folder."
+                },
+                "videoType": {
+                    "type": "string",
+                    "enum": ["local", "external", "YouTube"]
+                },
+                "thumbnailUrl": {
+                    "type": "string",
+                    "description": "Optional link for providing URL for video thumbnail image. Limited to non-YouTube videos."
+                },
+                "transcript": {
+                    "type": "string",
+                    "description": "The source for the transcript in HTML/Markdown."
                 },
                 "caption": {
                     "type": "string",
-                    "description": "Supporting text content for the video."
+                    "description": "Overlaying subtitles on the video, input should be a .vtt file."
                 },
                 "type": {
                     "type": "string",
                     "enum": ["video"]
                 }
             },
-            "required": ["src", "type"]
+            "required": ["src", "type", "videoType"]
         },
 
         "multimediaAudio": {
