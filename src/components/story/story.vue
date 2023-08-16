@@ -2,7 +2,7 @@
     <!-- If the configuration file is being fetched, display a spinner to indicate loading. -->
     <div v-if="loadStatus === 'loading'">
         <div class="block py-20 align-middle text-center h-full" style="margin: 0 auto">
-            <spinner size="120px" background="#00D2D3" color="#009cd1" stroke="10px" style="margin: 0 auto"></spinner>
+            <!-- <spinner size="120px" background="#00D2D3" color="#009cd1" stroke="10px" style="margin: 0 auto"></spinner> -->
         </div>
     </div>
 
@@ -68,14 +68,14 @@ import StoryContentV from '@storylines/components/story/story-content.vue';
 import IntroV from '@storylines/components/story/introduction.vue';
 
 import { StoryRampConfig } from '@storylines/definitions';
-import Circle2 from 'vue-loading-spinner/src/components/Circle2.vue';
+// import Circle2 from 'vue-loading-spinner/src/components/Circle2.vue';
 
 @Component({
     components: {
         StoryContentV,
         MobileMenuV,
-        introduction: IntroV,
-        spinner: Circle2
+        introduction: IntroV
+        // spinner: Circle2
     }
 })
 export default class StoryV extends Vue {

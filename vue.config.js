@@ -30,30 +30,34 @@ module.exports = {
         }
     },
     chainWebpack: (config) => {
-        config.resolve.alias.set('vue', '@vue/compat')
-        
+        config.resolve.alias.set('vue', '@vue/compat');
+
         config.module
             .rule('lint')
             .test(/lang\.csv$/)
             .use('eslint')
             .loader('dsv-loader')
-            .end()
+            .end();
+
+        config.module
             .rule('html')
             .test(/(.)*.(html)$/)
             .use('html-loader')
             .loader('html-loader')
-            .end()
+            .end();
+
+        config.module
             .rule('vue')
             .use('vue-loader')
             .tap((options) => {
-              return {
-                ...options,
-                compilerOptions: {
-                  compatConfig: {
-                    MODE: 2
-                  }
-                }
-              }
-            })
+                return {
+                    ...options,
+                    compilerOptions: {
+                        compatConfig: {
+                            MODE: 2
+                        }
+                    }
+                };
+            });
     }
 };

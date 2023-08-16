@@ -3,6 +3,7 @@ declare module '*.vue' {
     export default Vue;
 }
 
+declare module 'highcharts-vue';
 declare module 'vue-scrollama';
 declare module 'vue-tippy';
 declare module 'vue-progressive-image';

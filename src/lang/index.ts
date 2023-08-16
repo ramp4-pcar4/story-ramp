@@ -1,7 +1,4 @@
-import Vue from 'vue';
 import VueI18n from 'vue-i18n';
-
-Vue.use(VueI18n);
 
 type csvRows = { key: string; enValue: string; frValue: string }[];
 interface LocaleMessages {
