@@ -1,7 +1,7 @@
 import './router/componentHooks';
 import { createApp } from 'vue';
 import App from './app.vue';
-// import router from './router';
+import router from './router';
 import './style.css';
 
 // import { i18n } from './lang';
@@ -16,4 +16,10 @@ const app = createApp(App);
 
 app.component('tippy', TippyComponent);
 
-app.use(VueTippy).use(HighchartsVue).use(VuePapaParse).use(VueProgressiveImage).use(VueFullScreen).mount('#app');
+app.use(router)
+    .use(VueTippy)
+    .use(HighchartsVue)
+    .use(VuePapaParse)
+    .use(VueProgressiveImage)
+    .use(VueFullScreen)
+    .mount('#app');

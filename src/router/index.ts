@@ -1,5 +1,5 @@
 import StoryV from '@storylines/components/story/story.vue';
-import Router, { Route } from 'vue-router';
+import { createRouter, createWebHashHistory, RouteLocationNormalized } from 'vue-router';
 
 const routes = [
     {
@@ -16,10 +16,11 @@ const routes = [
     }
 ];
 
-export default new Router({
+const router = createRouter({
     routes: routes,
     // mode: 'history', // TODO: uncomment to change to history mode for nicer URLs (eliminating middle hash) see #100
-    scrollBehavior: function (to: Route) {
+    history: createWebHashHistory(),
+    scrollBehavior: function (to: RouteLocationNormalized) {
         if (to.hash) {
             return {
                 selector: decodeURIComponent(to.hash),
@@ -28,3 +29,5 @@ export default new Router({
         }
     }
 });
+
+export default router;

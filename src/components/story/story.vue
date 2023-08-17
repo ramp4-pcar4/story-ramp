@@ -61,7 +61,7 @@
 
 <script lang="ts">
 import { Options, Vue } from 'vue-property-decorator';
-import { Route } from 'vue-router';
+import { RouteLocationNormalized } from 'vue-router';
 
 import MobileMenuV from './mobile-menu.vue';
 import StoryContentV from '@storylines/components/story/story-content.vue';
@@ -85,8 +85,8 @@ export default class StoryV extends Vue {
     lang = 'en';
 
     created(): void {
-        const uid = this.$route.params.uid;
-        this.lang = this.$route.params.lang ? this.$route.params.lang : 'en';
+        const uid = this.$route.params.uid as string;
+        this.lang = (this.$route.params.lang as string) ? (this.$route.params.lang as string) : 'en';
         if (uid) {
             this.fetchConfig(uid, this.lang);
         } else {
@@ -102,9 +102,9 @@ export default class StoryV extends Vue {
     }
 
     // react to param changes in URL
-    beforeRouteUpdate(to: Route, from: Route, next: () => void): void {
-        const uid = to.params.uid;
-        this.lang = to.params.lang;
+    beforeRouteUpdate(to: RouteLocationNormalized, from: RouteLocationNormalized, next: () => void): void {
+        const uid = to.params.uid as string;
+        this.lang = to.params.lang as string;
         this.$i18n.locale = this.lang;
         this.fetchConfig(uid, this.lang);
         next();

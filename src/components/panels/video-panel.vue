@@ -93,7 +93,7 @@ export default class VideoPanelV extends Vue {
     transcriptContent = '';
 
     created(): void {
-        this.lang = this.$route.params.lang ? this.$route.params.lang : 'en';
+        this.lang = (this.$route.params.lang as string) ? (this.$route.params.lang as string) : 'en';
 
         // find file type extension for non-YT videos
         if (this.config.videoType === 'external' || this.config.videoType === 'local') {
