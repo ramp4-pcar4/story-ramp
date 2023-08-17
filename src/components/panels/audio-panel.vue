@@ -6,9 +6,8 @@
 
 <script lang="ts">
 import { AudioPanel } from '@storylines/definitions';
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Prop, Vue } from 'vue-property-decorator';
 
-@Component({})
 export default class AudioPanelV extends Vue {
     @Prop() config!: AudioPanel;
 }

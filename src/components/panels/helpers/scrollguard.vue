@@ -7,9 +7,8 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Prop, Vue } from 'vue-property-decorator';
 
-@Component
 export default class Scrollguard extends Vue {
     @Prop() lang!: string;
 }

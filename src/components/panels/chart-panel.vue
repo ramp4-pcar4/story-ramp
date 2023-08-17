@@ -28,13 +28,13 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Options, Prop, Vue } from 'vue-property-decorator';
 import { ChartPanel, ConfigFileStructure } from '@storylines/definitions';
 import { Hooper, Navigation as HooperNavigation, Pagination as HooperPagination, Slide } from 'hooper';
 import 'hooper/dist/hooper.css';
 import ChartV from '@storylines/components/panels/helpers/chart.vue';
 
-@Component({
+@Options({
     components: {
         'dqv-chart': ChartV,
         Hooper,

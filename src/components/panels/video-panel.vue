@@ -75,9 +75,8 @@
 import MarkdownIt from 'markdown-it';
 
 import { VideoPanel } from '@storylines/definitions';
-import { Component, Vue, Prop } from 'vue-property-decorator';
+import { Vue, Prop } from 'vue-property-decorator';
 
-@Component({})
 export default class VideoPanelV extends Vue {
     @Prop() config!: VideoPanel;
 

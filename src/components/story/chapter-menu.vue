@@ -148,10 +148,9 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Prop, Vue } from 'vue-property-decorator';
 import { Slide } from '@storylines/definitions';
 
-@Component
 export default class ChapterMenuV extends Vue {
     @Prop() slides!: Slide[];
     @Prop() activeChapterIndex!: number;

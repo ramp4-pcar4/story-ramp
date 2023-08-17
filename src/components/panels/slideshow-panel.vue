@@ -40,7 +40,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Options, Prop, Vue } from 'vue-property-decorator';
 import { ConfigFileStructure, SlideshowPanel } from '@storylines/definitions';
 import { Hooper, Navigation as HooperNavigation, Pagination as HooperPagination, Slide } from 'hooper';
 import 'hooper/dist/hooper.css';
@@ -49,7 +49,7 @@ import MarkdownIt from 'markdown-it';
 import FullscreenV from '@storylines/components/panels/helpers/fullscreen.vue';
 import ImagePanelV from '@storylines/components/panels/image-panel.vue';
 
-@Component({
+@Options({
     components: {
         Hooper,
         Slide,

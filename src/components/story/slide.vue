@@ -14,11 +14,11 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Options, Prop, Vue } from 'vue-property-decorator';
 import { ConfigFileStructure, PanelType, Slide } from '@storylines/definitions';
 import PanelV from '@storylines/components/panels/panel.vue';
 
-@Component({
+@Options({
     components: {
         panel: PanelV
     }

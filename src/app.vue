@@ -1,13 +1,19 @@
 <template>
     <div id="app" class="storyramp-app bg-white">
-        <router-view :key="$route.path"></router-view>
+        <!-- <router-view :key="$route.path"></router-view> -->
+        <story></story>
     </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Options, Vue } from 'vue-property-decorator';
+import StoryV from '@storylines/components/story/story.vue';
 
-@Component({})
+@Options({
+    components: {
+        story: StoryV
+    }
+})
 export default class App extends Vue {}
 </script>
 

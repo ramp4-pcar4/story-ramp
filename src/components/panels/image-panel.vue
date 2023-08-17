@@ -21,12 +21,12 @@
 
 <script lang="ts">
 import { ImagePanel } from '@storylines/definitions';
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Options, Prop, Vue } from 'vue-property-decorator';
 
 import MarkdownIt from 'markdown-it';
 import FullscreenV from '@storylines/components/panels/helpers/fullscreen.vue';
 
-@Component({
+@Options({
     components: {
         'full-screen': FullscreenV
     }

@@ -75,9 +75,8 @@
 
 <script lang="ts">
 import { ConfigFileStructure, Intro } from '@storylines/definitions';
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Prop, Vue } from 'vue-property-decorator';
 
-@Component({})
 export default class IntroV extends Vue {
     @Prop() config!: Intro;
     @Prop() configFileStructure!: ConfigFileStructure;

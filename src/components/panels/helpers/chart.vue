@@ -13,7 +13,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Options, Prop, Vue } from 'vue-property-decorator';
 import {
     ChartConfig,
     ConfigFileStructure,
@@ -40,7 +40,7 @@ interface CSVDataRow {
     [column: string]: string | number;
 }
 
-@Component({
+@Options({
     components: {
         highcharts: Chart
     }

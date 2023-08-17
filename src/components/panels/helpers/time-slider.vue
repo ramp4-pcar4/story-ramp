@@ -59,11 +59,10 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Prop, Vue } from 'vue-property-decorator';
 import { TimeSliderConfig } from '@storylines/definitions';
 import noUiSlider, { API, PipsMode } from 'nouislider';
 
-@Component
 export default class TimeSlider extends Vue {
     @Prop() config!: TimeSliderConfig;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

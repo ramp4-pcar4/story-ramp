@@ -8,10 +8,10 @@
 
 <script lang="ts">
 import Scrollama from 'vue-scrollama';
-import { Component, Vue } from 'vue-property-decorator';
+import { Options, Vue } from 'vue-property-decorator';
 // import Circle2 from 'vue-loading-spinner/src/components/Circle2.vue';
 
-@Component({
+@Options({
     components: {
         Scrollama
         // spinner: Circle2

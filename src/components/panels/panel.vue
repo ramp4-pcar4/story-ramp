@@ -20,8 +20,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
-import { VueConstructor } from 'vue/types/umd';
+import { Options, Prop, Vue } from 'vue-property-decorator';
 import { BasePanel, ConfigFileStructure, PanelType } from '@storylines/definitions';
 
 import TextPanelV from './text-panel.vue';
@@ -34,7 +33,7 @@ import ChartPanelV from './chart-panel.vue';
 import DynamicPanelV from './dynamic-panel.vue';
 import LoadingPanelV from './loading-panel.vue';
 
-@Component({
+@Options({
     components: {
         TextPanelV
     }
@@ -49,8 +48,8 @@ export default class PanelV extends Vue {
     /**
      * Returns the corresponding component for this panel.
      */
-    getTemplate(): VueConstructor {
-        const panelTemplates: Record<PanelType | string, VueConstructor> = {
+    getTemplate(): typeof Vue {
+        const panelTemplates: Record<PanelType | string, typeof Vue> = {
             [PanelType.Text]: TextPanelV,
             [PanelType.Map]: MapPanelV,
             [PanelType.Image]: ImagePanelV,

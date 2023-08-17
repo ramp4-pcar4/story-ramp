@@ -26,13 +26,13 @@
 <script lang="ts">
 import 'intersection-observer';
 import Scrollama from 'vue-scrollama';
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Options, Prop, Vue } from 'vue-property-decorator';
 import { ConfigFileStructure, StoryRampConfig } from '@storylines/definitions';
 
 import ChapterMenuV from './chapter-menu.vue';
 import SlideV from './slide.vue';
 
-@Component({
+@Options({
     components: {
         Scrollama,
         ChapterMenuV,

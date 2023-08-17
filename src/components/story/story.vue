@@ -60,7 +60,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Options, Vue } from 'vue-property-decorator';
 import { Route } from 'vue-router';
 
 import MobileMenuV from './mobile-menu.vue';
@@ -70,7 +70,7 @@ import IntroV from '@storylines/components/story/introduction.vue';
 import { StoryRampConfig } from '@storylines/definitions';
 // import Circle2 from 'vue-loading-spinner/src/components/Circle2.vue';
 
-@Component({
+@Options({
     components: {
         StoryContentV,
         MobileMenuV,

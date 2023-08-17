@@ -24,14 +24,11 @@
 
 <script lang="ts">
 import { ConfigFileStructure, MapPanel } from '@storylines/definitions';
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Prop, Vue } from 'vue-property-decorator';
 
 import TimeSlider from '@storylines/components/panels/helpers/time-slider.vue';
 import Scrollguard from '@storylines/components/panels/helpers/scrollguard.vue';
 
-@Component({
-    components: {}
-})
 export default class MapPanelV extends Vue {
     @Prop() config!: MapPanel;
     @Prop() slideIdx!: number;
