@@ -22,7 +22,7 @@
         "vue": "^3.3.4",
         "vue-class-component": "^8.0.0-rc.1",
         "vue-fullscreen": "^2.6.1",
-        "vue-i18n": "^8.27.2",
+        "vue-i18n": "^9.2.2",
         "vue-papa-parse": "^3.0.4",
         "vue-progressive-image": "^3.2.0",
         "vue-property-decorator": "^10.0.0-rc.2",

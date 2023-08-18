@@ -1,4 +1,4 @@
-import VueI18n from 'vue-i18n';
+import { createI18n } from 'vue-i18n';
 
 type csvRows = { key: string; enValue: string; frValue: string }[];
 interface LocaleMessages {
@@ -26,7 +26,7 @@ function fold(rows: csvRows): LocaleMessages {
     );
 }
 
-const i18n = new VueI18n({
+const i18n = createI18n({
     locale: lang || undefined,
     fallbackLocale: 'en',
     messages: fold(rows)

@@ -4,7 +4,7 @@ import App from './app.vue';
 import router from './router';
 import './style.css';
 
-// import { i18n } from './lang';
+import { i18n } from './lang';
 
 import VueTippy, { TippyComponent } from 'vue-tippy';
 import HighchartsVue from 'highcharts-vue';
@@ -17,6 +17,7 @@ const app = createApp(App);
 app.component('tippy', TippyComponent);
 
 app.use(router)
+    .use(i18n)
     .use(VueTippy)
     .use(HighchartsVue)
     .use(VuePapaParse)
