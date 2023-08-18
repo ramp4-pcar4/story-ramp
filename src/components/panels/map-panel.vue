@@ -23,8 +23,10 @@
 </template>
 
 <script lang="ts">
-import { ConfigFileStructure, MapPanel } from '@storylines/definitions';
+import { createApp, createVNode } from 'vue';
 import { Prop, Vue } from 'vue-property-decorator';
+import { i18n } from '@storylines/lang';
+import { ConfigFileStructure, MapPanel } from '@storylines/definitions';
 
 import TimeSlider from '@storylines/components/panels/helpers/time-slider.vue';
 import Scrollguard from '@storylines/components/panels/helpers/scrollguard.vue';
@@ -79,19 +81,23 @@ export default class MapPanelV extends Vue {
         RAMP.mapAdded.pipe().subscribe(async (mapi: any) => {
             if (this.config.scrollguard && mapi.id === this.mapComponent?.id) {
                 const scrollguardPanel = mapi.panels.create('scrollguard');
-                const scrollguardComponent = new Vue({
-                    render: (h) =>
-                        h('scrollguard', {
+
+                // programatically add time slider component in Vue 3
+                const scrollguardWrapper = document.createElement('div');
+                const scrollguardComponent = createApp({
+                    render: () =>
+                        createVNode('scrollguard', {
                             props: {
                                 lang: this.lang
                             }
-                        }),
-                    components: {
-                        scrollguard: Scrollguard
-                    },
-                    i18n: this.$i18n
-                }).$mount();
-                scrollguardPanel.body = scrollguardComponent.$el;
+                        })
+                })
+                    .component('scrollguard', Scrollguard)
+                    .use(i18n);
+                scrollguardComponent.mount(scrollguardWrapper);
+
+                // add scrollguard to map
+                scrollguardPanel.body = scrollguardWrapper;
                 scrollguardPanel.element.css({
                     opacity: 0.45,
                     zindex: 100,
@@ -132,21 +138,24 @@ export default class MapPanelV extends Vue {
 
             if (this.config.timeSlider && mapi.id === this.mapComponent?.id) {
                 const timeSliderPanel = mapi.panels.create('time-slider-container');
-                const timeSliderComponent = new Vue({
-                    render: (h) =>
-                        h('time-slider', {
+
+                // programatically add time slider component in Vue 3
+                const timeSliderWrapper = document.createElement('div');
+                const timeSliderComponent = createApp({
+                    render: () =>
+                        createVNode('time-slider', {
                             props: {
                                 config: this.config.timeSlider,
                                 mapi
                             }
-                        }),
-                    components: {
-                        // eslint-disable-next-line vue/no-unused-components
-                        'time-slider': TimeSlider
-                    },
-                    i18n: this.$i18n
-                }).$mount();
-                timeSliderPanel.body = timeSliderComponent.$el;
+                        })
+                })
+                    .component('time-slider', TimeSlider)
+                    .use(i18n);
+                timeSliderComponent.mount(timeSliderWrapper);
+
+                // add time slider to map
+                timeSliderPanel.body = timeSliderWrapper;
                 timeSliderPanel.element.css({
                     bottom: '73px',
                     right: '60px',
