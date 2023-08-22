@@ -1,19 +1,19 @@
 <template>
-    <Scrollama class="flex-1 prose max-w-none my-5">
+    <VueScrollama class="flex-1 prose max-w-none my-5">
         <div class="block py-20 align-middle text-center h-full" style="margin: 0 auto">
             <!-- <spinner size="120px" background="#00D2D3" color="#009cd1" stroke="10px" style="margin: 0 auto"></spinner> -->
         </div>
-    </Scrollama>
+    </VueScrollama>
 </template>
 
 <script lang="ts">
-import Scrollama from 'vue-scrollama';
+import VueScrollama from 'vue3-scrollama';
 import { Options, Vue } from 'vue-property-decorator';
 // import Circle2 from 'vue-loading-spinner/src/components/Circle2.vue';
 
 @Options({
     components: {
-        Scrollama
+        VueScrollama
         // spinner: Circle2
     }
 })

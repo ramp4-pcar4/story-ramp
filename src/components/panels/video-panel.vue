@@ -107,7 +107,7 @@ export default class VideoPanelV extends Vue {
         if (this.config.transcript) {
             const ext = this.extensionType(this.config.transcript);
 
-            fetch(this.config.transcript).then((res: any) => {
+            fetch(this.config.transcript).then((res: Response) => {
                 res.text().then((content: string) => {
                     this.rawTranscript = content;
                     // can be HTML or MD format

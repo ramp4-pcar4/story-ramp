@@ -4,9 +4,8 @@ declare module '*.vue' {
 }
 
 declare module 'highcharts-vue';
-declare module 'vue-scrollama';
+declare module 'vue3-scrollama';
 declare module 'vue-tippy';
 declare module 'vue-progressive-image';
 declare module 'vue-fullscreen';
-declare module 'hooper';
 declare module 'vue-papa-parse';

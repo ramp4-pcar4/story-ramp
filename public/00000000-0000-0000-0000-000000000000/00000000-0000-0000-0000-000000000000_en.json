@@ -132,24 +132,6 @@
             "title": "Video Panel 2",
             "panel": [
                 {
-                    "title": "Video Test for external source content",
-                    "content": "This is a video demo from the WET media player demo pages.",
-                    "type": "text"
-                },
-                {
-                    "type": "video",
-                    "title": "Overtime job",
-                    "videoType": "external",
-                    "src": "https://wet-boew.github.io/wet-boew-attachments/videos/video1-en.mp4",
-                    "caption": "00000000-0000-0000-0000-000000000000/assets/en/video1-en.mp4.vtt",
-                    "height": 500
-                }
-            ]
-        },
-        {
-            "title": "Video Panel 3",
-            "panel": [
-                {
                     "title": "Video Test for local source content",
                     "content": "This is a video demo from local video stored in assets folder.",
                     "type": "text"

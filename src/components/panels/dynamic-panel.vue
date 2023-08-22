@@ -1,6 +1,6 @@
 <template>
     <div :id="$vnode.key" class="story-slide w-full h-full flex sm:flex-row flex-col">
-        <Scrollama class="flex-1 order-2 sm:order-1 prose max-w-none my-5">
+        <VueScrollama class="flex-1 order-2 sm:order-1 prose max-w-none my-5">
             <component
                 :is="config.titleTag || 'h2'"
                 class="px-10 mb-0 chapter-title top-20"
@@ -10,7 +10,7 @@
             </component>
 
             <div class="px-10 md-content" v-html="md.render(config.content)"></div>
-        </Scrollama>
+        </VueScrollama>
 
         <div
             :class="
@@ -46,16 +46,17 @@
 </template>
 
 <script lang="ts">
-import Scrollama from 'vue-scrollama';
+import VueScrollama from 'vue3-scrollama';
 import MarkdownIt from 'markdown-it';
 
+import { defineAsyncComponent } from 'vue';
 import { Options, Prop, Vue } from 'vue-property-decorator';
 import { BasePanel, DynamicPanel } from '@storylines/definitions';
 
 @Options({
     components: {
-        panel: () => import('./panel.vue'),
-        Scrollama
+        panel: defineAsyncComponent(() => import('./panel.vue')),
+        VueScrollama
     }
 })
 export default class DynamicPanelV extends Vue {

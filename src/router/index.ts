@@ -23,7 +23,7 @@ const router = createRouter({
     scrollBehavior: function (to: RouteLocationNormalized) {
         if (to.hash) {
             return {
-                selector: decodeURIComponent(to.hash),
+                el: decodeURIComponent(to.hash),
                 behavior: 'smooth'
             };
         }

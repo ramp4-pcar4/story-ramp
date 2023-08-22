@@ -200,7 +200,7 @@ export default class MapPanelV extends Vue {
     .rv-map {
         max-height: 40vh;
 
-        ::v-deep .time-slider-container {
+        :deep(.time-slider-container) {
             left: 0px !important;
             right: 38px !important;
             bottom: 29px !important;
@@ -216,10 +216,10 @@ export default class MapPanelV extends Vue {
     }
 }
 
-::v-deep rv-basemap-item .rv-basemap-thumb img {
+:deep(rv-basemap-item .rv-basemap-thumb img) {
     max-width: none;
 }
-::v-deep .rv-details-attrib-value a {
+:deep(.rv-details-attrib-value a) {
     white-space: unset !important;
 }
 </style>

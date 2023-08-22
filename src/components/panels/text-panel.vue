@@ -1,15 +1,15 @@
 <template>
-    <Scrollama class="flex-1 prose max-w-none my-5">
+    <VueScrollama class="flex-1 prose max-w-none my-5">
         <component :is="config.titleTag || 'h2'" class="px-10 mb-0 chapter-title top-20">
             {{ config.title }}
         </component>
 
         <div class="px-10 md-content object-contain" v-html="mdContent"></div>
-    </Scrollama>
+    </VueScrollama>
 </template>
 
 <script lang="ts">
-import Scrollama from 'vue-scrollama';
+import VueScrollama from 'vue3-scrollama';
 import MarkdownIt from 'markdown-it';
 
 import { Options, Prop, Vue } from 'vue-property-decorator';
@@ -17,7 +17,7 @@ import { TextPanel } from '@storylines/definitions';
 
 @Options({
     components: {
-        Scrollama
+        VueScrollama
     }
 })
 export default class TextPanelV extends Vue {
@@ -48,7 +48,7 @@ export default class TextPanelV extends Vue {
     .md-content {
         max-width: 100vw;
 
-        ::v-deep .table-container {
+        :deep(.table-container) {
             overflow-x: auto;
         }
     }

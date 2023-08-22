@@ -1,6 +1,6 @@
 <template>
-    <fullscreen v-model="fullscreen" :pageOnly="true" :teleport="true" fullscreenClass="fullscreenElement">
-        <div class="relative bg-white">
+    <div ref="fullscreen-container">
+        <div class="relative bg-white fullscreen-wrapper">
             <button
                 v-if="expandable !== undefined ? expandable : true"
                 class="fullscreenButton expand-button absolute items-center justify-center p-3 z-10"
@@ -38,7 +38,7 @@
             </button>
             <slot></slot>
         </div>
-    </fullscreen>
+    </div>
 </template>
 
 <script lang="ts">
@@ -50,8 +50,16 @@ export default class FullscreenV extends Vue {
 
     fullscreen = false;
 
-    toggleFullscreen(): void {
-        this.fullscreen = !this.fullscreen;
+    async toggleFullscreen(): Promise<void> {
+        await this.$fullscreen.toggle(
+            (this.$refs['fullscreen-container'] as Element).querySelector('.fullscreen-wrapper'),
+            {
+                teleport: true,
+                pageOnly: true,
+                fullscreenClass: 'fullscreenElement'
+            }
+        );
+        this.fullscreen = this.$fullscreen.isFullscreen;
     }
 }
 </script>

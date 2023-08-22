@@ -82,8 +82,10 @@ export default class ChartV extends Vue {
 
             // Set up hamburger menu options.
             if (this.chartOptions.exporting) {
-                this.chartOptions.exporting.buttons.contextButton = {
-                    menuItems: this.menuOptions
+                this.chartOptions.exporting.buttons = {
+                    contextButton: {
+                        menuItems: this.menuOptions
+                    }
                 };
             } else {
                 this.chartOptions.exporting = {
@@ -110,8 +112,10 @@ export default class ChartV extends Vue {
 
                             // Set up hamburger menu options.
                             if (this.chartOptions.exporting) {
-                                this.chartOptions.exporting.buttons.contextButton = {
-                                    menuItems: this.menuOptions
+                                this.chartOptions.exporting.buttons = {
+                                    contextButton: {
+                                        menuItems: this.menuOptions
+                                    }
                                 };
                             } else {
                                 this.chartOptions.exporting = {

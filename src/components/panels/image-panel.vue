@@ -37,19 +37,19 @@ export default class ImagePanelV extends Vue {
 
     md = new MarkdownIt({ html: true });
 
-    observer =
-        this.slideIdx > 2
-            ? new IntersectionObserver(([image]) => {
-                  // lazy load images
-                  if (image.isIntersecting) {
-                      (this.$refs.img as Element).setAttribute('src', this.config.src);
-                      this.$forceUpdate();
-                      (this.observer as IntersectionObserver).disconnect();
-                  }
-              })
-            : undefined;
+    observer: IntersectionObserver | undefined = undefined;
 
     mounted(): void {
+        if (this.slideIdx > 2) {
+            this.observer = new IntersectionObserver(([image]) => {
+                // lazy load images
+                if (image.isIntersecting) {
+                    (this.$refs.img as Element).setAttribute('src', this.config.src);
+                    this.$forceUpdate();
+                    (this.observer as IntersectionObserver).disconnect();
+                }
+            });
+        }
         this.observer?.observe(this.$refs.img as Element);
     }
 }

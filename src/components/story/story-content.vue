@@ -8,7 +8,7 @@
             :lang="lang"
         />
 
-        <Scrollama class="relative story-scrollama w-full" @step-enter="stepEnter">
+        <VueScrollama class="relative story-scrollama w-full" @step-enter="stepEnter">
             <div
                 v-for="(slide, idx) in config.slides"
                 class="flex pt-24"
@@ -19,13 +19,13 @@
             >
                 <slide :config="slide" :configFileStructure="configFileStructure" :slideIdx="idx" :lang="lang"></slide>
             </div>
-        </Scrollama>
+        </VueScrollama>
     </div>
 </template>
 
 <script lang="ts">
 import 'intersection-observer';
-import Scrollama from 'vue-scrollama';
+import VueScrollama from 'vue3-scrollama';
 import { Options, Prop, Vue } from 'vue-property-decorator';
 import { ConfigFileStructure, StoryRampConfig } from '@storylines/definitions';
 
@@ -34,7 +34,7 @@ import SlideV from './slide.vue';
 
 @Options({
     components: {
-        Scrollama,
+        VueScrollama,
         ChapterMenuV,
         slide: SlideV
     }
