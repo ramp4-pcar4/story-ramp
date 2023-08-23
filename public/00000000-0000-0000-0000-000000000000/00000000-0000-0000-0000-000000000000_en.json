@@ -30,7 +30,7 @@
                 {
                     "title": "This Slide Is Dynamic!",
                     "type": "dynamic",
-                    "content": "You can click on one of the following links to change the right panel.\n\n- <a panel='panel-1'>Text Panel</a>\n- <a panel='panel-2'>Image Panel</a>\n- <a panel='panel-3'>Charts Panel</a>\n- <a panel='panel-4'>Map Panel</a>\n- <a panel='panel-5'>Longer text section with table</a>\n- <a href='#/en/00000000-0000-0000-0000-000000000000#2-oil-sands-deposits' target='_self'>Self target link</a>\n- <a panel='panel-6'>Video from YouTube</a>\n- <a panel='panel-7'>Video externally hosted</a>\n- <a panel='panel-8'>Video locally hosted</a>\n\nFun stuff.",
+                    "content": "You can click on one of the following links to change the right panel.\n\n- <a panel='panel-1'>Text Panel</a>\n- <a panel='panel-2'>Image Panel</a>\n- <a panel='panel-3'>Charts Panel</a>\n- <a panel='panel-4'>Map Panel</a>\n- <a panel='panel-5'>Longer text section with table</a>\n- <a href='#/en/00000000-0000-0000-0000-000000000000#2-oil-sands-deposits' target='_self'>Self target link</a>\n- <a panel='panel-6'>Video externally hosted</a>\n- <a panel='panel-7'>Video locally hosted</a>\n\nFun stuff.",
                     "children": [
                         {
                             "id": "panel-1",
@@ -82,15 +82,6 @@
                             "id": "panel-6",
                             "panel": {
                                 "type": "video",
-                                "title": "Special YT Video",
-                                "videoType": "YouTube",
-                                "src": "https://www.youtube.com/embed/dQw4w9WgXcQ"
-                            }
-                        },
-                        {
-                            "id": "panel-7",
-                            "panel": {
-                                "type": "video",
                                 "title": "Overtime job",
                                 "videoType": "external",
                                 "caption": "00000000-0000-0000-0000-000000000000/assets/en/video1-en.mp4.vtt",
@@ -98,13 +89,15 @@
                             }
                         },
                         {
-                            "id": "panel-8",
+                            "id": "panel-7",
                             "panel": {
                                 "type": "video",
                                 "title": "Overtime job",
                                 "videoType": "local",
+                                "src": "00000000-0000-0000-0000-000000000000/assets/en/video1-en.mp4",
                                 "caption": "00000000-0000-0000-0000-000000000000/assets/en/video1-en.mp4.vtt",
-                                "src": "00000000-0000-0000-0000-000000000000/assets/en/video1-en.mp4"
+                                "transcript": "00000000-0000-0000-0000-000000000000/assets/en/cpts-lg-en.html",
+                                "height": 500
                             }
                         }
                     ]
@@ -123,42 +116,7 @@
                     "type": "video",
                     "title": "Special YouTube video",
                     "videoType": "YouTube",
-                    "src": "https://www.youtube.com/embed/dQw4w9WgXcQ",
-                    "height": 700
-                }
-            ]
-        },
-        {
-            "title": "Video Panel 2",
-            "panel": [
-                {
-                    "title": "Video Test for local source content",
-                    "content": "This is a video demo from local video stored in assets folder.",
-                    "type": "text"
-                },
-                {
-                    "type": "video",
-                    "title": "Overtime job",
-                    "videoType": "local",
-                    "src": "00000000-0000-0000-0000-000000000000/assets/en/video1-en.mp4",
-                    "caption": "00000000-0000-0000-0000-000000000000/assets/en/video1-en.mp4.vtt",
-                    "transcript": "00000000-0000-0000-0000-000000000000/assets/en/cpts-lg-en.html",
-                    "height": 500
-                }
-            ]
-        },
-        {
-            "title": "Oil sands deposits",
-            "panel": [
-                {
-                    "title": "Oil sands deposits",
-                    "content": "There are three large oil sands deposits in Canada:\n\n- The Athabasca;\n- Peace River; and\n- Cold Lake.\n\nAll three of the deposits are located in northern Alberta except for a small portion of the Cold Lake deposit, which extends into Saskatchewan. Together, these deposits cover [142,000 square kilometres](https://www.nrcan.gc.ca/our-natural-resources/energy-sources-distribution/clean-fossil-fuels/technical-overview/5851?_ga=2.92936030.219303224.1637701004-1958057264.1607712157) and are estimated to contain 166.3 billion barrels.\n\nThe oil sands extraction sector is a major contributor to Canada’s economy, with more than 528,000 people deriving direct, indirect and induced employment from the oil sands and its supporting sectors. To date, an estimated $325 billion of capital expenditures has been invested in the oil sands industry, and the sector produces 2.95 million barrels of oil per day.\n\nThis map shows a generalized potential extent of the three oil sands areas. The actual geological deposits themselves cover larger areas.",
-                    "type": "text"
-                },
-                {
-                    "config": "00000000-0000-0000-0000-000000000000/ramp-config/en/OilSandsDeposits.json",
-                    "type": "map",
-                    "scrollguard": true
+                    "src": "https://www.youtube.com/embed/dQw4w9WgXcQ"
                 }
             ]
         },
@@ -248,45 +206,6 @@
                     "loop": true,
                     "caption": "NPRI substances reported for oil sands mining facilities",
                     "type": "slideshow"
-                }
-            ]
-        },
-        {
-            "title": "Reported mine tailings from oil sands surface mining facilities",
-            "panel": [
-                {
-                    "title": "Reported mine tailings from oil sands surface mining facilities",
-                    "content": "Similar to comparing release and transfer profiles, it is difficult to compare the seven oil sands surface mining facilities in terms of what they dispose of in their tailings impoundment areas. These facilities vary greatly in their size and in how much bitumen processing occurs on-site. Breakdowns of reported tailings for each facility are provided below.\n\n- Canadian Natural Resources Muskeg River and Jackpine Mines, and Horizon Oil Sands Processing Plant and Mine;\n- Fort Hills Oil Sands Mine;\n- Imperial Oil Kearl Processing Plant and Mine;\n- Suncor Energy Inc. Oil Sands; and\n- Syncrude Canada Aurora North Mine Site, and Syncrude Canada Ltd. (formerly Mildred Lake).",
-                    "type": "text"
-                },
-                {
-                    "type": "chart",
-                    "charts": [
-                        {
-                            "src": "410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/en/tailings/1.Syncrude Canada Ltd., Aurora North Mine Site 2019 Tailings.csv",
-                            "options": {
-                                "title": "Syncrude Canada Ltd., Aurora North Mine Site 2019 Tailings (Tonnes)",
-                                "subtitle": "",
-                                "type": "pie"
-                            }
-                        },
-                        {
-                            "src": "410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/en/tailings/2.Fort Hill Energy L.P., Fort Hills Oil Sands 2019 Tailings.csv",
-                            "options": {
-                                "title": "Fort Hill Energy L.P., Fort Hills Oil Sands 2019 Tailings (Tonnes)",
-                                "subtitle": "",
-                                "type": "pie"
-                            }
-                        },
-                        {
-                            "src": "410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/en/tailings/3.Canadian Natural Resources Limited, Horizon Oil Sands Processing Plant and Mine 2019 Tailings.csv",
-                            "options": {
-                                "title": "Canadian Natural Resources Limited, Horizon Oil Sands Processing Plant and Mine 2019 Tailings (Tonnes)",
-                                "subtitle": "",
-                                "type": "pie"
-                            }
-                        }
-                    ]
                 }
             ]
         },
@@ -392,7 +311,7 @@
             ]
         },
         {
-            "title": "Trends in mine tailings reported from surface mining facilities",
+            "title": "Trends in mine tailings reported from surface mining facilities (Time Slider)",
             "panel": [
                 {
                     "title": "Trends in mine tailings reported from surface mining facilities",
@@ -401,7 +320,12 @@
                 },
                 {
                     "config": "00000000-0000-0000-0000-000000000000/ramp-config/en/TailingsfromMiningFacilities2010to2019(timeslider).json",
-                    "type": "map"
+                    "type": "map",
+                    "timeSlider": {
+                        "range": [2010, 2019],
+                        "start": [2010, 2019],
+                        "attribute": "Reporting_Year___Année"
+                    }
                 }
             ]
         },
@@ -496,7 +420,7 @@
             "title": "DQV Chart Gallery",
             "panel": [
                 {
-                    "title": "DQV Chart",
+                    "title": "DQV Chart Gallery Featuring Hybrid and External Charts",
                     "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris rhoncus, magna in pulvinar tincidunt, magna velit feugiat sem, nec rhoncus lectus tortor quis turpis. Vivamus erat velit, feugiat at nisl lacinia, pulvinar tempus nunc. Nulla suscipit vulputate dapibus. Fusce tincidunt neque nunc, sed porta lacus elementum vitae. Suspendisse imperdiet interdum ipsum, id aliquet lectus aliquet sit amet. Aliquam erat volutpat. Nulla convallis nisl sodales nunc ullamcorper pulvinar. Nulla ornare justo id sapien porta gravida. Cras condimentum, felis id pretium malesuada, lorem lorem viverra nisi, sit amet molestie mi nulla nec velit. Integer semper lorem scelerisque tellus iaculis finibus. Aliquam efficitur sodales elit nec sodales. Sed vitae ipsum quis eros vulputate luctus.",
                     "type": "text"
                 },
@@ -507,77 +431,10 @@
                             "src": "00000000-0000-0000-0000-000000000000/charts/en/chartConfig.json"
                         },
                         {
-                            "src": "ea24000c-7dc3-49a9-baac-c55d28dcaeb9/charts/en/Ethlyene.glycol.release.trends.by.sector.2010-2019.tonnes.csv"
+                            "src": "00000000-0000-0000-0000-000000000000/charts/en/csvUrlChart.json"
                         },
                         {
-                            "src": "410b88da-0ed1-4749-903f-5e76c24e2e5f/charts/en/tailings/2.Fort Hill Energy L.P., Fort Hills Oil Sands 2019 Tailings.csv",
-                            "options": {
-                                "title": "Fort Hill Energy L.P., Fort Hills Oil Sands 2019 Tailings (Tonnes)",
-                                "subtitle": "",
-                                "type": "pie",
-                                "colours": ["green", "#FAEBD7", "indigo", "#FFD700", "orange", "red"]
-                            }
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "title": "DQV Chart with CSV input",
-            "panel": [
-                {
-                    "title": "DQV Chart with CSV input",
-                    "content": "Test (╯°□°)╯︵ ┻━┻",
-                    "type": "text"
-                },
-                {
-                    "type": "chart",
-                    "charts": [
-                        {
-                            "src": "ea24000c-7dc3-49a9-baac-c55d28dcaeb9/charts/en/Ethlyene.glycol.release.trends.by.sector.2010-2019.tonnes.csv",
-
-                            "options": {
-                                "xAxisLabel": "X Axis Test From Config",
-                                "yAxisLabel": "Y Axis Test From Config",
-                                "title": "Hello World",
-                                "subtitle": "I am a DQVChart and this is from the config file"
-                            }
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "title": "Hybrid chart with bar and line",
-            "panel": [
-                {
-                    "title": "Hybrid chart with bar and line",
-                    "content": "Demo of a hybrid chart consisting of both a bar and line chart using a custom configured highcharts json file.",
-                    "type": "text"
-                },
-                {
-                    "type": "chart",
-                    "charts": [
-                        {
                             "src": "00000000-0000-0000-0000-000000000000/charts/en/hybridChartConfig.json"
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "title": "Chart with external CSV remote-hosted file",
-            "panel": [
-                {
-                    "title": "Chart with external CSV remote-hosted file",
-                    "content": "Demo of a chart containing external CSV file and using fetch()",
-                    "type": "text"
-                },
-                {
-                    "type": "chart",
-                    "charts": [
-                        {
-                            "src": "00000000-0000-0000-0000-000000000000/charts/en/csvUrlChart.json"
                         }
                     ]
                 }

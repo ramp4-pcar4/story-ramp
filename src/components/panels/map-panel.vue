@@ -23,7 +23,7 @@
 </template>
 
 <script lang="ts">
-import { createApp, createVNode } from 'vue';
+import { createApp, h } from 'vue';
 import { Prop, Vue } from 'vue-property-decorator';
 import { i18n } from '@storylines/lang';
 import { ConfigFileStructure, MapPanel } from '@storylines/definitions';
@@ -84,16 +84,15 @@ export default class MapPanelV extends Vue {
 
                 // programatically add time slider component in Vue 3
                 const scrollguardWrapper = document.createElement('div');
+                const lang = this.lang;
                 const scrollguardComponent = createApp({
-                    render: () =>
-                        createVNode('scrollguard', {
-                            props: {
-                                lang: this.lang
-                            }
-                        })
-                })
-                    .component('scrollguard', Scrollguard)
-                    .use(i18n);
+                    setup() {
+                        return () =>
+                            h(Scrollguard, {
+                                lang: lang
+                            });
+                    }
+                }).use(i18n);
                 scrollguardComponent.mount(scrollguardWrapper);
 
                 // add scrollguard to map
@@ -141,17 +140,16 @@ export default class MapPanelV extends Vue {
 
                 // programatically add time slider component in Vue 3
                 const timeSliderWrapper = document.createElement('div');
+                const timesliderConfig = this.config.timeSlider;
                 const timeSliderComponent = createApp({
-                    render: () =>
-                        createVNode('time-slider', {
-                            props: {
-                                config: this.config.timeSlider,
+                    setup() {
+                        return () =>
+                            h(TimeSlider, {
+                                config: timesliderConfig,
                                 mapi
-                            }
-                        })
-                })
-                    .component('time-slider', TimeSlider)
-                    .use(i18n);
+                            });
+                    }
+                }).use(i18n);
                 timeSliderComponent.mount(timeSliderWrapper);
 
                 // add time slider to map

@@ -13,14 +13,10 @@
 
         <!-- video with local/external source -->
         <template v-if="config.videoType === 'local' || config.videoType === 'external'">
-            <video
-                class="media-player"
-                :title="config.title"
-                :poster="config.thumbnailUrl"
-                :width="config.width ? config.width : '100%'"
-                :height="config.height ? config.height : '500px'"
-                controls
-            >
+            <!-- TODO: lost ability to set width/height properties of <video> during Vue 3 refactor -->
+            <!-- :width="config.width ? config.width : '100%'" -->
+            <!-- :height="config.height ? config.height : '500px'" -->
+            <video class="media-player" :title="config.title" :poster="config.thumbnailUrl" controls>
                 <source :type="fileType" :src="config.src" />
                 <!-- add captions with transcript -->
                 <track
