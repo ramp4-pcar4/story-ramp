@@ -1,5 +1,5 @@
 <template>
-    <div :id="$vnode.key" class="story-slide h-full flex sm:flex-row flex-col">
+    <div :id="key" class="story-slide h-full flex sm:flex-row flex-col">
         <panel
             v-for="(panel, idx) in config.panel"
             :key="idx"
@@ -14,6 +14,7 @@
 </template>
 
 <script lang="ts">
+import { getCurrentInstance } from 'vue';
 import { Options, Prop, Vue } from 'vue-property-decorator';
 import { ConfigFileStructure, PanelType, Slide } from '@storylines/definitions';
 import PanelV from '@storylines/components/panels/panel.vue';
@@ -30,6 +31,7 @@ export default class SlideV extends Vue {
     @Prop() lang!: string;
 
     defaultRatio = false;
+    key = getCurrentInstance()?.vnode.key as string;
 
     mounted(): void {
         const panels = this.config.panel;

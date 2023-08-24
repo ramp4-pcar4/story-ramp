@@ -1,5 +1,5 @@
 <template>
-    <div :id="$vnode.key" class="story-slide w-full h-full flex sm:flex-row flex-col">
+    <div :id="key" class="story-slide w-full h-full flex sm:flex-row flex-col">
         <VueScrollama class="flex-1 order-2 sm:order-1 prose max-w-none my-5">
             <component
                 :is="config.titleTag || 'h2'"
@@ -49,7 +49,7 @@
 import VueScrollama from 'vue3-scrollama';
 import MarkdownIt from 'markdown-it';
 
-import { defineAsyncComponent } from 'vue';
+import { defineAsyncComponent, getCurrentInstance } from 'vue';
 import { Options, Prop, Vue } from 'vue-property-decorator';
 import { BasePanel, DynamicPanel } from '@storylines/definitions';
 
@@ -71,6 +71,8 @@ export default class DynamicPanelV extends Vue {
     activeIdx = this.defaultPanel.id;
 
     md = new MarkdownIt({ html: true });
+
+    key = getCurrentInstance()?.vnode.key as string;
 
     mounted(): void {
         document

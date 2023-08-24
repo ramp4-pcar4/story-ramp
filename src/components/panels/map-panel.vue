@@ -30,6 +30,7 @@ import { ConfigFileStructure, MapPanel } from '@storylines/definitions';
 
 import TimeSlider from '@storylines/components/panels/helpers/time-slider.vue';
 import Scrollguard from '@storylines/components/panels/helpers/scrollguard.vue';
+import VueTippy from 'vue-tippy';
 
 export default class MapPanelV extends Vue {
     @Prop() config!: MapPanel;
@@ -149,7 +150,13 @@ export default class MapPanelV extends Vue {
                                 mapi
                             });
                     }
-                }).use(i18n);
+                })
+                    .use(i18n)
+                    .use(VueTippy, {
+                        directive: 'tippy',
+                        component: 'tippy'
+                    });
+
                 timeSliderComponent.mount(timeSliderWrapper);
 
                 // add time slider to map

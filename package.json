@@ -10,7 +10,6 @@
     "dependencies": {
         "@tailwindcss/typography": "^0.4.0",
         "@types/highcharts": "^7.0.0",
-        "@vue/compat": "^3.3.4",
         "core-js": "^3.6.5",
         "highcharts": "^9.3.2",
         "highcharts-vue": "^1.4.3",
