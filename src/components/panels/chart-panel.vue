@@ -1,5 +1,5 @@
 <template>
-    <div class="flex">
+    <div ref="el" class="flex">
         <div class="carousel-container self-center px-10 my-8 mx-auto bg-gray-200_" :style="{ width: `${width}px` }">
             <carousel v-if="width !== -1 && config.charts.length > 1" class="h-full" :wrap-around="config.loop">
                 <slide
@@ -8,7 +8,7 @@
                     :index="index"
                     class="self-center"
                 >
-                    <dqv-chart :config="chartConfig" :configFileStructure="configFileStructure" />
+                    <chart :config="chartConfig" :configFileStructure="configFileStructure" />
                 </slide>
 
                 <template #addons>
@@ -31,40 +31,38 @@
             </carousel>
 
             <div v-else-if="width !== -1">
-                <dqv-chart :config="config.charts[0]" :configFileStructure="configFileStructure" />
+                <chart :config="config.charts[0]" :configFileStructure="configFileStructure" />
             </div>
         </div>
     </div>
 </template>
 
-<script lang="ts">
-import { Options, Prop, Vue } from 'vue-property-decorator';
+<script setup lang="ts">
+import type { PropType } from 'vue';
+import { onMounted, ref } from 'vue';
 import { ChartPanel, ConfigFileStructure } from '@storylines/definitions';
 import { Carousel, Navigation, Pagination, Slide } from 'vue3-carousel';
 import 'vue3-carousel/dist/carousel.css';
-import ChartV from '@storylines/components/panels/helpers/chart.vue';
+import Chart from '@storylines/components/panels/helpers/chart.vue';
 
-@Options({
-    components: {
-        'dqv-chart': ChartV,
-        Carousel,
-        Slide,
-        Navigation,
-        Pagination
+defineProps({
+    config: {
+        type: Object as PropType<ChartPanel>,
+        required: true
+    },
+    configFileStructure: {
+        type: Object as PropType<ConfigFileStructure>
     }
-})
-export default class ChartPanelV extends Vue {
-    @Prop() config!: ChartPanel;
-    @Prop() configFileStructure!: ConfigFileStructure;
+});
 
-    width = -1;
+const width = ref(-1);
+const el = ref();
 
-    mounted(): void {
-        setTimeout(() => {
-            this.width = this.$el.clientWidth - 64;
-        }, 100);
-    }
-}
+onMounted(() => {
+    setTimeout(() => {
+        width.value = el.value.clientWidth - 64;
+    });
+});
 </script>
 
 <style lang="scss" scoped>

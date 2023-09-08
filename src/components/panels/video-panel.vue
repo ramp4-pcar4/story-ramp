@@ -67,61 +67,64 @@
     </div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
+import type { PropType } from 'vue';
+import { onMounted, ref } from 'vue';
+import { useRoute } from 'vue-router';
 import MarkdownIt from 'markdown-it';
 
 import { VideoPanel } from '@storylines/definitions';
-import { Vue, Prop } from 'vue-property-decorator';
 
-export default class VideoPanelV extends Vue {
-    @Prop() config!: VideoPanel;
+const md = new MarkdownIt({ html: true });
+const route = useRoute();
 
-    lang = 'en';
-    langs: Record<string, string> = {
-        en: 'English',
-        fr: 'French'
-    };
-    fileType = '';
-    expandTranscript = false;
+const props = defineProps({
+    config: {
+        type: Object as PropType<VideoPanel>,
+        required: true
+    }
+});
 
-    md = new MarkdownIt({ html: true });
-    rawTranscript = '';
-    transcriptContent = '';
+const lang = ref('en');
+const langs = ref<Record<string, string>>({ en: 'English', fr: 'French' });
 
-    created(): void {
-        this.lang = (this.$route.params.lang as string) ? (this.$route.params.lang as string) : 'en';
+const fileType = ref('');
+const expandTranscript = ref(false);
 
-        // find file type extension for non-YT videos
-        if (this.config.videoType === 'external' || this.config.videoType === 'local') {
-            const ext = this.extensionType(this.config.src);
-            this.fileType = `video/${ext}`;
-        }
+const rawTranscript = ref('');
+const transcriptContent = ref('');
+
+onMounted(() => {
+    lang.value = (route.params.lang as string) ? (route.params.lang as string) : 'en';
+
+    // find file type extension for non-YT videos
+    if (props.config.videoType === 'external' || props.config.videoType === 'local') {
+        const ext = extensionType(props.config.src);
+        fileType.value = `video/${ext}`;
     }
 
-    mounted(): void {
-        // fetch and config transcript content and render with md
-        if (this.config.transcript) {
-            const ext = this.extensionType(this.config.transcript);
+    // fetch and config transcript content and render with md
+    if (props.config.transcript) {
+        const ext = extensionType(props.config.transcript);
 
-            fetch(this.config.transcript).then((res: Response) => {
-                res.text().then((content: string) => {
-                    this.rawTranscript = content;
-                    // can be HTML or MD format
-                    this.transcriptContent = ext === 'md' ? this.md.render(this.rawTranscript) : this.rawTranscript;
-                });
+        fetch(props.config.transcript).then((res: Response) => {
+            res.text().then((content: string) => {
+                rawTranscript.value = content;
+                // can be HTML or MD format
+                transcriptContent.value = ext === 'md' ? md.render(rawTranscript.value) : rawTranscript.value;
             });
-        }
+        });
     }
+});
 
-    toggleTranscript(): void {
-        this.expandTranscript = !this.expandTranscript;
-    }
+const toggleTranscript = (): void => {
+    expandTranscript.value = !expandTranscript.value;
+};
 
-    extensionType(file: string): string | undefined {
-        const fileName = file.substring(file.lastIndexOf('/') + 1);
-        return fileName.split('.').pop();
-    }
-}
+const extensionType = (file: string): string | undefined => {
+    const fileName = file.substring(file.lastIndexOf('/') + 1);
+    return fileName.split('.').pop();
+};
 </script>
 
 <style lang="scss">

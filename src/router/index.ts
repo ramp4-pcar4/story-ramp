@@ -1,18 +1,18 @@
-import StoryV from '@storylines/components/story/story.vue';
+//import StoryV from '@storylines/components/story/story.vue';
 import { createRouter, createWebHashHistory, RouteLocationNormalized } from 'vue-router';
 
 const routes = [
     {
         path: '/',
-        component: StoryV
+        component: () => import('@storylines/components/story/story.vue')
     },
     {
         path: '/:uid',
-        component: StoryV
+        component: () => import('@storylines/components/story/story.vue')
     },
     {
         path: '/:lang/:uid',
-        component: StoryV
+        component: () => import('@storylines/components/story/story.vue')
     }
 ];
 

@@ -1,5 +1,5 @@
 <template>
-    <div class="time-slider absolute w-full left-0 flex flex-col items-center bg-white">
+    <div ref="el" class="time-slider absolute w-full left-0 flex flex-col items-center bg-white">
         <button
             class="absolute top-1 left-4 play-button"
             @click="intervalID >= 0 ? endLoop() : startLoop()"
@@ -58,143 +58,150 @@
     </div>
 </template>
 
-<script lang="ts">
-import { Prop, Vue } from 'vue-property-decorator';
+<script setup lang="ts">
+import type { PropType } from 'vue';
+import { onMounted, ref } from 'vue';
 import { TimeSliderConfig } from '@storylines/definitions';
 import noUiSlider, { API, PipsMode } from 'nouislider';
 
-export default class TimeSlider extends Vue {
-    @Prop() config!: TimeSliderConfig;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    @Prop() mapi!: any;
+const props = defineProps({
+    config: {
+        type: Object as PropType<TimeSliderConfig>,
+        required: true
+    },
+    mapi: {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        type: Object as PropType<any>
+    }
+});
 
-    minimized = false;
+const minimized = ref(false);
+const el = ref();
+const sliderTarget = ref();
+const sliderElement = ref<HTMLElement>();
+const slider = ref<API>();
+const start = ref<number | undefined>();
+const end = ref<number | undefined>();
+const range = ref<string[]>(['', '']);
+const intervalID = ref(-1);
 
-    sliderElement!: HTMLElement;
-    slider!: API;
-    start: number | undefined;
-    end: number | undefined;
-    range: string[] = ['', ''];
-    intervalID = -1;
-
-    mounted(): void {
-        this.start = 2010;
-        this.end = 2019;
-        this.sliderElement = this.$refs.sliderTarget as HTMLElement;
-        this.slider = noUiSlider.create(this.sliderElement, {
-            start: this.config.start,
-            range: {
-                min: this.config.range[0],
-                max: this.config.range[1]
-            },
-            connect: true,
-            step: 1,
-            pips: {
-                mode: PipsMode.Steps,
-                density: 1,
-                filter: (val: number) => {
-                    if (val % 1 === 0) {
-                        return 1;
-                    }
-                    return -1;
+onMounted(() => {
+    start.value = 2010;
+    end.value = 2019;
+    sliderElement.value = sliderTarget.value as HTMLElement;
+    slider.value = noUiSlider.create(sliderElement.value, {
+        start: props.config.start,
+        range: {
+            min: props.config.range[0],
+            max: props.config.range[1]
+        },
+        connect: true,
+        step: 1,
+        pips: {
+            mode: PipsMode.Steps,
+            density: 1,
+            filter: (val: number) => {
+                if (val % 1 === 0) {
+                    return 1;
                 }
+                return -1;
             }
-        });
-
-        this.slider.on('update', () => {
-            const sliderValues = this.slider.get() as string | string[];
-            if (Array.isArray(sliderValues)) {
-                this.range = sliderValues.map((n: string) => {
-                    return n.split('.')[0];
-                });
-            } else {
-                this.range = [sliderValues.split('.')[0]];
-            }
-
-            let sqlString: string;
-
-            switch (this.range.length) {
-                case 1:
-                    sqlString = `${this.config.attribute} = ${this.range[0]}`;
-                    break;
-
-                default:
-                    sqlString = `${this.config.attribute} >= ${this.range[0]} AND ${this.config.attribute} <= ${this.range[1]}`;
-                    break;
-            }
-
-            if (!this.config.layers || this.config.layers.length === 0) {
-                // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                this.mapi.layers.allLayers.forEach((layer: any) => {
-                    layer.setFilterSql('time_slider', sqlString);
-                });
-            } else {
-                this.config.layers.forEach((layerId) => {
-                    const layers = this.mapi.layers.getLayersById(layerId);
-                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                    layers.forEach((layer: any) => {
-                        layer.setFilterSql('time_slider', sqlString);
-                    });
-                });
-            }
-        });
-
-        // to have an element focusable inside the RAMP container, its tabindex must not be 0;
-        // tabindex 0 is controlled by the browser; RAMP focus manager will ignore such elements and not set focus to them;
-        const sliderHandles = this.sliderElement.querySelectorAll('.noUi-handle');
-        sliderHandles.forEach((handle: Element) => {
-            handle.setAttribute('tabindex', '-2');
-        });
-    }
-
-    /**
-     * Begins looping through the values on the time slider
-     */
-    startLoop(): void {
-        const sliderValues = this.slider.get() as string | string[];
-        if (Array.isArray(sliderValues)) {
-            this.slider.set(sliderValues.map(() => sliderValues[0]));
         }
-        // delay happens before first call
-        this.intervalID = window.setInterval(this.moveHandleRight, 1400);
-    }
+    });
 
-    /**
-     * Moves handle(s) one to the right of the first (leftmost) handle. Loops if the handles are at the end.
-     */
-    moveHandleRight(): void {
-        const sliderValues = this.slider.get(true) as number | number[];
-        let newValues;
+    slider.value.on('update', () => {
+        const sliderValues = slider.value?.get() as string | string[];
         if (Array.isArray(sliderValues)) {
-            newValues = sliderValues.map(() => {
-                return sliderValues[0] === this.config.range[1] ? this.config.range[0] : sliderValues[0] + 1;
+            range.value = sliderValues.map((n: string) => {
+                return n.split('.')[0];
             });
         } else {
-            newValues = [sliderValues === this.config.range[1] ? this.config.range[0] : sliderValues + 1];
+            range.value = [sliderValues.split('.')[0]];
         }
-        this.slider.set(newValues);
-    }
 
-    /**
-     * Cancels looping through the values on the time slider
-     */
-    endLoop(): void {
-        clearInterval(this.intervalID);
-        // reset so template knows we aren't looping
-        this.intervalID = -1;
-    }
+        let sqlString: string;
 
-    minimizeToggle(): void {
-        this.minimized = !this.minimized;
-        (this.$el.closest('.rv-content-pane') as HTMLElement).style.minHeight = this.minimized
-            ? window.matchMedia('(max-width: 640px)').matches
-                ? '32px'
-                : '50px'
-            : window.matchMedia('(max-width: 640px)').matches
-            ? '90px'
-            : '110px';
+        switch (range.value.length) {
+            case 1:
+                sqlString = `${props.config.attribute} = ${range.value[0]}`;
+                break;
+
+            default:
+                sqlString = `${props.config.attribute} >= ${range.value[0]} AND ${props.config.attribute} <= ${range.value[1]}`;
+                break;
+        }
+
+        if (!props.config.layers || props.config.layers.length === 0) {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            props.mapi.layers.allLayers.forEach((layer: any) => {
+                layer.setFilterSql('time_slider', sqlString);
+            });
+        } else {
+            props.config.layers.forEach((layerId) => {
+                const layers = props.mapi.layers.getLayersById(layerId);
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                layers.forEach((layer: any) => {
+                    layer.setFilterSql('time_slider', sqlString);
+                });
+            });
+        }
+    });
+
+    // to have an element focusable inside the RAMP container, its tabindex must not be 0;
+    // tabindex 0 is controlled by the browser; RAMP focus manager will ignore such elements and not set focus to them;
+    const sliderHandles = sliderElement.value.querySelectorAll('.noUi-handle');
+    sliderHandles.forEach((handle: Element) => {
+        handle.setAttribute('tabindex', '-2');
+    });
+});
+
+/**
+ * Begins looping through the values on the time slider
+ */
+const startLoop = (): void => {
+    const sliderValues = slider.value?.get() as string | string[];
+    if (Array.isArray(sliderValues)) {
+        slider.value?.set(sliderValues.map(() => sliderValues[0]));
     }
-}
+    // delay happens before first call
+    intervalID.value = window.setInterval(moveHandleRight, 1400);
+};
+
+/**
+ * Moves handle(s) one to the right of the first (leftmost) handle. Loops if the handles are at the end.
+ */
+const moveHandleRight = (): void => {
+    const sliderValues = slider.value?.get(true) as number | number[];
+    let newValues;
+    if (Array.isArray(sliderValues)) {
+        newValues = sliderValues.map(() => {
+            return sliderValues[0] === props.config.range[1] ? props.config.range[0] : sliderValues[0] + 1;
+        });
+    } else {
+        newValues = [sliderValues === props.config.range[1] ? props.config.range[0] : sliderValues + 1];
+    }
+    slider.value?.set(newValues);
+};
+
+/**
+ * Cancels looping through the values on the time slider
+ */
+const endLoop = (): void => {
+    clearInterval(intervalID.value);
+    // reset so template knows we aren't looping
+    intervalID.value = -1;
+};
+
+const minimizeToggle = (): void => {
+    minimized.value = !minimized.value;
+    (el.value.closest('.rv-content-pane') as HTMLElement).style.minHeight = minimized.value
+        ? window.matchMedia('(max-width: 640px)').matches
+            ? '32px'
+            : '50px'
+        : window.matchMedia('(max-width: 640px)').matches
+        ? '90px'
+        : '110px';
+};
 </script>
 
 <style lang="scss">

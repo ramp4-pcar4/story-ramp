@@ -2,7 +2,7 @@
     <!-- If the configuration file is being fetched, display a spinner to indicate loading. -->
     <div v-if="loadStatus === 'loading'">
         <div class="block py-20 align-middle text-center h-full" style="margin: 0 auto">
-            <spinner size="120px" color="#009cd1" style="margin: 0 auto"></spinner>
+            <VueSpinnerOval size="120px" color="#009cd1" style="margin: 0 auto"></VueSpinnerOval>
         </div>
     </div>
 
@@ -19,7 +19,7 @@
         <div class="storyramp-app bg-white" v-if="config !== undefined">
             <header class="story-header sticky top-0 w-full h-16 leading-9 bg-white border-b border-gray-200">
                 <div class="flex w-full sm:px-6 py-3 mx-auto">
-                    <MobileMenuV
+                    <mobile-menu
                         class="mobile-menu"
                         :active-chapter-index="activeChapterIndex"
                         :slides="config.slides"
@@ -34,10 +34,10 @@
                 </div>
             </header>
 
-            <introduction :config="config.introSlide"></introduction>
+            <intro :config="config.introSlide"></intro>
 
             <div class="w-full mx-auto pb-10" id="story">
-                <StoryContentV :config="config" :lang="lang" @step="updateActiveIndex" />
+                <story-content :config="config" :lang="lang" @step="updateActiveIndex" />
             </div>
 
             <footer class="p-8 pt-2 text-right text-sm">
@@ -59,89 +59,88 @@
     </div>
 </template>
 
-<script lang="ts">
-import { Options, Vue } from 'vue-property-decorator';
-import { RouteLocationNormalized } from 'vue-router';
+<script setup lang="ts">
+import { getCurrentInstance, onMounted, ref } from 'vue';
+import { useRoute, RouteLocationNormalized } from 'vue-router';
 
-import MobileMenuV from './mobile-menu.vue';
-import StoryContentV from '@storylines/components/story/story-content.vue';
-import IntroV from '@storylines/components/story/introduction.vue';
+import MobileMenu from './mobile-menu.vue';
+import StoryContent from '@storylines/components/story/story-content.vue';
+import Intro from '@storylines/components/story/introduction.vue';
 
 import { StoryRampConfig } from '@storylines/definitions';
 import { VueSpinnerOval } from 'vue3-spinners';
 
-@Options({
-    components: {
-        StoryContentV,
-        MobileMenuV,
-        introduction: IntroV,
-        spinner: VueSpinnerOval
-    }
-})
-export default class StoryV extends Vue {
-    config: StoryRampConfig | undefined = undefined;
-    loadStatus = 'loading';
-    activeChapterIndex = -1;
-    lang = 'en';
+const route = useRoute();
 
-    created(): void {
-        const uid = this.$route.params.uid as string;
-        this.lang = (this.$route.params.lang as string) ? (this.$route.params.lang as string) : 'en';
-        if (uid) {
-            this.fetchConfig(uid, this.lang);
-        } else {
-            console.error(`Please supply the language and id URL params in the form of /[lang]/[uid].`);
-            // if no URL params have been provided redirect to canada.ca 404 page
-            window.location.href = 'https://www.canada.ca/errors/404.html';
-        }
+const config = ref<StoryRampConfig | undefined>(undefined);
+const loadStatus = ref('loading');
+const activeChapterIndex = ref(-1);
+const lang = ref('en');
 
-        // set page lang
-        const html = document.documentElement; // returns the html tag
-        html.setAttribute('lang', this.lang);
-        this.$i18n.locale = this.lang;
+onMounted(() => {
+    const uid = route.params.uid as string;
+    lang.value = (route.params.lang as string) ? (route.params.lang as string) : 'en';
+    if (uid) {
+        fetchConfig(uid, lang.value);
+    } else {
+        console.error(`Please supply the language and id URL params in the form of /[lang]/[uid].`);
+        // if no URL params have been provided redirect to canada.ca 404 page
+        window.location.href = 'https://www.canada.ca/errors/404.html';
     }
 
-    // react to param changes in URL
-    beforeRouteUpdate(to: RouteLocationNormalized, from: RouteLocationNormalized, next: () => void): void {
-        const uid = to.params.uid as string;
-        this.lang = to.params.lang as string;
-        this.$i18n.locale = this.lang;
-        this.fetchConfig(uid, this.lang);
-        next();
+    // set page lang
+    const html = document.documentElement; // returns the html tag
+    html.setAttribute('lang', lang.value);
+    const instance = getCurrentInstance();
+    if (instance?.proxy?.$i18n) {
+        instance.proxy.$i18n.locale = lang.value;
     }
+});
 
-    fetchConfig(uid: string, lang: string): void {
-        fetch(`${uid}/${uid}_${lang}.json`)
-            .then((res) => {
-                res.json().then((config: StoryRampConfig) => {
-                    this.config = config;
-                    this.loadStatus = 'loaded';
-                    // set page title
-                    if (this.config) {
-                        document.title = this.config.title + ' - Canada.ca';
-                    }
-                });
-            })
-            .catch((err) => {
-                if (err.code === 'MODULE_NOT_FOUND') {
-                    console.error(`There exists no config given by the URL params: ${err}`);
-                    // redirect to canada.ca 404 page on invalid URL params
-                    window.location.href = 'https://www.canada.ca/errors/404.html';
-                } else {
-                    // Some unknown error, possibly a build error that could indicate an error in the
-                    // configuration file.
-                    this.loadStatus = 'error';
+// react to param changes in URL
+// eslint-disable-next-line
+const beforeRouteUpdate = (to: RouteLocationNormalized, from: RouteLocationNormalized, next: () => void): void => {
+    const uid = to.params.uid as string;
+    lang.value = to.params.lang as string;
+    const instance = getCurrentInstance();
+    if (instance?.proxy?.$i18n) {
+        instance.proxy.$i18n.locale = lang.value;
+    }
+    fetchConfig(uid, lang.value);
+    next();
+};
 
-                    // Print out the error stack.
-                    console.error(err.stack);
+const fetchConfig = (uid: string, lang: string): void => {
+    fetch(`${uid}/${uid}_${lang}.json`)
+        .then((res) => {
+            res.json().then((configs: StoryRampConfig) => {
+                config.value = configs;
+                loadStatus.value = 'loaded';
+                // set page title
+                if (config.value) {
+                    document.title = config.value.title + ' - Canada.ca';
                 }
             });
-    }
+        })
+        .catch((err) => {
+            if (err.code === 'MODULE_NOT_FOUND') {
+                console.error(`There exists no config given by the URL params: ${err}`);
+                // redirect to canada.ca 404 page on invalid URL params
+                window.location.href = 'https://www.canada.ca/errors/404.html';
+            } else {
+                // Some unknown error, possibly a build error that could indicate an error in the
+                // configuration file.
+                loadStatus.value = 'error';
 
-    updateActiveIndex(idx: number): void {
-        this.activeChapterIndex = idx;
-    }
-}
+                // Print out the error stack.
+                console.error(err.stack);
+            }
+        });
+};
+
+const updateActiveIndex = (idx: number): void => {
+    activeChapterIndex.value = idx;
+};
 </script>
 
 <style lang="scss">

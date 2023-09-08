@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col h-full align-middle w-full">
+    <div ref="el" class="flex flex-col h-full align-middle w-full">
         <div class="px-10 mb-0 chapter-title top-20 map-title text-center" v-if="config.title">
             {{ config.title }}
         </div>
@@ -22,9 +22,9 @@
     </div>
 </template>
 
-<script lang="ts">
-import { createApp, h } from 'vue';
-import { Prop, Vue } from 'vue-property-decorator';
+<script setup lang="ts">
+import type { PropType } from 'vue';
+import { createApp, h, onMounted, ref } from 'vue';
 import { i18n } from '@storylines/lang';
 import { ConfigFileStructure, MapPanel } from '@storylines/definitions';
 
@@ -32,153 +32,163 @@ import TimeSlider from '@storylines/components/panels/helpers/time-slider.vue';
 import Scrollguard from '@storylines/components/panels/helpers/scrollguard.vue';
 import VueTippy from 'vue-tippy';
 
-export default class MapPanelV extends Vue {
-    @Prop() config!: MapPanel;
-    @Prop() slideIdx!: number;
-    @Prop() lang!: string;
-    @Prop() configFileStructure!: ConfigFileStructure;
+const props = defineProps({
+    config: {
+        type: Object as PropType<MapPanel>,
+        required: true
+    },
+    slideIdx: {
+        type: Number
+    },
+    lang: {
+        type: String
+    },
+    configFileStructure: {
+        type: Object as PropType<ConfigFileStructure>
+    }
+});
 
-    intersectTimeoutHandle = -1;
-    scrollguardOpen = false;
-    mapComponent: Element | undefined = undefined;
+const el = ref();
+const intersectTimeoutHandle = ref(-1);
+const scrollguardOpen = ref(false);
+const mapComponent = ref<Element | undefined>(undefined);
 
-    mounted(): void {
-        // Check if the config file exists in the ZIP folder first
-        const assetSrc = `${this.config.config.substring(this.config.config.indexOf('/') + 1)}`;
-        if (this.configFileStructure) {
-            const mapFile = this.configFileStructure.zip.file(assetSrc);
-            if (mapFile) {
-                mapFile.async('string').then((res: string) => {
-                    this.config.config = res;
-                });
+onMounted(() => {
+    // Check if the config file exists in the ZIP folder first
+    const assetSrc = `${props.config.config.substring(props.config.config.indexOf('/') + 1)}`;
+    if (props.configFileStructure) {
+        const mapFile = props.configFileStructure.zip.file(assetSrc);
+        if (mapFile) {
+            mapFile.async('string').then((res: string) => {
+                props.config.config = res;
+            });
+        }
+    }
+
+    const observer = new IntersectionObserver(
+        ([e]) => {
+            if (e.isIntersecting) {
+                intersectTimeoutHandle.value = window.setTimeout(() => {
+                    init();
+                    observer.disconnect();
+                    mapComponent.value?.querySelector('.map-loading')?.remove();
+                }, 350);
+            } else {
+                clearTimeout(intersectTimeoutHandle.value);
             }
+        },
+        { threshold: [0] }
+    );
+
+    observer.observe(el.value);
+});
+
+const init = (): void => {
+    // Find the correct map component based on whether there's a title component.
+    mapComponent.value = props.config.title ? el.value.children[1] : el.value.children[0];
+
+    new RAMP.Map(mapComponent.value, props.config.config);
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    RAMP.mapAdded.pipe().subscribe(async (mapi: any) => {
+        if (props.config.scrollguard && mapi.id === mapComponent.value?.id) {
+            const scrollguardPanel = mapi.panels.create('scrollguard');
+
+            // programatically add time slider component in Vue 3
+            const scrollguardWrapper = document.createElement('div');
+            const lang = props.lang;
+            const scrollguardComponent = createApp({
+                setup() {
+                    return () =>
+                        h(Scrollguard, {
+                            lang: lang
+                        });
+                }
+            }).use(i18n);
+            scrollguardComponent.mount(scrollguardWrapper);
+
+            // add scrollguard to map
+            scrollguardPanel.body = scrollguardWrapper;
+            scrollguardPanel.element.css({
+                opacity: 0.45,
+                zindex: 100,
+                top: 0,
+                left: 0,
+                position: 'absolute'
+            });
+
+            (mapComponent.value as HTMLElement).addEventListener(
+                'wheel',
+                (event) => {
+                    if (!event.ctrlKey) {
+                        // This is not working in Firefox for some reason.
+                        event.stopPropagation();
+
+                        // If CTRL is not pressed, display the scrollguard.
+                        scrollguardPanel.open();
+
+                        // Only set the timeout if it's not already set, otherwise the panel will be glitchy.
+                        if (!scrollguardOpen.value) {
+                            window.setTimeout(() => {
+                                scrollguardPanel.close();
+                                scrollguardOpen.value = false;
+                            }, 3000);
+                        }
+
+                        scrollguardOpen.value = true;
+                    } else {
+                        scrollguardPanel.close();
+                        scrollguardOpen.value = false;
+                    }
+                },
+                {
+                    capture: true
+                }
+            );
         }
 
-        const observer = new IntersectionObserver(
-            ([e]) => {
-                if (e.isIntersecting) {
-                    this.intersectTimeoutHandle = window.setTimeout(() => {
-                        this.init();
-                        observer.disconnect();
-                        this.mapComponent?.querySelector('.map-loading')?.remove();
-                    }, 350);
-                } else {
-                    clearTimeout(this.intersectTimeoutHandle);
+        if (props.config.timeSlider && mapi.id === mapComponent.value?.id) {
+            const timeSliderPanel = mapi.panels.create('time-slider-container');
+
+            // programatically add time slider component in Vue 3
+            const timeSliderWrapper = document.createElement('div');
+            const timesliderConfig = props.config.timeSlider;
+            const timeSliderComponent = createApp({
+                setup() {
+                    return () =>
+                        h(TimeSlider, {
+                            config: timesliderConfig,
+                            mapi
+                        });
                 }
-            },
-            { threshold: [0] }
-        );
-
-        observer.observe(this.$el);
-    }
-
-    init(): void {
-        // Find the correct map component based on whether there's a title component.
-        this.mapComponent = this.config.title ? this.$el.children[1] : this.$el.children[0];
-
-        new RAMP.Map(this.mapComponent, this.config.config);
-
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        RAMP.mapAdded.pipe().subscribe(async (mapi: any) => {
-            if (this.config.scrollguard && mapi.id === this.mapComponent?.id) {
-                const scrollguardPanel = mapi.panels.create('scrollguard');
-
-                // programatically add time slider component in Vue 3
-                const scrollguardWrapper = document.createElement('div');
-                const lang = this.lang;
-                const scrollguardComponent = createApp({
-                    setup() {
-                        return () =>
-                            h(Scrollguard, {
-                                lang: lang
-                            });
-                    }
-                }).use(i18n);
-                scrollguardComponent.mount(scrollguardWrapper);
-
-                // add scrollguard to map
-                scrollguardPanel.body = scrollguardWrapper;
-                scrollguardPanel.element.css({
-                    opacity: 0.45,
-                    zindex: 100,
-                    top: 0,
-                    left: 0,
-                    position: 'absolute'
+            })
+                .use(i18n)
+                .use(VueTippy, {
+                    directive: 'tippy',
+                    component: 'tippy'
                 });
 
-                (this.mapComponent as HTMLElement).addEventListener(
-                    'wheel',
-                    (event) => {
-                        if (!event.ctrlKey) {
-                            // This is not working in Firefox for some reason.
-                            event.stopPropagation();
+            timeSliderComponent.mount(timeSliderWrapper);
 
-                            // If CTRL is not pressed, display the scrollguard.
-                            scrollguardPanel.open();
+            // add time slider to map
+            timeSliderPanel.body = timeSliderWrapper;
+            timeSliderPanel.element.css({
+                bottom: '73px',
+                right: '60px',
+                left: 'auto',
+                top: 'auto',
+                width: '50%',
+                padding: '5px',
+                'min-height': window.matchMedia('(max-width: 640px)').matches ? '90px' : '110px'
+            });
+            timeSliderPanel.open();
+        }
 
-                            // Only set the timeout if it's not already set, otherwise the panel will be glitchy.
-                            if (!this.scrollguardOpen) {
-                                window.setTimeout(() => {
-                                    scrollguardPanel.close();
-                                    this.scrollguardOpen = false;
-                                }, 3000);
-                            }
-
-                            this.scrollguardOpen = true;
-                        } else {
-                            scrollguardPanel.close();
-                            this.scrollguardOpen = false;
-                        }
-                    },
-                    {
-                        capture: true
-                    }
-                );
-            }
-
-            if (this.config.timeSlider && mapi.id === this.mapComponent?.id) {
-                const timeSliderPanel = mapi.panels.create('time-slider-container');
-
-                // programatically add time slider component in Vue 3
-                const timeSliderWrapper = document.createElement('div');
-                const timesliderConfig = this.config.timeSlider;
-                const timeSliderComponent = createApp({
-                    setup() {
-                        return () =>
-                            h(TimeSlider, {
-                                config: timesliderConfig,
-                                mapi
-                            });
-                    }
-                })
-                    .use(i18n)
-                    .use(VueTippy, {
-                        directive: 'tippy',
-                        component: 'tippy'
-                    });
-
-                timeSliderComponent.mount(timeSliderWrapper);
-
-                // add time slider to map
-                timeSliderPanel.body = timeSliderWrapper;
-                timeSliderPanel.element.css({
-                    bottom: '73px',
-                    right: '60px',
-                    left: 'auto',
-                    top: 'auto',
-                    width: '50%',
-                    padding: '5px',
-                    'min-height': window.matchMedia('(max-width: 640px)').matches ? '90px' : '110px'
-                });
-                timeSliderPanel.open();
-            }
-
-            // remove rv-focus-trap from map
-            const mapInstance = document.getElementById(`ramp-map-${this.slideIdx}`);
-            mapInstance?.removeAttribute('rv-trap-focus');
-        });
-    }
-}
+        // remove rv-focus-trap from map
+        const mapInstance = document.getElementById(`ramp-map-${props.slideIdx}`);
+        mapInstance?.removeAttribute('rv-trap-focus');
+    });
+};
 </script>
 
 <style lang="scss" scoped>

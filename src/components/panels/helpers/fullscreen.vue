@@ -1,5 +1,5 @@
 <template>
-    <div ref="fullscreen-container">
+    <div ref="el">
         <div class="relative bg-white fullscreen-wrapper">
             <button
                 v-if="expandable !== undefined ? expandable : true"
@@ -41,27 +41,30 @@
     </div>
 </template>
 
-<script lang="ts">
-import { Prop, Vue } from 'vue-property-decorator';
+<script setup lang="ts">
+import { ref } from 'vue';
+import { api as $fullscreen } from 'vue-fullscreen';
 
-export default class FullscreenV extends Vue {
-    @Prop() expandable!: boolean;
-    @Prop() type!: string;
-
-    fullscreen = false;
-
-    async toggleFullscreen(): Promise<void> {
-        await this.$fullscreen.toggle(
-            (this.$refs['fullscreen-container'] as Element).querySelector('.fullscreen-wrapper'),
-            {
-                teleport: true,
-                pageOnly: true,
-                fullscreenClass: 'fullscreenElement'
-            }
-        );
-        this.fullscreen = this.$fullscreen.isFullscreen;
+defineProps({
+    expandable: {
+        type: Boolean
+    },
+    type: {
+        type: String
     }
-}
+});
+
+const fullscreen = ref<boolean | undefined>(false);
+const el = ref();
+
+const toggleFullscreen = async (): Promise<void> => {
+    await $fullscreen.toggle((el.value as Element).querySelector('.fullscreen-wrapper'), {
+        teleport: true,
+        pageOnly: true,
+        fullscreenClass: 'fullscreenElement'
+    });
+    fullscreen.value = $fullscreen.isFullscreen;
+};
 </script>
 
 <style>

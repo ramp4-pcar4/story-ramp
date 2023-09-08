@@ -8,35 +8,34 @@
     </VueScrollama>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
+import { ref, onMounted } from 'vue';
+import type { PropType } from 'vue';
 import VueScrollama from 'vue3-scrollama';
 import MarkdownIt from 'markdown-it';
 
-import { Options, Prop, Vue } from 'vue-property-decorator';
 import { TextPanel } from '@storylines/definitions';
 
-@Options({
-    components: {
-        VueScrollama
+const props = defineProps({
+    config: {
+        type: Object as PropType<TextPanel>,
+        required: true
     }
-})
-export default class TextPanelV extends Vue {
-    @Prop() config!: TextPanel;
+});
 
-    md = new MarkdownIt({ html: true });
-    mdContent = '';
+const md = new MarkdownIt({ html: true });
+const mdContent = ref('');
 
-    mounted(): void {
-        this.mdContent = this.md
-            .render(this.config.content)
-            .replace(/<table/g, '<div class="table-container"><table')
-            .replace(/<\/table>/g, '</table></div>');
+onMounted((): void => {
+    mdContent.value = md
+        .render(props.config.content)
+        .replace(/<table/g, '<div class="table-container"><table')
+        .replace(/<\/table>/g, '</table></div>');
 
-        document
-            .querySelectorAll('.storyramp-app a:not([target])')
-            .forEach((el: Element) => ((el as HTMLAnchorElement).target = '_blank'));
-    }
-}
+    document
+        .querySelectorAll('.storyramp-app a:not([target])')
+        .forEach((el: Element) => ((el as HTMLAnchorElement).target = '_blank'));
+});
 </script>
 
 <style scoped lang="scss">

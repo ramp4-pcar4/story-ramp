@@ -86,17 +86,24 @@
     </div>
 </template>
 
-<script lang="ts">
-import { Prop, Vue } from 'vue-property-decorator';
+<script setup lang="ts">
+import { ref } from 'vue';
+import type { PropType } from 'vue';
 import { Slide } from '@storylines/definitions';
 
-export default class SideMenuV extends Vue {
-    @Prop() slides!: Slide[];
-    @Prop() activeChapterIndex!: number;
-    @Prop() lang!: string;
+defineProps({
+    slides: {
+        type: Array as PropType<Array<Slide>>
+    },
+    activeChapterIndex: {
+        type: Number
+    },
+    lang: {
+        type: String
+    }
+});
 
-    isMenuOpen = false;
-}
+const isMenuOpen = ref(false);
 </script>
 
 <style lang="scss" scoped>

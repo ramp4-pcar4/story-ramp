@@ -4,13 +4,15 @@
     </div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
+import type { PropType } from 'vue';
 import { AudioPanel } from '@storylines/definitions';
-import { Prop, Vue } from 'vue-property-decorator';
 
-export default class AudioPanelV extends Vue {
-    @Prop() config!: AudioPanel;
-}
+defineProps({
+    config: {
+        type: Object as PropType<AudioPanel>
+    }
+});
 </script>
 
 <style lang="scss"></style>

@@ -172,25 +172,38 @@
     </div>
 </template>
 
-<script lang="ts">
-import { Prop, Vue } from 'vue-property-decorator';
+<script setup lang="ts">
+import type { PropType } from 'vue';
+import { ref } from 'vue';
 import { Slide } from '@storylines/definitions';
 
-export default class ChapterMenuV extends Vue {
-    @Prop() slides!: Slide[];
-    @Prop() activeChapterIndex!: number;
-    @Prop() lang!: string;
-    @Prop() editor!: boolean;
-
-    isMenuOpen = false;
-
-    scrollToChapter(id: string): void {
-        const el = document.getElementById(id);
-        if (el) {
-            el.scrollIntoView({ behavior: 'smooth' });
-        }
+defineProps({
+    slides: {
+        type: Array as PropType<Array<Slide>>,
+        required: true
+    },
+    activeChapterIndex: {
+        type: Number,
+        required: true
+    },
+    lang: {
+        type: String,
+        required: true
+    },
+    editor: {
+        type: Boolean,
+        required: true
     }
-}
+});
+
+const isMenuOpen = ref(false);
+
+const scrollToChapter = (id: string): void => {
+    const el = document.getElementById(id);
+    if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+    }
+};
 </script>
 
 <style lang="scss" scoped>

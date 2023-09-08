@@ -73,39 +73,45 @@
     </div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
+import type { PropType } from 'vue';
+import { getCurrentInstance, onMounted } from 'vue';
 import { ConfigFileStructure, Intro } from '@storylines/definitions';
-import { Prop, Vue } from 'vue-property-decorator';
 
-export default class IntroV extends Vue {
-    @Prop() config!: Intro;
-    @Prop() configFileStructure!: ConfigFileStructure;
+const props = defineProps({
+    config: {
+        type: Object as PropType<Intro>,
+        required: true
+    },
+    configFileStructure: {
+        type: Object as PropType<ConfigFileStructure>
+    }
+});
 
-    mounted(): void {
-        // obtain logo from ZIP file if it exists
-        if (this.configFileStructure) {
-            const logo = this.config.logo?.src;
+onMounted(() => {
+    // obtain logo from ZIP file if it exists
+    if (props.configFileStructure) {
+        const logo = props.config.logo?.src;
 
-            if (logo) {
-                const logoSrc = `${logo.substring(logo.indexOf('/') + 1)}`;
-                const logoFile = this.configFileStructure.zip.file(logoSrc);
-                if (logoFile) {
-                    logoFile.async('blob').then((res: Blob) => {
-                        this.config.logo.src = URL.createObjectURL(res);
-                        this.$forceUpdate();
-                    });
-                }
+        if (logo) {
+            const logoSrc = `${logo.substring(logo.indexOf('/') + 1)}`;
+            const logoFile = props.configFileStructure.zip.file(logoSrc);
+            if (logoFile) {
+                logoFile.async('blob').then((res: Blob) => {
+                    props.config.logo.src = URL.createObjectURL(res);
+                    getCurrentInstance()?.proxy?.$forceUpdate();
+                });
             }
         }
     }
+});
 
-    scrollToStory(): void {
-        const el = document.getElementById('story');
-        if (el) {
-            el.scrollIntoView({ behavior: 'smooth' });
-        }
+const scrollToStory = (): void => {
+    const el = document.getElementById('story');
+    if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
     }
-}
+};
 </script>
 
 <style lang="scss"></style>

@@ -1,6 +1,6 @@
 <template>
     <div class="graphic self-start justify-center flex flex-col h-full align-middle py-5 w-full">
-        <full-screen :expandable="config.fullscreen" :type="config.type">
+        <fullscreen :expandable="config.fullscreen" :type="config.type">
             <img
                 ref="img"
                 :src="slideIdx > 2 ? '' : config.src"
@@ -9,7 +9,7 @@
                 :style="{ width: `${config.width}px`, height: `${config.height}px` }"
                 class="graphic-image px-10 mx-auto my-6 flex object-contain sm:max-w-screen sm:max-h-screen"
             />
-        </full-screen>
+        </fullscreen>
 
         <div
             v-if="config.caption"
@@ -19,40 +19,43 @@
     </div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
+import { ref, onMounted, getCurrentInstance } from 'vue';
+import type { PropType } from 'vue';
 import { ImagePanel } from '@storylines/definitions';
-import { Options, Prop, Vue } from 'vue-property-decorator';
 
 import MarkdownIt from 'markdown-it';
-import FullscreenV from '@storylines/components/panels/helpers/fullscreen.vue';
+import Fullscreen from '@storylines/components/panels/helpers/fullscreen.vue';
 
-@Options({
-    components: {
-        'full-screen': FullscreenV
+const props = defineProps({
+    config: {
+        type: Object as PropType<ImagePanel>,
+        required: true
+    },
+    slideIdx: {
+        type: Number,
+        default: 0
     }
-})
-export default class ImagePanelV extends Vue {
-    @Prop() config!: ImagePanel;
-    @Prop() slideIdx!: number;
+});
 
-    md = new MarkdownIt({ html: true });
+const img = ref<Element>();
+const md = new MarkdownIt({ html: true });
 
-    observer: IntersectionObserver | undefined = undefined;
+const observer = ref<IntersectionObserver | undefined>(undefined);
 
-    mounted(): void {
-        if (this.slideIdx > 2) {
-            this.observer = new IntersectionObserver(([image]) => {
-                // lazy load images
-                if (image.isIntersecting) {
-                    (this.$refs.img as Element).setAttribute('src', this.config.src);
-                    this.$forceUpdate();
-                    (this.observer as IntersectionObserver).disconnect();
-                }
-            });
-        }
-        this.observer?.observe(this.$refs.img as Element);
+onMounted((): void => {
+    if (props.slideIdx > 2) {
+        observer.value = new IntersectionObserver(([image]) => {
+            // lazy load images
+            if (image.isIntersecting) {
+                (img.value as Element).setAttribute('src', props.config.src);
+                getCurrentInstance()?.proxy?.$forceUpdate();
+                (observer.value as IntersectionObserver).disconnect();
+            }
+        });
     }
-}
+    observer.value?.observe(img.value as Element);
+});
 </script>
 
 <style lang="scss">

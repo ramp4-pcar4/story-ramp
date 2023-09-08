@@ -19,51 +19,57 @@
     </div>
 </template>
 
-<script lang="ts">
-import { Options, Prop, Vue } from 'vue-property-decorator';
+<script setup lang="ts">
+import type { Component, PropType } from 'vue';
 import { BasePanel, ConfigFileStructure, PanelType } from '@storylines/definitions';
 
-import TextPanelV from './text-panel.vue';
-import MapPanelV from './map-panel.vue';
-import ImagePanelV from './image-panel.vue';
-import AudioPanelV from './audio-panel.vue';
-import VideoPanelV from './video-panel.vue';
-import SlideshowPanelV from './slideshow-panel.vue';
-import ChartPanelV from './chart-panel.vue';
-import DynamicPanelV from './dynamic-panel.vue';
-import LoadingPanelV from './loading-panel.vue';
+import TextPanel from './text-panel.vue';
+import MapPanel from './map-panel.vue';
+import ImagePanel from './image-panel.vue';
+import AudioPanel from './audio-panel.vue';
+import VideoPanel from './video-panel.vue';
+import SlideshowPanel from './slideshow-panel.vue';
+import ChartPanel from './chart-panel.vue';
+import DynamicPanel from './dynamic-panel.vue';
+import LoadingPanel from './loading-panel.vue';
 
-@Options({
-    components: {
-        TextPanelV
+const props = defineProps({
+    config: {
+        type: Object as PropType<BasePanel>,
+        required: true
+    },
+    configFileStructure: {
+        type: Object as PropType<ConfigFileStructure>
+    },
+    ratio: {
+        type: Boolean
+    },
+    slideIdx: {
+        type: Number
+    },
+    lang: {
+        type: String
     }
-})
-export default class PanelV extends Vue {
-    @Prop() config!: BasePanel;
-    @Prop() configFileStructure!: ConfigFileStructure;
-    @Prop() ratio!: boolean;
-    @Prop() slideIdx!: number;
-    @Prop() lang!: string;
+});
 
-    /**
-     * Returns the corresponding component for this panel.
-     */
-    getTemplate(): typeof Vue {
-        const panelTemplates: Record<PanelType | string, typeof Vue> = {
-            [PanelType.Text]: TextPanelV,
-            [PanelType.Map]: MapPanelV,
-            [PanelType.Image]: ImagePanelV,
-            [PanelType.Audio]: AudioPanelV,
-            [PanelType.Video]: VideoPanelV,
-            [PanelType.Slideshow]: SlideshowPanelV,
-            [PanelType.Chart]: ChartPanelV,
-            [PanelType.Dynamic]: DynamicPanelV,
-            [PanelType.Loading]: LoadingPanelV
-        };
+/**
+ * Returns the corresponding component for this panel.
+ */
+const getTemplate = (): Component => {
+    const panelTemplates: Record<PanelType | string, Component> = {
+        [PanelType.Text]: TextPanel,
+        [PanelType.Map]: MapPanel,
+        [PanelType.Image]: ImagePanel,
+        [PanelType.Audio]: AudioPanel,
+        [PanelType.Video]: VideoPanel,
+        [PanelType.Slideshow]: SlideshowPanel,
+        [PanelType.Chart]: ChartPanel,
+        [PanelType.Dynamic]: DynamicPanel,
+        [PanelType.Loading]: LoadingPanel
+    };
 
-        return panelTemplates[this.config.type];
-    }
-}
+    return panelTemplates[props.config.type];
+};
 </script>
 
 <style lang="scss" scoped></style>
