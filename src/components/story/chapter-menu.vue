@@ -34,13 +34,13 @@
         </div>
 
         <ul class="nav-content menu">
-            <li>
+            <li v-if="introExists">
                 <tippy to="menu-options-tippy" delay="200" placement="right">{{ $t('chapters.return') }}</tippy>
                 <button
                     :name="`menu-options-tippy`"
                     class="flex items-center px-2 py-1 mx-1"
                     @click="scrollToChapter('intro')"
-                    v-if="editor"
+                    v-if="plugin"
                 >
                     <svg
                         class="flex-shrink-0"
@@ -90,12 +90,12 @@
             <li v-for="(slide, idx) in slides" :key="idx" :class="{ 'is-active': activeChapterIndex === idx }">
                 <tippy :to="`menu-options-tippy-${idx}`" delay="200" placement="right">{{ slide.title }}</tippy>
 
-                <!-- using router-link causes a page refresh which breaks editor preview mode -->
+                <!-- using router-link causes a page refresh which breaks plugin -->
                 <button
                     :name="`menu-options-tippy-${idx}`"
                     class="flex items-center px-2 py-1 mx-1"
                     @click="scrollToChapter(`${idx}-${slide.title.toLowerCase().replaceAll(' ', '-')}`)"
-                    v-if="editor"
+                    v-if="plugin"
                 >
                     <svg
                         class="flex-shrink-0"
@@ -156,9 +156,15 @@ export default class ChapterMenuV extends Vue {
     @Prop() slides!: Slide[];
     @Prop() activeChapterIndex!: number;
     @Prop() lang!: string;
-    @Prop() editor!: boolean;
+    @Prop() plugin!: boolean;
 
     isMenuOpen = false;
+    introExists = true;
+
+    mounted(): void {
+        const introSection = document.getElementById('intro');
+        this.introExists = !!introSection;
+    }
 
     scrollToChapter(id: string): void {
         const el = document.getElementById(id);
