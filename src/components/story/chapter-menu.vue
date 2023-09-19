@@ -13,8 +13,7 @@
                     placement: 'right',
                     content: $t('chapters.title'),
                     onShow: () => !isMenuOpen,
-                    animation: 'scale',
-                    arrow: false
+                    animateFill: true
                 }"
             >
                 <svg
@@ -46,8 +45,9 @@
                         delay: '200',
                         placement: 'right',
                         content: $t('chapters.return'),
-                        animation: 'scale',
-                        arrow: false
+                        animateFill: true,
+                        animation: 'chapter-menu',
+                        offset: isMenuOpen ? [0, -280] : [0, -40]
                     }"
                     v-if="editor"
                 >
@@ -78,8 +78,9 @@
                         delay: '200',
                         placement: 'right',
                         content: $t('chapters.return'),
-                        animation: 'scale',
-                        arrow: false
+                        animateFill: true,
+                        animation: 'chapter-menu',
+                        offset: isMenuOpen ? [0, -280] : [0, -40]
                     }"
                     v-else
                 >
@@ -111,8 +112,9 @@
                         delay: '200',
                         placement: 'right',
                         content: slide.title,
-                        animation: 'scale',
-                        arrow: false
+                        animateFill: true,
+                        animation: 'chapter-menu',
+                        offset: isMenuOpen ? [0, -280] : [0, -40]
                     }"
                     v-if="editor"
                 >
@@ -143,8 +145,9 @@
                         delay: '200',
                         placement: 'right',
                         content: slide.title,
-                        animation: 'scale',
-                        arrow: false
+                        animateFill: true,
+                        animation: 'chapter-menu',
+                        offset: isMenuOpen ? [0, -280] : [0, -40]
                     }"
                     v-else
                 >

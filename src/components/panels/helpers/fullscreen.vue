@@ -7,7 +7,7 @@
                 :class="[fullscreen ? `top-0` : `bottom-0`, type === 'image' ? `right-10` : `right-2`]"
                 :aria-label="$t('image.fullscreen')"
                 :content="$t(fullscreen ? 'fullscreen.deactivate' : 'fullscreen.activate')"
-                v-tippy="{ placement: 'top', hideOnClick: false, animation: 'scale', arrow: false }"
+                v-tippy="{ placement: 'top', hideOnClick: false, animateFill: true }"
                 @click="toggleFullscreen"
             >
                 <svg

@@ -140,32 +140,45 @@ onMounted(() => {
         background: radial-gradient(white, transparent 75%);
     }
 
-    // :deep(.carousel__next) {
-    //     right: calc(-32px - 2em);
-    // }
+    :deep(.carousel__next) {
+        right: calc(-4px - 2em);
+    }
 
-    // :deep(.carousel__prev) {
-    //     left: calc(-32px - 2em);
-    // }
+    :deep(.carousel__prev) {
+        left: calc(-4px - 2em);
+    }
 
-    // TODO: fix these styles not being applied properly
-    // :deep(.carousel__pagination-button) {
-    //     border: 1px solid #878787;
-    //     width: 24px;
-    //     height: 6px;
-    //     border-radius: 0px;
+    :deep(.carousel__pagination) {
+        position: absolute;
+        bottom: calc(-6px - 4em);
+        left: 50%;
+        transform: translate(-50%, 0);
+    }
 
-    //     &.carousel__pagination-button--active {
-    //         border: none;
-    //         background-color: var(--sr-accent-colour);
-    //     }
+    :deep(.carousel__pagination-button) {
+        border: 1px solid #878787;
 
-    //     &:hover {
-    //         background-color: white;
-    //         // background-color: lighten(#00d2d3, 20%);
-    //         border-color: var(--sr-accent-colour);
-    //     }
-    // }
+        width: 24px;
+        height: 6px;
+        margin: 10px 2px;
+        border-radius: 0px;
+        padding: 0px;
+
+        &.carousel__pagination-button--active {
+            border: none;
+            background-color: var(--sr-accent-colour);
+        }
+
+        &.carousel__pagination-button::after {
+            display: none;
+        }
+
+        &:hover {
+            background-color: white;
+            // background-color: lighten(#00d2d3, 20%);
+            border-color: var(--sr-accent-colour);
+        }
+    }
 }
 
 @media screen and (max-width: 640px) {

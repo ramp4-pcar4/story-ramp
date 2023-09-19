@@ -4,7 +4,7 @@
             class="absolute top-1 left-4 play-button"
             @click="intervalID >= 0 ? endLoop() : startLoop()"
             :content="$t(intervalID >= 0 ? 'timeslider.pause' : 'timeslider.play')"
-            v-tippy="{ placement: 'top', hideOnClick: false, animation: 'scale', arrow: false }"
+            v-tippy="{ placement: 'top', hideOnClick: false, animateFill: true }"
         >
             <svg
                 v-if="intervalID === -1"
@@ -37,7 +37,7 @@
             class="absolute top-1 right-4 minimize-button"
             @click="minimizeToggle()"
             :content="$t(minimized ? 'timeslider.expand' : 'timeslider.minimize')"
-            v-tippy="{ placement: 'top', hideOnClick: false, animation: 'scale', arrow: false }"
+            v-tippy="{ placement: 'top', hideOnClick: false, animateFill: true }"
         >
             <svg
                 v-if="!minimized"

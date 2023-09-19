@@ -13,10 +13,14 @@
 
         <!-- video with local/external source -->
         <template v-if="config.videoType === 'local' || config.videoType === 'external'">
-            <!-- TODO: lost ability to set width/height properties of <video> during Vue 3 refactor -->
-            <!-- :width="config.width ? config.width : '100%'" -->
-            <!-- :height="config.height ? config.height : '500px'" -->
-            <video class="media-player" :title="config.title" :poster="config.thumbnailUrl" controls>
+            <video
+                class="media-player"
+                :title="config.title"
+                :poster="config.thumbnailUrl"
+                :height="config.height ? config.height : 500"
+                :width="config.width"
+                controls
+            >
                 <source :type="fileType" :src="config.src" />
                 <!-- add captions with transcript -->
                 <track
@@ -69,7 +73,7 @@
 
 <script setup lang="ts">
 import type { PropType } from 'vue';
-import { onMounted, ref } from 'vue';
+import { onBeforeMount, onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import MarkdownIt from 'markdown-it';
 
@@ -94,7 +98,7 @@ const expandTranscript = ref(false);
 const rawTranscript = ref('');
 const transcriptContent = ref('');
 
-onMounted(() => {
+onBeforeMount(() => {
     lang.value = (route.params.lang as string) ? (route.params.lang as string) : 'en';
 
     // find file type extension for non-YT videos
@@ -102,7 +106,9 @@ onMounted(() => {
         const ext = extensionType(props.config.src);
         fileType.value = `video/${ext}`;
     }
+});
 
+onMounted(() => {
     // fetch and config transcript content and render with md
     if (props.config.transcript) {
         const ext = extensionType(props.config.transcript);
