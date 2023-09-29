@@ -141,11 +141,11 @@ onMounted(() => {
     }
 
     :deep(.carousel__next) {
-        right: calc(-4px - 2em);
+        right: calc(-4px - 1.5em);
     }
 
     :deep(.carousel__prev) {
-        left: calc(-4px - 2em);
+        left: calc(-4px - 1.5em);
     }
 
     :deep(.carousel__pagination) {
