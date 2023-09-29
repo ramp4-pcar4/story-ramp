@@ -43,5 +43,13 @@ module.exports = {
             .use('html-loader')
             .loader('html-loader')
             .end();
+
+        config.module
+            .rule('cjs')
+            .test(/\.cjs$/)
+            .include.add(/node_modules/)
+            .end()
+            .use('babel-loader')
+            .loader('babel-loader');
     }
 };
