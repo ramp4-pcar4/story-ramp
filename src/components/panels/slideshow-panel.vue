@@ -1,146 +1,176 @@
 <template>
-    <div v-if="config.images.length === 1">
-        <image-panel
-            :config="config.images[0]"
-            :configFileStructure="configFileStructure"
-            :key="config.images[0].src"
-        ></image-panel>
-    </div>
-    <div class="flex" v-else>
-        <div
-            ref="images"
-            class="carousel self-center px-10 my-8 mx-auto bg-gray-200_ h-28_"
-            :style="{ width: `${width}px` }"
-        >
-            <full-screen :expandable="config.fullscreen" :type="config.type">
-                <hooper ref="carousel" v-if="width !== -1" class="h-full bg-white" :infiniteScroll="config.loop">
-                    <slide v-for="(image, index) in config.images" :key="index" :index="index" class="self-center">
-                        <img
-                            :data-src="image.src"
-                            :src="slideIdx > 2 ? '' : image.src"
-                            :alt="image.altText || ''"
-                            :style="{ width: `${image.width}px`, height: `${image.height}px` }"
-                            class="m-auto story-graphic carousel-image"
-                        />
-                        <div
-                            v-if="image.caption"
-                            class="text-center my-8 text-sm"
-                            v-html="md.render(image.caption)"
-                        ></div>
-                    </slide>
+    <div ref="el">
+        <div v-if="config.images.length === 1">
+            <image-panel
+                :config="config.images[0]"
+                :configFileStructure="configFileStructure"
+                :key="config.images[0].src"
+            ></image-panel>
+        </div>
+        <div class="flex" v-else>
+            <div
+                ref="images"
+                class="carousel-container self-center px-10 my-8 mx-auto bg-gray-200_ h-28_"
+                :style="{ width: `${width}px` }"
+            >
+                <fullscreen :expandable="config.fullscreen" :type="config.type">
+                    <carousel ref="carousel" v-if="width !== -1" class="h-full bg-white" :wrap-around="config.loop">
+                        <slide v-for="(image, index) in config.images" :key="index" :index="index" class="self-center">
+                            <img
+                                :data-src="image.src"
+                                :src="slideIdx > 2 ? '' : image.src"
+                                :alt="image.altText || ''"
+                                :style="{ width: `${image.width}px`, height: `${image.height}px` }"
+                                class="m-auto story-graphic carousel-image"
+                            />
+                            <div
+                                v-if="image.caption"
+                                class="text-center my-8 text-sm"
+                                v-html="md.render(image.caption)"
+                            ></div>
+                        </slide>
 
-                    <hooper-navigation slot="hooper-addons"></hooper-navigation>
-                    <hooper-pagination slot="hooper-addons"></hooper-pagination>
-                </hooper>
-            </full-screen>
+                        <template #addons>
+                            <navigation>
+                                <template #next>
+                                    <svg class="icon icon-arrowRight" viewBox="0 0 24 24" width="24px" height="24px">
+                                        <path d="M0 0h24v24H0z" fill="none"></path>
+                                        <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"></path>
+                                    </svg>
+                                </template>
+                                <template #prev>
+                                    <svg class="icon icon-arrowLeft" viewBox="0 0 24 24" width="24px" height="24px">
+                                        <path d="M0 0h24v24H0z" fill="none"></path>
+                                        <path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"></path>
+                                    </svg>
+                                </template>
+                            </navigation>
+                            <pagination />
+                        </template>
+                    </carousel>
+                </fullscreen>
 
-            <div v-if="config.caption" class="text-center mt-5 text-sm" v-html="md.render(config.caption)"></div>
+                <div v-if="config.caption" class="text-center mt-5 text-sm" v-html="md.render(config.caption)"></div>
+            </div>
         </div>
     </div>
 </template>
 
-<script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+<script setup lang="ts">
+import type { PropType } from 'vue';
+import { ref, onMounted, getCurrentInstance } from 'vue';
 import { ConfigFileStructure, SlideshowPanel } from '@storylines/definitions';
-import { Hooper, Navigation as HooperNavigation, Pagination as HooperPagination, Slide } from 'hooper';
-import 'hooper/dist/hooper.css';
+import { Carousel, Navigation, Pagination, Slide } from 'vue3-carousel';
+import 'vue3-carousel/dist/carousel.css';
 
 import MarkdownIt from 'markdown-it';
-import FullscreenV from '@storylines/components/panels/helpers/fullscreen.vue';
-import ImagePanelV from '@storylines/components/panels/image-panel.vue';
+import Fullscreen from '@storylines/components/panels/helpers/fullscreen.vue';
+import ImagePanel from '@storylines/components/panels/image-panel.vue';
 
-@Component({
-    components: {
-        Hooper,
-        Slide,
-        'full-screen': FullscreenV,
-        HooperNavigation,
-        HooperPagination,
-        'image-panel': ImagePanelV
+const md = new MarkdownIt({ html: true });
+
+const props = defineProps({
+    config: {
+        type: Object as PropType<SlideshowPanel>,
+        required: true
+    },
+    configFileStructure: {
+        type: Object as PropType<ConfigFileStructure>
+    },
+    slideIdx: {
+        type: Number,
+        required: true
     }
-})
-export default class SlideshowPanelV extends Vue {
-    @Prop() config!: SlideshowPanel;
-    @Prop() configFileStructure!: ConfigFileStructure;
-    @Prop() slideIdx!: number;
+});
 
-    width = -1;
+const el = ref();
+const images = ref<Element>();
+const width = ref(-1);
+const observer = ref<IntersectionObserver | undefined>(undefined);
 
-    md = new MarkdownIt({ html: true });
+onMounted(() => {
+    setTimeout(() => {
+        width.value = el.value.clientWidth;
+    }, 100);
 
-    observer =
-        this.slideIdx > 2
-            ? new IntersectionObserver(([image]) => {
-                  // lazy load images
-                  if (image.isIntersecting) {
-                      (this.$refs.images as Element).querySelectorAll('.carousel-image').forEach((img) => {
-                          img.setAttribute('src', img.getAttribute('data-src') as string);
-                      });
-                      this.$forceUpdate();
-                      (this.observer as IntersectionObserver).disconnect();
-                  }
-              })
-            : undefined;
-
-    mounted(): void {
-        setTimeout(() => {
-            this.width = this.$el.clientWidth;
-        }, 100);
-
-        // obtain image files from ZIP folder in editor preview mode
-        if (this.configFileStructure) {
-            this.config.images.forEach((image) => {
-                const assetSrc = `${image.src.substring(image.src.indexOf('/') + 1)}`;
-                const imageFile = this.configFileStructure.zip.file(assetSrc);
-                if (imageFile) {
-                    imageFile.async('blob').then((res: Blob) => {
-                        image.src = URL.createObjectURL(res);
-                        this.$forceUpdate();
-                    });
-                }
-            });
-        }
-
-        if (this.config.images.length > 1) {
-            this.observer?.observe(this.$refs.images as Element);
-        }
+    if (props.slideIdx > 2) {
+        observer.value = new IntersectionObserver(([image]) => {
+            // lazy load images
+            if (image.isIntersecting) {
+                (images.value as Element).querySelectorAll('.carousel-image').forEach((img) => {
+                    img.setAttribute('src', img.getAttribute('data-src') as string);
+                });
+                getCurrentInstance()?.proxy?.$forceUpdate();
+                (observer.value as IntersectionObserver).disconnect();
+            }
+        });
     }
-}
+
+    // obtain image files from ZIP folder in editor preview mode
+    if (props.configFileStructure) {
+        props.config.images.forEach((image) => {
+            const assetSrc = `${image.src.substring(image.src.indexOf('/') + 1)}`;
+            const imageFile = props.configFileStructure?.zip.file(assetSrc);
+            if (imageFile) {
+                imageFile.async('blob').then((res: Blob) => {
+                    image.src = URL.createObjectURL(res);
+                    getCurrentInstance()?.proxy?.$forceUpdate();
+                });
+            }
+        });
+    }
+
+    if (props.config.images.length > 1) {
+        observer.value?.observe(images.value as Element);
+    }
+});
 </script>
 
 <style lang="scss" scoped>
-.hooper {
+.carousel {
     height: auto;
 
-    ::v-deep .hooper-navigation svg {
+    :deep(.carousel__prev > svg),
+    :deep(.carousel__next > svg) {
+        min-height: 0;
+        min-width: 0;
         overflow: visible;
         padding-left: initial !important;
         border-radius: 100%;
         background: radial-gradient(white, transparent 75%);
     }
 
-    ::v-deep .hooper-next {
-        right: calc(-32px - 2em);
+    :deep(.carousel__next) {
+        right: calc(-4px - 1.5em);
     }
 
-    ::v-deep .hooper-prev {
-        left: calc(-32px - 2em);
+    :deep(.carousel__prev) {
+        left: calc(-4px - 1.5em);
     }
 
-    ::v-deep .hooper-pagination {
-        transform: translate(50%, 200%);
+    :deep(.carousel__pagination) {
+        position: absolute;
+        bottom: calc(-6px - 4em);
+        left: 50%;
+        transform: translate(-50%, 0);
     }
 
-    ::v-deep .hooper-indicator {
+    :deep(.carousel__pagination-button) {
         border: 1px solid #878787;
 
         width: 24px;
         height: 6px;
+        margin: 10px 2px;
         border-radius: 0px;
+        padding: 0px;
 
-        &.is-active {
+        &.carousel__pagination-button--active {
             border: none;
             background-color: var(--sr-accent-colour);
+        }
+
+        &.carousel__pagination-button::after {
+            display: none;
         }
 
         &:hover {
@@ -152,7 +182,7 @@ export default class SlideshowPanelV extends Vue {
 }
 
 @media screen and (max-width: 640px) {
-    .carousel {
+    .carousel-container {
         max-width: 100vw;
         background-color: white;
     }

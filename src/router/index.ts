@@ -1,33 +1,33 @@
-import Vue from 'vue';
-import StoryV from '@storylines/components/story/story.vue';
-import Router, { Route } from 'vue-router';
-
-Vue.use(Router);
+//import StoryV from '@storylines/components/story/story.vue';
+import { createRouter, createWebHashHistory, RouteLocationNormalized } from 'vue-router';
 
 const routes = [
     {
         path: '/',
-        component: StoryV
+        component: () => import('@storylines/components/story/story.vue')
     },
     {
         path: '/:uid',
-        component: StoryV
+        component: () => import('@storylines/components/story/story.vue')
     },
     {
         path: '/:lang/:uid',
-        component: StoryV
+        component: () => import('@storylines/components/story/story.vue')
     }
 ];
 
-export default new Router({
+const router = createRouter({
     routes: routes,
     // mode: 'history', // TODO: uncomment to change to history mode for nicer URLs (eliminating middle hash) see #100
-    scrollBehavior: function (to: Route) {
+    history: createWebHashHistory(),
+    scrollBehavior: function (to: RouteLocationNormalized) {
         if (to.hash) {
             return {
-                selector: decodeURIComponent(to.hash),
+                el: decodeURIComponent(to.hash),
                 behavior: 'smooth'
             };
         }
     }
 });
+
+export default router;

@@ -6,13 +6,12 @@
     </div>
 </template>
 
-<script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
-
-@Component
-export default class Scrollguard extends Vue {
-    @Prop() lang!: string;
-}
+<script setup lang="ts">
+defineProps({
+    lang: {
+        type: String
+    }
+});
 </script>
 
 <style lang="scss">

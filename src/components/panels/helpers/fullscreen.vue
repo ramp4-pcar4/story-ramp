@@ -1,13 +1,13 @@
 <template>
-    <fullscreen v-model="fullscreen" :pageOnly="true" :teleport="true" fullscreenClass="fullscreenElement">
-        <div class="relative bg-white">
+    <div ref="el">
+        <div class="relative bg-white fullscreen-wrapper">
             <button
                 v-if="expandable !== undefined ? expandable : true"
                 class="fullscreenButton expand-button absolute items-center justify-center p-3 z-10"
                 :class="[fullscreen ? `top-0` : `bottom-0`, type === 'image' ? `right-10` : `right-2`]"
                 :aria-label="$t('image.fullscreen')"
                 :content="$t(fullscreen ? 'fullscreen.deactivate' : 'fullscreen.activate')"
-                v-tippy="{ placement: 'top', hideOnClick: false }"
+                v-tippy="{ placement: 'top', hideOnClick: false, animateFill: true }"
                 @click="toggleFullscreen"
             >
                 <svg
@@ -38,23 +38,33 @@
             </button>
             <slot></slot>
         </div>
-    </fullscreen>
+    </div>
 </template>
 
-<script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+<script setup lang="ts">
+import { ref } from 'vue';
+import { api as $fullscreen } from 'vue-fullscreen';
 
-@Component
-export default class FullscreenV extends Vue {
-    @Prop() expandable!: boolean;
-    @Prop() type!: string;
-
-    fullscreen = false;
-
-    toggleFullscreen(): void {
-        this.fullscreen = !this.fullscreen;
+defineProps({
+    expandable: {
+        type: Boolean
+    },
+    type: {
+        type: String
     }
-}
+});
+
+const fullscreen = ref<boolean | undefined>(false);
+const el = ref();
+
+const toggleFullscreen = async (): Promise<void> => {
+    await $fullscreen.toggle((el.value as Element).querySelector('.fullscreen-wrapper'), {
+        teleport: true,
+        pageOnly: true,
+        fullscreenClass: 'fullscreenElement'
+    });
+    fullscreen.value = $fullscreen.isFullscreen;
+};
 </script>
 
 <style>

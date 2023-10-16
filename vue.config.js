@@ -35,10 +35,21 @@ module.exports = {
             .test(/lang\.csv$/)
             .use('eslint')
             .loader('dsv-loader')
-            .end()
+            .end();
+
+        config.module
             .rule('html')
             .test(/(.)*.(html)$/)
             .use('html-loader')
-            .loader('html-loader');
+            .loader('html-loader')
+            .end();
+
+        config.module
+            .rule('cjs')
+            .test(/\.cjs$/)
+            .include.add(/node_modules/)
+            .end()
+            .use('babel-loader')
+            .loader('babel-loader');
     }
 };

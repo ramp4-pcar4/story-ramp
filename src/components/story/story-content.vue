@@ -1,6 +1,6 @@
 <template>
     <div class="flex items-stretch">
-        <ChapterMenuV
+        <chapter-menu
             class="side-menu"
             :active-chapter-index="activeChapterIndex"
             :slides="config.slides"
@@ -8,7 +8,7 @@
             :lang="lang"
         />
 
-        <Scrollama class="relative story-scrollama w-full" @step-enter="stepEnter">
+        <VueScrollama class="relative story-scrollama w-full" @step-enter="stepEnter">
             <div
                 v-for="(slide, idx) in config.slides"
                 class="flex pt-24"
@@ -19,48 +19,53 @@
             >
                 <slide :config="slide" :configFileStructure="configFileStructure" :slideIdx="idx" :lang="lang"></slide>
             </div>
-        </Scrollama>
+        </VueScrollama>
     </div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
+import type { PropType } from 'vue';
+import { onMounted, ref } from 'vue';
+import { useRoute } from 'vue-router';
 import 'intersection-observer';
-import Scrollama from 'vue-scrollama';
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import VueScrollama from 'vue3-scrollama';
 import { ConfigFileStructure, StoryRampConfig } from '@storylines/definitions';
 
-import ChapterMenuV from './chapter-menu.vue';
-import SlideV from './slide.vue';
+import ChapterMenu from './chapter-menu.vue';
+import Slide from './slide.vue';
 
-@Component({
-    components: {
-        Scrollama,
-        ChapterMenuV,
-        slide: SlideV
+const route = useRoute();
+const emit = defineEmits(['step']);
+
+defineProps({
+    config: {
+        type: Object as PropType<StoryRampConfig>,
+        required: true
+    },
+    configFileStructure: {
+        type: Object as PropType<ConfigFileStructure>
+    },
+    lang: {
+        type: String,
+        required: true
     }
-})
-export default class StoryContentV extends Vue {
-    @Prop() config!: StoryRampConfig;
-    @Prop() configFileStructure!: ConfigFileStructure;
-    @Prop() lang!: string;
+});
 
-    activeChapterIndex = -1;
+const activeChapterIndex = ref(-1);
 
-    mounted(): void {
-        const hash = this.$route.hash.substring(1);
-        if (hash) {
-            // decode in case there are special french characters that are encoded in hash
-            const decodedHash = decodeURIComponent(hash);
-            const el = document.getElementById(decodedHash);
-            el?.scrollIntoView({ behavior: 'smooth' });
-        }
+onMounted(() => {
+    const hash = route.hash.substring(1);
+    if (hash) {
+        const decodedHash = decodeURIComponent(hash);
+        const el = document.getElementById(decodedHash);
+        el?.scrollIntoView({ behavior: 'smooth' });
     }
+});
 
-    stepEnter({ element }: { element: HTMLElement }): void {
-        this.activeChapterIndex = parseInt(element.dataset.chapterIndex || '-1');
-        this.$emit('step', this.activeChapterIndex);
-    }
-}
+const stepEnter = ({ element }: { element: HTMLElement }): void => {
+    activeChapterIndex.value = parseInt(element.dataset.chapterIndex || '-1');
+    emit('step', activeChapterIndex.value);
+};
 </script>
 
 <style lang="scss" scoped>

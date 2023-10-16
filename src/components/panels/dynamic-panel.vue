@@ -1,6 +1,6 @@
 <template>
-    <div :id="$vnode.key" class="story-slide w-full h-full flex sm:flex-row flex-col">
-        <Scrollama class="flex-1 order-2 sm:order-1 prose max-w-none my-5">
+    <div ref="el" :id="key" class="story-slide w-full h-full flex sm:flex-row flex-col">
+        <VueScrollama class="flex-1 order-2 sm:order-1 prose max-w-none my-5">
             <component
                 :is="config.titleTag || 'h2'"
                 class="px-10 mb-0 chapter-title top-20"
@@ -10,7 +10,7 @@
             </component>
 
             <div class="px-10 md-content" v-html="md.render(config.content)"></div>
-        </Scrollama>
+        </VueScrollama>
 
         <div
             :class="
@@ -45,111 +45,118 @@
     </div>
 </template>
 
-<script lang="ts">
-import Scrollama from 'vue-scrollama';
+<script setup lang="ts">
+import type { PropType } from 'vue';
+import { defineAsyncComponent, getCurrentInstance, onMounted, ref } from 'vue';
+import VueScrollama from 'vue3-scrollama';
 import MarkdownIt from 'markdown-it';
 
-import { Component, Prop, Vue } from 'vue-property-decorator';
 import { BasePanel, DynamicPanel } from '@storylines/definitions';
 
-@Component({
-    components: {
-        panel: () => import('./panel.vue'),
-        Scrollama
+const panel = defineAsyncComponent(() => import('./panel.vue'));
+
+const props = defineProps({
+    config: {
+        type: Object as PropType<DynamicPanel>,
+        required: true
+    },
+    slideIdx: {
+        type: Number
     }
-})
-export default class DynamicPanelV extends Vue {
-    @Prop() config!: DynamicPanel;
-    @Prop() slideIdx!: string;
+});
 
-    // Get the ID of the first (and default) panel.
-    defaultPanel = this.config.children[0];
+const el = ref();
+const content = ref();
 
-    // By default, the active config is set to the first child in the children list.
-    activeConfig: BasePanel = this.defaultPanel.panel;
-    activeIdx = this.defaultPanel.id;
+// Get the ID of the first (and default) panel.
+const defaultPanel = props.config.children[0];
 
-    md = new MarkdownIt({ html: true });
+// By default, the active config is set to the first child in the children list.
+const activeConfig = ref<BasePanel>(defaultPanel.panel);
+const activeIdx = ref(defaultPanel.id);
 
-    mounted(): void {
-        document
-            .querySelectorAll('.storyramp-app a:not([target])')
-            .forEach((el: Element) => ((el as HTMLAnchorElement).target = '_blank'));
+const md = new MarkdownIt({ html: true });
 
-        this.addDynamicURLs();
-    }
+const key = getCurrentInstance()?.vnode.key as string;
 
-    /**
-     * Adds panel-switching functionality to URLs.
-     */
-    addDynamicURLs(): void {
-        // Find all URLs that contain the `panel` attribute.
-        const urls: HTMLAnchorElement[] = Array.from(this.$el.querySelectorAll('a[panel]'));
-        urls.forEach((el: HTMLAnchorElement) => {
-            // Find the target panel and add an event listener to the URL.
-            const target = el.attributes.getNamedItem('panel')?.value;
+onMounted(() => {
+    document
+        .querySelectorAll('.storyramp-app a:not([target])')
+        .forEach((el: Element) => ((el as HTMLAnchorElement).target = '_blank'));
 
-            // Change the target to self so clicking the link doesn't open in a new window. Also add a
-            // dotted underline to indicate that clicking this link will stay in this window.
-            el.style.setProperty('text-decoration-style', 'dotted');
-            el.style.setProperty('text-underline-offset', '3px');
-            el.href = 'javascript:;';
-            el.target = '_self';
+    addDynamicURLs();
+});
 
-            el.onclick = () => {
-                // Find the panel.
-                const panel = this.config.children.find((el) => {
-                    return target == el.id;
-                });
+/**
+ * Adds panel-switching functionality to URLs.
+ */
+const addDynamicURLs = (): void => {
+    // Find all URLs that contain the `panel` attribute.
+    const urls: HTMLAnchorElement[] = Array.from(el.value.querySelectorAll('a[panel]'));
+    urls.forEach((el: HTMLAnchorElement) => {
+        // Find the target panel and add an event listener to the URL.
+        const target = el.attributes.getNamedItem('panel')?.value;
 
-                // If the panel exists, switch the displayed panel.
-                if (panel) {
-                    // Quickly reset the config so the panel component can be reset.
-                    this.activeConfig = {
-                        type: 'loading'
-                    };
+        // Change the target to self so clicking the link doesn't open in a new window. Also add a
+        // dotted underline to indicate that clicking this link will stay in this window.
+        el.style.setProperty('text-decoration-style', 'dotted');
+        el.style.setProperty('text-underline-offset', '3px');
+        el.href = 'javascript:;';
+        el.target = '_self';
 
-                    setTimeout(() => {
-                        this.activeConfig = panel.panel;
-                        this.activeIdx = panel.id;
-                    }, 10);
-
-                    setTimeout(() => {
-                        const elTop = (this.$refs['content'] as Vue).$el.getBoundingClientRect().top;
-                        window.scrollTo({
-                            top: window.pageYOffset + elTop - 63,
-                            left: 0,
-                            behavior: 'smooth'
-                        });
-                    }, 50);
-                }
-            };
-        });
-    }
-
-    /**
-     * When clicking the back button, change the panel back to the default (first) panel.
-     */
-    clickBack(): void {
-        this.activeConfig = {
-            type: 'loading'
-        };
-
-        setTimeout(() => {
-            this.activeConfig = this.defaultPanel.panel;
-            this.activeIdx = this.defaultPanel.id;
-        }, 10);
-
-        setTimeout(() => {
-            const elTop = (this.$refs['content'] as Vue).$el.getBoundingClientRect().top;
-            window.scrollTo({
-                top: window.pageYOffset + elTop - 63,
-                left: 0,
-                behavior: 'smooth'
+        el.onclick = () => {
+            // Find the panel.
+            const panel = props.config.children.find((el) => {
+                return target == el.id;
             });
-        }, 50);
-    }
-}
+
+            // If the panel exists, switch the displayed panel.
+            if (panel) {
+                // Quickly reset the config so the panel component can be reset.
+                activeConfig.value = {
+                    type: 'loading'
+                };
+
+                setTimeout(() => {
+                    activeConfig.value = panel.panel;
+                    activeIdx.value = panel.id;
+                }, 10);
+
+                setTimeout(() => {
+                    const elTop = content.value.$el.getBoundingClientRect().top;
+                    window.scrollTo({
+                        top: window.pageYOffset + elTop - 63,
+                        left: 0,
+                        behavior: 'smooth'
+                    });
+                }, 50);
+            }
+        };
+    });
+};
+
+/**
+ * When clicking the back button, change the panel back to the default (first) panel.
+ */
+const clickBack = (): void => {
+    activeConfig.value = {
+        type: 'loading'
+    };
+
+    setTimeout(() => {
+        activeConfig.value = defaultPanel.panel;
+        activeIdx.value = defaultPanel.id;
+    }, 10);
+
+    setTimeout(() => {
+        const elTop = content.value.$el.getBoundingClientRect().top;
+        window.scrollTo({
+            top: window.pageYOffset + elTop - 63,
+            left: 0,
+            behavior: 'smooth'
+        });
+    }, 50);
+};
 </script>
 
 <style scoped lang="scss">
