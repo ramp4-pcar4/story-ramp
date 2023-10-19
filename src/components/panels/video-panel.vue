@@ -99,7 +99,7 @@ const rawTranscript = ref('');
 const transcriptContent = ref('');
 
 onBeforeMount(() => {
-    lang.value = (route.params.lang as string) ? (route.params.lang as string) : 'en';
+    lang.value = (route?.params.lang as string) ? (route?.params.lang as string) : 'en';
 
     // find file type extension for non-YT videos
     if (props.config.videoType === 'external' || props.config.videoType === 'local') {

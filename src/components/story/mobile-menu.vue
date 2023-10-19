@@ -36,8 +36,28 @@
         </div>
 
         <ul v-show="isMenuOpen" class="dropdown-nav-content bg-white pb-10 w-72 z-10 border-r border-gray-200">
-            <li>
-                <router-link :to="{ hash: '#intro' }" class="flex py-1 px-3" target>
+            <li v-if="introExists">
+                <button class="flex py-1 px-3" @click="scrollToChapter('intro')" v-if="plugin">
+                    <svg
+                        class="flex-shrink-0"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="#fff"
+                        stroke="#878787"
+                    >
+                        <path
+                            d="m19.325 16.229c-2.4415 1.4096-4.8829 2.8191-7.3244 4.2286-2.4415-1.4096-4.883-2.8192-7.3245-4.2288-3.55e-5 -2.8191-7.1e-5 -5.6383-1.066e-4 -8.4574 2.4415-1.4096 4.8829-2.8191 7.3244-4.2286 2.4415 1.4096 4.883 2.8192 7.3245 4.2288 3.7e-5 2.8191 7.4e-5 5.6383 1.1e-4 8.4574z"
+                            stroke-width=".93974"
+                        />
+                    </svg>
+                    <span class="flex-1 ml-4 overflow-hidden leading-normal overflow-ellipsis whitespace-nowrap">{{
+                        $t('chapters.return')
+                    }}</span>
+                </button>
+
+                <router-link :to="{ hash: '#intro' }" class="flex py-1 px-3" target v-else>
                     <svg
                         class="flex-shrink-0"
                         width="24"
@@ -58,10 +78,34 @@
                 </router-link>
             </li>
             <li v-for="(slide, idx) in slides" :key="idx" :class="{ 'is-active': activeChapterIndex === idx }">
+                <button
+                    class="flex py-1 px-3"
+                    @click="scrollToChapter(`${idx}-${slide.title.toLowerCase().replaceAll(' ', '-')}`)"
+                    v-if="plugin"
+                >
+                    <svg
+                        class="flex-shrink-0"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="#fff"
+                        stroke="#878787"
+                    >
+                        <path
+                            d="m19.325 16.229c-2.4415 1.4096-4.8829 2.8191-7.3244 4.2286-2.4415-1.4096-4.883-2.8192-7.3245-4.2288-3.55e-5 -2.8191-7.1e-5 -5.6383-1.066e-4 -8.4574 2.4415-1.4096 4.8829-2.8191 7.3244-4.2286 2.4415 1.4096 4.883 2.8192 7.3245 4.2288 3.7e-5 2.8191 7.4e-5 5.6383 1.1e-4 8.4574z"
+                            stroke-width=".93974"
+                        />
+                    </svg>
+                    <span class="flex-1 ml-4 overflow-hidden leading-normal overflow-ellipsis whitespace-nowrap">{{
+                        slide.title
+                    }}</span>
+                </button>
                 <router-link
                     :to="{ hash: `#${idx}-${slide.title.toLowerCase().replaceAll(' ', '-')}` }"
                     class="flex py-1 px-3"
                     target
+                    v-else
                 >
                     <svg
                         class="flex-shrink-0"
@@ -87,8 +131,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
 import type { PropType } from 'vue';
+import { ref, onMounted } from 'vue';
 import { Slide } from '@storylines/definitions';
 
 defineProps({
@@ -100,10 +144,26 @@ defineProps({
     },
     lang: {
         type: String
+    },
+    plugin: {
+        type: Boolean
     }
 });
 
 const isMenuOpen = ref(false);
+const introExists = ref(true);
+
+onMounted(() => {
+    const introSection = document.getElementById('intro');
+    introExists.value = !!introSection;
+});
+
+const scrollToChapter = (id: string): void => {
+    const el = document.getElementById(id);
+    if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+    }
+};
 </script>
 
 <style lang="scss" scoped>

@@ -37,9 +37,9 @@
         </div>
 
         <ul class="nav-content menu">
-            <li>
-                <button
-                    class="flex items-center px-2 py-1 mx-1"
+            <li v-if="introExists">
+                <a
+                    class="flex items-center px-2 py-1 mx-1 cursor-pointer"
                     @click="scrollToChapter('intro')"
                     v-tippy="{
                         delay: '200',
@@ -49,7 +49,7 @@
                         animation: 'chapter-menu',
                         offset: isMenuOpen ? [0, -280] : [0, -40]
                     }"
-                    v-if="editor"
+                    v-if="plugin"
                 >
                     <svg
                         class="flex-shrink-0"
@@ -68,7 +68,7 @@
                     <span class="flex-1 ml-4 overflow-hidden leading-normal overflow-ellipsis whitespace-nowrap">{{
                         $t('chapters.return')
                     }}</span>
-                </button>
+                </a>
 
                 <router-link
                     :to="{ hash: '#intro' }"
@@ -104,9 +104,9 @@
                 </router-link>
             </li>
             <li v-for="(slide, idx) in slides" :key="idx" :class="{ 'is-active': activeChapterIndex === idx }">
-                <!-- using router-link causes a page refresh which breaks editor preview mode -->
-                <button
-                    class="flex items-center px-2 py-1 mx-1"
+                <!-- using router-link causes a page refresh which breaks plugin -->
+                <a
+                    class="flex items-center px-2 py-1 mx-1 cursor-pointer"
                     @click="scrollToChapter(`${idx}-${slide.title.toLowerCase().replaceAll(' ', '-')}`)"
                     v-tippy="{
                         delay: '200',
@@ -116,7 +116,7 @@
                         animation: 'chapter-menu',
                         offset: isMenuOpen ? [0, -280] : [0, -40]
                     }"
-                    v-if="editor"
+                    v-if="plugin"
                 >
                     <svg
                         class="flex-shrink-0"
@@ -135,7 +135,7 @@
                     <span class="flex-1 ml-4 overflow-hidden leading-normal overflow-ellipsis whitespace-nowrap">{{
                         slide.title
                     }}</span>
-                </button>
+                </a>
 
                 <router-link
                     :to="{ hash: `#${idx}-${slide.title.toLowerCase().replaceAll(' ', '-')}` }"
@@ -177,7 +177,7 @@
 
 <script setup lang="ts">
 import type { PropType } from 'vue';
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import { Slide } from '@storylines/definitions';
 
 defineProps({
@@ -193,13 +193,18 @@ defineProps({
         type: String,
         required: true
     },
-    editor: {
-        type: Boolean,
-        required: true
+    plugin: {
+        type: Boolean
     }
 });
 
 const isMenuOpen = ref(false);
+const introExists = ref(false);
+
+onMounted(() => {
+    const introSection = document.getElementById('intro');
+    introExists.value = !!introSection;
+});
 
 const scrollToChapter = (id: string): void => {
     const el = document.getElementById(id);

@@ -123,7 +123,7 @@ const addDynamicURLs = (): void => {
                 }, 10);
 
                 setTimeout(() => {
-                    const elTop = content.value.$el.getBoundingClientRect().top;
+                    const elTop = content.value?.$el.getBoundingClientRect().top;
                     window.scrollTo({
                         top: window.pageYOffset + elTop - 63,
                         left: 0,
@@ -149,7 +149,7 @@ const clickBack = (): void => {
     }, 10);
 
     setTimeout(() => {
-        const elTop = content.value.$el.getBoundingClientRect().top;
+        const elTop = content.value?.$el.getBoundingClientRect().top;
         window.scrollTo({
             top: window.pageYOffset + elTop - 63,
             left: 0,
