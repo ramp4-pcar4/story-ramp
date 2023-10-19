@@ -4,7 +4,7 @@
             class="side-menu"
             :active-chapter-index="activeChapterIndex"
             :slides="config.slides"
-            :editor="!!configFileStructure"
+            :plugin="!!configFileStructure || !!plugin"
             :lang="lang"
         />
 
@@ -48,13 +48,16 @@ defineProps({
     lang: {
         type: String,
         required: true
+    },
+    plugin: {
+        type: Boolean
     }
 });
 
 const activeChapterIndex = ref(-1);
 
 onMounted(() => {
-    const hash = route.hash.substring(1);
+    const hash = route?.hash.substring(1);
     if (hash) {
         const decodedHash = decodeURIComponent(hash);
         const el = document.getElementById(decodedHash);

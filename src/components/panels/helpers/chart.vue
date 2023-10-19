@@ -7,7 +7,7 @@
             :aria-label="title"
             v-if="!loading"
         >
-            <chart :options="chartOptions" ref="chart"></chart>
+            <chart :options="chartOptions"></chart>
         </div>
     </div>
 </template>
@@ -107,36 +107,29 @@ onMounted(() => {
         const assetSrc = `${props.config.src.substring(props.config.src.indexOf('/') + 1)}`;
 
         if (extension === 'json') {
-            fetch(props.config.src).then((data) => {
-                // parse JSON data
-                data.json().then(
-                    (res: DQVChartConfig) => {
-                        chartOptions.value = res;
-                        title.value = chartOptions.value.title.text;
-                        loading.value = false;
-
-                        // Set up hamburger menu options.
-                        if (chartOptions.value.exporting) {
-                            chartOptions.value.exporting.buttons = {
-                                contextButton: {
-                                    menuItems: menuOptions
-                                }
-                            };
-                        } else {
-                            chartOptions.value.exporting = {
-                                buttons: {
-                                    contextButton: {
-                                        menuItems: menuOptions
-                                    }
-                                }
-                            };
+            if (props.configFileStructure) {
+                // attempt to fetch JSON file from ZIP folder
+                const chartJsonFile = props.configFileStructure.zip.file(assetSrc);
+                if (chartJsonFile) {
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                    chartJsonFile.async('string').then((res: string) => {
+                        const jsonData: DQVChartConfig = JSON.parse(res);
+                        parseJSONFile(jsonData);
+                    });
+                }
+            } else {
+                fetch(props.config.src).then((data) => {
+                    // parse JSON data
+                    data.json().then(
+                        (res: DQVChartConfig) => {
+                            parseJSONFile(res);
+                        },
+                        (err) => {
+                            console.error(`Error fetching chart JSON file: ${err}`);
                         }
-                    },
-                    (err) => {
-                        console.error(`Error fetching chart JSON file: ${err}`);
-                    }
-                );
-            });
+                    );
+                });
+            }
         } else if (extension === 'csv') {
             if (props.configFileStructure) {
                 // First attempt to fetch the configuration file from the ZIP folder.
@@ -156,6 +149,34 @@ onMounted(() => {
         }
     }
 });
+
+/**
+ * Parse and process CSV file contents and return a properly configured highcharts options object.
+ */
+const parseJSONFile = (jsonData: DQVChartConfig): void => {
+    chartOptions.value = jsonData;
+    title.value = chartOptions.value.title.text;
+    loading.value = false;
+
+    // Set up hamburger menu options.
+    if (chartOptions.value.exporting) {
+        chartOptions.value.exporting.buttons = {
+            contextButton: {
+                menuItems: menuOptions
+            }
+        };
+    } else {
+        chartOptions.value.exporting = {
+            buttons: {
+                contextButton: {
+                    menuItems: menuOptions
+                }
+            }
+        };
+    }
+
+    emit('loaded', chartOptions.value);
+};
 
 /**
  * Parse and process CSV file contents and return a properly configured highcharts options object.
@@ -202,9 +223,11 @@ const parseCSVFile = (data: CSVFile): void => {
         complete: (res: any) => {
             // construct highcharts objects based on chart type
             if (dqvOptions?.type === 'pie') {
-                makePieChart(res.data, (defaultOptions as unknown) as DQVChartConfig);
+                // eslint-disable-next-line prettier/prettier
+                makePieChart(res.data, defaultOptions as DQVChartConfig);
             } else {
-                makeLineChart(res.meta.fields, res.data, (defaultOptions as unknown) as DQVChartConfig);
+                // eslint-disable-next-line prettier/prettier
+                makeLineChart(res.meta.fields, res.data, defaultOptions as DQVChartConfig);
             }
         }
     });
