@@ -16,13 +16,14 @@
             type="text/javascript"
             src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/rn/cdts/compiled/wet-fr.js"
         ></script>
-        <link rel="stylesheet" href="scripts/multi-ramp/rv-styles.css" />
 
         <!-- top reference links and no-script fallback -->
         <noscript> <%= require('html-loader!../src/assets/static/cdts/refTop.html') %> </noscript>
         <script type="text/javascript">
             document.write(wet.builder.refTop({}));
         </script>
+
+        <link rel="stylesheet" href="scripts/ramp4/ramp.css" />
     </head>
     <body>
         <!-- template top and no-script fallback -->
@@ -100,8 +101,7 @@
             document.write(wet.builder.refFooter({}));
         </script>
 
-        <script src="scripts/multi-ramp/legacy-api.js"></script>
-        <script src="scripts/multi-ramp/rv-main.js"></script>
+        <script src="scripts/ramp4/ramp.js"></script>
 
         <style>
             html {
@@ -140,7 +140,7 @@
             id="DCSIMG"
             width="1"
             height="1"
-            src="https://sdc.ec.gc.ca/dcs2kf7dq10000kzg8kpqz5gp_3q4i/njs.gif?dcsuri=/nojavascript&amp;WT.js=No&amp;WT.tv=9.4.0&amp;dcssip=www.environmental-maps.canada.ca"
+            src="https://sdc.ncr.ec.gc.ca/dcs2kf7dq10000kzg8kpqz5gp_3q4i/njs.gif?dcsuri=/nojavascript&amp;WT.js=No&amp;WT.tv=9.4.0&amp;dcssip=www.environmental-maps.canada.ca"
         />
     </div>
 </noscript>
