@@ -8,7 +8,7 @@
             :lang="lang"
         />
 
-        <VueScrollama class="relative story-scrollama w-full" @step-enter="stepEnter">
+        <VueScrollama class="relative story-scrollama w-full flex-grow min-w-0" @step-enter="stepEnter">
             <div
                 v-for="(slide, idx) in config.slides"
                 class="flex pt-24"
