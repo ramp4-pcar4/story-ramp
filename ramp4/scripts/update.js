@@ -1,5 +1,5 @@
 /**
- * This script is used to update the RAMP4 build in storylines to the latest RAMP4 build on the main branch.
+ * This script is used to update the RAMP4 build in storylines to the latest RAMP4 build on the main branch of the RAMP4 repo.
  * Running npm run update will do the trick.
  */
 
