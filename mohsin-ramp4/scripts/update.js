@@ -8,7 +8,7 @@ const fs = require('fs');
 const { argv } = process;
 const [, , base] = argv;
 
-const fileNames = ['ramp.css', 'ramp.js', 'ramp.esm.js'];
+const fileNames = ['ramp.css', 'ramp.js'];
 
 fileNames.forEach((fn) => {
     https.get(`https://raw.githubusercontent.com/ramp4-pcar4/ramp4-pcar4/gh-pages/main/lib/${fn}`, (res) => {
