@@ -1,5 +1,5 @@
 <template>
-    <VueScrollama class="flex-1 prose max-w-none my-5">
+    <VueScrollama class="prose max-w-none my-5">
         <component :is="config.titleTag || 'h2'" class="px-10 mb-0 chapter-title top-20">
             {{ config.title }}
         </component>

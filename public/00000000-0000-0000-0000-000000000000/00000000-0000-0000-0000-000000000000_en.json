@@ -25,6 +25,21 @@
             ]
         },
         {
+            "title": "Default RAMP4 Sample",
+            "panel": [
+                {
+                    "config": "00000000-0000-0000-0000-000000000000/ramp-config/test-ramp4.json",
+                    "type": "map",
+                    "scrollguard": true
+                },
+                {
+                    "title": "RAMP4 Test",
+                    "content": "The default RAMP4 sample.",
+                    "type": "text"
+                }
+            ]
+        },
+        {
             "title": "Dynamic Panel Test",
             "panel": [
                 {
@@ -64,7 +79,7 @@
                         {
                             "id": "panel-4",
                             "panel": {
-                                "config": "00000000-0000-0000-0000-000000000000/ramp-config/en/OilSandsFacilityLocations2019.json",
+                                "config": "00000000-0000-0000-0000-000000000000/ramp-config/OilSandsFacilityLocations2019.json",
                                 "type": "map",
                                 "scrollguard": true
                             }
@@ -96,8 +111,7 @@
                                 "videoType": "local",
                                 "src": "00000000-0000-0000-0000-000000000000/assets/en/video1-en.mp4",
                                 "caption": "00000000-0000-0000-0000-000000000000/assets/en/video1-en.mp4.vtt",
-                                "transcript": "00000000-0000-0000-0000-000000000000/assets/en/cpts-lg-en.html",
-                                "height": 500
+                                "transcript": "00000000-0000-0000-0000-000000000000/assets/en/cpts-lg-en.html"
                             }
                         }
                     ]
@@ -116,7 +130,23 @@
                     "type": "video",
                     "title": "Special YouTube video",
                     "videoType": "YouTube",
-                    "src": "https://www.youtube.com/embed/dQw4w9WgXcQ"
+                    "src": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+                    "height": 700
+                }
+            ]
+        },
+        {
+            "title": "Oil sands deposits",
+            "panel": [
+                {
+                    "title": "Oil sands deposits",
+                    "content": "There are three large oil sands deposits in Canada:\n\n- The Athabasca;\n- Peace River; and\n- Cold Lake.\n\nAll three of the deposits are located in northern Alberta except for a small portion of the Cold Lake deposit, which extends into Saskatchewan. Together, these deposits cover [142,000 square kilometres](https://www.nrcan.gc.ca/our-natural-resources/energy-sources-distribution/clean-fossil-fuels/technical-overview/5851?_ga=2.92936030.219303224.1637701004-1958057264.1607712157) and are estimated to contain 166.3 billion barrels.\n\nThe oil sands extraction sector is a major contributor to Canada’s economy, with more than 528,000 people deriving direct, indirect and induced employment from the oil sands and its supporting sectors. To date, an estimated $325 billion of capital expenditures has been invested in the oil sands industry, and the sector produces 2.95 million barrels of oil per day.\n\nThis map shows a generalized potential extent of the three oil sands areas. The actual geological deposits themselves cover larger areas.",
+                    "type": "text"
+                },
+                {
+                    "config": "00000000-0000-0000-0000-000000000000/ramp-config/OilSandsDeposits.json",
+                    "type": "map",
+                    "scrollguard": true
                 }
             ]
         },
@@ -158,7 +188,7 @@
                     "type": "text"
                 },
                 {
-                    "config": "00000000-0000-0000-0000-000000000000/ramp-config/en/OilSandsFacilityLocations2019.json",
+                    "config": "00000000-0000-0000-0000-000000000000/ramp-config/OilSandsFacilityLocations2019.json",
                     "type": "map",
                     "title": "Map Title Test"
                 }
@@ -218,7 +248,7 @@
                     "type": "text"
                 },
                 {
-                    "config": "00000000-0000-0000-0000-000000000000/ramp-config/en/ReleasesandDisposalsbyMiningFacilitiesin2019(satellite).json",
+                    "config": "00000000-0000-0000-0000-000000000000/ramp-config/ReleasesandDisposalsbyMiningFacilitiesin2019(satellite).json",
                     "type": "map"
                 }
             ]
@@ -305,13 +335,13 @@
                     "type": "text"
                 },
                 {
-                    "config": "00000000-0000-0000-0000-000000000000/ramp-config/en/ReleasesandDisposalsbyMiningFacilitiesin2019(satellite).json",
+                    "config": "00000000-0000-0000-0000-000000000000/ramp-config/ReleasesandDisposalsbyMiningFacilitiesin2019(satellite).json",
                     "type": "map"
                 }
             ]
         },
         {
-            "title": "Trends in mine tailings reported from surface mining facilities (Time Slider)",
+            "title": "Trends in mine tailings reported from surface mining facilities",
             "panel": [
                 {
                     "title": "Trends in mine tailings reported from surface mining facilities",
@@ -319,13 +349,13 @@
                     "type": "text"
                 },
                 {
-                    "config": "00000000-0000-0000-0000-000000000000/ramp-config/en/TailingsfromMiningFacilities2010to2019(timeslider).json",
-                    "type": "map",
+                    "config": "00000000-0000-0000-0000-000000000000/ramp-config/TailingsfromMiningFacilities2010to2019(timeslider).json",
                     "timeSlider": {
                         "range": [2010, 2019],
-                        "start": [2010, 2019],
+                        "start": [2010, 2010],
                         "attribute": "Reporting_Year___Année"
-                    }
+                    },
+                    "type": "map"
                 }
             ]
         },
@@ -352,7 +382,7 @@
                     "type": "text"
                 },
                 {
-                    "config": "00000000-0000-0000-0000-000000000000/ramp-config/en/ReleasestoAirbyInSituFacilitiesforAllSubstancesin2019.json",
+                    "config": "00000000-0000-0000-0000-000000000000/ramp-config/ReleasestoAirbyInSituFacilitiesforAllSubstancesin2019.json",
                     "type": "map"
                 }
             ]
@@ -366,7 +396,7 @@
                     "type": "text"
                 },
                 {
-                    "config": "00000000-0000-0000-0000-000000000000/ramp-config/en/ReleasestoAirbyInSituFacilitiesforAllSubstances2010to2019(timeslider).json",
+                    "config": "00000000-0000-0000-0000-000000000000/ramp-config/ReleasestoAirbyInSituFacilitiesforAllSubstances2010to2019(timeslider).json",
                     "type": "map"
                 }
             ]
@@ -417,10 +447,10 @@
             ]
         },
         {
-            "title": "DQV Chart Gallery",
+            "title": "Chart Gallery",
             "panel": [
                 {
-                    "title": "DQV Chart Gallery Featuring Hybrid and External Charts",
+                    "title": "Highcharts Demo (╯°□°)╯︵ ┻━┻",
                     "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris rhoncus, magna in pulvinar tincidunt, magna velit feugiat sem, nec rhoncus lectus tortor quis turpis. Vivamus erat velit, feugiat at nisl lacinia, pulvinar tempus nunc. Nulla suscipit vulputate dapibus. Fusce tincidunt neque nunc, sed porta lacus elementum vitae. Suspendisse imperdiet interdum ipsum, id aliquet lectus aliquet sit amet. Aliquam erat volutpat. Nulla convallis nisl sodales nunc ullamcorper pulvinar. Nulla ornare justo id sapien porta gravida. Cras condimentum, felis id pretium malesuada, lorem lorem viverra nisi, sit amet molestie mi nulla nec velit. Integer semper lorem scelerisque tellus iaculis finibus. Aliquam efficitur sodales elit nec sodales. Sed vitae ipsum quis eros vulputate luctus.",
                     "type": "text"
                 },
