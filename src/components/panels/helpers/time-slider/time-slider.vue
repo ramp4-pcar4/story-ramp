@@ -84,7 +84,6 @@ const range = ref<string[]>(['', '']);
 const intervalID = ref(-1);
 
 onMounted(() => {
-    console.log(props);
     sliderElement.value = sliderTarget.value as HTMLElement;
     slider.value = noUiSlider.create(sliderElement.value, {
         start: props.config.start,

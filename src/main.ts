@@ -25,4 +25,6 @@ app.use(router)
     .use(VuePapaParse)
     .use(VueFullscreen);
 
+app.provide('$papa', app.config.globalProperties.$papa);
+
 app.mount('#app');
