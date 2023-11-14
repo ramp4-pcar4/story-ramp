@@ -14,7 +14,7 @@
 
 <script setup lang="ts">
 import type { PropType } from 'vue';
-import { getCurrentInstance, onMounted, ref } from 'vue';
+import { inject, onMounted, ref } from 'vue';
 import {
     ChartConfig,
     ConfigFileStructure,
@@ -70,6 +70,9 @@ const menuOptions = [
     'downloadCSV',
     'downloadXLS'
 ];
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const $papa: any = inject('$papa');
 
 onMounted(() => {
     const isMobile = el.value.clientWidth <= 640;
@@ -194,7 +197,7 @@ const parseCSVFile = (data: CSVFile): void => {
     };
 
     // download: true needed for local files which is treated as an URL
-    getCurrentInstance()?.proxy?.$papa.parse(data.url ? data.url : data, {
+    $papa.parse(data.url ? data.url : data, {
         header: dqvOptions?.type === 'pie' ? false : true,
         dynamicTyping: true,
         download: !!data.url,

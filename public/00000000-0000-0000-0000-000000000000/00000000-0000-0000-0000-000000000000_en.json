@@ -71,7 +71,12 @@
                                         "src": "00000000-0000-0000-0000-000000000000/charts/en/chartConfig.json"
                                     },
                                     {
-                                        "src": "ea24000c-7dc3-49a9-baac-c55d28dcaeb9/charts/en/Ethlyene.glycol.release.trends.by.sector.2010-2019.tonnes.csv"
+                                        "src": "00000000-0000-0000-0000-000000000000/charts/en/1 Mount royal.csv",
+                                        "options": {
+                                            "title": "Selenium releases and disposals in 2019",
+                                            "subtitle": "",
+                                            "type": "pie"
+                                        }
                                     }
                                 ]
                             }
@@ -461,8 +466,37 @@
                             "src": "00000000-0000-0000-0000-000000000000/charts/en/chartConfig.json"
                         },
                         {
-                            "src": "00000000-0000-0000-0000-000000000000/charts/en/csvUrlChart.json"
+                            "src": "00000000-0000-0000-0000-000000000000/charts/en/Total releases of ethylene glycol for 2019, by province_en.csv",
+                            "options": {
+                                "title": "Figure 2: Total releases of ethylene glycol for 2019, by province",
+                                "xAxisLabel": "Quantity (tonnes)",
+                                "subtitle": "",
+                                "type": "bar"
+                            }
                         },
+                        {
+                            "src": "00000000-0000-0000-0000-000000000000/charts/en/EG_releases_2019_en.csv",
+                            "options": {
+                                "title": "Figure 1: Percentage of total ethylene glycol releases for 2019, by sector",
+                                "subtitle": "",
+                                "type": "pie"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "Hybrid chart with bar and line",
+            "panel": [
+                {
+                    "title": "Hybrid chart with bar and line",
+                    "content": "Demo of a hybrid chart consisting of both a bar and line chart using a custom configured highcharts json file.",
+                    "type": "text"
+                },
+                {
+                    "type": "chart",
+                    "charts": [
                         {
                             "src": "00000000-0000-0000-0000-000000000000/charts/en/hybridChartConfig.json"
                         }
