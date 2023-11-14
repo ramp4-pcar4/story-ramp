@@ -1,7 +1,7 @@
 <template>
     <div ref="el" class="time-slider absolute w-full h-full left-0 flex flex-col items-center bg-white">
         <button
-            class="absolute top-1 left-4 play-button"
+            class="absolute left-4 play-button"
             @click="intervalID >= 0 ? endLoop() : startLoop()"
             :content="$t(intervalID >= 0 ? 'timeslider.pause' : 'timeslider.play')"
             v-tippy="{ placement: 'top', hideOnClick: false, animateFill: true }"
@@ -34,7 +34,7 @@
             ><span class="" v-if="range[1]"> - {{ range[1] }}</span></span
         >
         <button
-            class="absolute top-1 right-4 minimize-button"
+            class="absolute right-4 minimize-button"
             @click="minimizeToggle()"
             :content="$t(minimized ? 'timeslider.expand' : 'timeslider.minimize')"
             v-tippy="{ placement: 'top', hideOnClick: false, animateFill: true }"
@@ -205,6 +205,11 @@ const minimizeToggle = () => {
 
     .noUi-target {
         @apply w-4/5;
+    }
+
+    .play-button,
+    .minimize-button {
+        top: 4px;
     }
 
     // MEDIA QUERY
