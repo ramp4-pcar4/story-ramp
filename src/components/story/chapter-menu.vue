@@ -30,7 +30,7 @@
                     <path d="m3.5 17h17" />
                 </svg>
                 <span
-                    class="flex-1 pl-2 ml-2 overflow-hidden leading-normal text-left overflow-ellipsis whitespace-nowrap"
+                    class="flex-1 ml-4 overflow-hidden leading-normal text-left overflow-ellipsis whitespace-nowrap"
                     >{{ $t('chapters.title') }}</span
                 >
             </button>
