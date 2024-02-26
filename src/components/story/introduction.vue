@@ -14,8 +14,8 @@
             {{ config.subtitle }}
         </p>
 
-        <!-- using router-link causes a page refresh which breaks editor preview mode -->
-        <button @click="scrollToStory" v-if="!!configFileStructure">
+        <!-- using router-link causes a page refresh which breaks plugin -->
+        <button class="inline-block mt-10 scroll-arrow" @click="scrollToStory" v-if="!!configFileStructure || !!plugin">
             <svg
                 class="w-auto h-24 m-auto"
                 width="90"
@@ -85,6 +85,9 @@ const props = defineProps({
     },
     configFileStructure: {
         type: Object as PropType<ConfigFileStructure>
+    },
+    plugin: {
+        type: Boolean
     }
 });
 
