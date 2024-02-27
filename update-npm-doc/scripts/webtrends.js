@@ -7,7 +7,7 @@ function WebTrends(){
 	var that=this;
 	// begin: user modifiable
 	this.dcsid="dcs2kf7dq10000kzg8kpqz5gp_3q4i";
-	this.domain="sdc.ncr.ec.gc.ca";
+	this.domain="sdc.ec.gc.ca";
 	this.timezone=-5;
 
 	this.enabled=true;
