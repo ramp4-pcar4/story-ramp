@@ -59,9 +59,12 @@ const activeChapterIndex = ref(-1);
 onMounted(() => {
     const hash = route?.hash.substring(1);
     if (hash) {
-        const decodedHash = decodeURIComponent(hash);
-        const el = document.getElementById(decodedHash);
-        el?.scrollIntoView({ behavior: 'smooth' });
+        // Wait for a short period of time and then jump to the anchor.
+        setTimeout(() => {
+            const decodedHash = decodeURIComponent(hash);
+            const el = document.getElementById(decodedHash);
+            el?.scrollIntoView();
+        }, 200);
     }
 });
 
