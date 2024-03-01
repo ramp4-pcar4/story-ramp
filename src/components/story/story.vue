@@ -113,14 +113,20 @@ const beforeRouteUpdate = (to: RouteLocationNormalized, from: RouteLocationNorma
 const fetchConfig = (uid: string, lang: string): void => {
     fetch(`${uid}/${uid}_${lang}.json`)
         .then((res) => {
-            res.json().then((configs: StoryRampConfig) => {
-                config.value = configs;
-                loadStatus.value = 'loaded';
-                // set page title
-                if (config.value) {
-                    document.title = config.value.title + ' - Canada.ca';
-                }
-            });
+            res.json()
+                .then((configs: StoryRampConfig) => {
+                    config.value = configs;
+                    loadStatus.value = 'loaded';
+                    // set page title
+                    if (config.value) {
+                        document.title = config.value.title + ' - Canada.ca';
+                    }
+                })
+                .catch(() => {
+                    // An error occurred while trying to convert the reponse to JSON. Most likely case for this to occur is
+                    // if the file doesn't exist and the server returns HTML. Redirect to the 404 page.
+                    window.location.href = 'https://www.canada.ca/errors/404.html';
+                });
         })
         .catch((err) => {
             if (err.code === 'MODULE_NOT_FOUND') {
