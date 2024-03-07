@@ -1,11 +1,6 @@
 <template>
     <div class="py-24 mx-auto text-center max-w-9xl" id="intro">
-        <img
-            v-if="config.logo && config.logo.src"
-            class="inline-block"
-            :src="config.logo.src"
-            :alt="config.logo.altText"
-        />
+        <img v-if="!!state.logo" class="inline-block" :src="state.logo" :alt="config.logo.altText" />
 
         <h1 class="m-10 text-5xl font-bold text-gray-800">
             {{ config.title }}
@@ -75,7 +70,7 @@
 
 <script setup lang="ts">
 import type { PropType } from 'vue';
-import { getCurrentInstance, onMounted } from 'vue';
+import { reactive, onMounted } from 'vue';
 import { ConfigFileStructure, Intro } from '@storylines/definitions';
 
 const props = defineProps({
@@ -91,7 +86,13 @@ const props = defineProps({
     }
 });
 
+const state = reactive({
+    logo: ''
+});
+
 onMounted(() => {
+    state.logo = props.config.logo ? props.config.logo.src : '';
+
     // obtain logo from ZIP file if it exists
     if (props.configFileStructure) {
         const logo = props.config.logo?.src;
@@ -101,8 +102,7 @@ onMounted(() => {
             const logoFile = props.configFileStructure.zip.file(logoSrc);
             if (logoFile) {
                 logoFile.async('blob').then((res: Blob) => {
-                    props.config.logo.src = URL.createObjectURL(res);
-                    getCurrentInstance()?.proxy?.$forceUpdate();
+                    state.logo = props.config.logo.src = URL.createObjectURL(res);
                 });
             }
         }
