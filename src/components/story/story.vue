@@ -17,7 +17,10 @@
 
     <div v-else-if="loadStatus === 'loaded'">
         <div class="storyramp-app bg-white" v-if="config !== undefined">
-            <header class="story-header sticky top-0 w-full h-16 leading-9 bg-white border-b border-gray-200">
+            <header
+                id="story-header"
+                class="story-header sticky top-0 w-full h-16 leading-9 bg-white border-b border-gray-200"
+            >
                 <div class="flex w-full sm:px-6 py-3 mx-auto">
                     <mobile-menu
                         class="mobile-menu"
@@ -37,7 +40,7 @@
             <intro :config="config.introSlide"></intro>
 
             <div class="w-full mx-auto pb-10" id="story">
-                <story-content :config="config" :lang="lang" @step="updateActiveIndex" />
+                <story-content :config="config" :lang="lang" :headerHeight="headerHeight" @step="updateActiveIndex" />
             </div>
 
             <footer class="p-8 pt-2 text-right text-sm">
@@ -75,6 +78,7 @@ const route = useRoute();
 const config = ref<StoryRampConfig | undefined>(undefined);
 const loadStatus = ref('loading');
 const activeChapterIndex = ref(-1);
+const headerHeight = ref(0);
 const lang = ref('en');
 
 onMounted(() => {
@@ -146,6 +150,11 @@ const fetchConfig = (uid: string, lang: string): void => {
 
 const updateActiveIndex = (idx: number): void => {
     activeChapterIndex.value = idx;
+    // determine header height
+    const headerH = document.getElementById('story-header');
+    if (headerH) {
+        headerHeight.value = headerH.clientHeight;
+    }
 };
 </script>
 
