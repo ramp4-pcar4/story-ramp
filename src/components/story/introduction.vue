@@ -96,7 +96,6 @@ onMounted(() => {
     // obtain logo from ZIP file if it exists
     if (props.configFileStructure) {
         const logo = props.config.logo?.src;
-
         if (logo) {
             const logoSrc = `${logo.substring(logo.indexOf('/') + 1)}`;
             const logoFile = props.configFileStructure.zip.file(logoSrc);
