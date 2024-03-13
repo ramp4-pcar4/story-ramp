@@ -65,12 +65,14 @@
                         {
                             "id": "panel-3",
                             "panel": {
-                                "type": "chart",
-                                "charts": [
+                                "type": "slideshow",
+                                "items": [
                                     {
+                                        "type": "chart",
                                         "src": "00000000-0000-0000-0000-000000000000/charts/en/chartConfig.json"
                                     },
                                     {
+                                        "type": "chart",
                                         "src": "00000000-0000-0000-0000-000000000000/charts/en/1 Mount royal.csv",
                                         "options": {
                                             "title": "Selenium releases and disposals in 2019",
@@ -208,7 +210,7 @@
                     "type": "text"
                 },
                 {
-                    "images": [
+                    "items": [
                         {
                             "src": "00000000-0000-0000-0000-000000000000/assets/en/substances/1_AuroraNorth_RelDisp.PNG",
                             "type": "image"
@@ -236,6 +238,20 @@
                         {
                             "src": "00000000-0000-0000-0000-000000000000/assets/en/substances/7_Syncrude_RelDisp.PNG",
                             "type": "image"
+                        },
+                        {
+                            "config": "00000000-0000-0000-0000-000000000000/ramp-config/ReleasesandDisposalsbyMiningFacilitiesin2019(satellite).json",
+                            "type": "map",
+                            "scrollguard": true
+                        },
+                        {
+                            "title": "Text Section",
+                            "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pulvinar ultricies dolor, vel vehicula quam convallis sit amet. Cras pellentesque congue tellus ut elementum. Phasellus sagittis, odio quis fermentum maximus, metus eros fermentum lorem, eget interdum metus orci eget risus. Integer ut ante aliquam, pretium diam vitae, gravida sapien. Curabitur ac ipsum sit amet arcu laoreet sollicitudin id imperdiet quam. Duis magna ipsum, laoreet eu malesuada vitae, tristique nec felis. Integer quis neque egestas, imperdiet arcu et, faucibus elit. Duis et fermentum urna. Nulla vulputate sapien eget laoreet interdum. Vivamus tempus nulla ante, sagittis rutrum justo semper in. Cras eu iaculis massa.</p><p>Sed dictum dictum rhoncus. Praesent sit amet accumsan elit. Nulla facilisi. Vestibulum tincidunt tincidunt leo vel placerat. Integer sit amet aliquet felis, quis finibus turpis. Vivamus sit amet sodales nisl. Mauris imperdiet, nisl vulputate dignissim consectetur, mi urna tempus felis, non cursus sapien ante sodales erat. Cras a nisi id purus vehicula aliquet et sit amet dolor. Vestibulum vehicula vel lectus sed tempus. Mauris sodales vulputate augue eu sagittis. Aenean bibendum viverra laoreet. Nunc scelerisque arcu sed libero porttitor, eget tincidunt felis congue. Cras nec nulla eget lacus tincidunt condimentum vel eget orci. Vestibulum fermentum non elit non ultricies. Ut eu ante porttitor, pretium ipsum eget, commodo magna. In eget tristique mauris.</p><p>Donec id quam tempor, mollis urna et, dapibus massa. Mauris venenatis condimentum ex, vel ullamcorper sem porta vitae. Donec ac dapibus nisl, ut placerat quam. Proin consequat accumsan nibh in interdum. Ut quis justo vitae lorem vestibulum molestie blandit a nunc. Aliquam vel rutrum ex. Nunc tempus, sapien vitae pretium blandit, nisl orci lacinia lorem, et bibendum libero lectus sed nulla. Integer ut eros pretium, consequat erat id, fringilla odio. Donec convallis tortor ex, hendrerit viverra velit hendrerit sit amet. Mauris volutpat dignissim metus molestie aliquet. Etiam pulvinar urna ut vehicula venenatis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Sed pharetra elit ac nunc pulvinar egestas.</p><p>Phasellus vitae tincidunt massa. Mauris consectetur, ex sit amet rutrum condimentum, magna nisi tincidunt eros, euismod maximus nisl augue eu magna. Integer volutpat pretium risus, ut volutpat lacus rhoncus id. Morbi accumsan commodo orci, sit amet ultricies sapien pellentesque a. Curabitur sit amet arcu luctus, consectetur sapien ut, varius urna. Integer id tempus quam. Mauris hendrerit purus nisl, non euismod diam luctus vel.</p><p>Praesent convallis ante ac augue porttitor sagittis. Aliquam erat volutpat. Nullam odio urna, molestie facilisis mi id, semper malesuada sapien. Phasellus ipsum odio, maximus eget malesuada at, auctor quis odio. Nullam at mi nec magna fermentum luctus. Cras aliquam magna eros, et pharetra libero blandit eu. Pellentesque euismod condimentum congue. Maecenas hendrerit volutpat turpis non venenatis. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>",
+                            "type": "text"
+                        },
+                        {
+                            "type": "chart",
+                            "src": "00000000-0000-0000-0000-000000000000/charts/en/hybridChartConfig.json"
                         }
                     ],
                     "loop": true,
@@ -295,7 +311,7 @@
                     "type": "text"
                 },
                 {
-                    "images": [
+                    "items": [
                         {
                             "src": "00000000-0000-0000-0000-000000000000/assets/en/tailings/AuroraNorth_Tailings.PNG",
                             "type": "image"
@@ -460,12 +476,14 @@
                     "type": "text"
                 },
                 {
-                    "type": "chart",
-                    "charts": [
+                    "type": "slideshow",
+                    "items": [
                         {
+                            "type": "chart",
                             "src": "00000000-0000-0000-0000-000000000000/charts/en/chartConfig.json"
                         },
                         {
+                            "type": "chart",
                             "src": "00000000-0000-0000-0000-000000000000/charts/en/Total releases of ethylene glycol for 2019, by province_en.csv",
                             "options": {
                                 "title": "Figure 2: Total releases of ethylene glycol for 2019, by province",
@@ -475,6 +493,7 @@
                             }
                         },
                         {
+                            "type": "chart",
                             "src": "00000000-0000-0000-0000-000000000000/charts/en/EG_releases_2019_en.csv",
                             "options": {
                                 "title": "Figure 1: Percentage of total ethylene glycol releases for 2019, by sector",
@@ -496,11 +515,7 @@
                 },
                 {
                     "type": "chart",
-                    "charts": [
-                        {
-                            "src": "00000000-0000-0000-0000-000000000000/charts/en/hybridChartConfig.json"
-                        }
-                    ]
+                    "src": "00000000-0000-0000-0000-000000000000/charts/en/hybridChartConfig.json"
                 }
             ]
         }

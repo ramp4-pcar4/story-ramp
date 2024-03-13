@@ -203,17 +203,18 @@ export interface AudioPanel extends BasePanel {
 
 export interface SlideshowPanel extends BasePanel {
     type: PanelType.Slideshow;
-    images: ImagePanel[];
-    fullscreen?: boolean;
+    items: Array<ChartPanel | TextPanel | ImagePanel | MapPanel>;
     loop?: boolean;
     caption?: string;
 }
 
 export interface ChartPanel extends BasePanel {
     type: PanelType.Chart;
-    charts: ChartConfig[];
-    fullscreen?: boolean;
-    loop?: boolean;
+    src: string;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    config?: any;
+    name?: string;
+    options?: DQVOptions;
 }
 
 export interface ChartConfig {

@@ -16,7 +16,7 @@
 import type { PropType } from 'vue';
 import { inject, onMounted, ref } from 'vue';
 import {
-    ChartConfig,
+    ChartPanel,
     ConfigFileStructure,
     DQVChartConfig,
     LineSeriesData,
@@ -45,7 +45,7 @@ const emit = defineEmits(['loaded']);
 
 const props = defineProps({
     config: {
-        type: Object as PropType<ChartConfig>,
+        type: Object as PropType<ChartPanel>,
         required: true
     },
     configFileStructure: {
