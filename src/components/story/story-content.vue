@@ -1,12 +1,23 @@
 <template>
-    <div class="flex items-stretch">
-        <chapter-menu
+    <div class="items-stretch">
+        <!-- :class="{ flex: !$props.config?.tocOrientation || $props.config?.tocOrientation === 'vertical' }" -->
+        <!-- v-if="$props.config?.tocOrientation === 'horizontal'" -->
+        <horizontal-menu
+            class="top-menu"
+            :active-chapter-index="activeChapterIndex"
+            :slides="config.slides"
+            :plugin="!!configFileStructure || !!plugin"
+            :lang="lang"
+            :style="{ top: headerHeight + 'px' }"
+        />
+        <!-- <chapter-menu
             class="side-menu"
             :active-chapter-index="activeChapterIndex"
             :slides="config.slides"
             :plugin="!!configFileStructure || !!plugin"
             :lang="lang"
-        />
+            v-else
+        /> -->
 
         <VueScrollama class="relative story-scrollama w-full flex-grow min-w-0" @step-enter="stepEnter">
             <div
@@ -17,7 +28,13 @@
                 :id="`${idx}-${slide.title.toLowerCase().replaceAll(' ', '-')}`"
                 :name="`${idx}-${slide.title.toLowerCase().replaceAll(' ', '-')}`"
             >
-                <slide :config="slide" :configFileStructure="configFileStructure" :slideIdx="idx" :lang="lang"></slide>
+                <slide
+                    :config="slide"
+                    :configFileStructure="configFileStructure"
+                    :slideIdx="idx"
+                    :lang="lang"
+                    :style="{ 'margin-top': headerHeight + 'px' }"
+                ></slide>
             </div>
         </VueScrollama>
     </div>
@@ -32,6 +49,7 @@ import VueScrollama from 'vue3-scrollama';
 import { ConfigFileStructure, StoryRampConfig } from '@storylines/definitions';
 
 import ChapterMenu from './chapter-menu.vue';
+import HorizontalMenu from './horizontal-menu.vue';
 import Slide from './slide.vue';
 
 const route = useRoute();
@@ -51,6 +69,9 @@ defineProps({
     },
     plugin: {
         type: Boolean
+    },
+    headerHeight: {
+        type: Number
     }
 });
 
@@ -118,9 +139,15 @@ const stepEnter = ({ element }: { element: HTMLElement }): void => {
         box-shadow: 0 3px 6px 0px rgba(0, 0, 0, 0.1), 0 2px 4px 0px rgba(0, 0, 0, 0.06);
     }
 }
-
+.top-menu {
+    z-index: 50;
+    width: 100%;
+}
 @media screen and (max-width: 640px) {
     .side-menu {
+        display: none;
+    }
+    .top-menu {
         display: none;
     }
 }
