@@ -1,11 +1,24 @@
 <template>
-    <div class="flex items-stretch">
+    <div
+        class="items-stretch"
+        :class="{ flex: !$props.config?.tocOrientation || $props.config?.tocOrientation === 'vertical' }"
+    >
+        <horizontal-menu
+            class="top-menu"
+            :active-chapter-index="activeChapterIndex"
+            :slides="config.slides"
+            :plugin="!!configFileStructure || !!plugin"
+            :lang="lang"
+            :style="{ top: headerHeight + 'px' }"
+            v-if="$props.config?.tocOrientation === 'horizontal'"
+        />
         <chapter-menu
             class="side-menu"
             :active-chapter-index="activeChapterIndex"
             :slides="config.slides"
             :plugin="!!configFileStructure || !!plugin"
             :lang="lang"
+            v-else
         />
 
         <VueScrollama class="relative story-scrollama w-full flex-grow min-w-0" @step-enter="stepEnter">
@@ -17,7 +30,13 @@
                 :id="`${idx}-${slide.title.toLowerCase().replaceAll(' ', '-')}`"
                 :name="`${idx}-${slide.title.toLowerCase().replaceAll(' ', '-')}`"
             >
-                <slide :config="slide" :configFileStructure="configFileStructure" :slideIdx="idx" :lang="lang"></slide>
+                <slide
+                    :config="slide"
+                    :configFileStructure="configFileStructure"
+                    :slideIdx="idx"
+                    :lang="lang"
+                    :style="{ 'margin-top': horizontalNavHeight + 'px' }"
+                ></slide>
             </div>
         </VueScrollama>
     </div>
@@ -32,6 +51,7 @@ import VueScrollama from 'vue3-scrollama';
 import { ConfigFileStructure, StoryRampConfig } from '@storylines/definitions';
 
 import ChapterMenu from './chapter-menu.vue';
+import HorizontalMenu from './horizontal-menu.vue';
 import Slide from './slide.vue';
 
 const route = useRoute();
@@ -51,10 +71,14 @@ defineProps({
     },
     plugin: {
         type: Boolean
+    },
+    headerHeight: {
+        type: Number
     }
 });
 
 const activeChapterIndex = ref(-1);
+const horizontalNavHeight = ref(0);
 
 onMounted(() => {
     const hash = route?.hash.substring(1);
@@ -71,6 +95,10 @@ onMounted(() => {
 const stepEnter = ({ element }: { element: HTMLElement }): void => {
     activeChapterIndex.value = parseInt(element.dataset.chapterIndex || '-1');
     emit('step', activeChapterIndex.value);
+    const horizontalNav = document.getElementById('h-navbar');
+    if (horizontalNav) {
+        horizontalNavHeight.value = horizontalNav.clientHeight * 0.75;
+    }
 };
 </script>
 
@@ -118,9 +146,15 @@ const stepEnter = ({ element }: { element: HTMLElement }): void => {
         box-shadow: 0 3px 6px 0px rgba(0, 0, 0, 0.1), 0 2px 4px 0px rgba(0, 0, 0, 0.06);
     }
 }
-
+.top-menu {
+    z-index: 50;
+    width: 100%;
+}
 @media screen and (max-width: 640px) {
     .side-menu {
+        display: none;
+    }
+    .top-menu {
         display: none;
     }
 }
