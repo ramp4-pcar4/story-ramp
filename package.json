@@ -1,7 +1,7 @@
 {
-    "name": "ramp-storylines",
+    "name": "ramp-storylines_demo-scenarios-pcar",
     "description": "A user-configurable story product featuring interactive maps, charts and dynamic multimedia content alongside text.",
-    "version": "3.0.5",
+    "version": "3.1.0",
     "private": false,
     "license": "MIT",
     "repository": "https://github.com/ramp4-pcar4/story-ramp",
