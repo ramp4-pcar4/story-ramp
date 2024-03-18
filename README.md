@@ -9,7 +9,7 @@ To use the Storylines plugin in your Vue 3 project, follow these steps:
 **1. Install package from npm:**
 
 ```
-npm install ramp-storylines
+npm install ramp-storylines_demo-scenarios-pcar
 ```
 
 **2. Install the plugin in your Vue app:**
@@ -19,15 +19,15 @@ import { createApp } from 'vue';
 import App from './app.vue';
 const app = createApp(App);
 
-import StorylinesViewer from 'ramp-storylines'
+import StorylinesViewer from 'ramp-storylines_demo-scenarios-pcar'
 app.use(StorylinesViewer);
-import 'ramp-storylines/dist/storylines-viewer.css';
+import 'ramp-storylines_demo-scenarios-pcar/dist/storylines-viewer.css';
 ```
 
 **3. Import or merge `i18n` instance from the plugin:**
 
 ```
-import { storylinesI18n } from 'ramp-storylines'
+import { storylinesI18n } from 'ramp-storylines_demo-scenarios-pcar'
 // if there is no existing i18n instance in your app, add Storylines i18n when initializing Vue instance:
 app.use(storylinesI18n);
 
