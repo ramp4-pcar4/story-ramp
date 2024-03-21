@@ -22,7 +22,7 @@
 <script setup lang="ts">
 import { ref, onMounted, getCurrentInstance } from 'vue';
 import type { PropType } from 'vue';
-import { ImagePanel } from '@storylines/definitions';
+import { ImagePanel, ConfigFileStructure } from '@storylines/definitions';
 
 import MarkdownIt from 'markdown-it';
 import Fullscreen from '@storylines/components/panels/helpers/fullscreen.vue';
@@ -31,6 +31,9 @@ const props = defineProps({
     config: {
         type: Object as PropType<ImagePanel>,
         required: true
+    },
+    configFileStructure: {
+        type: Object as PropType<ConfigFileStructure>
     },
     slideIdx: {
         type: Number,
@@ -54,6 +57,21 @@ onMounted((): void => {
             }
         });
     }
+
+    // obtain image files from ZIP folder in editor preview mode
+    if (props.configFileStructure) {
+        const image = props.config;
+
+        const assetSrc = `${image.src.substring(image.src.indexOf('/') + 1)}`;
+        const imageFile = props.configFileStructure?.zip.file(assetSrc);
+        if (imageFile) {
+            imageFile.async('blob').then((res: Blob) => {
+                props.config.src = URL.createObjectURL(res);
+                getCurrentInstance()?.proxy?.$forceUpdate();
+            });
+        }
+    }
+
     observer.value?.observe(img.value as Element);
 });
 </script>

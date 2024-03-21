@@ -202,11 +202,6 @@
                     "type": "object",
                     "description": "Configured Highcharts JSON object (from editor)."
                 },
-                "fullscreen": {
-                    "type": "boolean",
-                    "description": "Specifies whether the panel can be expanded to full screen.",
-                    "default": true
-                },
                 "type": {
                     "type": "string",
                     "enum": ["chart"]
@@ -326,13 +321,28 @@
             "type": "object",
             "description": "A multimedia slideshow component.",
             "properties": {
-                "images": {
+                "items": {
                     "type": "array",
+                    "description": "An array of items to display in the slideshow.",
                     "items": {
-                        "$ref": "#/$defs/multimediaImage"
+                        "type": "object",
+                        "description": "A config representing one of the following panel types.",
+                        "oneOf": [
+                            {
+                                "$ref": "#/$defs/multimediaImage"
+                            },
+                            {
+                                "$ref": "#/$defs/mapPanel"
+                            },
+                            {
+                                "$ref": "#/$defs/textPanel"
+                            },
+                            {
+                                "$ref": "#/$defs/dqvchartPanel"
+                            }
+                        ]
                     },
-                    "description": "An array of images to display in the slideshow.",
-                    "minItems": 1
+                    "minItems": 1,
                 },
                 "loop": {
                     "type": "boolean",
@@ -348,7 +358,7 @@
                     "enum": ["slideshow"]
                 }
             },
-            "required": ["images", "type"]
+            "required": ["items", "type"]
         },
         "dqvchartOptions": {
             "type": "object",
