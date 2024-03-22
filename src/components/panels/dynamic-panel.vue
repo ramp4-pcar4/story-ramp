@@ -15,9 +15,7 @@
         <div
             :class="
                 activeConfig.type !== 'text'
-                    ? `sticky ${
-                          activeConfig.type === 'map' ? 'top-16' : 'top-8'
-                      } sm:self-start flex-2 order-1 sm:order-2 z-40 dynamic-content-media sm:flex-col`
+                    ? `sticky top-0 sm:self-start flex-2 order-1 sm:order-2 z-40 dynamic-content-media sm:flex-col`
                     : 'flex-2 order-2 sm:order-1 dynamic-content-text'
             "
         >
@@ -125,7 +123,7 @@ const addDynamicURLs = (): void => {
                 setTimeout(() => {
                     const elTop = content.value?.$el.getBoundingClientRect().top;
                     window.scrollTo({
-                        top: window.pageYOffset + elTop - 63,
+                        top: window.pageYOffset + elTop - 33,
                         left: 0,
                         behavior: 'smooth'
                     });
