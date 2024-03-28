@@ -7,6 +7,7 @@ export interface StoryRampConfig {
     slides: Slide[];
     contextLink: string;
     contextLabel: string;
+    tocOrientation: string;
     dateModified: string;
 }
 
