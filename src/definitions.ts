@@ -117,6 +117,7 @@ export interface Slide {
     // tuple definition to restrict array size
     // panel: [BasePanel, BasePanel | undefined];
     panel: BasePanel[];
+    backgroundImage: string;
 }
 
 export enum PanelType {

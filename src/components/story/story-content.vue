@@ -21,22 +21,27 @@
             v-else
         />
 
-        <VueScrollama class="relative story-scrollama w-full flex-grow min-w-0" @step-enter="stepEnter">
-            <div
-                v-for="(slide, idx) in config.slides"
-                class="flex pt-24"
-                :key="idx"
-                :data-chapter-index="idx"
-                :id="`${idx}-${slide.title.toLowerCase().replaceAll(' ', '-')}`"
-                :name="`${idx}-${slide.title.toLowerCase().replaceAll(' ', '-')}`"
-            >
-                <slide
-                    :config="slide"
-                    :configFileStructure="configFileStructure"
-                    :slideIdx="idx"
-                    :lang="lang"
-                    :style="{ 'margin-top': horizontalNavHeight + 'px' }"
-                ></slide>
+        <VueScrollama class="grid-container story-scrollama w-full flex-grow min-w-0" @step-enter="stepEnter">
+            <BackgroundImage :src="backgroundImage" @background-changed="handleBackgroundChange"></BackgroundImage>
+
+            <div class="grid-content z-20">
+                <div
+                    v-for="(slide, idx) in config.slides"
+                    class="flex"
+                    :key="idx"
+                    :data-chapter-index="idx"
+                    :id="`${idx}-${slide.title.toLowerCase().replaceAll(' ', '-')}`"
+                    :name="`${idx}-${slide.title.toLowerCase().replaceAll(' ', '-')}`"
+                >
+                    <slide
+                        :config="slide"
+                        :configFileStructure="configFileStructure"
+                        :slideIdx="idx"
+                        :lang="lang"
+                        :background="hasBackground"
+                        @slide-changed="handleSlideChange"
+                    ></slide>
+                </div>
             </div>
         </VueScrollama>
     </div>
@@ -52,12 +57,13 @@ import { ConfigFileStructure, StoryRampConfig } from '@storylines/definitions';
 
 import ChapterMenu from './chapter-menu.vue';
 import HorizontalMenu from './horizontal-menu.vue';
+import BackgroundImage from './background-image.vue';
 import Slide from './slide.vue';
 
 const route = useRoute();
 const emit = defineEmits(['step']);
 
-defineProps({
+const props = defineProps({
     config: {
         type: Object as PropType<StoryRampConfig>,
         required: true
@@ -79,6 +85,8 @@ defineProps({
 
 const activeChapterIndex = ref(-1);
 const horizontalNavHeight = ref(0);
+const backgroundImage = ref<string>('none');
+const hasBackground = ref<boolean>(false); // different from above; this considers animation time
 
 onMounted(() => {
     const hash = route?.hash.substring(1);
@@ -90,7 +98,23 @@ onMounted(() => {
             el?.scrollIntoView();
         }, 200);
     }
+
+    // See if the first slide has a background image applied. If so, set it early to it appears as soon
+    // as you scroll down.
+    handleSlideChange(0);
 });
+
+const handleSlideChange = (event: number): void => {
+    const img = props.config.slides[event].backgroundImage;
+    backgroundImage.value = img ?? 'none';
+};
+
+/**
+ * This event is fired when the background image actually switches backgrounds (after the animation).
+ */
+const handleBackgroundChange = (event: boolean): void => {
+    hasBackground.value = event;
+};
 
 const stepEnter = ({ element }: { element: HTMLElement }): void => {
     activeChapterIndex.value = parseInt(element.dataset.chapterIndex || '-1');
@@ -103,6 +127,24 @@ const stepEnter = ({ element }: { element: HTMLElement }): void => {
 </script>
 
 <style lang="scss" scoped>
+.grid-container {
+    display: grid;
+    grid-template-areas: 'backgroundOverlay';
+}
+.grid-content {
+    grid-area: backgroundOverlay;
+}
+.grid-background {
+    grid-area: backgroundOverlay;
+    background: var(--sr-content-background);
+
+    border-style: solid none solid solid;
+    border-width: 1px 0 1px 1px;
+
+    // border-gray-200
+    border-color: var(--sr-border-colour);
+}
+
 .story-scrollama {
     background: var(--sr-content-background);
     // background: linear-gradient(to right, var(--sr-content-background) 33.3%, #fff 33.3%);
