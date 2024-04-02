@@ -1,5 +1,9 @@
 <template>
-    <VueScrollama class="prose max-w-none my-5">
+    <VueScrollama
+        class="prose max-w-none my-5 mx-1 py-5"
+        :class="{ 'has-background': background }"
+        :style="{ color: config.textColour ?? '#000' }"
+    >
         <component :is="config.titleTag || 'h2'" class="px-10 mb-0 chapter-title top-20">
             {{ config.title }}
         </component>
@@ -20,6 +24,9 @@ const props = defineProps({
     config: {
         type: Object as PropType<TextPanel>,
         required: true
+    },
+    background: {
+        type: Boolean
     }
 });
 
@@ -39,6 +46,11 @@ onMounted((): void => {
 </script>
 
 <style scoped lang="scss">
+.has-background {
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 20px;
+}
+
 @media screen and (max-width: 640px) {
     .chapter-title {
         max-width: 100vw;

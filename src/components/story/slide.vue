@@ -1,5 +1,5 @@
 <template>
-    <div :id="key" class="story-slide h-full w-full flex sm:flex-row flex-col">
+    <div ref="slide" :id="key" class="story-slide pt-24 h-full w-full flex sm:flex-row flex-col">
         <panel
             v-for="(panel, idx) in config.panel"
             :key="idx"
@@ -10,6 +10,7 @@
             :slideIdx="slideIdx"
             :lang="lang"
             :class="determinePanelOrder(idx)"
+            :background="background"
         ></panel>
     </div>
 </template>
@@ -22,6 +23,7 @@ import Panel from '@storylines/components/panels/panel.vue';
 
 const key = getCurrentInstance()?.vnode.key as string;
 
+const emit = defineEmits(['slide-changed']);
 const props = defineProps({
     config: {
         type: Object as PropType<Slide>,
@@ -35,13 +37,30 @@ const props = defineProps({
     },
     lang: {
         type: String
+    },
+    background: {
+        type: Boolean
     }
 });
 
 const defaultRatio = ref(false);
 
+const slide = ref<Element>();
+const observer = ref<IntersectionObserver | undefined>(undefined);
+
 onMounted(() => {
     const panels = props.config.panel;
+
+    observer.value = new IntersectionObserver(
+        ([slide]) => {
+            // emit a `slide-changed` event when a new slide hits the middle of the screen.
+            if (slide.isIntersecting) {
+                emit('slide-changed', props.slideIdx);
+            }
+        },
+        { rootMargin: '0px', threshold: 0.45 }
+    );
+
     // check if there is one text panel and one non-text panel in the slide and user did not specify a width in config
     if (panels.length == 2 && !panels[0]?.width && !panels[1]?.width) {
         const panelText1 = panels[0]?.type === PanelType.Text;
@@ -52,6 +71,8 @@ onMounted(() => {
             defaultRatio.value = true;
         }
     }
+
+    observer.value?.observe(slide.value as Element);
 });
 
 /**

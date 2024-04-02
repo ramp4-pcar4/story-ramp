@@ -17,6 +17,7 @@
             :slideIdx="slideIdx"
             :lang="lang"
             :style="config.customStyles"
+            :background="background"
         ></component>
     </div>
 </template>
@@ -51,6 +52,9 @@ const props = defineProps({
     },
     lang: {
         type: String
+    },
+    background: {
+        type: Boolean
     }
 });
 
