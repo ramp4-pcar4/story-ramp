@@ -9,12 +9,10 @@
 
 <script setup lang="ts">
 import type { PropType } from 'vue';
-import { createApp, h, onMounted, ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import { i18n } from '@storylines/lang';
-import { ConfigFileStructure, MapPanel } from '@storylines/definitions';
-
+import { ConfigFileStructure, MapPanel, TimeSliderConfig } from '@storylines/definitions';
 import { TimeSliderFixture } from '@storylines/components/panels/helpers/time-slider/index';
-import VueTippy from 'vue-tippy';
 
 const props = defineProps({
     config: {
@@ -34,7 +32,6 @@ const props = defineProps({
 
 const el = ref();
 const intersectTimeoutHandle = ref(-1);
-const scrollguardOpen = ref(false);
 const mapComponent = ref<Element | undefined>(undefined);
 
 onMounted(() => {
@@ -85,7 +82,7 @@ const init = async () => {
 
             if (props.config.timeSlider) {
                 rInstance.fixture.add('time-slider', TimeSliderFixture).then((ts: TimeSliderFixture) => {
-                    ts.initTimeSlider(props.config.timeSlider!, i18n);
+                    ts.initTimeSlider(props.config.timeSlider as TimeSliderConfig, i18n);
                 });
             }
         });

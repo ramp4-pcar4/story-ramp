@@ -15,6 +15,7 @@
 <script setup lang="ts">
 import type { PropType } from 'vue';
 import { inject, onMounted, ref } from 'vue';
+import { useRoute } from 'vue-router';
 import {
     ChartPanel,
     ConfigFileStructure,
@@ -54,6 +55,8 @@ const props = defineProps({
 });
 
 const el = ref();
+const route = useRoute();
+
 const chartOptions = ref<DQVChartConfig>({} as DQVChartConfig);
 const title = ref('');
 const loading = ref(true);
@@ -71,6 +74,18 @@ const menuOptions = [
     'downloadXLS'
 ];
 
+const frMenuLabels = {
+    viewFullscreen: 'Plein Écran',
+    printChart: 'Imprimer',
+    downloadPNG: 'Télécharger PNG',
+    downloadJPEG: 'Télécharger JPEG',
+    downloadPDF: 'Télécharger PDF',
+    downloadSVG: 'Télécharger SVG',
+    downloadCSV: 'Télécharger CSV',
+    downloadXLS: 'Télécharger XLS',
+    viewData: 'Affiche les données'
+};
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const $papa: any = inject('$papa');
 
@@ -80,6 +95,13 @@ onMounted(() => {
     // If the client width is over 640 (not on mobile), add the `View Data Table` option to charts.
     if (!isMobile) {
         menuOptions.push('viewData');
+    }
+
+    // add FR translations strings as required
+    if ((route.params.lang as string) === 'fr') {
+        Highcharts.setOptions({
+            lang: frMenuLabels
+        });
     }
 
     if (props.config.config) {
