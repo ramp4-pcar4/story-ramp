@@ -15,6 +15,7 @@
 <script setup lang="ts">
 import type { PropType } from 'vue';
 import { inject, onMounted, ref } from 'vue';
+import { useRoute } from 'vue-router';
 import {
     ChartPanel,
     ConfigFileStructure,
@@ -22,6 +23,7 @@ import {
     LineSeriesData,
     PieSeriesData
 } from '@storylines/definitions';
+import { useI18n } from 'vue-i18n';
 import { Chart } from 'highcharts-vue';
 
 import Highcharts from 'highcharts';
@@ -53,7 +55,10 @@ const props = defineProps({
     }
 });
 
+const { t } = useI18n();
 const el = ref();
+const route = useRoute();
+
 const chartOptions = ref<DQVChartConfig>({} as DQVChartConfig);
 const title = ref('');
 const loading = ref(true);
@@ -80,6 +85,24 @@ onMounted(() => {
     // If the client width is over 640 (not on mobile), add the `View Data Table` option to charts.
     if (!isMobile) {
         menuOptions.push('viewData');
+    }
+
+    // add FR translations strings to highcharts configuration as required
+    const frMenuLabels = {
+        viewFullscreen: t('chart.viewFullscreen'),
+        printChart: t('chart.printChart'),
+        downloadPNG: t('chart.downloadPNG'),
+        downloadJPEG: t('chart.downloadJPEG'),
+        downloadPDF: t('chart.downloadPDF'),
+        downloadSVG: t('chart.downloadSVG'),
+        downloadCSV: t('chart.downloadCSV'),
+        downloadXLS: t('chart.downloadXLS'),
+        viewData: t('chart.viewData')
+    };
+    if ((route.params.lang as string) === 'fr') {
+        Highcharts.setOptions({
+            lang: frMenuLabels
+        });
     }
 
     if (props.config.config) {
