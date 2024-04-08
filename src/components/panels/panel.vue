@@ -27,6 +27,7 @@ import { BasePanel, ConfigFileStructure, PanelType } from '@storylines/definitio
 
 import TextPanel from './text-panel.vue';
 import MapPanel from './map-panel.vue';
+import InteractiveMap from './interactive-map.vue';
 import ImagePanel from './image-panel.vue';
 import AudioPanel from './audio-panel.vue';
 import VideoPanel from './video-panel.vue';
@@ -61,6 +62,7 @@ const getTemplate = (): Component => {
     const panelTemplates: Record<PanelType | string, Component> = {
         [PanelType.Text]: TextPanel,
         [PanelType.Map]: MapPanel,
+        [PanelType.InteractiveMap]: InteractiveMap,
         [PanelType.Image]: ImagePanel,
         [PanelType.Audio]: AudioPanel,
         [PanelType.Video]: VideoPanel,
