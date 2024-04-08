@@ -39,6 +39,9 @@
                     },
                     {
                         "$ref": "#/$defs/dynamicPanel"
+                    },
+                    {
+                        "$ref": "#/$defs/interactiveMapPanel"
                     }
                 ]
             },
@@ -188,6 +191,87 @@
                 }
             },
             "required": ["config", "type"]
+        },
+
+        "interactiveMapPanel": {
+            "type": "object",
+            "description": "An interactive map slide component.",
+            "properties": {
+                "config": {
+                    "type": "string",
+                    "description": "A relative path to a JSON file containing the map config.",
+                    "default": ""
+                },
+                "type": {
+                    "type": "string",
+                    "enum": ["interactive-map"]
+                },
+                "scrollguard": {
+                    "type": "boolean",
+                    "description": "Whether or not CTRL is required to scroll this map.",
+                    "default": false
+                },
+                "title": {
+                    "type": "string",
+                    "description": "A title that is displayed centered above this map."
+                },
+                "points": {
+                    "type": "array",
+                    "description": "A list of points of interest.",
+                    "items": {
+                        "$ref": "#/$defs/pointOfInterest"
+                    }
+                }
+            },
+            "required": ["type", "config"]
+        },
+
+        "pointOfInterest": {
+            "type": "object",
+            "description": "A map slide component.",
+            "properties": {
+                "title": {
+                    "type": "string",
+                    "description": "The name of the point of interest.",
+                    "default": ""
+                },
+                "text": {
+                    "type": "string",
+                    "description": "Text content for the point of interest."
+                },
+                "image": {
+                    "type": "string",
+                    "description": "Image content for the point of interest."
+                },
+                "altText": {
+                    "type": "string",
+                    "description": "Alt text for the image."
+                },
+                "target": {
+                    "$ref": "#/$defs/pointOfInterestTarget"
+                }
+            },
+            "required": ["target"]
+        },
+
+        "pointOfInterestTarget": {
+            "type": "object",
+            "description": "The target object for a point of interest.",
+            "properties": {
+                "oid": {
+                    "type": "number",
+                    "description": "The target OBJECTID of the point."
+                },
+                "layerId": {
+                    "type": "string",
+                    "description": "The ID of the target layer."
+                },
+                "layerIndex": {
+                    "type": "number",
+                    "description": "If the target layer is a map image layer, the index of the sublayer to target."
+                }
+            },
+            "required": ["oid", "layerId"]
         },
 
         "dqvchartPanel": {
