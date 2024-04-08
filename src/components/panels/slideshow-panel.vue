@@ -51,18 +51,17 @@
 
 <script setup lang="ts">
 import type { PropType } from 'vue';
-import { ref, onMounted, getCurrentInstance } from 'vue';
+import { ref, onMounted } from 'vue';
 import { ConfigFileStructure, SlideshowPanel } from '@storylines/definitions';
 import { Carousel, Navigation, Pagination, Slide } from 'vue3-carousel';
 import 'vue3-carousel/dist/carousel.css';
 
 import MarkdownIt from 'markdown-it';
-import ImagePanel from '@storylines/components/panels/image-panel.vue';
 import Panel from '@storylines/components/panels/panel.vue';
 
 const md = new MarkdownIt({ html: true });
 
-const props = defineProps({
+defineProps({
     config: {
         type: Object as PropType<SlideshowPanel>,
         required: true
