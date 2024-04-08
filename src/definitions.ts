@@ -123,6 +123,7 @@ export enum PanelType {
     Text = 'text',
     Image = 'image',
     Map = 'map',
+    InteractiveMap = 'interactive-map',
     Chart = 'chart',
     Video = 'video',
     Audio = 'audio',
@@ -152,6 +153,30 @@ export interface MapPanel extends BasePanel {
     title: string;
     scrollguard: boolean;
 }
+
+export interface InteractiveMapPanel extends BasePanel {
+    type: PanelType.InteractiveMap;
+    config: string;
+    title: string;
+    scrollguard: boolean;
+    points: PointOfInterest[];
+}
+
+export interface PointOfInterest {
+    title: string;
+    text: string;
+    image: string;
+    altText: string;
+    target: PointOfInterestTarget;
+}
+
+export interface PointOfInterestTarget {
+    oid: number;
+    layerId: string;
+    layerIndex?: number;
+    icon?: string;
+}
+
 export interface TimeSliderConfig {
     range: number[];
     start: number[];
