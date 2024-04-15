@@ -117,6 +117,7 @@ export interface Slide {
     // tuple definition to restrict array size
     // panel: [BasePanel, BasePanel | undefined];
     panel: BasePanel[];
+    backgroundImage: string;
 }
 
 export enum PanelType {
@@ -142,6 +143,7 @@ export interface TextPanel extends BasePanel {
     title: string;
     titleTag: string;
     content: string; // in md format
+    textColour: string;
 }
 
 export interface MapPanel extends BasePanel {
@@ -165,6 +167,7 @@ export interface DynamicPanel extends BasePanel {
     titleTag: string;
     content: string;
     children: DynamicChildItem[];
+    textColour: string;
 }
 
 export interface DynamicChildItem {

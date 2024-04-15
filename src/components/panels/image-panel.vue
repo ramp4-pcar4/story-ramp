@@ -7,7 +7,7 @@
                 :class="config.class"
                 :alt="config.altText || ''"
                 :style="{ width: `${config.width}px`, height: `${config.height}px` }"
-                class="graphic-image px-10 mx-auto my-6 flex object-contain sm:max-w-screen sm:max-h-screen"
+                class="graphic-image px-10 mx-auto flex object-contain sm:max-w-screen sm:max-h-screen"
             />
         </fullscreen>
 
@@ -15,6 +15,7 @@
             v-if="config.caption"
             class="text-center text-sm max-w-full graphic-caption"
             v-html="md.render(config.caption)"
+            :class="{ 'has-background': background }"
         ></div>
     </div>
 </template>
@@ -38,6 +39,9 @@ const props = defineProps({
     slideIdx: {
         type: Number,
         default: 0
+    },
+    background: {
+        type: Boolean
     }
 });
 
@@ -76,7 +80,12 @@ onMounted((): void => {
 });
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+.has-background {
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 0px 0px 20px 20px;
+    color: black;
+}
 @media screen and (max-width: 640px) {
     .graphic {
         max-width: 100vw;

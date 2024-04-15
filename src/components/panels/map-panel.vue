@@ -1,6 +1,10 @@
 <template>
     <div ref="el" class="flex flex-col h-full align-middle w-full">
-        <div class="px-10 mb-0 chapter-title top-20 map-title text-center" v-if="config.title">
+        <div
+            class="px-10 mb-0 chapter-title top-20 map-title text-center"
+            :class="{ 'has-background': background }"
+            v-if="config.title"
+        >
             {{ config.title }}
         </div>
         <div :id="`ramp-map-${slideIdx}`" class="w-full bg-gray-200 h-story rv-map"></div>
@@ -27,6 +31,9 @@ const props = defineProps({
     },
     configFileStructure: {
         type: Object as PropType<ConfigFileStructure>
+    },
+    background: {
+        type: Boolean
     }
 });
 
@@ -114,6 +121,13 @@ const init = async () => {
 .rv-map-title {
     height: calc(100vh - 9rem) !important;
     width: 100%;
+}
+
+.has-background {
+    background-color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 0em !important;
+    padding-bottom: 1em;
+    color: black;
 }
 
 .map-title {

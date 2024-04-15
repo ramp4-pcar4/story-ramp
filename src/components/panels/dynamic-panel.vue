@@ -1,6 +1,10 @@
 <template>
     <div ref="el" :id="key" class="story-slide w-full h-full flex sm:flex-row flex-col">
-        <VueScrollama class="flex-1 order-2 sm:order-1 prose max-w-none my-5">
+        <VueScrollama
+            class="flex-1 order-2 sm:order-1 prose max-w-none my-5 mx-1 py-5"
+            :class="{ 'has-background': background }"
+            :style="{ color: config.textColour ?? '#000' }"
+        >
             <component
                 :is="config.titleTag || 'h2'"
                 class="px-10 mb-0 chapter-title top-20"
@@ -36,6 +40,7 @@
                 :slideIdx="slideIdx"
                 :dynamicIdx="activeIdx"
                 :ratio="false"
+                :background="background"
                 ref="content"
             >
             </panel>
@@ -60,6 +65,9 @@ const props = defineProps({
     },
     slideIdx: {
         type: Number
+    },
+    background: {
+        type: Boolean
     }
 });
 
@@ -173,6 +181,10 @@ const clickBack = (): void => {
 }
 .return-button img {
     margin: 0px;
+}
+.has-background {
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 20px;
 }
 
 @media screen and (max-width: 640px) {

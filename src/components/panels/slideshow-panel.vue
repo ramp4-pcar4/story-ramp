@@ -43,7 +43,12 @@
                     </template>
                 </carousel>
 
-                <div v-if="config.caption" class="text-center mt-5 text-sm" v-html="md.render(config.caption)"></div>
+                <div
+                    v-if="config.caption"
+                    class="text-center mt-5 text-sm"
+                    :class="{ 'has-background': background }"
+                    v-html="md.render(config.caption)"
+                ></div>
             </div>
         </div>
     </div>
@@ -73,6 +78,9 @@ const props = defineProps({
     slideIdx: {
         type: Number,
         required: true
+    },
+    background: {
+        type: Boolean
     }
 });
 
@@ -91,6 +99,14 @@ window.addEventListener('resize', () => {
 </script>
 
 <style lang="scss" scoped>
+.has-background {
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 0px 0px 20px 20px;
+    color: black;
+    margin-top: 0px !important;
+    padding-top: 5px;
+}
+
 .carousel {
     height: auto;
     text-align: left;
