@@ -42,17 +42,6 @@ const intersectTimeoutHandle = ref(-1);
 const mapComponent = ref<Element | undefined>(undefined);
 
 onMounted(() => {
-    // Check if the config file exists in the ZIP folder first
-    const assetSrc = `${props.config.config.substring(props.config.config.indexOf('/') + 1)}`;
-    if (props.configFileStructure) {
-        const mapFile = props.configFileStructure.zip.file(assetSrc);
-        if (mapFile) {
-            mapFile.async('string').then((res: string) => {
-                props.config.config = res;
-            });
-        }
-    }
-
     const observer = new IntersectionObserver(
         ([e]) => {
             if (e.isIntersecting) {
@@ -75,25 +64,41 @@ const init = async () => {
     // Find the correct map component based on whether there's a title component.
     mapComponent.value = props.config.title ? el.value.children[1] : el.value.children[0];
 
-    fetch(props.config.config).then((data) => {
-        // parse JSON data
-        data.json().then((rampConfig: any) => {
-            const rInstance = (window as any).RAMP.createInstance(mapComponent.value, rampConfig);
-            // Add the scrollguard fixture and enable it if desired.
-            // If the scrollguard was already added previously, add does nothing, so no harm done!
-            if (props.config.scrollguard) {
-                rInstance.fixture.add('scrollguard').then((scrollguardFixture: any) => {
-                    scrollguardFixture.setEnabled(true);
-                });
-            }
-
-            if (props.config.timeSlider) {
-                rInstance.fixture.add('time-slider', TimeSliderFixture).then((ts: TimeSliderFixture) => {
-                    ts.initTimeSlider(props.config.timeSlider as TimeSliderConfig, i18n);
-                });
-            }
+    // If the configFileStructure object is provided (editor preview mode), grab the config from there.
+    if (props.configFileStructure) {
+        const assetSrc = `${props.config.config.substring(props.config.config.indexOf('/') + 1)}`;
+        const mapFile = props.configFileStructure.zip.file(assetSrc);
+        if (mapFile) {
+            mapFile.async('string').then((res: string) => {
+                setupMap(JSON.parse(res));
+            });
+        }
+    } else {
+        // Otherwise fetch it from the server.
+        fetch(props.config.config).then((data) => {
+            // parse JSON data
+            data.json().then((rampConfig: any) => {
+                setupMap(rampConfig);
+            });
         });
-    });
+    }
+};
+
+const setupMap = (config: any) => {
+    const rInstance = (window as any).RAMP.createInstance(mapComponent.value, config);
+    // Add the scrollguard fixture and enable it if desired.
+    // If the scrollguard was already added previously, add does nothing, so no harm done!
+    if (props.config.scrollguard) {
+        rInstance.fixture.add('scrollguard').then((scrollguardFixture: any) => {
+            scrollguardFixture.setEnabled(true);
+        });
+    }
+
+    if (props.config.timeSlider) {
+        rInstance.fixture.add('time-slider', TimeSliderFixture).then((ts: TimeSliderFixture) => {
+            ts.initTimeSlider(props.config.timeSlider as TimeSliderConfig, i18n);
+        });
+    }
 };
 </script>
 
