@@ -21,10 +21,10 @@
             v-else
         />
 
-        <VueScrollama class="grid-container story-scrollama w-full flex-grow min-w-0" @step-enter="stepEnter">
+        <div class="grid-container z-20 story-scrollama w-full flex-grow min-w-0">
             <BackgroundImage :src="backgroundImage" @background-changed="handleBackgroundChange"></BackgroundImage>
 
-            <div class="grid-content z-20">
+            <VueScrollama class="grid-content z-20" @step-enter="stepEnter">
                 <div
                     v-for="(slide, idx) in config.slides"
                     class="flex"
@@ -42,8 +42,8 @@
                         @slide-changed="handleSlideChange"
                     ></slide>
                 </div>
-            </div>
-        </VueScrollama>
+            </VueScrollama>
+        </div>
     </div>
 </template>
 
@@ -171,7 +171,7 @@ const stepEnter = ({ element }: { element: HTMLElement }): void => {
     > *:first-child::before {
         content: '';
         position: absolute;
-        width: 100%;
+        //width: 100%;
         height: 1px;
         top: 0;
         // modified tailwind shadow
@@ -182,7 +182,7 @@ const stepEnter = ({ element }: { element: HTMLElement }): void => {
     > *:last-child::before {
         content: '';
         position: absolute;
-        width: 100%;
+        //width: 100%;
         height: 1px;
         bottom: 0;
         box-shadow: 0 3px 6px 0px rgba(0, 0, 0, 0.1), 0 2px 4px 0px rgba(0, 0, 0, 0.06);
