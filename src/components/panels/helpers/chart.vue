@@ -99,7 +99,7 @@ onMounted(() => {
         downloadXLS: t('chart.downloadXLS'),
         viewData: t('chart.viewData')
     };
-    if ((route.params.lang as string) === 'fr') {
+    if ((route && (route.params.lang as string)) === 'fr') {
         Highcharts.setOptions({
             lang: frMenuLabels
         });
