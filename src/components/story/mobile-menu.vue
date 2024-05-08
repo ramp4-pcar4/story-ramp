@@ -40,16 +40,37 @@
                 <button class="flex py-1 px-3" @click="scrollToChapter('intro')" v-if="plugin">
                     <svg
                         class="flex-shrink-0"
-                        width="24"
-                        height="24"
                         viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg"
+                        width="24px"
+                        height="24px"
                         fill="#fff"
                         stroke="#878787"
+                        xmlns="http://www.w3.org/2000/svg"
                     >
                         <path
+                            data-v-689fab2c=""
                             d="m19.325 16.229c-2.4415 1.4096-4.8829 2.8191-7.3244 4.2286-2.4415-1.4096-4.883-2.8192-7.3245-4.2288-3.55e-5 -2.8191-7.1e-5 -5.6383-1.066e-4 -8.4574 2.4415-1.4096 4.8829-2.8191 7.3244-4.2286 2.4415 1.4096 4.883 2.8192 7.3245 4.2288 3.7e-5 2.8191 7.4e-5 5.6383 1.1e-4 8.4574z"
                             stroke-width=".93974"
+                            style="fill: rgba(255, 255, 255, 0); fill-opacity: 0"
+                            transform="matrix(1, 0, 0, 1, 8.881784197001252e-16, 0)"
+                        />
+                        <g transform="matrix(1, 0, 0, 1, 0.07912001013755887, 1.1142139434814453)">
+                            <polygon
+                                points="11.956 9.662 9.522 12.097 9.862 12.437 11.956 10.344 14.049 12.437 14.39 12.097"
+                                style=""
+                            />
+                            <path
+                                style="fill: rgb(135, 135, 135); stroke-width: 1.5px"
+                                d="M 11.917 10.545 L 11.917 15.649"
+                            />
+                        </g>
+                        <rect
+                            x="9.114"
+                            y="8.74"
+                            width="5.842"
+                            height="0.487"
+                            style=""
+                            transform="matrix(1, 0, 0, 1, 8.881784197001252e-16, 0)"
                         />
                     </svg>
                     <span class="flex-1 ml-4 overflow-hidden leading-normal overflow-ellipsis whitespace-nowrap">{{
@@ -60,16 +81,37 @@
                 <router-link :to="{ hash: '#intro' }" class="flex py-1 px-3" target v-else>
                     <svg
                         class="flex-shrink-0"
-                        width="24"
-                        height="24"
                         viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg"
+                        width="24px"
+                        height="24px"
                         fill="#fff"
                         stroke="#878787"
+                        xmlns="http://www.w3.org/2000/svg"
                     >
                         <path
+                            data-v-689fab2c=""
                             d="m19.325 16.229c-2.4415 1.4096-4.8829 2.8191-7.3244 4.2286-2.4415-1.4096-4.883-2.8192-7.3245-4.2288-3.55e-5 -2.8191-7.1e-5 -5.6383-1.066e-4 -8.4574 2.4415-1.4096 4.8829-2.8191 7.3244-4.2286 2.4415 1.4096 4.883 2.8192 7.3245 4.2288 3.7e-5 2.8191 7.4e-5 5.6383 1.1e-4 8.4574z"
                             stroke-width=".93974"
+                            style="fill: rgba(255, 255, 255, 0); fill-opacity: 0"
+                            transform="matrix(1, 0, 0, 1, 8.881784197001252e-16, 0)"
+                        />
+                        <g transform="matrix(1, 0, 0, 1, 0.07912001013755887, 1.1142139434814453)">
+                            <polygon
+                                points="11.956 9.662 9.522 12.097 9.862 12.437 11.956 10.344 14.049 12.437 14.39 12.097"
+                                style=""
+                            />
+                            <path
+                                style="fill: rgb(135, 135, 135); stroke-width: 1.5px"
+                                d="M 11.917 10.545 L 11.917 15.649"
+                            />
+                        </g>
+                        <rect
+                            x="9.114"
+                            y="8.74"
+                            width="5.842"
+                            height="0.487"
+                            style=""
+                            transform="matrix(1, 0, 0, 1, 8.881784197001252e-16, 0)"
                         />
                     </svg>
                     <span class="flex-1 ml-4 overflow-hidden leading-normal overflow-ellipsis whitespace-nowrap">{{
