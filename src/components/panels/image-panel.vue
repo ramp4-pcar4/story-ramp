@@ -3,7 +3,7 @@
         <fullscreen :expandable="config.fullscreen" :type="config.type">
             <img
                 ref="img"
-                :src="slideIdx > 2 ? '' : config.src"
+                :src="slideIdx > 2 ? '' : state.src"
                 :class="config.class"
                 :alt="config.altText || ''"
                 :style="{ width: `${config.width}px`, height: `${config.height}px` }"
@@ -21,7 +21,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, getCurrentInstance } from 'vue';
+import { reactive, ref, onMounted, getCurrentInstance } from 'vue';
 import type { PropType } from 'vue';
 import { ImagePanel, ConfigFileStructure } from '@storylines/definitions';
 
@@ -47,10 +47,15 @@ const props = defineProps({
 
 const img = ref<Element>();
 const md = new MarkdownIt({ html: true });
+const state = reactive({
+    src: ''
+});
 
 const observer = ref<IntersectionObserver | undefined>(undefined);
 
 onMounted((): void => {
+    state.src = props.config.src ? props.config.src : '';
+
     if (props.slideIdx > 2) {
         observer.value = new IntersectionObserver(([image]) => {
             // lazy load images
@@ -65,13 +70,12 @@ onMounted((): void => {
     // obtain image files from ZIP folder in editor preview mode
     if (props.configFileStructure) {
         const image = props.config;
-
         const assetSrc = `${image.src.substring(image.src.indexOf('/') + 1)}`;
         const imageFile = props.configFileStructure?.zip.file(assetSrc);
         if (imageFile) {
+            // Convert the image to a blob so it can be displayed locally.
             imageFile.async('blob').then((res: Blob) => {
-                props.config.src = URL.createObjectURL(res);
-                getCurrentInstance()?.proxy?.$forceUpdate();
+                state.src = props.config.src = URL.createObjectURL(res);
             });
         }
     }

@@ -37,6 +37,7 @@
             <panel
                 class="flex-2"
                 :config="activeConfig"
+                :configFileStructure="configFileStructure"
                 :slideIdx="slideIdx"
                 :dynamicIdx="activeIdx"
                 :ratio="false"
@@ -54,7 +55,7 @@ import { defineAsyncComponent, getCurrentInstance, onMounted, ref } from 'vue';
 import VueScrollama from 'vue3-scrollama';
 import MarkdownIt from 'markdown-it';
 
-import { BasePanel, DynamicPanel } from '@storylines/definitions';
+import { BasePanel, ConfigFileStructure, DynamicPanel } from '@storylines/definitions';
 
 const panel = defineAsyncComponent(() => import('./panel.vue'));
 
@@ -62,6 +63,9 @@ const props = defineProps({
     config: {
         type: Object as PropType<DynamicPanel>,
         required: true
+    },
+    configFileStructure: {
+        type: Object as PropType<ConfigFileStructure>
     },
     slideIdx: {
         type: Number
