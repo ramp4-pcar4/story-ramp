@@ -170,6 +170,7 @@ window.addEventListener('resize', () => {
 }
 .carousel-item {
     height: 80vh;
+    top: 0px;
 }
 
 @media screen and (max-width: 640px) {
