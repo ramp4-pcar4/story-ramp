@@ -5,6 +5,7 @@
             @click="intervalID >= 0 ? endLoop() : startLoop()"
             :content="$t(intervalID >= 0 ? 'timeslider.pause' : 'timeslider.play')"
             v-tippy="{ placement: 'top', hideOnClick: false, animateFill: true }"
+            :aria-label="$t(intervalID >= 0 ? 'timeslider.pause' : 'timeslider.play')"
         >
             <svg
                 v-if="intervalID === -1"
@@ -38,6 +39,7 @@
             @click="minimizeToggle()"
             :content="$t(minimized ? 'timeslider.expand' : 'timeslider.minimize')"
             v-tippy="{ placement: 'top', hideOnClick: false, animateFill: true }"
+            :aria-label="$t(minimized ? 'timeslider.expand' : 'timeslider.minimize')"
         >
             <svg
                 v-if="!minimized"
@@ -205,6 +207,10 @@ const minimizeToggle = () => {
 
     .noUi-target {
         @apply w-4/5;
+    }
+
+    .noUi-value {
+        color: #555;
     }
 
     .play-button,
