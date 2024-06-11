@@ -4,7 +4,12 @@
         <Transition name="fade" mode="out-in">
             <div v-if="newImage !== 'none'" class="w-full h-full">
                 <img v-if="oldImage !== 'none'" class="fade-in w-full h-full" :src="oldImage" />
-                <img class="fade-in w-full h-full" :class="{ hide: activeImage === 1 }" :src="newImage" />
+                <img
+                    class="fade-in w-full h-full"
+                    :class="{ hide: activeImage === 1 }"
+                    :src="newImage"
+                    alt="Background image"
+                />
             </div>
             <div class="w-full h-full" v-else></div>
         </Transition>
