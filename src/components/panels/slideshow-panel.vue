@@ -169,7 +169,9 @@ window.addEventListener('resize', () => {
     }
 }
 .carousel-item {
-    height: 80vh;
+    // Max height of the carousel is 80vh, but set height to 100% to items appear in the center of the container.
+    height: 100%;
+    max-height: 80vh;
     top: 0px;
 }
 
