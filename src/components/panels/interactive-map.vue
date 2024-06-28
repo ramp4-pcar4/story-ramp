@@ -12,6 +12,7 @@
 <script setup lang="ts">
 import { PropType } from 'vue';
 import { onMounted, ref } from 'vue';
+import { createInstance } from 'ramp-pcar';
 import { ConfigFileStructure, InteractiveMapPanel, PointOfInterest } from '@storylines/definitions';
 import PointOfInterestItem from './helpers/point-of-interest-item.vue';
 
@@ -59,7 +60,7 @@ const init = async () => {
     fetch(props.config.config).then((data) => {
         // parse JSON data
         data.json().then((rampConfig: any) => {
-            rInstance.value = (window as any).RAMP.createInstance(mapComponent.value, rampConfig);
+            rInstance.value = createInstance(mapComponent.value as HTMLElement, rampConfig);
             const mapInstance = rInstance.value;
 
             // Remove the appbar on load if it exists.
