@@ -1,4 +1,4 @@
-import { i18n } from './src/lang';
+import { i18n } from './lang';
 
 import Chart from '@storylines/components/panels/helpers/chart.vue';
 import Intro from '@storylines/components/story/introduction.vue';
@@ -8,8 +8,8 @@ import StoryContent from '@storylines/components/story/story-content.vue';
 const storylinesI18n = i18n;
 export { storylinesI18n };
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-const install = (app) => {
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types, @typescript-eslint/no-explicit-any
+const install = (app: any) => {
     // reusable viewer components
     app.component('storylines-chart', Chart);
     app.component('storylines-intro', Intro);

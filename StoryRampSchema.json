@@ -440,7 +440,7 @@
                             }
                         ]
                     },
-                    "minItems": 1,
+                    "minItems": 1
                 },
                 "loop": {
                     "type": "boolean",
@@ -509,6 +509,7 @@
                     "description": "The title of the y-axis."
                 }
             }
+        }
     },
 
     "properties": {
