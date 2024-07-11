@@ -3,7 +3,7 @@
         <ul>
             <li v-if="introExists">
                 <a
-                    class="items-center px-2 py-1 mx-1 cursor-pointer"
+                    class="flex items-center px-2 py-1 mx-1 cursor-pointer"
                     @click="scrollToChapter('intro')"
                     v-tippy="{
                         delay: '200',
@@ -14,7 +14,7 @@
                     }"
                     v-if="plugin"
                 >
-                    <span class="flex-1 ml-4 overflow-hidden leading-normal overflow-ellipsis whitespace-nowrap">{{
+                    <span class="flex-1 overflow-hidden leading-normal overflow-ellipsis whitespace-nowrap">{{
                         $t('chapters.return')
                     }}</span>
                 </a>
@@ -45,14 +45,14 @@
                     v-tippy="{
                         delay: '200',
                         placement: 'right',
-                        content: slide.title,
+                        content: getTitle(slide),
                         animateFill: true,
                         animation: 'chapter-menu'
                     }"
                     v-if="plugin"
                 >
-                    <span class="flex-1 ml-4 overflow-hidden leading-normal overflow-ellipsis whitespace-nowrap">{{
-                        slide.title
+                    <span class="flex-1 overflow-hidden leading-normal overflow-ellipsis whitespace-nowrap">{{
+                        getTitle(slide)
                     }}</span>
                 </a>
 
@@ -63,14 +63,14 @@
                     v-tippy="{
                         delay: '200',
                         placement: 'right',
-                        content: slide.title,
+                        content: getTitle(slide),
                         animateFill: true,
                         animation: 'chapter-menu'
                     }"
                     v-else
                 >
                     <span class="flex-1 overflow-hidden leading-normal overflow-ellipsis whitespace-nowrap">{{
-                        slide.title
+                        getTitle(slide)
                     }}</span>
                 </router-link>
             </li>
@@ -82,6 +82,9 @@
 import type { PropType } from 'vue';
 import { ref, onMounted } from 'vue';
 import { Slide } from '@storylines/definitions';
+
+import { useI18n } from 'vue-i18n';
+const { t } = useI18n();
 
 defineProps({
     slides: {
@@ -113,6 +116,10 @@ const scrollToChapter = (id: string): void => {
     if (el) {
         el.scrollIntoView({ behavior: 'smooth' });
     }
+};
+
+const getTitle = (slide: Slide): string => {
+    return slide.title !== '' ? slide.title : t('chapters.untitled');
 };
 </script>
 
