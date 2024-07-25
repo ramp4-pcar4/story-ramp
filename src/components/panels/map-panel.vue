@@ -15,6 +15,7 @@
 import type { PropType } from 'vue';
 import { onMounted, ref } from 'vue';
 import { i18n } from '@storylines/lang';
+import { createInstance } from 'ramp-pcar';
 import { ConfigFileStructure, MapPanel, TimeSliderConfig } from '@storylines/definitions';
 import { TimeSliderFixture } from '@storylines/components/panels/helpers/time-slider/index';
 
@@ -85,7 +86,7 @@ const init = async () => {
 };
 
 const setupMap = (config: any) => {
-    const rInstance = (window as any).RAMP.createInstance(mapComponent.value, config);
+    const rInstance = createInstance(mapComponent.value as HTMLElement, config);
     // Add the scrollguard fixture and enable it if desired.
     // If the scrollguard was already added previously, add does nothing, so no harm done!
     if (props.config.scrollguard) {
