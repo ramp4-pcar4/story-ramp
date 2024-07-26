@@ -356,15 +356,21 @@ const makeLineChart = (fields: string[], csvData: CSVDataRow[], defaultOptions: 
 .highcharts-table-caption {
     display: none;
 }
+.highcharts-title {
+    font-size: 1.5em !important;
+}
 
 @media screen and (max-width: 640px) {
     .dv-chart {
         background-color: white;
     }
 
+    .highcharts-title {
+        font-size: 1em !important;
+    }
+
     .dv-chart-container {
         max-width: 100vw;
-        max-height: 50vh;
     }
 }
 </style>

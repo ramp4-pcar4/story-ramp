@@ -1,5 +1,5 @@
 <template>
-    <div class="chart self-center px-10 my-8 mx-auto bg-gray-200_">
+    <div class="chart self-center my-8 mx-auto bg-gray-200_">
         <chart :config="config" :configFileStructure="configFileStructure" />
     </div>
 </template>
@@ -28,7 +28,6 @@ defineProps({
 @media screen and (max-width: 640px) {
     .chart {
         max-width: 100vw;
-        max-height: 50vh;
         background-color: white;
     }
 }
