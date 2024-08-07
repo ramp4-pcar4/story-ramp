@@ -9,7 +9,6 @@
         "
         class="flex-col relative"
     >
-        <slot></slot>
         <component
             :is="getTemplate()"
             :config="config"

@@ -39,11 +39,12 @@ export default defineConfig(() => {
             lib: {
                 entry: path.resolve(__dirname, 'src/storylines-plugin.ts'),
                 name: 'StorylinesViewer',
-                fileName: 'storylines-viewer',
-                formats: ['umd']
+                fileName: 'storylines-viewer'
             },
             rollupOptions: {
-                external: ['vue']
+                output: {
+                    inlineDynamicImports: true
+                }
             },
             copyPublicDir: false
         });
