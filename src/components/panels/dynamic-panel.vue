@@ -1,6 +1,6 @@
 <template>
     <div ref="el" :id="key" class="story-slide w-full h-full flex sm:flex-row flex-col">
-        <VueScrollama
+        <scrollama
             class="flex-1 order-2 sm:order-1 prose max-w-none my-5 mx-1 py-5"
             :class="{ 'has-background': background }"
             :style="{ color: config.textColour ?? '#000' }"
@@ -14,7 +14,7 @@
             </component>
 
             <div class="px-10 md-content" v-html="md.render(config.content)"></div>
-        </VueScrollama>
+        </scrollama>
 
         <div
             :class="
@@ -52,10 +52,10 @@
 <script setup lang="ts">
 import type { PropType } from 'vue';
 import { defineAsyncComponent, getCurrentInstance, onMounted, ref } from 'vue';
-import VueScrollama from 'vue3-scrollama';
-import MarkdownIt from 'markdown-it';
-
 import { BasePanel, ConfigFileStructure, DynamicPanel } from '@storylines/definitions';
+
+import MarkdownIt from 'markdown-it';
+import Scrollama from './helpers/scrollama.vue';
 
 const panel = defineAsyncComponent(() => import('./panel.vue'));
 

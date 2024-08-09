@@ -7,7 +7,7 @@
             :aria-label="title"
             v-if="!loading"
         >
-            <chart :options="chartOptions"></chart>
+            <charts :options="chartOptions"></charts>
         </div>
     </div>
 </template>
@@ -24,7 +24,6 @@ import {
     PieSeriesData
 } from '@storylines/definitions';
 import { useI18n } from 'vue-i18n';
-import { Chart } from 'highcharts-vue';
 
 import Highcharts from 'highcharts';
 import dataModule from 'highcharts/modules/data';

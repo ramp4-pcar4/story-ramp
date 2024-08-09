@@ -1,5 +1,5 @@
 <template>
-    <VueScrollama
+    <scrollama
         class="prose max-w-none my-5 mx-1 py-5"
         :class="{ 'has-background': background }"
         :style="{ color: config.textColour ?? '#000' }"
@@ -9,16 +9,16 @@
         </component>
 
         <div class="px-10 md-content object-contain" v-html="mdContent"></div>
-    </VueScrollama>
+    </scrollama>
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
 import type { PropType } from 'vue';
-import VueScrollama from 'vue3-scrollama';
-import MarkdownIt from 'markdown-it';
-
 import { TextPanel } from '@storylines/definitions';
+
+import MarkdownIt from 'markdown-it';
+import Scrollama from './helpers/scrollama.vue';
 
 const props = defineProps({
     config: {

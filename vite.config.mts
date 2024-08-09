@@ -42,8 +42,13 @@ export default defineConfig(() => {
                 fileName: 'storylines-viewer'
             },
             rollupOptions: {
+                external: ['vue'],
                 output: {
-                    inlineDynamicImports: true
+                    globals: {
+                        vue: 'Vue'
+                    },
+                    inlineDynamicImports: true,
+                    dir: 'dist'
                 }
             },
             copyPublicDir: false
