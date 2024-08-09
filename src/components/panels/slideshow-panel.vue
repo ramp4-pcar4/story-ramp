@@ -129,8 +129,7 @@ window.addEventListener('resize', () => {
     }
 
     :deep(.carousel__pagination) {
-        position: absolute;
-        bottom: calc(-6px - 4em);
+        position: relative;
         left: 50%;
         transform: translate(-50%, 0);
     }
@@ -182,6 +181,7 @@ window.addEventListener('resize', () => {
     }
     .carousel-item {
         max-height: 48vh;
+        overflow-y: auto;
     }
     :deep(.fullscreenButton) {
         right: 0px;
