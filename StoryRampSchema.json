@@ -202,6 +202,14 @@
                 "title": {
                     "type": "string",
                     "description": "A title that is displayed centered above this map."
+                },
+                "customTemplates": {
+                    "type": "array",
+                    "description": "An array of custom template names that will need to be registered on the map component.",
+                    "items": {
+                        "type": "string",
+                        "description": "The name of a Vue component that will need to be registered."
+                    }
                 }
             },
             "required": ["config", "type"]
@@ -473,7 +481,20 @@
                 "type": {
                     "type": "string",
                     "description": "The type of chart.",
-                    "enum": ["line", "spline", "area", "areaspline", "column", "bar", "pie", "scatter", "gauge", "arearange", "areasplinerange", "columnrange"]
+                    "enum": [
+                        "line",
+                        "spline",
+                        "area",
+                        "areaspline",
+                        "column",
+                        "bar",
+                        "pie",
+                        "scatter",
+                        "gauge",
+                        "arearange",
+                        "areasplinerange",
+                        "columnrange"
+                    ]
                 },
                 "width": {
                     "type": "number",

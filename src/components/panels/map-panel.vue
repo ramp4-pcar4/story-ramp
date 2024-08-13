@@ -7,7 +7,11 @@
         >
             {{ config.title }}
         </div>
-        <div :id="`ramp-map-${slideIdx}`" class="w-full bg-gray-200 h-story rv-map"></div>
+        <div
+            :id="`ramp-map-${slideIdx}`"
+            class="w-full bg-gray-200 h-story"
+            :class="config.title ? 'rv-map-title' : 'rv-map'"
+        ></div>
     </div>
 </template>
 
@@ -87,6 +91,7 @@ const init = async () => {
 
 const setupMap = (config: any) => {
     const rInstance = createInstance(mapComponent.value as HTMLElement, config);
+
     // Add the scrollguard fixture and enable it if desired.
     // If the scrollguard was already added previously, add does nothing, so no harm done!
     if (props.config.scrollguard) {
@@ -100,6 +105,12 @@ const setupMap = (config: any) => {
             ts.initTimeSlider(props.config.timeSlider as TimeSliderConfig, i18n);
         });
     }
+
+    // Dispatch an event to indicate that the map has been loaded.
+    const event = new CustomEvent('map-created', {
+        detail: { rInstance: rInstance, customTemplates: props.config.customTemplates }
+    });
+    document.dispatchEvent(event);
 };
 </script>
 
