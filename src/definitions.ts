@@ -154,6 +154,7 @@ export interface MapPanel extends BasePanel {
     timeSlider?: TimeSliderConfig;
     title: string;
     scrollguard: boolean;
+    customTemplates: String[];
 }
 
 export interface InteractiveMapPanel extends BasePanel {
