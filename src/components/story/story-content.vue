@@ -24,7 +24,7 @@
         <div class="grid-container z-20 story-scrollama w-full flex-grow min-w-0">
             <BackgroundImage :src="backgroundImage" @background-changed="handleBackgroundChange"></BackgroundImage>
 
-            <VueScrollama class="grid-content z-20" @step-enter="stepEnter">
+            <scrollama class="grid-content z-20" @step-enter="stepEnter">
                 <div
                     v-for="(slide, idx) in config.slides"
                     class="flex"
@@ -42,7 +42,7 @@
                         @slide-changed="handleSlideChange"
                     ></slide>
                 </div>
-            </VueScrollama>
+            </scrollama>
         </div>
     </div>
 </template>
@@ -51,14 +51,14 @@
 import type { PropType } from 'vue';
 import { onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
-import 'intersection-observer';
-import VueScrollama from 'vue3-scrollama';
 import { ConfigFileStructure, StoryRampConfig } from '@storylines/definitions';
+import 'intersection-observer';
 
 import ChapterMenu from './chapter-menu.vue';
 import HorizontalMenu from './horizontal-menu.vue';
 import BackgroundImage from './background-image.vue';
 import Slide from './slide.vue';
+import Scrollama from '@storylines/components/panels/helpers/scrollama.vue';
 
 const route = useRoute();
 const emit = defineEmits(['step']);
