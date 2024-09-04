@@ -117,7 +117,6 @@ window.addEventListener('resize', () => {
         overflow: visible;
         padding-left: initial !important;
         border-radius: 100%;
-        background: radial-gradient(white, transparent 75%);
     }
 
     :deep(.carousel__next) {
@@ -126,6 +125,14 @@ window.addEventListener('resize', () => {
 
     :deep(.carousel__prev) {
         left: calc(-4px - 1.5em);
+    }
+
+    :deep(.carousel__prev), :deep(.carousel__next) {
+        height:100%;
+
+        &:hover, &:focus {
+            background-color: #EEEEEE;
+        }
     }
 
     :deep(.carousel__pagination) {
