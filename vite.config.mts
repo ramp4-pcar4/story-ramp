@@ -42,7 +42,7 @@ export default defineConfig(() => {
                 fileName: 'storylines-viewer'
             },
             rollupOptions: {
-                external: ['vue'],
+                external: ['vue', 'ramp-pcar'],
                 output: {
                     globals: {
                         vue: 'Vue'
