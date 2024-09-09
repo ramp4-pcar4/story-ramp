@@ -25,6 +25,7 @@
                     <mobile-menu
                         class="mobile-menu"
                         :active-chapter-index="activeChapterIndex"
+                        :return-to-top="config.returnTop ?? true"
                         :slides="config.slides"
                         :lang="lang"
                     />

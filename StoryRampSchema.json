@@ -19,6 +19,11 @@
                 "backgroundImage": {
                     "type": "string",
                     "description": "An image to display in the background of the slide."
+                },
+                "includeInToc": {
+                    "type": "boolean",
+                    "description": "Optional attribute that indicates whether or not to include slide in table of contents. Defaults to true.",
+                    "default": true
                 }
             },
             "required": ["title", "panel"]
@@ -581,6 +586,19 @@
                 "$ref": "#/$defs/slide"
             },
             "minItems": 1
+        },
+
+        "tocOrientation": {
+            "type": "string",
+            "description": "Specifies the orientation of the table of contents navigation menu.",
+            "enum": ["vertical", "horizontal"],
+            "default": "vertical"
+        },
+
+        "returnTop": {
+            "type": "boolean",
+            "description": "Specifies whether a link is added to scroll back to top of page.",
+            "default": true
         },
 
         "contextLink": {

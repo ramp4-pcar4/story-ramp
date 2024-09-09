@@ -1,7 +1,7 @@
 <template>
     <div id="h-navbar" class="navbar sticky">
         <ul>
-            <li v-if="introExists">
+            <li v-if="introExists && returnToTop">
                 <a
                     class="flex items-center px-2 py-1 mx-1 cursor-pointer"
                     @click="scrollToChapter('intro')"
@@ -37,11 +37,11 @@
                     }}</span>
                 </router-link>
             </li>
-            <li v-for="(slide, idx) in slides" :key="idx" :class="{ 'is-active': activeChapterIndex === idx }">
+            <li v-for="(slide, idx) in slides" :key="idx" :class="{ 'is-active': activeChapterIndex === slide.index }">
                 <!-- using router-link causes a page refresh which breaks plugin -->
                 <a
                     class="flex items-center px-2 py-1 mx-1 cursor-pointer"
-                    @click="scrollToChapter(`${idx}-${slide.title.toLowerCase().replaceAll(' ', '-')}`)"
+                    @click="scrollToChapter(`${slide.index}-${slide.title.toLowerCase().replaceAll(' ', '-')}`)"
                     v-tippy="{
                         delay: '200',
                         placement: 'right',
@@ -57,7 +57,7 @@
                 </a>
 
                 <router-link
-                    :to="{ hash: `#${idx}-${slide.title.toLowerCase().replaceAll(' ', '-')}` }"
+                    :to="{ hash: `#${slide.index}-${slide.title.toLowerCase().replaceAll(' ', '-')}` }"
                     class="flex items-center px-2 py-1 mx-1"
                     target
                     v-tippy="{
@@ -87,6 +87,10 @@ import { useI18n } from 'vue-i18n';
 const { t } = useI18n();
 
 defineProps({
+    returnToTop: {
+        type: Boolean,
+        default: true
+    },
     slides: {
         type: Array as PropType<Array<Slide>>,
         required: true
@@ -100,7 +104,8 @@ defineProps({
         required: true
     },
     plugin: {
-        type: Boolean
+        type: Boolean,
+        default: false
     }
 });
 
