@@ -36,7 +36,7 @@
         </div>
 
         <ul v-show="isMenuOpen" class="dropdown-nav-content bg-white pb-10 w-72 z-10 border-r border-gray-200">
-            <li v-if="introExists">
+            <li v-if="introExists && returnToTop">
                 <button class="flex py-1 px-3" @click="scrollToChapter('intro')" v-if="plugin">
                     <svg
                         class="flex-shrink-0"
@@ -119,10 +119,14 @@
                     }}</span>
                 </router-link>
             </li>
-            <li v-for="(slide, idx) in slides" :key="idx" :class="{ 'is-active': activeChapterIndex === idx }">
+            <li
+                v-for="(slide, idx) in tocSlides"
+                :key="idx"
+                :class="{ 'is-active': activeChapterIndex === slide.index }"
+            >
                 <button
                     class="flex py-1 px-3"
-                    @click="scrollToChapter(`${idx}-${slide.title.toLowerCase().replaceAll(' ', '-')}`)"
+                    @click="scrollToChapter(`${slide.index}-${slide.title.toLowerCase().replaceAll(' ', '-')}`)"
                     v-if="plugin"
                 >
                     <svg
@@ -144,7 +148,7 @@
                     }}</span>
                 </button>
                 <router-link
-                    :to="{ hash: `#${idx}-${slide.title.toLowerCase().replaceAll(' ', '-')}` }"
+                    :to="{ hash: `#${slide.index}-${slide.title.toLowerCase().replaceAll(' ', '-')}` }"
                     class="flex py-1 px-3"
                     target
                     v-else
@@ -174,12 +178,17 @@
 
 <script setup lang="ts">
 import type { PropType } from 'vue';
-import { ref, onMounted } from 'vue';
+import { computed, ref, onMounted } from 'vue';
 import { Slide } from '@storylines/definitions';
 
-defineProps({
+const props = defineProps({
+    returnToTop: {
+        type: Boolean,
+        default: true
+    },
     slides: {
-        type: Array as PropType<Array<Slide>>
+        type: Array as PropType<Array<Slide>>,
+        required: true
     },
     activeChapterIndex: {
         type: Number
@@ -188,12 +197,18 @@ defineProps({
         type: String
     },
     plugin: {
-        type: Boolean
+        type: Boolean,
+        default: false
     }
 });
 
 const isMenuOpen = ref(false);
 const introExists = ref(true);
+
+// filter out which slides are visible in the table of contents while preserving original slide index
+const tocSlides = computed(() =>
+    props.slides.map((slide, idx) => ({ ...slide, index: idx })).filter((slide) => slide.includeInToc !== false)
+);
 
 onMounted(() => {
     const introSection = document.getElementById('intro');

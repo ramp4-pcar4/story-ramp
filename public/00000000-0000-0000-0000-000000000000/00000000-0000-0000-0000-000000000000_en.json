@@ -72,7 +72,8 @@
                         }
                     ]
                 }
-            ]
+            ],
+            "includeInToc": false
         },
         {
             "title": "Default RAMP4 Sample",
@@ -88,7 +89,8 @@
                     "content": "The default RAMP4 sample.",
                     "type": "text"
                 }
-            ]
+            ],
+            "includeInToc": false
         },
         {
             "title": "Dynamic Panel Test",
@@ -174,7 +176,8 @@
                         }
                     ]
                 }
-            ]
+            ],
+            "includeInToc": false
         },
         {
             "title": "Video Panel",
@@ -191,7 +194,8 @@
                     "src": "https://www.youtube.com/embed/dQw4w9WgXcQ",
                     "height": 700
                 }
-            ]
+            ],
+            "includeInToc": false
         },
         {
             "title": "Oil sands deposits",
@@ -206,7 +210,8 @@
                     "type": "map",
                     "scrollguard": true
                 }
-            ]
+            ],
+            "includeInToc": true
         },
         {
             "title": "Oil sands extraction",
@@ -297,7 +302,8 @@
                     "caption": "NPRI substances reported for oil sands mining facilities",
                     "type": "slideshow"
                 }
-            ]
+            ],
+            "includeInToc": false
         },
         {
             "title": "NPRI substances reported for oil sands mining facilities",
@@ -325,7 +331,8 @@
                     "src": "00000000-0000-0000-0000-000000000000/assets/en/slide 6 - mining trends.jpg",
                     "type": "image"
                 }
-            ]
+            ],
+            "includeInToc": false
         },
         {
             "title": "Reported mine tailings from oil sands surface mining facilities",
@@ -352,7 +359,8 @@
                     "config": "00000000-0000-0000-0000-000000000000/ramp-config/ReleasesandDisposalsbyMiningFacilitiesin2019(satellite).json",
                     "type": "map"
                 }
-            ]
+            ],
+            "includeInToc": false
         },
         {
             "title": "Trends in mine tailings reported from surface mining facilities",
@@ -371,7 +379,8 @@
                     },
                     "type": "map"
                 }
-            ]
+            ],
+            "includeInToc": false
         },
         {
             "title": "In situ facilities",
@@ -385,7 +394,8 @@
                     "src": "00000000-0000-0000-0000-000000000000/assets/en/Slide 10 - SAGD vs CSS.jpg",
                     "type": "image"
                 }
-            ]
+            ],
+            "includeInToc": false
         },
         {
             "title": "NPRI releases from in-situ facilities",
@@ -399,7 +409,8 @@
                     "config": "00000000-0000-0000-0000-000000000000/ramp-config/ReleasestoAirbyInSituFacilitiesforAllSubstancesin2019.json",
                     "type": "map"
                 }
-            ]
+            ],
+            "includeInToc": false
         },
         {
             "title": "Chart Gallery",
@@ -471,7 +482,8 @@
                         }
                     ]
                 }
-            ]
+            ],
+            "includeInToc": false
         },
         {
             "title": "Managing environmental impacts",
@@ -485,11 +497,14 @@
                     "src": "00000000-0000-0000-0000-000000000000/assets/en/GettyImages-516166467__1554821531978__w1920.jpg",
                     "type": "image"
                 }
-            ]
+            ],
+            "includeInToc": false
         }
     ],
+    "tocOrientation": "horizontal",
+    "returnTop": false,
     "contextLink": "https://www.canada.ca/en/environment-climate-change/services/national-pollutant-release-inventory/tools-resources-data/exploredata.html",
     "contextLabel": "Explore National Pollutant Release Inventory data",
     "lang": "en",
-    "dateModified": "2024-07-15"
+    "dateModified": "2024-09-09"
 }
