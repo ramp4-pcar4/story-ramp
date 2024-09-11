@@ -16,7 +16,7 @@
         <chapter-menu
             class="side-menu"
             :active-chapter-index="activeChapterIndex"
-            :return-to-top="!!config.returnTop ?? true"
+            :return-to-top="config.returnTop ?? true"
             :slides="tocSlides"
             :plugin="!!configFileStructure || !!plugin"
             :lang="lang"
@@ -24,7 +24,11 @@
         />
 
         <div class="grid-container z-20 story-scrollama w-full flex-grow min-w-0">
-            <BackgroundImage :src="backgroundImage" @background-changed="handleBackgroundChange"></BackgroundImage>
+            <BackgroundImage
+                :src="backgroundImage"
+                :configFileStructure="configFileStructure"
+                @background-changed="handleBackgroundChange"
+            ></BackgroundImage>
 
             <scrollama class="grid-content z-20" @step-enter="stepEnter">
                 <div
