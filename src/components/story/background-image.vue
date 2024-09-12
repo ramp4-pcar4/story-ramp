@@ -56,7 +56,6 @@ watch(
         // whilst gradually transitioning the opacity of the primary element to 0 (triggers when `activeImage` is 1). This gives
         // us the effect of the new background smoothly coming in. Once the opacity hits 0, we move the new background image
         // to the primary element and set the opacity back to 1.
-
         getImageSource(props.src).then((newImage) => {
             state.oldImage = newImage;
             activeImage.value = 1;
@@ -68,7 +67,7 @@ watch(
                     state.oldImage = state.newImage;
                     state.newImage = newImage;
                     emit('background-changed', true);
-                }, 350); // timeout length is set to animation time (0.3s) plus a little bit of buffer.
+                }, 450); // timeout length is set to animation time (0.3s) plus a little bit of buffer.
             } else {
                 // Not a crossfade case. We're either transitioning from nothing into an image or from an image into nothing.
                 // This case uses Vue3 transitions.
@@ -89,13 +88,19 @@ watch(
  */
 const getImageSource = (src: string): Promise<string> => {
     return new Promise((resolve) => {
-        if (props.configFileStructure) {
-            // If this source has already been converted to a blob, return it.
-            if (blobStore[src] !== undefined) {
-                resolve(blobStore[src]);
-                return;
-            }
+        if (src === 'none') {
+            // if there is no new source then we want to transition to blank.
+            resolve(src);
+            return;
+        }
 
+        // If this source has already been converted to a blob, return it.
+        if (blobStore[src] !== undefined) {
+            resolve(blobStore[src]);
+            return;
+        }
+
+        if (props.configFileStructure) {
             const assetSrc = `${src.substring(src.indexOf('/') + 1)}`;
             const imageFile = props.configFileStructure?.zip.file(assetSrc);
             if (imageFile) {
@@ -113,8 +118,17 @@ const getImageSource = (src: string): Promise<string> => {
                 return;
             }
         } else {
-            resolve(src);
-            return;
+            fetch(src)
+                .then((res) => res.blob())
+                .then((blobRes) => {
+                    // Convert the image to a blob so it can be displayed locally.
+                    const blob = URL.createObjectURL(blobRes);
+
+                    // Assign to blobStore and return the result.
+                    blobStore[src] = blob;
+                    resolve(blobStore[src]);
+                    return;
+                });
         }
     });
 };
@@ -123,7 +137,7 @@ const getImageSource = (src: string): Promise<string> => {
 <style scoped>
 .hide {
     opacity: 0 !important;
-    transition: opacity 0.3s linear;
+    transition: opacity 0.4s linear;
 }
 
 img {
@@ -133,7 +147,7 @@ img {
 
 .fade-enter-active,
 .fade-leave-active {
-    transition: opacity 0.2s ease-in;
+    transition: opacity 0.3s ease-in;
 }
 
 .fade-enter-from,
