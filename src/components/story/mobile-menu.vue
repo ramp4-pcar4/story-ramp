@@ -119,11 +119,7 @@
                     }}</span>
                 </router-link>
             </li>
-            <li
-                v-for="(slide, idx) in tocSlides"
-                :key="idx"
-                :class="{ 'is-active': activeChapterIndex === slide.index }"
-            >
+            <li v-for="(slide, idx) in tocSlides" :key="idx" :class="{ 'is-active': lastActiveIdx === slide.index }">
                 <button
                     class="flex py-1 px-3"
                     @click="scrollToChapter(`${slide.index}-${slide.title.toLowerCase().replaceAll(' ', '-')}`)"
@@ -178,7 +174,7 @@
 
 <script setup lang="ts">
 import type { PropType } from 'vue';
-import { computed, ref, onMounted } from 'vue';
+import { computed, ref, watch, onMounted } from 'vue';
 import { Slide } from '@storylines/definitions';
 
 const props = defineProps({
@@ -191,7 +187,8 @@ const props = defineProps({
         required: true
     },
     activeChapterIndex: {
-        type: Number
+        type: Number,
+        required: true
     },
     lang: {
         type: String
@@ -204,10 +201,18 @@ const props = defineProps({
 
 const isMenuOpen = ref(false);
 const introExists = ref(true);
+const lastActiveIdx = ref(-1);
 
 // filter out which slides are visible in the table of contents while preserving original slide index
 const tocSlides = computed(() =>
     props.slides.map((slide, idx) => ({ ...slide, index: idx })).filter((slide) => slide.includeInToc !== false)
+);
+
+watch(
+    () => props.activeChapterIndex,
+    () => {
+        updateActiveIdx();
+    }
 );
 
 onMounted(() => {
@@ -220,6 +225,11 @@ const scrollToChapter = (id: string): void => {
     if (el) {
         el.scrollIntoView({ behavior: 'smooth' });
     }
+};
+
+const updateActiveIdx = () => {
+    const prevSlides = props.slides.filter((slide) => slide.index <= props.activeChapterIndex);
+    lastActiveIdx.value = prevSlides.length ? prevSlides[prevSlides.length - 1].index : -1;
 };
 </script>
 
