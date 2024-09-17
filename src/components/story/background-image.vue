@@ -3,10 +3,14 @@
         <!-- Vue3 transition for switching between a slide with no background a slide with a background. -->
         <Transition name="fade" mode="out-in">
             <div v-if="state.newImage !== 'none'" class="w-full h-full">
-                <img v-if="state.oldImage !== 'none'" class="fade-in w-full h-full" :src="state.oldImage" />
                 <img
-                    class="fade-in w-full h-full"
-                    :class="{ hide: activeImage === 1 }"
+                    v-if="state.oldImage !== 'none'"
+                    class="fade-in transition-img w-full h-full object-cover"
+                    :src="state.oldImage"
+                />
+                <img
+                    class="fade-in transition-img w-full h-full object-cover"
+                    :class="{ 'transition-hide': activeImage === 1 }"
                     :src="state.newImage"
                     alt="Background image"
                 />
@@ -135,12 +139,12 @@ const getImageSource = (src: string): Promise<string> => {
 </script>
 
 <style scoped>
-.hide {
+.transition-hide {
     opacity: 0 !important;
     transition: opacity 0.4s linear;
 }
 
-img {
+.transition-img {
     position: absolute;
     opacity: 1;
 }

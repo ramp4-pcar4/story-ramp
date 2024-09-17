@@ -574,6 +574,22 @@
                 "blurb": {
                     "type": "string",
                     "description": "Any additional information to display on the introductory slide."
+                },
+                "backgroundImage": {
+                    "type": "string",
+                    "description": "A background image for the introduction slide."
+                },
+                "titleColour": {
+                    "type": "string",
+                    "description": "The text colour of the title text."
+                },
+                "subtitleColour": {
+                    "type": "string",
+                    "description": "The text colour of the subtitle text."
+                },
+                "buttonColour": {
+                    "type": "string",
+                    "description": "The colour of the 'jump to content' button."
                 }
             },
             "required": ["logo", "title"]
