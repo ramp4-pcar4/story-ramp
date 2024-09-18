@@ -6,7 +6,11 @@
             "altText": "Logo"
         },
         "title": "Test StoryRAMP",
-        "subtitle": "Where all your wildest dreams can come true."
+        "subtitle": "Where all your wildest dreams can come true.",
+        "buttonColour": "#fff",
+        "titleColour": "#fff",
+        "subtitleColour": "#fff",
+        "backgroundImage": "00000000-0000-0000-0000-000000000000/assets/en/bg.jpg"
     },
     "slides": [
         {
@@ -94,6 +98,7 @@
         },
         {
             "title": "Dynamic Panel Test",
+            "backgroundImage": "00000000-0000-0000-0000-000000000000/assets/en/GettyImages-516166467__1554821531978__w1920.jpg",
             "panel": [
                 {
                     "title": "This Slide Is Dynamic!",
