@@ -116,7 +116,6 @@ const setupMap = (config: any) => {
 
 <style lang="scss" scoped>
 .rv-map {
-    height: calc(100vh - 4rem) !important;
     width: 100%;
 
     :deep(.time-slider-container) {
@@ -135,7 +134,19 @@ const setupMap = (config: any) => {
     }
 }
 
-.rv-map-title {
+.toc-horizontal .rv-map {
+    height: calc(100vh - 6rem) !important;
+}
+.toc-vertical .rv-map {
+    height: calc(100vh - 4rem) !important;
+}
+
+.toc-horizontal .rv-map-title {
+    height: calc(100vh - 11rem) !important;
+    width: 100%;
+}
+
+.toc-vertical .rv-map-title {
     height: calc(100vh - 9rem) !important;
     width: 100%;
 }
