@@ -16,7 +16,7 @@
     </div>
 
     <div v-else-if="loadStatus === 'loaded'">
-        <div class="storyramp-app bg-white" v-if="config !== undefined">
+        <div class="storyramp-app bg-white" v-if="config !== undefined" id="top">
             <header
                 id="story-header"
                 class="story-header sticky top-0 w-full h-16 leading-9 bg-white border-b border-gray-200"
@@ -29,8 +29,14 @@
                         :slides="config.slides"
                         :lang="lang"
                     />
-                    <div class="flex-none w-mobile-full truncate font-semibold">
-                        <span class="text-lg">{{ config.title }}</span>
+                    <div class="flex-none w-mobile-full truncate">
+                        <button
+                            class="text-lg font-semibold hover:underline"
+                            @click="scrollToTop"
+                            :aria-label="$t('return.top')"
+                        >
+                            {{ config.title }}
+                        </button>
                     </div>
                     <div class="flex justify-end flex-auto space-x-6">
                         <!-- Any links we want in the header can go here -->
@@ -113,6 +119,14 @@ const beforeRouteUpdate = (to: RouteLocationNormalized, from: RouteLocationNorma
     }
     fetchConfig(uid, lang.value);
     next();
+};
+
+/**
+ * Scrolls the user back to the top of the page when they click on the product title.
+ */
+const scrollToTop = () => {
+    const intro = document.getElementById('top');
+    intro?.scrollIntoView({ behavior: 'smooth' });
 };
 
 const fetchConfig = (uid: string, lang: string): void => {
