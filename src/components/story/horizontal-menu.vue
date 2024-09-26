@@ -37,7 +37,7 @@
                     }}</span>
                 </router-link>
             </li>
-            <li v-for="(slide, idx) in slides" :key="idx" :class="{ 'is-active': activeChapterIndex === slide.index }">
+            <li v-for="(slide, idx) in slides" :key="idx" :class="{ 'is-active': lastActiveIdx === slide.index }">
                 <!-- using router-link causes a page refresh which breaks plugin -->
                 <a
                     class="flex items-center px-2 py-1 mx-1 cursor-pointer"
@@ -80,13 +80,13 @@
 
 <script setup lang="ts">
 import type { PropType } from 'vue';
-import { ref, onMounted } from 'vue';
+import { ref, watch, onMounted } from 'vue';
 import { Slide } from '@storylines/definitions';
 
 import { useI18n } from 'vue-i18n';
 const { t } = useI18n();
 
-defineProps({
+const props = defineProps({
     returnToTop: {
         type: Boolean,
         default: true
@@ -110,6 +110,14 @@ defineProps({
 });
 
 const introExists = ref(false);
+const lastActiveIdx = ref(-1);
+
+watch(
+    () => props.activeChapterIndex,
+    () => {
+        updateActiveIdx();
+    }
+);
 
 onMounted(() => {
     const introSection = document.getElementById('intro');
@@ -125,6 +133,11 @@ const scrollToChapter = (id: string): void => {
 
 const getTitle = (slide: Slide): string => {
     return slide.title !== '' ? slide.title : t('chapters.untitled');
+};
+
+const updateActiveIdx = () => {
+    const prevSlides = props.slides.filter((slide) => slide.index <= props.activeChapterIndex);
+    lastActiveIdx.value = prevSlides.length ? prevSlides[prevSlides.length - 1].index : -1;
 };
 </script>
 
