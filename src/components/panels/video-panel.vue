@@ -1,12 +1,16 @@
 <template>
-    <div class="video-container self-start justify-center flex flex-col h-full align-middle py-5 w-full">
+    <div
+        class="video-container self-start justify-center flex flex-col h-full align-middle py-5 w-full"
+        :style="{
+            width: config.width ? `${config.width}` : '100%'
+        }"
+    >
         <!-- YouTube video -->
         <template v-if="config.videoType === 'YouTube'">
             <iframe
                 class="media-player"
                 :src="config.src"
-                :width="config.width ? config.width : '100%'"
-                :height="config.height ? config.height : '500px'"
+                :height="config.height ? `${config.height}` : '500px'"
                 allowfullscreen
             ></iframe>
         </template>
@@ -16,9 +20,8 @@
             <video
                 class="media-player"
                 :title="config.title"
+                :height="config.height ? `${config.height}` : '500px'"
                 :poster="config.thumbnailUrl"
-                :height="config.height ? config.height : 500"
-                :width="config.width"
                 controls
             >
                 <source :type="fileType" :src="config.src" />
@@ -142,6 +145,10 @@ const extensionType = (file: string): string | undefined => {
     .media-player {
         max-height: 40vh;
     }
+}
+
+.video-container {
+    margin: 0 auto;
 }
 
 .media-player {
