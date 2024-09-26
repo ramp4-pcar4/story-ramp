@@ -40,7 +40,7 @@
 
             <intro :config="config.introSlide"></intro>
 
-            <div class="w-full mx-auto pb-10" id="story">
+            <div class="w-full mx-auto pb-10 mb-6" id="story">
                 <story-content :config="config" :lang="lang" :headerHeight="headerHeight" @step="updateActiveIndex" />
             </div>
 
