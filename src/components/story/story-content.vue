@@ -1,7 +1,7 @@
 <template>
     <div
         class="items-stretch"
-        :class="{ flex: !$props.config?.tocOrientation || $props.config?.tocOrientation === 'vertical' }"
+        :class="$props.config?.tocOrientation === 'horizontal' ? 'toc-horizontal' : 'flex toc-vertical'"
     >
         <horizontal-menu
             class="top-menu"

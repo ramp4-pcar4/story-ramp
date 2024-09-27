@@ -128,7 +128,6 @@ const handlePoint = (id: string, oid: number, layerIndex?: number) => {
 
 <style lang="scss" scoped>
 .rv-map {
-    height: calc(100vh - 4rem) !important;
     width: 100%;
 
     :deep(.time-slider-container) {
@@ -145,6 +144,13 @@ const handlePoint = (id: string, oid: number, layerIndex?: number) => {
     :deep(.time-slider-container.minimized) {
         height: 50px;
     }
+}
+
+.toc-horizontal .rv-map {
+    height: calc(100vh - 6rem) !important;
+}
+.toc-vertical .rv-map {
+    height: calc(100vh - 4rem) !important;
 }
 
 .interactive-container {
