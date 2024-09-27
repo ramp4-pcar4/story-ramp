@@ -150,7 +150,6 @@ const handlePoint = (id: string, oid: number, layerIndex?: number) => {
 .interactive-container {
     display: grid;
     grid-template-areas: 'interactiveOverlay';
-    grid-template-columns: repeat(1, calc(calc(100vw - 4rem) - 2px));
 }
 .interactive-content {
     grid-area: interactiveOverlay;

@@ -6,13 +6,15 @@
                 <img
                     v-if="state.oldImage !== 'none'"
                     class="fade-in transition-img w-full h-full object-cover"
+                    role="presentation"
                     :src="state.oldImage"
                 />
                 <img
                     class="fade-in transition-img w-full h-full object-cover"
                     :class="{ 'transition-hide': activeImage === 1 }"
                     :src="state.newImage"
-                    alt="Background image"
+                    id="primaryImage"
+                    role="presentation"
                 />
             </div>
             <div class="w-full h-full" v-else></div>
@@ -48,6 +50,7 @@ const state = reactive({
 });
 
 const activeImage = ref(0);
+const activeTimeout = ref(-1);
 
 watch(
     () => props.src,
@@ -62,15 +65,34 @@ watch(
         // to the primary element and set the opacity back to 1.
         getImageSource(props.src).then((newImage) => {
             state.oldImage = newImage;
+
+            if (activeTimeout.value !== -1) {
+                // If the source has changed while an existing transition is active, we want to restart it to prevent jumping.
+                const img = document.getElementById('primaryImage');
+                if (img) {
+                    img.getAnimations().forEach((anim) => {
+                        anim.cancel();
+                        anim.play();
+                    });
+                }
+                clearTimeout(activeTimeout.value);
+                activeTimeout.value = -1;
+            }
+
             activeImage.value = 1;
 
             // This is the crossfade case where we're switching between two background images.
             if (props.src !== 'none' && state.newImage !== 'none') {
-                setTimeout(() => {
-                    activeImage.value = 0;
-                    state.oldImage = state.newImage;
-                    state.newImage = newImage;
-                    emit('background-changed', true);
+                activeTimeout.value = setTimeout(() => {
+                    // If the user scrolls really quickly it's possible that they're past the slide with the background.
+                    // Check again to see if the slide has a background before transitioning.
+                    if (props.src !== 'none') {
+                        activeImage.value = 0;
+                        state.oldImage = state.newImage;
+                        state.newImage = newImage;
+                        emit('background-changed', true);
+                        activeTimeout.value = -1;
+                    }
                 }, 450); // timeout length is set to animation time (0.3s) plus a little bit of buffer.
             } else {
                 // Not a crossfade case. We're either transitioning from nothing into an image or from an image into nothing.

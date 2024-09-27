@@ -1,5 +1,10 @@
 <template>
-    <div ref="slide" :id="key" class="story-slide pt-24 h-full w-full flex sm:flex-row flex-col">
+    <div
+        ref="slide"
+        :id="key"
+        class="story-slide pt-24 h-full w-full flex sm:flex-row flex-col"
+        :class="config.backgroundImage === undefined ? 'bg-gray-50' : 'py-24'"
+    >
         <panel
             v-for="(panel, idx) in config.panel"
             :key="idx"
@@ -10,7 +15,7 @@
             :slideIdx="slideIdx"
             :lang="lang"
             :class="determinePanelOrder(idx)"
-            :background="background"
+            :background="!!config.backgroundImage && background"
         ></panel>
     </div>
 </template>
@@ -45,11 +50,40 @@ const props = defineProps({
 
 const defaultRatio = ref(false);
 
+const defaultThreshold = 0.75; // we want the slide to take up THIS% of the screen before firing the `slide-changed` event.
+const scrollThreshold = ref(defaultThreshold);
+
 const slide = ref<Element>();
 const observer = ref<IntersectionObserver | undefined>(undefined);
 
 onMounted(() => {
     const panels = props.config.panel;
+
+    // Modify the threshold based on the height of the client window vs the height of the element. Re-observe the element afterwards.
+    const resizeObserver = new ResizeObserver(function (e) {
+        observer.value?.disconnect();
+
+        const clientHeight = window.innerHeight;
+        const poiHeight = (slide.value as Element).clientHeight;
+        if (poiHeight > clientHeight * defaultThreshold) {
+            scrollThreshold.value = ((clientHeight * defaultThreshold) / poiHeight) * defaultThreshold;
+        }
+
+        observer.value = new IntersectionObserver(
+            ([slide]) => {
+                // emit a `slide-changed` event when the slide meets the threshold we've calculated above
+                if (slide.isIntersecting) {
+                    emit('slide-changed', props.slideIdx);
+                }
+            },
+            {
+                threshold: scrollThreshold.value
+            }
+        );
+
+        observer.value.observe(slide.value as Element);
+    });
+    resizeObserver.observe(slide.value as Element);
 
     observer.value = new IntersectionObserver(
         ([slide]) => {
@@ -58,8 +92,10 @@ onMounted(() => {
                 emit('slide-changed', props.slideIdx);
             }
         },
-        { rootMargin: '0px', threshold: 0.45 }
+        { rootMargin: '0px', threshold: scrollThreshold.value }
     );
+
+    observer.value?.observe(slide.value as Element);
 
     // check if there is one text panel and one non-text panel in the slide and user did not specify a width in config
     if (panels.length == 2 && !panels[0]?.width && !panels[1]?.width) {
@@ -71,8 +107,6 @@ onMounted(() => {
             defaultRatio.value = true;
         }
     }
-
-    observer.value?.observe(slide.value as Element);
 });
 
 /**
