@@ -24,7 +24,7 @@
                 :poster="config.thumbnailUrl"
                 controls
             >
-                <source :type="fileType" :src="config.src" />
+                <source :type="fileType" :src="videoBlobSrc ? videoBlobSrc : config.src" />
                 <!-- add captions with transcript -->
                 <track
                     kind="captions"
@@ -76,11 +76,10 @@
 
 <script setup lang="ts">
 import type { PropType } from 'vue';
-import { onBeforeMount, onMounted, ref } from 'vue';
+import { onBeforeMount, onMounted, ref, getCurrentInstance } from 'vue';
+import { ConfigFileStructure, VideoPanel } from '@storylines/definitions';
 import { useRoute } from 'vue-router';
 import MarkdownIt from 'markdown-it';
-
-import { VideoPanel } from '@storylines/definitions';
 
 const md = new MarkdownIt({ html: true });
 const route = useRoute();
@@ -89,12 +88,18 @@ const props = defineProps({
     config: {
         type: Object as PropType<VideoPanel>,
         required: true
+    },
+    configFileStructure: {
+        type: Object as PropType<ConfigFileStructure>
     }
 });
 
 const lang = ref('en');
 const langs = ref<Record<string, string>>({ en: 'English', fr: 'French' });
 
+const videoBlobSrc = ref('');
+const captionsBlobSrc = ref('');
+const transcriptBlobSrc = ref('');
 const fileType = ref('');
 const expandTranscript = ref(false);
 
@@ -112,19 +117,47 @@ onBeforeMount(() => {
 });
 
 onMounted(() => {
-    // fetch and config transcript content and render with md
-    if (props.config.transcript) {
-        const ext = extensionType(props.config.transcript);
+    if (props.configFileStructure) {
+        // get video file from config file structure
+        const assetSrc = `${props.config.src.substring(props.config.src.indexOf('/') + 1)}`;
+        const assetFile = extractBlobFile(assetSrc);
+        videoBlobSrc.value = assetFile ? assetFile : '';
 
-        fetch(props.config.transcript).then((res: Response) => {
-            res.text().then((content: string) => {
-                rawTranscript.value = content;
-                // can be HTML or MD format
-                transcriptContent.value = ext === 'md' ? md.render(rawTranscript.value) : rawTranscript.value;
+        // get captions file from config file structure
+        const captionsSrc = `${props.config.src.substring(props.config.src.indexOf('/') + 1)}`;
+        const captionsFile = extractBlobFile(captionsSrc);
+        videoBlobSrc.value = captionsFile ? captionsFile : '';
+
+        // get transcript file from config file structure
+        const transcriptSrc = `${props.config.src.substring(props.config.src.indexOf('/') + 1)}`;
+        const transcriptFile = extractBlobFile(transcriptSrc);
+        videoBlobSrc.value = transcriptFile ? transcriptFile : '';
+    } else {
+        // fetch and config transcript content and render with md
+        if (props.config.transcript) {
+            const ext = extensionType(props.config.transcript);
+
+            fetch(props.config.transcript).then((res: Response) => {
+                res.text().then((content: string) => {
+                    rawTranscript.value = content;
+                    // can be HTML or MD format
+                    transcriptContent.value = ext === 'md' ? md.render(rawTranscript.value) : rawTranscript.value;
+                });
             });
-        });
+        }
     }
 });
+
+const extractBlobFile = (src: string): string => {
+    const videoFile = props.configFileStructure?.zip.file(src);
+    if (videoFile) {
+        videoFile.async('blob').then((res: Blob) => {
+            return URL.createObjectURL(res);
+        });
+    }
+
+    return '';
+};
 
 const toggleTranscript = (): void => {
     expandTranscript.value = !expandTranscript.value;
