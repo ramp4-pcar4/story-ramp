@@ -203,6 +203,20 @@
             "includeInToc": false
         },
         {
+            "title": "Cumulative Effects Video",
+            "panel": [
+                {
+                    "type": "video",
+                    "title": "What are cumulative effects?",
+                    "videoType": "YouTube",
+                    "src": "https://www.youtube.com/embed/4kTq-hnrMHI",
+                    "width": "60%",
+                    "transcript": "00000000-0000-0000-0000-000000000000/assets/en/cumulative-effects.md"
+                }
+            ],
+            "includeInToc": false
+        },
+        {
             "title": "Oil sands deposits",
             "panel": [
                 {
@@ -506,8 +520,7 @@
             "includeInToc": false
         }
     ],
-    "tocOrientation": "horizontal",
-    "returnTop": false,
+    "tocOrientation": "vertical",
     "contextLink": "https://www.canada.ca/en/environment-climate-change/services/national-pollutant-release-inventory/tools-resources-data/exploredata.html",
     "contextLabel": "Explore National Pollutant Release Inventory data",
     "lang": "en",
