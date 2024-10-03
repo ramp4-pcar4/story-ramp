@@ -200,7 +200,10 @@ export interface DynamicPanel extends BasePanel {
     titleTag: string;
     content: string;
     children: DynamicChildItem[];
-    textColour: string;
+    textColour?: string;
+    reversed?: boolean;
+    hideReturn?: boolean;
+    contentWidth?: string;
 }
 
 export interface DynamicChildItem {

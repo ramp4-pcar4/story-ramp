@@ -1,9 +1,14 @@
 <template>
-    <div ref="el" :id="key" class="story-slide w-full h-full flex sm:flex-row flex-col">
+    <div
+        ref="el"
+        :id="key"
+        class="story-slide w-full h-full flex flex-col"
+        :class="!!config.reversed ? 'sm:flex-row-reverse' : 'sm:flex-row'"
+    >
         <scrollama
-            class="flex-1 order-2 sm:order-1 prose max-w-none my-5 mx-1 py-5"
-            :class="{ 'has-background': background }"
-            :style="{ color: config.textColour ?? '#000' }"
+            class="dynamic-content-slide order-2 sm:order-1 prose max-w-none my-5 mx-1 py-5"
+            :class="{ 'has-background': background, 'flex-1': !!config.contentWidth === false }"
+            :style="{ color: config.textColour ?? '#000', width: `${config.contentWidth}px` }"
         >
             <component
                 :is="config.titleTag || 'h2'"
@@ -23,8 +28,12 @@
                     : 'flex-2 order-2 sm:order-1 dynamic-content-text'
             "
         >
-            <span class="return-button-container top-16" v-show="activeIdx !== defaultPanel.id">
-                <button class="return-button py-1 text-base right-0 absolute" @click="clickBack">
+            <span class="return-button-container" v-if="activeIdx !== defaultPanel.id && !config.hideReturn">
+                <button
+                    class="py-1 text-base absolute"
+                    :class="!!config.reversed === false ? 'return-button right-0' : 'return-button-reversed'"
+                    @click="clickBack"
+                >
                     <img
                         style="display: inline; margin: 0px"
                         src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAABmJLR0QA/wD/AP+gvaeTAAAB4UlEQVRIie3WP08WQRAG8J+2SolRQaLyKvR+BTsVaQnfwD9YCH4PS6I2ViAS1GhMKLWESkzUmBAT7azECoS8Fjcvqxe52zuMseBJNpebe2ae2dmdveUA/wiHGnCHcBWXcBqDYf+CT3iOp/j8t5IbwCy20a0ZO3gUie0L4/geQTcxhwmM4EiMkbDNB6eLDYy1Fb2lmEEXj3E2w2cYi9Lsp5qKjofjNm43dcZ0+O9oMPNBqbxtRHuYkcp+MsfhgVTe/WIpYt2rIw4pyrtp7zU9hlW8zhDuRKxtqf3+iJuR4VyF6FpwVjKEKdqri+tVpJdBmqgRXYv3HEyGz4sq0scgnSvZ+/Emvr3D8UxRij7v4n0VaSNIfSX7qvpTqzfKa98n7e5dHG6QeS66bZw+hOP5kr1c6hMNYo7+4reL8ozX43mhZP+Ki3gbgZblb65erPUq0o3Ibn6P723aaSH416pIp6QDZLhCfAWvMkQ72MIPNQcI3I8MFzMC1+FJxJrNIQ9IbTW9D9E7EeObBptxTPqtzbQU7flfaeo8JV0ElhTrVYeOVN4dxdnfCmNS2bcUB/6koqWOxhgN20JweuW93Fa0h37cVezMnMveQxlr2uR6Oyhdb8/4/Xq7rvj7PIv3A/w/+Am/TqGFCMnpPgAAAABJRU5ErkJggg=="
@@ -33,7 +42,6 @@
                     {{ $t('dynamic.back') }}
                 </button>
             </span>
-
             <panel
                 class="flex-2"
                 :config="activeConfig"
@@ -135,7 +143,7 @@ const addDynamicURLs = (): void => {
                 setTimeout(() => {
                     const elTop = content.value?.$el.getBoundingClientRect().top;
                     window.scrollTo({
-                        top: window.pageYOffset + elTop - 33,
+                        top: window.scrollY + elTop - calculateScrollOffset(),
                         left: 0,
                         behavior: 'smooth'
                     });
@@ -143,6 +151,19 @@ const addDynamicURLs = (): void => {
             }
         };
     });
+};
+
+// Calculate the scroll offset based on whether the table of contents is horizontal or vertical.
+const calculateScrollOffset = (): number => {
+    const isHorizontal = content.value?.$el.closest('.toc-horizontal');
+    const horizontalHeight = document.getElementById('h-navbar')?.clientHeight;
+    const headerHeight = document.getElementById('story-header')!.clientHeight;
+
+    if (isHorizontal && horizontalHeight) {
+        return headerHeight + horizontalHeight;
+    } else {
+        return headerHeight;
+    }
 };
 
 /**
@@ -161,7 +182,7 @@ const clickBack = (): void => {
     setTimeout(() => {
         const elTop = content.value?.$el.getBoundingClientRect().top;
         window.scrollTo({
-            top: window.pageYOffset + elTop - 63,
+            top: window.scrollY + elTop - calculateScrollOffset(),
             left: 0,
             behavior: 'smooth'
         });
@@ -170,6 +191,20 @@ const clickBack = (): void => {
 </script>
 
 <style scoped lang="scss">
+.toc-horizontal {
+    .return-button-container {
+        top: 6.5rem;
+    }
+}
+.toc-vertical {
+    .return-button-container {
+        top: 4rem;
+    }
+    .return-button-reversed {
+        left: calc(100vw - 9rem);
+    }
+}
+
 .return-button-container {
     position: sticky;
     text-align: right;
@@ -178,6 +213,14 @@ const clickBack = (): void => {
 }
 .return-button {
     float: right;
+    pointer-events: auto;
+    background: #fff;
+    box-shadow: 0px 2px 5px #000;
+    width: 75px;
+}
+.return-button-reversed {
+    float: right;
+    left: calc(100vw - 6rem);
     pointer-events: auto;
     background: #fff;
     box-shadow: 0px 2px 5px #000;
@@ -192,16 +235,35 @@ const clickBack = (): void => {
 }
 
 @media screen and (max-width: 640px) {
+    .dynamic-content-slide {
+        max-width: 96vw; // cap out the width of the content slide in mobile mode to prevent horizontal scroll
+    }
+
     .return-button-container {
         position: sticky;
         text-align: right;
         margin-bottom: 10px;
+        top: 4rem !important;
     }
 
     .return-button {
         position: sticky;
         opacity: 0.7;
     }
+
+    .return-button-reversed {
+        position: absolute;
+        float: right;
+        pointer-events: auto;
+        background: #fff;
+        box-shadow: 0px 2px 5px #000;
+        width: 75px;
+    }
+
+    .toc-vertical .return-button-reversed {
+        left: calc(100vw - 6rem);
+    }
+
     .return-button:hover {
         opacity: 1;
     }
