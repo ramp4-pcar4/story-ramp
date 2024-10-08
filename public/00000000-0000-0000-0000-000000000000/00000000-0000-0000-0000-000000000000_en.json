@@ -30,6 +30,18 @@
             ]
         },
         {
+            "title": "Community Directory PowerBI Map",
+            "panel": [
+                {
+                    "config": "00000000-0000-0000-0000-000000000000/ramp-config/CommunityDirectory.json",
+                    "type": "map",
+                    "teleportGrid": true,
+                    "scrollguard": true
+                }
+            ],
+            "includeInToc": false
+        },
+        {
             "title": "Interactive Map",
             "panel": [
                 {
