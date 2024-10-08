@@ -125,6 +125,21 @@
                     "type": "string",
                     "description": "The colour of the text. Defaults to black.",
                     "default": "#000000"
+                },
+                "reversed": {
+                    "type": "boolean",
+                    "description": "If true, the text slide and dynamic slide will be swapped.",
+                    "default": false
+                },
+                "hideReturn": {
+                    "type": "boolean",
+                    "description": "If true, the return button will be hidden.",
+                    "default": false
+                },
+                "contentWidth": {
+                    "type": "number",
+                    "description": "If provided, the text slide will be set to this value. Caps out at the page width on mobile mode.",
+                    "default": 0
                 }
             },
             "required": ["content", "type", "children", "title"]
