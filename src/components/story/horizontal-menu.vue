@@ -1,5 +1,5 @@
 <template>
-    <div id="h-navbar" class="navbar sticky">
+    <div id="h-navbar" class="navbar h-11 sticky">
         <ul>
             <li v-if="introExists && returnToTop">
                 <a
@@ -147,7 +147,6 @@ const updateActiveIdx = () => {
     border-bottom: 2px;
     border-color: rgba(229, 231, 235, var(--tw-border-opacity));
     position: sticky;
-    height: 100%;
     width: 100%;
     margin: 0;
     display: flex;

@@ -3,7 +3,7 @@
         <div class="flex">
             <div
                 ref="slideshow"
-                class="carousel-container self-center px-10 my-8 mx-auto bg-gray-200_"
+                class="carousel-container self-center px-10 mx-auto bg-gray-200_"
                 :style="{ width: `${width}px` }"
             >
                 <carousel
@@ -127,11 +127,13 @@ window.addEventListener('resize', () => {
         left: calc(-4px - 1.5em);
     }
 
-    :deep(.carousel__prev), :deep(.carousel__next) {
-        height:100%;
+    :deep(.carousel__prev),
+    :deep(.carousel__next) {
+        height: 100%;
 
-        &:hover, &:focus {
-            background-color: #EEEEEE;
+        &:hover,
+        &:focus {
+            background-color: #eeeeee;
         }
     }
 

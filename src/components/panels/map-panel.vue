@@ -135,14 +135,14 @@ const setupMap = (config: any) => {
 }
 
 .toc-horizontal .rv-map {
-    height: calc(100vh - 6rem) !important;
+    height: calc(100vh - 4rem - 2.75rem) !important; // 4rem for the header, 2.75 for the horizontal ToC.
 }
 .toc-vertical .rv-map {
     height: calc(100vh - 4rem) !important;
 }
 
 .toc-horizontal .rv-map-title {
-    height: calc(100vh - 11rem) !important;
+    height: calc(100vh - 9rem - 2.75rem) !important; // 9rem for the header + title, 2.75 for the horizontal ToC.
     width: 100%;
 }
 
@@ -152,7 +152,7 @@ const setupMap = (config: any) => {
 }
 
 .has-background {
-    background-color: rgba(255, 255, 255, 0.6);
+    background-color: rgba(255, 255, 255, 0.95);
     margin-bottom: 0em !important;
     padding-bottom: 1em;
     color: black;

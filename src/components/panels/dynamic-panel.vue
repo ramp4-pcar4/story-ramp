@@ -214,5 +214,9 @@ const clickBack = (): void => {
         display: flex;
         flex-direction: column-reverse;
     }
+
+    .sticky {
+        top: 0rem !important;
+    }
 }
 </style>

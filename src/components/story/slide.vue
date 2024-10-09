@@ -142,4 +142,25 @@ const determinePanelOrder = (idx: number): string => {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss">
+// Offset stickied elements by the height of the header and horizontal ToC so they don't overlap.
+.toc-horizontal {
+    .sticky {
+        top: calc(4rem + 2.75rem); // 4rem for the header, 2.75 for the horizontal ToC.
+    }
+}
+
+.toc-vertical {
+    .sticky {
+        top: calc(4rem); // 4rem for the header, 2.75 for the horizontal ToC.
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .toc-horizontal {
+        .sticky {
+            top: calc(4rem);
+        }
+    }
+}
+</style>
