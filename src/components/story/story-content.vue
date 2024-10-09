@@ -141,6 +141,7 @@ const stepEnter = ({ element }: { element: HTMLElement }): void => {
 .grid-container {
     display: grid;
     grid-template-areas: 'backgroundOverlay';
+    grid-template-columns: repeat(1, calc(100%));
 }
 .grid-content {
     grid-area: backgroundOverlay;
