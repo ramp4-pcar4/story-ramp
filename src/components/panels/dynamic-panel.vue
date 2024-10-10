@@ -6,7 +6,7 @@
         :class="!!config.reversed ? 'sm:flex-row-reverse' : 'sm:flex-row'"
     >
         <scrollama
-            class="dynamic-content-slide order-2 sm:order-1 prose max-w-none my-5 mx-1 py-5"
+            class="dynamic-content-slide order-2 sm:order-1 prose max-w-none mb-5 mx-1 py-5"
             :class="{ 'has-background': background, 'flex-1': !!config.contentWidth === false }"
             :style="{ color: config.textColour ?? '#000', width: `${config.contentWidth}px` }"
         >
@@ -231,7 +231,7 @@ const clickBack = (): void => {
 }
 .has-background {
     background-color: rgba(255, 255, 255, 0.6);
-    border-radius: 20px;
+    border-radius: 8px;
 }
 
 @media screen and (max-width: 640px) {

@@ -167,7 +167,7 @@ const updateActiveIdx = () => {
 .navbar ul li {
     float: left;
     width: 12%;
-    border-radius: 20px;
+    border-radius: 8px;
     a {
         text-overflow: ellipsis;
     }

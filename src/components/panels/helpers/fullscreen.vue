@@ -1,6 +1,6 @@
 <template>
     <div ref="el">
-        <div class="relative bg-white fullscreen-wrapper">
+        <div class="relative bg-white fullscreen-wrapper rounded-lg">
             <button
                 v-if="expandable !== undefined ? expandable : true"
                 class="fullscreenButton expand-button absolute items-center justify-center p-3 z-10"
