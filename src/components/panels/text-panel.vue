@@ -1,6 +1,6 @@
 <template>
     <scrollama
-        class="prose max-w-none my-5 mx-1 py-5"
+        class="text-panel prose max-w-none mb-5 mx-1 py-5"
         :class="{ 'has-background': background }"
         :style="{ color: config.textColour ?? '#000' }"
     >
@@ -47,13 +47,18 @@ onMounted((): void => {
 
 <style scoped lang="scss">
 .has-background {
-    background-color: rgba(255, 255, 255, 0.6);
-    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 8px;
+    opacity: 95%;
 }
 
 @media screen and (max-width: 640px) {
     .chapter-title {
         max-width: 100vw;
+    }
+
+    .text-panel {
+        margin-top: 1rem;
     }
 
     .md-content {

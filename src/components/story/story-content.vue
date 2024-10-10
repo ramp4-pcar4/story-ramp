@@ -42,6 +42,7 @@
                     <slide
                         :config="slide"
                         :configFileStructure="configFileStructure"
+                        :class="addPanelPadding(idx)"
                         :slideIdx="idx"
                         :lang="lang"
                         :background="hasBackground"
@@ -133,6 +134,15 @@ const stepEnter = ({ element }: { element: HTMLElement }): void => {
     const horizontalNav = document.getElementById('h-navbar');
     if (horizontalNav) {
         horizontalNavHeight.value = horizontalNav.clientHeight * 0.75;
+    }
+};
+
+// add top padding for a panel with bg image, on the condition that the previous panel did not have a bg image
+const addPanelPadding = (idx: number): string => {
+    if (idx > 0 && !props.config.slides[idx - 1].backgroundImage && props.config.slides[idx].backgroundImage) {
+        return 'pt-8';
+    } else {
+        return '';
     }
 };
 </script>
