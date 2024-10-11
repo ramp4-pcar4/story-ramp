@@ -219,6 +219,11 @@
                     "description": "Whether or not CTRL is required to scroll this map.",
                     "default": false
                 },
+                "teleportGrid": {
+                    "type": "boolean",
+                    "description": "Whether or not to teleport grid outside of RAMP instance.",
+                    "default": false
+                },
                 "title": {
                     "type": "string",
                     "description": "A title that is displayed centered above this map."
