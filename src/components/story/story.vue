@@ -195,7 +195,7 @@ $font-list: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     .h5,
     .h6 {
         font-family: $font-list;
-        line-height: 1.5;
+        line-height: 1.65em;
         border-bottom: 0px;
     }
 
@@ -205,6 +205,10 @@ $font-list: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         padding-left: 15px;
         padding-top: 1em;
         padding-bottom: 1em;
+    }
+
+    .prose {
+        line-height: 1.65em;
     }
 
     .prose a {

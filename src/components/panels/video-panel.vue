@@ -1,6 +1,6 @@
 <template>
     <div
-        class="video-container self-start justify-center flex flex-col h-full align-middle py-5 w-full"
+        class="video-container self-start justify-center flex flex-col h-full align-middle pb-5 w-full"
         :style="{
             width: config.width ? `${config.width}` : '100%'
         }"

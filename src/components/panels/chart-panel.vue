@@ -1,5 +1,5 @@
 <template>
-    <div class="chart self-center my-8 mx-auto bg-gray-200_">
+    <div class="chart self-center mb-8 mx-auto bg-gray-200_">
         <chart :config="config" :configFileStructure="configFileStructure" />
     </div>
 </template>

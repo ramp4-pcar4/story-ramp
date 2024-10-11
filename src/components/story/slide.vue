@@ -2,8 +2,8 @@
     <div
         ref="slide"
         :id="key"
-        class="story-slide pt-24 h-full w-full flex sm:flex-row flex-col"
-        :class="config.backgroundImage === undefined ? 'bg-gray-50' : 'py-24'"
+        class="story-slide pb-24 h-full w-full flex sm:flex-row flex-col"
+        :class="{ 'bg-gray-50': config.backgroundImage === undefined, 'pt-24': slideIdx === 0 }"
     >
         <panel
             v-for="(panel, idx) in config.panel"
@@ -129,12 +129,12 @@ const determinePanelOrder = (idx: number): string => {
 
     // Both panels are not text panels, so display them in order, and sticky the right panel.
     if (panel.type != PanelType.Text && otherPanel.type != PanelType.Text) {
-        return idx === 0 ? 'order-2 sm:order-1 sticky z-40' : 'order-1 sm:order-2 sticky z-41';
+        return idx === 0 ? 'order-2 sm:order-1 sm:mr-4 sticky z-40' : 'order-1 sm:order-2 sticky z-41 mr-4';
     } else {
         // One panel is a text panel and one panel is not. Sticky the non-text panel, and display it on top of the
         // text panel in mobile mode.
         if (panel.type === PanelType.Text) {
-            return `order-2 sm:order-${idx + 1}`;
+            return `order-2 sm:mr-4 sm:order-${idx + 1}`;
         } else {
             return `sticky order-1 sm:order-${idx + 1} z-40`;
         }
