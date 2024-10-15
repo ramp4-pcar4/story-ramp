@@ -6,7 +6,7 @@
         :class="!!config.reversed ? 'sm:flex-row-reverse' : 'sm:flex-row'"
     >
         <scrollama
-            class="dynamic-content-slide order-2 sm:order-1 prose max-w-none mb-5 mx-1 py-5"
+            class="dynamic-content-slide order-2 sm:order-1 prose max-w-none min-w-0 mb-5 mx-1 py-5"
             :class="{ 'has-background': background, 'flex-1': !!config.contentWidth === false }"
             :style="{ color: config.textColour ?? '#000', width: `${config.contentWidth}px` }"
         >
@@ -24,7 +24,7 @@
         <div
             :class="
                 activeConfig.type !== 'text'
-                    ? `sticky top-0 sm:self-start flex-2 order-1 sm:order-2 z-40 dynamic-content-media sm:flex-col`
+                    ? `sticky top-0 sm:self-start flex-2 order-1 sm:order-2 z-40 dynamic-content-media sm:flex-col min-w-0`
                     : 'flex-2 order-2 sm:order-1 dynamic-content-text'
             "
         >
