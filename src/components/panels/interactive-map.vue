@@ -5,7 +5,7 @@
                 <PointOfInterestItem :point="point" :index="index" @poi-changed="handlePoint"></PointOfInterestItem>
             </div>
         </div>
-        <div :id="`ramp-map-${slideIdx}`" class="bg-gray-200 h-story rv-map sticky top-16 interactive-content"></div>
+        <div :id="`ramp-map-${slideIdx}`" class="bg-gray-200 h-story rv-map sticky interactive-content"></div>
     </div>
 </template>
 
@@ -146,11 +146,21 @@ const handlePoint = (id: string, oid: number, layerIndex?: number) => {
     }
 }
 
-.toc-horizontal .rv-map {
-    height: calc(100vh - 6rem) !important;
+.toc-horizontal {
+    .rv-map {
+        height: calc(100vh - 4rem - 2.75rem) !important; // 4rem for the header, 2.75 for the horizontal ToC.
+    }
+    .interactive-container {
+        grid-template-columns: repeat(1, calc(100%));
+    }
 }
-.toc-vertical .rv-map {
-    height: calc(100vh - 4rem) !important;
+.toc-vertical {
+    .rv-map {
+        height: calc(100vh - 4rem) !important;
+    }
+    .interactive-container {
+        grid-template-columns: repeat(1, calc(100vw - 4.1rem));
+    }
 }
 
 .interactive-container {
@@ -168,7 +178,12 @@ const handlePoint = (id: string, oid: number, layerIndex?: number) => {
 
 @media screen and (max-width: 640px) {
     .interactive-container {
-        grid-template-columns: repeat(1, calc(100%));
+        grid-template-columns: repeat(1, calc(100%)) !important;
+    }
+    .toc-horizontal {
+        .rv-map {
+            height: calc(100vh - 4rem) !important;
+        }
     }
 }
 

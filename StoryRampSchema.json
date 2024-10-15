@@ -137,9 +137,9 @@
                     "default": false
                 },
                 "contentWidth": {
-                    "type": "number",
-                    "description": "If provided, the text slide will be set to this value. Caps out at the page width on mobile mode.",
-                    "default": 0
+                    "type": "string",
+                    "description": "If provided, the text slide width will be set to this value. Caps out at the page width on mobile mode.",
+                    "default": ""
                 }
             },
             "required": ["content", "type", "children", "title"]
