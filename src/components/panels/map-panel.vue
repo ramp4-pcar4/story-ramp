@@ -175,9 +175,11 @@ const setupMap = (config: any) => {
     }
 }
 
-.toc-horizontal .rv-map {
-    height: calc(100vh - 6rem) !important;
+.toc-horizontal .rv-map,
+.toc-horizontal .storylines-grid-container {
+    height: calc(100vh - 4rem - 2.75rem) !important; // 4rem for the header, 2.75 for the horizontal ToC.
 }
+
 .toc-vertical .rv-map {
     height: calc(100vh - 4rem) !important;
 }
