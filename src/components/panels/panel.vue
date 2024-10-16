@@ -16,6 +16,7 @@
             :slideIdx="slideIdx"
             :lang="lang"
             :style="config.customStyles"
+            :class="config.cssClasses"
             :background="background"
         ></component>
     </div>

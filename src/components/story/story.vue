@@ -145,6 +145,10 @@ const fetchConfig = (uid: string, lang: string): void => {
                     if (config.value) {
                         document.title = config.value.title + ' - Canada.ca';
                     }
+                    // add stylesheets to the page, we want this to happen ASAP
+                    if (config.value.stylesheets) {
+                        addStylesheets(config.value.stylesheets);
+                    }
                 })
                 .catch(() => {
                     // An error occurred while trying to convert the reponse to JSON. Most likely case for this to occur is
@@ -167,6 +171,15 @@ const fetchConfig = (uid: string, lang: string): void => {
             }
         });
 };
+
+const addStylesheets = (paths: string[]): void => {
+    paths.forEach((path) => {
+        const styleLink = document.createElement('link');
+        styleLink.setAttribute('rel', 'stylesheet');
+        styleLink.setAttribute('href', path);
+        document.head.appendChild(styleLink);
+    });
+}
 
 const updateActiveIndex = (idx: number): void => {
     activeChapterIndex.value = idx;

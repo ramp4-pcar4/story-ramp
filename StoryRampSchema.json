@@ -55,8 +55,18 @@
                 ]
             },
             "properties": {
-                "width": "number",
-                "description": "The width of the panel inside the slide (between 0 and 100)."
+                "width": {
+                    "type": "number",
+                    "description": "The width of the panel inside the slide (between 0 and 100)."
+                },
+                "customStyles": {
+                    "type": "string",
+                    "description": "Optional style string to add to the panel."
+                },
+                "cssClasses": {
+                    "type": "string",
+                    "description": "Optional string of css classes to add to the panel."
+                }
             },
             "minItems": 1,
             "maxItems": 2
@@ -651,6 +661,15 @@
             "type": "string",
             "description": "The language to display in the app",
             "enum": ["en", "fr"]
+        },
+
+        "stylesheets": {
+            "type": "array",
+            "description": "A list of relative paths to stylesheets to include on the page.",
+            "items": {
+                "type": "string",
+                "description": "A relative path to a stylesheet."
+            }
         },
 
         "dateModified": {

@@ -9,6 +9,7 @@ export interface StoryRampConfig {
     contextLabel: string;
     tocOrientation: string;
     returnTop?: boolean;
+    stylesheets?: string[];
     dateModified: string;
 }
 
@@ -144,6 +145,7 @@ export interface BasePanel {
     type: string;
     width?: number;
     customStyles?: string; // css string
+    cssClasses?: string;
 }
 
 export interface TextPanel extends BasePanel {
