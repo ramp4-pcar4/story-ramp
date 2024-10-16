@@ -3,7 +3,7 @@
         <div class="flex">
             <div
                 ref="slideshow"
-                class="carousel-container self-center px-10 mb-8 mx-auto bg-gray-200_"
+                class="carousel-container self-center px-10 mx-auto bg-gray-200_"
                 :style="{ width: `${width}px` }"
             >
                 <carousel
