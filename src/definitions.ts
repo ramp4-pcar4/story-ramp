@@ -8,6 +8,7 @@ export interface StoryRampConfig {
     contextLink: string;
     contextLabel: string;
     tocOrientation: string;
+    breadcrumbs?: BreadcrumbConfig[];
     returnTop?: boolean;
     stylesheets?: string[];
     dateModified: string;
@@ -266,4 +267,9 @@ export interface ChartConfig {
     config?: any;
     name?: string;
     options?: DQVOptions;
+}
+
+export interface BreadcrumbConfig {
+    title: string;
+    href: string;
 }
