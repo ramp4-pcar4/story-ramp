@@ -117,7 +117,7 @@
                     "type": "dynamic",
                     "reversed": true,
                     "content": "You can click on one of the following links to change the right panel.\n\n- <a panel='panel-1'>Text Panel</a>\n- <a panel='panel-2'>Image Panel</a>\n- <a panel='panel-3'>Charts Panel</a>\n- <a panel='panel-4'>Map Panel</a>\n- <a panel='panel-5'>Longer text section with table</a>\n- <a href='#/en/00000000-0000-0000-0000-000000000000#2-oil-sands-deposits' target='_self'>Self target link</a>\n- <a panel='panel-6'>Video externally hosted</a>\n- <a panel='panel-7'>Video locally hosted</a>\n\nFun stuff.",
-                    "contentWidth": 800,
+                    "contentWidth": "60%",
                     "children": [
                         {
                             "id": "panel-1",

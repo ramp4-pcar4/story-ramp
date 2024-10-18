@@ -1,7 +1,7 @@
 <template>
     <div
         :class="isMenuOpen ? 'w-72' : ''"
-        class="nav-bar sticky self-start w-12 duration-500 ease-in-out transition-width top-16"
+        class="nav-bar sticky self-start w-12 duration-500 ease-in-out transition-width"
     >
         <div class="flex items-center mt-4 mb-12">
             <button
