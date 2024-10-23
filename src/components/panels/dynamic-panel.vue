@@ -6,9 +6,12 @@
         :class="!!config.reversed ? 'sm:flex-row-reverse' : 'sm:flex-row'"
     >
         <scrollama
-            class="dynamic-content-slide order-2 sm:order-1 prose max-w-none mb-5 mx-1 py-5"
+            class="dynamic-content-slide order-2 sm:order-1 prose max-w-none min-w-0 mb-5 mx-1 py-5"
             :class="{ 'has-background': background, 'flex-1': !!config.contentWidth === false }"
-            :style="{ color: config.textColour ?? '#000', width: `${config.contentWidth}px` }"
+            :style="{
+                color: config.textColour ?? '#000',
+                width: !isMobile ? `${config.contentWidth}` : undefined
+            }"
         >
             <component
                 :is="config.titleTag || 'h2'"
@@ -24,7 +27,7 @@
         <div
             :class="
                 activeConfig.type !== 'text'
-                    ? `sticky top-0 sm:self-start flex-2 order-1 sm:order-2 z-40 dynamic-content-media sm:flex-col`
+                    ? `sticky top-0 sm:self-start flex-2 order-1 sm:order-2 z-40 dynamic-content-media sm:flex-col min-w-0`
                     : 'flex-2 order-2 sm:order-1 dynamic-content-text'
             "
         >
@@ -92,6 +95,7 @@ const defaultPanel = props.config.children[0];
 // By default, the active config is set to the first child in the children list.
 const activeConfig = ref<BasePanel>(defaultPanel.panel);
 const activeIdx = ref(defaultPanel.id);
+const isMobile = ref(false);
 
 const md = new MarkdownIt({ html: true });
 
@@ -103,6 +107,12 @@ onMounted(() => {
         .forEach((el: Element) => ((el as HTMLAnchorElement).target = '_blank'));
 
     addDynamicURLs();
+
+    // Check for a switch from normal view to mobile view. Fixed text panel width will need to be adjusted.
+    isMobile.value = window.innerWidth <= 640;
+    window.addEventListener('resize', () => {
+        isMobile.value = window.innerWidth <= 640;
+    });
 });
 
 /**

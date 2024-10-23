@@ -9,10 +9,10 @@
         </div>
 
         <div class="flex sm:flex-row flex-col w-full h-story" v-if="config.teleportGrid">
-            <div class="storylines-grid-container sm:order-1 order-2 flex-1 ramp-styles" ref="grid"></div>
+            <div class="storylines-grid-container sm:order-1 order-2 flex-1 min-w-0 ramp-styles" ref="grid"></div>
             <div
                 :id="`ramp-map-${slideIdx}`"
-                class="sm:order-2 order-1 flex-2 bg-gray-200"
+                class="sm:order-2 order-1 flex-2 min-w-0 bg-gray-200"
                 :class="config.title ? 'rv-map-title' : 'rv-map'"
             ></div>
         </div>
@@ -183,9 +183,8 @@ const setupMap = (config: any) => {
 .toc-vertical .rv-map {
     height: calc(100vh - 4rem) !important;
 }
-
 .toc-horizontal .rv-map-title {
-    height: calc(100vh - 11rem) !important;
+    height: calc(100vh - 9rem - 2.75rem) !important; // 9rem for the header + title, 2.75 for the horizontal ToC.
     width: 100%;
 }
 
@@ -195,7 +194,7 @@ const setupMap = (config: any) => {
 }
 
 .has-background {
-    background-color: rgba(255, 255, 255, 0.6);
+    background-color: rgba(255, 255, 255, 0.95);
     margin-bottom: 0em !important;
     padding-bottom: 1em;
     color: black;

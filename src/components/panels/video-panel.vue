@@ -139,7 +139,7 @@ const extensionType = (file: string): string | undefined => {
 <style lang="scss">
 @media screen and (max-width: 640px) {
     .video-container {
-        width: 100vw !important;
+        width: 100%;
         max-width: 100vw;
         background-color: white;
     }

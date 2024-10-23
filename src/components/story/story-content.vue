@@ -118,7 +118,7 @@ onMounted(() => {
 
 const handleSlideChange = (event: number): void => {
     const img = props.config.slides[event].backgroundImage;
-    backgroundImage.value = img ?? 'none';
+    backgroundImage.value = !!img ? img : 'none';
 };
 
 /**
@@ -151,6 +151,7 @@ const addPanelPadding = (idx: number): string => {
 .grid-container {
     display: grid;
     grid-template-areas: 'backgroundOverlay';
+    grid-template-columns: repeat(1, calc(100%));
 }
 .grid-content {
     grid-area: backgroundOverlay;

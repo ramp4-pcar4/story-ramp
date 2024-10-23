@@ -3,8 +3,8 @@
         :class="
             config.type !== PanelType.Text
                 ? `${
-                      config.type === PanelType.Map ? 'top-16 overflow-x-auto overflow-y-hidden' : 'top-8'
-                  } sm:self-start flex-2`
+                      config.type === PanelType.Map ? 'overflow-x-auto overflow-y-hidden' : ''
+                  } sm:self-start flex-2 min-w-0`
                 : 'flex flex-1'
         "
         class="flex-col relative"
