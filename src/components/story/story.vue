@@ -149,6 +149,15 @@ const fetchConfig = (uid: string, lang: string): void => {
                     if (config.value.stylesheets) {
                         addStylesheets(config.value.stylesheets);
                     }
+
+                    // We fire this event when the config has loaded to let the host page know it has access to the config.
+                    const loadEvent = new CustomEvent('Storylines-Loaded', {
+                        detail: {
+                            config: config.value
+                        }
+                    });
+
+                    document.dispatchEvent(loadEvent);
                 })
                 .catch(() => {
                     // An error occurred while trying to convert the reponse to JSON. Most likely case for this to occur is
@@ -179,7 +188,7 @@ const addStylesheets = (paths: string[]): void => {
         styleLink.setAttribute('href', path);
         document.head.appendChild(styleLink);
     });
-}
+};
 
 const updateActiveIndex = (idx: number): void => {
     activeChapterIndex.value = idx;

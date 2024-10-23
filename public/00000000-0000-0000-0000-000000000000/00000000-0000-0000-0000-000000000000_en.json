@@ -540,5 +540,15 @@
     "contextLink": "https://www.canada.ca/en/environment-climate-change/services/national-pollutant-release-inventory/tools-resources-data/exploredata.html",
     "contextLabel": "Explore National Pollutant Release Inventory data",
     "lang": "en",
+    "breadcrumbs": [
+        {
+            "title": "Environment and natural resources",
+            "href": "https://www.canada.ca/en/services/environment.html"
+        },
+        {
+            "title": "Cumulative effects",
+            "href": "https://www.canada.ca/en/services/environment/cumulative-effect.html"
+        }
+    ],
     "dateModified": "2024-09-09"
 }
