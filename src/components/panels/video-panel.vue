@@ -19,16 +19,17 @@
         <template v-if="config.videoType === 'local' || config.videoType === 'external'">
             <video
                 class="media-player"
+                :src="videoBlobSrc ? videoBlobSrc : undefined"
                 :title="config.title"
                 :height="config.height ? `${config.height}` : '500px'"
                 :poster="config.thumbnailUrl"
                 controls
             >
-                <source :type="fileType" :src="videoBlobSrc ? videoBlobSrc : config.src" />
+                <source v-if="!videoBlobSrc" :type="fileType" :src="videoBlobSrc ? videoBlobSrc : config.src" />
                 <!-- add captions with transcript -->
                 <track
                     kind="captions"
-                    :src="config.caption"
+                    :src="captionsBlobSrc ? captionsBlobSrc : config.caption"
                     :srclang="lang"
                     :label="langs[lang]"
                     v-if="config.caption"
@@ -76,7 +77,7 @@
 
 <script setup lang="ts">
 import type { PropType } from 'vue';
-import { onBeforeMount, onMounted, ref, getCurrentInstance } from 'vue';
+import { onBeforeMount, onMounted, ref } from 'vue';
 import { ConfigFileStructure, VideoPanel } from '@storylines/definitions';
 import { useRoute } from 'vue-router';
 import MarkdownIt from 'markdown-it';
@@ -119,19 +120,20 @@ onBeforeMount(() => {
 onMounted(() => {
     if (props.configFileStructure) {
         // get video file from config file structure
-        const assetSrc = `${props.config.src.substring(props.config.src.indexOf('/') + 1)}`;
-        const assetFile = extractBlobFile(assetSrc);
-        videoBlobSrc.value = assetFile ? assetFile : '';
-
+        if (props.config.videoType === 'local') {
+            extractBlobFile(`${props.config.src.substring(props.config.src.indexOf('/') + 1)}`, 'video');
+        }
         // get captions file from config file structure
-        const captionsSrc = `${props.config.src.substring(props.config.src.indexOf('/') + 1)}`;
-        const captionsFile = extractBlobFile(captionsSrc);
-        videoBlobSrc.value = captionsFile ? captionsFile : '';
-
+        if (props.config.caption) {
+            extractBlobFile(`${props.config.caption.substring(props.config.caption.indexOf('/') + 1)}`, 'captions');
+        }
         // get transcript file from config file structure
-        const transcriptSrc = `${props.config.src.substring(props.config.src.indexOf('/') + 1)}`;
-        const transcriptFile = extractBlobFile(transcriptSrc);
-        videoBlobSrc.value = transcriptFile ? transcriptFile : '';
+        if (props.config.transcript) {
+            extractBlobFile(
+                `${props.config.transcript.substring(props.config.transcript.indexOf('/') + 1)}`,
+                'transcript'
+            );
+        }
     } else {
         // fetch and config transcript content and render with md
         if (props.config.transcript) {
@@ -148,15 +150,24 @@ onMounted(() => {
     }
 });
 
-const extractBlobFile = (src: string): string => {
-    const videoFile = props.configFileStructure?.zip.file(src);
-    if (videoFile) {
-        videoFile.async('blob').then((res: Blob) => {
-            return URL.createObjectURL(res);
+const extractBlobFile = (src: string, type?: string): void => {
+    const assetFile = props.configFileStructure?.zip.file(src);
+    if (assetFile) {
+        assetFile.async('blob').then((res: Blob) => {
+            if (type === 'video') {
+                const videoBlob = new Blob([res], { type: 'video/mp4' });
+                videoBlobSrc.value = URL.createObjectURL(videoBlob);
+            } else if (type === 'transcript') {
+                res.text().then((content: string) => {
+                    rawTranscript.value = content;
+                    // can be HTML or MD format
+                    transcriptContent.value = rawTranscript.value;
+                });
+            } else {
+                captionsBlobSrc.value = URL.createObjectURL(res);
+            }
         });
     }
-
-    return '';
 };
 
 const toggleTranscript = (): void => {
