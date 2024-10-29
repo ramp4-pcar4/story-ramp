@@ -8,13 +8,13 @@
         <title>Scénarios de PCAR</title>
 
         <!-- Load stylesheet -->
-        <link rel="stylesheet" href="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v5_0_2/cdts/cdts-styles.css">
+        <link rel="stylesheet" href="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v5_0_2/cdts/cdts-styles.css" />
 
         <!-- Load/activate closure template scripts -->
         <script
             src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v5_0_2/cdts/compiled/wet-fr.js"
-            data-cdts-setup='{"cdnEnv": "prod"}'>
-        </script>
+            data-cdts-setup='{"cdnEnv": "prod"}'
+        ></script>
     </head>
     <body>
         <!-- template top and no-script fallback -->
@@ -63,14 +63,21 @@
                         href: 'index-ca-en.html#/en/' + newURLRoute,
                         text: 'English'
                     }
-                ],
-                breadcrumbs: [
-                    {
-                        title: 'Environnement et ressources naturelles',
-                        href: 'https://www.canada.ca/fr/services/environnement/meteo.html'
-                    }
                 ]
             });
+
+            document.addEventListener('Storylines-Loaded', (payload) => {
+                const breadcrumbs = payload.detail.config.breadcrumbs;
+                const breadcrumbList = document.querySelectorAll('#wb-bc > .container > .breadcrumb')[0];
+
+                // Create an HTML li element for each of the breadcrumbs to add and then append them to the breadcrumb list.
+                breadcrumbs.forEach((b) => {
+                    const node = document.createElement('li');
+                    node.innerHTML = `<a href="${b.href}">${b.title}</a>`;
+                    breadcrumbList.appendChild(node);
+                });
+            });
+
             document.querySelectorAll('.wb-sl').forEach(function (skipLink) {
                 skipLink.setAttribute('href', url.href.split(/#[^\/]/)[0] + '#' + skipLink.href.split('#')[1]);
             });
