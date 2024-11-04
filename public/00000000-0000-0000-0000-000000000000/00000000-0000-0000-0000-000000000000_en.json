@@ -482,7 +482,8 @@
                         }
                     ]
                 }
-            ]
+            ],
+            "includeInToc": false
         },
         {
             "title": "Hybrid chart with bar and line",
@@ -535,7 +536,7 @@
             "includeInToc": false
         }
     ],
-    "tocOrientation": "vertical",
+    "tocOrientation": "horizontal",
     "stylesheets": ["00000000-0000-0000-0000-000000000000/styles/main.css"],
     "contextLink": "https://www.canada.ca/en/environment-climate-change/services/national-pollutant-release-inventory/tools-resources-data/exploredata.html",
     "contextLabel": "Explore National Pollutant Release Inventory data",
