@@ -19,16 +19,17 @@
         <template v-if="config.videoType === 'local' || config.videoType === 'external'">
             <video
                 class="media-player"
+                :src="videoBlobSrc ? videoBlobSrc : undefined"
                 :title="config.title"
                 :height="config.height ? `${config.height}` : '500px'"
                 :poster="config.thumbnailUrl"
                 controls
             >
-                <source :type="fileType" :src="config.src" />
+                <source v-if="!videoBlobSrc" :type="fileType" :src="videoBlobSrc ? videoBlobSrc : config.src" />
                 <!-- add captions with transcript -->
                 <track
                     kind="captions"
-                    :src="config.caption"
+                    :src="captionsBlobSrc ? captionsBlobSrc : config.caption"
                     :srclang="lang"
                     :label="langs[lang]"
                     v-if="config.caption"
@@ -77,10 +78,9 @@
 <script setup lang="ts">
 import type { PropType } from 'vue';
 import { onBeforeMount, onMounted, ref } from 'vue';
+import { ConfigFileStructure, VideoPanel } from '@storylines/definitions';
 import { useRoute } from 'vue-router';
 import MarkdownIt from 'markdown-it';
-
-import { VideoPanel } from '@storylines/definitions';
 
 const md = new MarkdownIt({ html: true });
 const route = useRoute();
@@ -89,12 +89,18 @@ const props = defineProps({
     config: {
         type: Object as PropType<VideoPanel>,
         required: true
+    },
+    configFileStructure: {
+        type: Object as PropType<ConfigFileStructure>
     }
 });
 
 const lang = ref('en');
 const langs = ref<Record<string, string>>({ en: 'English', fr: 'French' });
 
+const videoBlobSrc = ref('');
+const captionsBlobSrc = ref('');
+const transcriptBlobSrc = ref('');
 const fileType = ref('');
 const expandTranscript = ref(false);
 
@@ -112,19 +118,57 @@ onBeforeMount(() => {
 });
 
 onMounted(() => {
-    // fetch and config transcript content and render with md
-    if (props.config.transcript) {
-        const ext = extensionType(props.config.transcript);
+    if (props.configFileStructure) {
+        // get video file from config file structure
+        if (props.config.videoType === 'local') {
+            extractBlobFile(`${props.config.src.substring(props.config.src.indexOf('/') + 1)}`, 'video');
+        }
+        // get captions file from config file structure
+        if (props.config.caption) {
+            extractBlobFile(`${props.config.caption.substring(props.config.caption.indexOf('/') + 1)}`, 'captions');
+        }
+        // get transcript file from config file structure
+        if (props.config.transcript) {
+            extractBlobFile(
+                `${props.config.transcript.substring(props.config.transcript.indexOf('/') + 1)}`,
+                'transcript'
+            );
+        }
+    } else {
+        // fetch and config transcript content and render with md
+        if (props.config.transcript) {
+            const ext = extensionType(props.config.transcript);
 
-        fetch(props.config.transcript).then((res: Response) => {
-            res.text().then((content: string) => {
-                rawTranscript.value = content;
-                // can be HTML or MD format
-                transcriptContent.value = ext === 'md' ? md.render(rawTranscript.value) : rawTranscript.value;
+            fetch(props.config.transcript).then((res: Response) => {
+                res.text().then((content: string) => {
+                    rawTranscript.value = content;
+                    // can be HTML or MD format
+                    transcriptContent.value = ext === 'md' ? md.render(rawTranscript.value) : rawTranscript.value;
+                });
             });
-        });
+        }
     }
 });
+
+const extractBlobFile = (src: string, type?: string): void => {
+    const assetFile = props.configFileStructure?.zip.file(src);
+    if (assetFile) {
+        assetFile.async('blob').then((res: Blob) => {
+            if (type === 'video') {
+                const videoBlob = new Blob([res], { type: 'video/mp4' });
+                videoBlobSrc.value = URL.createObjectURL(videoBlob);
+            } else if (type === 'transcript') {
+                res.text().then((content: string) => {
+                    rawTranscript.value = content;
+                    // can be HTML or MD format
+                    transcriptContent.value = rawTranscript.value;
+                });
+            } else {
+                captionsBlobSrc.value = URL.createObjectURL(res);
+            }
+        });
+    }
+};
 
 const toggleTranscript = (): void => {
     expandTranscript.value = !expandTranscript.value;
