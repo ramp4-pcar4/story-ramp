@@ -230,9 +230,10 @@
                     "default": false
                 },
                 "teleportGrid": {
-                    "type": "boolean",
-                    "description": "Whether or not to teleport grid outside of RAMP instance.",
-                    "default": false
+                    "type": "string",
+                    "description": "Specifies where to teleport grid outside of RAMP instance.",
+                    "default": "",
+                    "enum": ["", "left", "right"]
                 },
                 "title": {
                     "type": "string",
@@ -271,6 +272,12 @@
                 "title": {
                     "type": "string",
                     "description": "A title that is displayed centered above this map."
+                },
+                "teleportAOI": {
+                    "type": "string",
+                    "description": "Specifies where to teleport areas of interest outside of RAMP instance.",
+                    "default": "",
+                    "enum": ["", "left", "right"]
                 },
                 "points": {
                     "type": "array",
