@@ -272,6 +272,11 @@
                     "type": "string",
                     "description": "A title that is displayed centered above this map."
                 },
+                "teleportAOI": {
+                    "type": "boolean",
+                    "description": "Whether or not to teleport areas of interest outside of RAMP instance.",
+                    "default": false
+                },
                 "points": {
                     "type": "array",
                     "description": "A list of points of interest.",

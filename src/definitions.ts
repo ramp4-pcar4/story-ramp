@@ -165,7 +165,7 @@ export interface MapPanel extends BasePanel {
     title: string;
     scrollguard: boolean;
     teleportGrid?: boolean;
-    customTemplates: String[];
+    customTemplates: string[];
 }
 
 export interface InteractiveMapPanel extends BasePanel {
@@ -174,6 +174,7 @@ export interface InteractiveMapPanel extends BasePanel {
     title: string;
     scrollguard: boolean;
     points: PointOfInterest[];
+    teleportAOI?: boolean;
 }
 
 export interface PointOfInterest {
