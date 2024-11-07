@@ -139,8 +139,7 @@ const extensionType = (file: string): string | undefined => {
 <style lang="scss">
 @media screen and (max-width: 640px) {
     .video-container {
-        width: 100%;
-        max-width: 100vw;
+        min-width: 100%;
         background-color: white;
     }
     .media-player {
@@ -150,12 +149,13 @@ const extensionType = (file: string): string | undefined => {
 
 .video-container {
     margin: 0 auto;
+    max-width: 100vw;
 }
 
 .media-player {
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
+    aspect-ratio: 16/9;
+    width: 100%;
+    height: 100%;
 }
 
 .float-right {
