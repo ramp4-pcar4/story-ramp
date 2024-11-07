@@ -1,11 +1,30 @@
 <template>
-    <div ref="el" class="h-full align-middle w-full interactive-container sticky">
-        <div class="interactive-content z-50">
-            <div v-for="(point, index) in config.points" :key="`poi-` + index" class="point-of-interest-container">
-                <PointOfInterestItem :point="point" :index="index" @poi-changed="handlePoint"></PointOfInterestItem>
+    <div ref="el" class="h-full align-middle w-full">
+        <!-- if teleporting areas of interest to side of RAMP container -->
+        <div class="flex teleport-container sm:flex-row flex-col h-full w-full" v-if="config.teleportAOI">
+            <div class="overflow-x-auto overflow-y-hidden sm:self-start flex-2 sticky z-40">
+                <div :id="`ramp-map-${slideIdx}`" class="bg-gray-200 rv-map"></div>
+            </div>
+            <div class="flex-1">
+                <div v-for="(point, index) in config.points" :key="`poi-` + index" class="point-of-interest-container">
+                    <PointOfInterestItem
+                        class="point-of-interest"
+                        :point="point"
+                        :index="index"
+                        @poi-changed="handlePoint"
+                    ></PointOfInterestItem>
+                </div>
             </div>
         </div>
-        <div :id="`ramp-map-${slideIdx}`" class="bg-gray-200 h-story rv-map sticky interactive-content"></div>
+
+        <div class="h-full align-middle w-full interactive-container sticky" v-else>
+            <div class="interactive-content z-50">
+                <div v-for="(point, index) in config.points" :key="`poi-` + index" class="point-of-interest-container">
+                    <PointOfInterestItem :point="point" :index="index" @poi-changed="handlePoint"></PointOfInterestItem>
+                </div>
+            </div>
+            <div :id="`ramp-map-${slideIdx}`" class="bg-gray-200 h-story rv-map sticky interactive-content"></div>
+        </div>
     </div>
 </template>
 
@@ -55,7 +74,9 @@ onMounted(() => {
 
 const init = async () => {
     // Find the map component.
-    mapComponent.value = el.value.children[1];
+    mapComponent.value = props.config.teleportAOI
+        ? el.value.children[0].children[0].children[0]
+        : el.value.children[0].children[1];
 
     fetch(props.config.config).then((data) => {
         // parse JSON data
@@ -183,6 +204,14 @@ const handlePoint = (id: string, oid: number, layerIndex?: number) => {
     .toc-horizontal {
         .rv-map {
             height: calc(100vh - 4rem) !important;
+        }
+    }
+    .teleport-container {
+        .rv-map {
+            max-height: 50vh;
+        }
+        .point-of-interest {
+            width: 100%;
         }
     }
 }

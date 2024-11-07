@@ -164,8 +164,8 @@ export interface MapPanel extends BasePanel {
     timeSlider?: TimeSliderConfig;
     title: string;
     scrollguard: boolean;
-    teleportGrid?: boolean;
-    customTemplates: String[];
+    teleportGrid?: string;
+    customTemplates: string[];
 }
 
 export interface InteractiveMapPanel extends BasePanel {
@@ -174,6 +174,7 @@ export interface InteractiveMapPanel extends BasePanel {
     title: string;
     scrollguard: boolean;
     points: PointOfInterest[];
+    teleportAOI?: string;
 }
 
 export interface PointOfInterest {
