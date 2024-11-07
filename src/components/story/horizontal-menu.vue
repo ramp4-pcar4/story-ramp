@@ -37,7 +37,14 @@
                     }}</span>
                 </router-link>
             </li>
-            <li v-for="(slide, idx) in slides" :key="idx" :class="{ 'is-active': lastActiveIdx === slide.index }">
+            <li
+                v-for="(slide, idx) in slides"
+                :key="idx"
+                :class="{
+                    'is-active': lastActiveIdx === slide.index,
+                    separator: (!returnToTop && idx !== 0) || returnToTop
+                }"
+            >
                 <!-- using router-link causes a page refresh which breaks plugin -->
                 <a
                     class="flex items-center px-2 py-1 mx-1 cursor-pointer"
@@ -188,5 +195,19 @@ const updateActiveIdx = () => {
         background-color: var(--sr-accent-colour);
         font-weight: bold;
     }
+}
+.separator {
+    position: relative;
+}
+
+.separator::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 80%;
+    width: 1px;
+    background-color: #e0e0e0;
 }
 </style>
