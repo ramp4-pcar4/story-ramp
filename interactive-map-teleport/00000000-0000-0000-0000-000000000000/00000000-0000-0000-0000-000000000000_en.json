@@ -49,6 +49,7 @@
                     "type": "interactive-map",
                     "scrollguard": true,
                     "title": "Map Title Test",
+                    "teleportAOI": "right",
                     "points": [
                         {
                             "title": "Point of Interest A",
