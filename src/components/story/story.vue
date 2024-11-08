@@ -124,6 +124,8 @@ const fetchConfig = (uid: string, lang: string): void => {
                     // set page title
                     if (config.value) {
                         document.title = config.value.title + ' - Canada.ca';
+                        // Purge undefined slides for viewing, otherwise storyline will crash
+                        config.value.slides = config.value.slides.filter((slide) => slide && Object.keys(slide).length);
                     }
                 })
                 .catch(() => {
