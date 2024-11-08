@@ -7,21 +7,16 @@
 
         <title>Scénarios de PCAR</title>
 
-        <!-- replace `rn` in the url with a version number ("v4_0_30" for example) if desired -->
-        <script
-            type="text/javascript"
-            src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/rn/cdts/compiled/soyutils.js"
-        ></script>
-        <script
-            type="text/javascript"
-            src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/rn/cdts/compiled/wet-fr.js"
-        ></script>
+        <!-- Load stylesheet -->
+        <link rel="stylesheet" href="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v5_0_2/cdts/cdts-styles.css" />
 
-        <script type="text/javascript">
-            document.write(wet.builder.refTop({}));
-        </script>
-      <script type="module" crossorigin src="./assets/main-D0-FKNfa.js"></script>
-      <link rel="stylesheet" crossorigin href="./assets/main-DClhyHq4.css">
+        <!-- Load/activate closure template scripts -->
+        <script
+            src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v5_0_2/cdts/compiled/wet-fr.js"
+            data-cdts-setup='{"cdnEnv": "prod"}'
+        ></script>
+      <script type="module" crossorigin src="./assets/main-a44eoABk.js"></script>
+      <link rel="stylesheet" crossorigin href="./assets/main-CZXLAgcn.css">
     </head>
     <body>
         <!-- template top and no-script fallback -->
@@ -70,14 +65,21 @@
                         href: 'index-ca-en.html#/en/' + newURLRoute,
                         text: 'English'
                     }
-                ],
-                breadcrumbs: [
-                    {
-                        title: 'Environnement et ressources naturelles',
-                        href: 'https://www.canada.ca/fr/services/environnement/meteo.html'
-                    }
                 ]
             });
+
+            document.addEventListener('Storylines-Loaded', (payload) => {
+                const breadcrumbs = payload.detail.config.breadcrumbs;
+                const breadcrumbList = document.querySelectorAll('#wb-bc > .container > .breadcrumb')[0];
+
+                // Create an HTML li element for each of the breadcrumbs to add and then append them to the breadcrumb list.
+                breadcrumbs.forEach((b) => {
+                    const node = document.createElement('li');
+                    node.innerHTML = `<a href="${b.href}">${b.title}</a>`;
+                    breadcrumbList.appendChild(node);
+                });
+            });
+
             document.querySelectorAll('.wb-sl').forEach(function (skipLink) {
                 skipLink.setAttribute('href', url.href.split(/#[^\/]/)[0] + '#' + skipLink.href.split('#')[1]);
             });
