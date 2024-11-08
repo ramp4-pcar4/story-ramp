@@ -4,7 +4,7 @@ export interface StoryRampConfig {
     title: string;
     lang: string;
     introSlide: Intro;
-    slides: Slide[];
+    slides: (Slide | {})[];
     contextLink: string;
     contextLabel: string;
     tocOrientation: string;
