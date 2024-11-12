@@ -7,7 +7,7 @@
                     @click="scrollToChapter('intro')"
                     v-tippy="{
                         delay: '200',
-                        placement: 'right',
+                        placement: 'bottom',
                         content: $t('chapters.return'),
                         animateFill: true,
                         animation: 'chapter-menu'
@@ -25,7 +25,7 @@
                     target
                     v-tippy="{
                         delay: '200',
-                        placement: 'right',
+                        placement: 'bottom',
                         content: $t('chapters.return'),
                         animateFill: true,
                         animation: 'chapter-menu'
@@ -51,7 +51,7 @@
                     @click="scrollToChapter(`${slide.index}-${slide.title.toLowerCase().replaceAll(' ', '-')}`)"
                     v-tippy="{
                         delay: '200',
-                        placement: 'right',
+                        placement: 'bottom',
                         content: getTitle(slide),
                         animateFill: true,
                         animation: 'chapter-menu'
@@ -69,7 +69,7 @@
                     target
                     v-tippy="{
                         delay: '200',
-                        placement: 'right',
+                        placement: 'bottom',
                         content: getTitle(slide),
                         animateFill: true,
                         animation: 'chapter-menu'
