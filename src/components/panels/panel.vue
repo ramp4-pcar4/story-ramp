@@ -17,6 +17,7 @@
             :lang="lang"
             :style="config.customStyles"
             :class="config.cssClasses"
+            :lazyLoad="lazyLoad"
             :background="background"
         ></component>
     </div>
@@ -55,6 +56,9 @@ const props = defineProps({
         type: String
     },
     background: {
+        type: Boolean
+    },
+    lazyLoad: {
         type: Boolean
     }
 });
