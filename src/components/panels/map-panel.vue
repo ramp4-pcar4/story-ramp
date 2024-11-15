@@ -8,11 +8,18 @@
             {{ config.title }}
         </div>
 
-        <div class="flex sm:flex-row flex-col w-full h-story" v-if="config.teleportGrid">
-            <div class="storylines-grid-container sm:order-1 order-2 flex-1 min-w-0 ramp-styles" ref="grid"></div>
+        <div class="grid-teleport flex sm:flex-row flex-col w-full sm:h-story" v-if="config.teleportGrid">
+            <div
+                class="storylines-grid-container flex-1 min-w-0 ramp-styles"
+                :class="{
+                    'sm:order-1 order-2': config.teleportGrid === 'left',
+                    'order-2': config.teleportGrid === 'right'
+                }"
+                ref="grid"
+            ></div>
             <div
                 :id="`ramp-map-${slideIdx}`"
-                class="sm:order-2 order-1 flex-2 min-w-0 bg-gray-200"
+                class="flex-2 min-w-0 bg-gray-200"
                 :class="config.title ? 'rv-map-title' : 'rv-map'"
             ></div>
         </div>
@@ -105,20 +112,14 @@ const init = async () => {
 };
 
 const setupMap = (config: any) => {
-    const notMobile = el.value.clientWidth > 640;
     if (props.config.teleportGrid) {
         // get grid container element to teleport grid to and save to config
-        if (notMobile) {
-            config.configs.en.fixtures.grid.panelTeleport.target = grid.value;
-            config.configs.fr.fixtures.grid.panelTeleport.target = grid.value;
-        } else {
-            delete config.configs.en.fixtures.grid.panelTeleport;
-            delete config.configs.fr.fixtures.grid.panelTeleport;
-        }
+        config.configs.en.fixtures.grid.panelTeleport.target = grid.value;
+        config.configs.fr.fixtures.grid.panelTeleport.target = grid.value;
     }
 
     const rInstance = createInstance(mapComponent.value as HTMLElement, config);
-    if (props.config.teleportGrid && notMobile) {
+    if (props.config.teleportGrid) {
         // open teleported grid after map + layer loaded
         const gridId = config.configs[props.lang as string].layers[0].id;
         rInstance.event.on(
@@ -175,22 +176,24 @@ const setupMap = (config: any) => {
     }
 }
 
-.toc-horizontal .rv-map,
-.toc-horizontal .storylines-grid-container {
-    height: calc(100vh - 4rem - 2.75rem) !important; // 4rem for the header, 2.75 for the horizontal ToC.
-}
+@media screen and (min-width: 640px) {
+    .toc-horizontal .rv-map,
+    .toc-horizontal .storylines-grid-container {
+        height: calc(100vh - 4rem - 2.75rem) !important; // 4rem for the header, 2.75 for the horizontal ToC.
+    }
 
-.toc-vertical .rv-map {
-    height: calc(100vh - 4rem) !important;
-}
-.toc-horizontal .rv-map-title {
-    height: calc(100vh - 9rem - 2.75rem) !important; // 9rem for the header + title, 2.75 for the horizontal ToC.
-    width: 100%;
-}
+    .toc-vertical .rv-map {
+        height: calc(100vh - 4rem) !important;
+    }
+    .toc-horizontal .rv-map-title {
+        height: calc(100vh - 9rem - 2.75rem) !important; // 9rem for the header + title, 2.75 for the horizontal ToC.
+        width: 100%;
+    }
 
-.toc-vertical .rv-map-title {
-    height: calc(100vh - 9rem) !important;
-    width: 100%;
+    .toc-vertical .rv-map-title {
+        height: calc(100vh - 9rem) !important;
+        width: 100%;
+    }
 }
 
 .has-background {
@@ -226,15 +229,19 @@ const setupMap = (config: any) => {
         }
     }
 
+    .grid-teleport {
+        height: 100vh;
+
+        .storylines-grid-container {
+            height: 60vh;
+        }
+    }
+
     .map-title {
         margin: 0em;
         padding-top: 0.2em;
         padding-bottom: 0.2em;
         background: #fff;
-    }
-
-    .storylines-grid-container {
-        display: none;
     }
 }
 

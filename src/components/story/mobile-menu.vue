@@ -123,6 +123,14 @@
                 <button
                     class="flex py-1 px-3"
                     @click="scrollToChapter(`${slide.index}-${slide.title.toLowerCase().replaceAll(' ', '-')}`)"
+                    v-tippy="{
+                        delay: '200',
+                        placement: 'top',
+                        offset: [0, 0],
+                        content: slide.title,
+                        animateFill: true,
+                        animation: 'chapter-menu'
+                    }"
                     v-if="plugin"
                 >
                     <svg
@@ -147,6 +155,14 @@
                     :to="{ hash: `#${slide.index}-${slide.title.toLowerCase().replaceAll(' ', '-')}` }"
                     class="flex py-1 px-3"
                     target
+                    v-tippy="{
+                        delay: '200',
+                        placement: 'top',
+                        offset: [0, 0],
+                        content: slide.title,
+                        animateFill: true,
+                        animation: 'chapter-menu'
+                    }"
                     v-else
                 >
                     <svg
