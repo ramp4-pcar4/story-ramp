@@ -19,8 +19,11 @@
                             :config="panelConfig"
                             :configFileStructure="configFileStructure"
                             :slideIdx="slideIdx"
+                            :isSlideshowItem="true"
                             class="carousel-item"
-                            :class="{ 'overflow-y-auto': panelConfig.type === 'text' }"
+                            :class="{
+                                'map-max-height': panelConfig.type === 'map'
+                            }"
                         ></panel>
                     </slide>
 
@@ -106,6 +109,13 @@ window.addEventListener('resize', () => {
     padding-top: 5px;
 }
 
+.toc-horizontal .map-max-height {
+    height: calc(100vh - 4rem - 2.75rem) !important;
+}
+.toc-vertical .map-max-height {
+    height: calc(100vh - 4rem) !important;
+}
+
 .carousel {
     height: auto;
     text-align: left;
@@ -178,9 +188,10 @@ window.addEventListener('resize', () => {
 }
 .carousel-item {
     // Max height of the carousel is 80vh, but set height to 100% to items appear in the center of the container.
-    height: 100%;
+    align-self: center;
     max-height: 80vh;
     top: 0px;
+    overflow-y: auto;
 }
 
 @media screen and (max-width: 640px) {
