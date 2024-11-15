@@ -1,5 +1,5 @@
 <template>
-    <div ref="el" class="flex flex-col h-full align-middle w-full">
+    <div ref="el" class="flex flex-col h-full align-middle w-full" :class="{ 'map-box': !isSlideshowItem }">
         <div
             class="px-10 mb-0 chapter-title top-20 map-title text-center"
             :class="{ 'has-background': background }"
@@ -8,19 +8,20 @@
             {{ config.title }}
         </div>
 
-        <div class="flex sm:flex-row flex-col w-full h-story" v-if="config.teleportGrid">
-            <div class="storylines-grid-container sm:order-1 order-2 flex-1 min-w-0 ramp-styles" ref="grid"></div>
+        <div class="flex sm:flex-row flex-col w-full min-h-0 h-story" v-if="config.teleportGrid">
             <div
-                :id="`ramp-map-${slideIdx}`"
-                class="sm:order-2 order-1 flex-2 min-w-0 bg-gray-200"
-                :class="config.title ? 'rv-map-title' : 'rv-map'"
+                class="storylines-grid-container sm:order-1 order-2 flex-1 min-w-0 min-h-0 ramp-styles"
+                ref="grid"
             ></div>
+            <div :id="`ramp-map-${slideIdx}`" class="sm:order-2 order-1 flex-2 min-w-0 min-h-0 bg-gray-200"></div>
         </div>
+        <div :id="`ramp-map-${slideIdx}`" class="rv-map w-full bg-gray-200 sm:h-story min-h-0 flex-1" v-else></div>
+
         <div
-            :id="`ramp-map-${slideIdx}`"
-            class="w-full bg-gray-200 sm:h-story h-full"
-            :class="config.title ? 'rv-map-title' : 'rv-map'"
-            v-else
+            v-if="config.caption"
+            class="text-center text-sm max-w-full map-caption"
+            v-html="md.render(config.caption)"
+            :class="{ 'caption-has-background': background }"
         ></div>
     </div>
 </template>
@@ -28,6 +29,7 @@
 <script setup lang="ts">
 import type { PropType } from 'vue';
 import { onMounted, ref } from 'vue';
+import MarkdownIt from 'markdown-it';
 import { i18n } from '@storylines/lang';
 import { createInstance } from 'ramp-pcar';
 import { ConfigFileStructure, MapPanel, TimeSliderConfig } from '@storylines/definitions';
@@ -49,6 +51,9 @@ const props = defineProps({
     },
     background: {
         type: Boolean
+    },
+    isSlideshowItem: {
+        type: Boolean
     }
 });
 
@@ -56,6 +61,7 @@ const el = ref();
 const grid = ref();
 const intersectTimeoutHandle = ref(-1);
 const mapComponent = ref<Element | undefined>(undefined);
+const md = new MarkdownIt({ html: true });
 
 onMounted(() => {
     const observer = new IntersectionObserver(
@@ -175,28 +181,28 @@ const setupMap = (config: any) => {
     }
 }
 
-.toc-horizontal .rv-map,
 .toc-horizontal .storylines-grid-container {
     height: calc(100vh - 4rem - 2.75rem) !important; // 4rem for the header, 2.75 for the horizontal ToC.
 }
 
-.toc-vertical .rv-map {
+.toc-horizontal .map-box {
+    height: calc(100vh - 4rem - 2.75rem) !important;
+}
+.toc-vertical .map-box {
     height: calc(100vh - 4rem) !important;
-}
-.toc-horizontal .rv-map-title {
-    height: calc(100vh - 9rem - 2.75rem) !important; // 9rem for the header + title, 2.75 for the horizontal ToC.
-    width: 100%;
-}
-
-.toc-vertical .rv-map-title {
-    height: calc(100vh - 9rem) !important;
-    width: 100%;
 }
 
 .has-background {
     background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 8px 8px 0px 0px;
     margin-bottom: 0em !important;
     padding-bottom: 1em;
+    color: black;
+}
+
+.caption-has-background {
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 0px 0px 8px 8px;
     color: black;
 }
 
@@ -208,7 +214,6 @@ const setupMap = (config: any) => {
     margin-bottom: 1em;
     line-height: 1.3333333;
 }
-
 @media screen and (max-width: 640px) {
     .rv-map {
         max-height: 50vh;
