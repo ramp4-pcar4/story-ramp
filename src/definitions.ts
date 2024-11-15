@@ -163,6 +163,7 @@ export interface MapPanel extends BasePanel {
     fullscreen?: boolean;
     timeSlider?: TimeSliderConfig;
     title: string;
+    caption: string;
     scrollguard: boolean;
     teleportGrid?: string;
     customTemplates: string[];

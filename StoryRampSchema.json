@@ -239,6 +239,10 @@
                     "type": "string",
                     "description": "A title that is displayed centered above this map."
                 },
+                "caption": {
+                    "type": "string",
+                    "description": "Supporting text content for the map."
+                },
                 "customTemplates": {
                     "type": "array",
                     "description": "An array of custom template names that will need to be registered on the map component.",
