@@ -1,6 +1,7 @@
 <template>
     <div class="chart self-center mb-8 mx-auto bg-gray-200_">
         <chart :config="config" :configFileStructure="configFileStructure" />
+        <div class="text-center w-full mt-2">{{ config.caption }}</div>
     </div>
 </template>
 

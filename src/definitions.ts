@@ -260,6 +260,7 @@ export interface ChartPanel extends BasePanel {
     config?: any;
     name?: string;
     options?: DQVOptions;
+    caption?: string;
 }
 
 export interface ChartConfig {
@@ -268,6 +269,7 @@ export interface ChartConfig {
     config?: any;
     name?: string;
     options?: DQVOptions;
+    caption?: string;
 }
 
 export interface BreadcrumbConfig {
