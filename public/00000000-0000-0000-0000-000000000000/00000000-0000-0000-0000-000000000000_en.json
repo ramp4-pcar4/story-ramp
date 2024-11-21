@@ -143,7 +143,8 @@
                                 "items": [
                                     {
                                         "type": "chart",
-                                        "src": "00000000-0000-0000-0000-000000000000/charts/en/chartConfig.json"
+                                        "src": "00000000-0000-0000-0000-000000000000/charts/en/chartConfig.json",
+                                        "caption": "caption for a chart"                                        
                                     },
                                     {
                                         "type": "chart",
@@ -152,7 +153,8 @@
                                             "title": "Selenium releases and disposals in 2019",
                                             "subtitle": "",
                                             "type": "pie"
-                                        }
+                                        }, 
+                                        "caption": "caption for another chart"
                                     }
                                 ]
                             }
@@ -460,7 +462,8 @@
                     "items": [
                         {
                             "type": "chart",
-                            "src": "00000000-0000-0000-0000-000000000000/charts/en/chartConfig.json"
+                            "src": "00000000-0000-0000-0000-000000000000/charts/en/chartConfig.json", 
+                            "caption": "Caption for first chart"
                         },
                         {
                             "type": "chart",
@@ -470,7 +473,8 @@
                                 "xAxisLabel": "Quantity (tonnes)",
                                 "subtitle": "",
                                 "type": "bar"
-                            }
+                            }, 
+                            "caption": "caption for second chart"
                         },
                         {
                             "type": "chart",
@@ -479,7 +483,8 @@
                                 "title": "Figure 1: Percentage of total ethylene glycol releases for 2019, by sector",
                                 "subtitle": "",
                                 "type": "pie"
-                            }
+                            }, 
+                            "caption": "caption for third chart"
                         }
                     ]
                 }
