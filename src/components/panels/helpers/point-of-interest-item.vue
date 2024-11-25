@@ -14,7 +14,7 @@
             </fullscreen>
 
             <div class="point-of-interest-text" :class="{ 'no-image': !point.image }" v-if="point.title || point.text">
-                <h1 class="text-xl font-bold">{{ point.title }}</h1>
+                <h1 class="text-xl font-bold" v-html="point.title"></h1>
                 <span class="prose" v-html="mdContent"></span>
             </div>
         </div>

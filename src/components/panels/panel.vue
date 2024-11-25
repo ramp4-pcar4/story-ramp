@@ -17,6 +17,7 @@
             :lang="lang"
             :style="config.customStyles"
             :class="config.cssClasses"
+            :isSlideshowItem="isSlideshowItem"
             :lazyLoad="lazyLoad"
             :background="background"
         ></component>
@@ -60,6 +61,10 @@ const props = defineProps({
     },
     lazyLoad: {
         type: Boolean
+    },
+    isSlideshowItem: {
+        type: Boolean,
+        required: false
     }
 });
 
