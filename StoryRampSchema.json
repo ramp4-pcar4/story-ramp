@@ -682,6 +682,12 @@
         "dateModified": {
             "type": "string",
             "description": "The last date that this config file was modified."
+        },
+
+        "lazyLoad": {
+            "type": "boolean",
+            "description": "If true, all images in the product will be lazy loaded.",
+            "default": true
         }
     },
 

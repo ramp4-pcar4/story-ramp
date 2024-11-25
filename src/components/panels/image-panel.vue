@@ -3,7 +3,7 @@
         <fullscreen :expandable="config.fullscreen" :type="config.type">
             <img
                 ref="img"
-                :src="slideIdx > 2 ? '' : state.src"
+                :src="lazyLoad && slideIdx > 2 ? '' : state.src"
                 :class="[config.class, config.caption ? 'rounded-t-lg' : 'rounded-lg']"
                 :alt="config.altText || ''"
                 :style="{ width: `${config.width}px`, height: `${config.height}px` }"
@@ -42,6 +42,9 @@ const props = defineProps({
     },
     background: {
         type: Boolean
+    },
+    lazyLoad: {
+        type: Boolean
     }
 });
 
@@ -56,7 +59,7 @@ const observer = ref<IntersectionObserver | undefined>(undefined);
 onMounted((): void => {
     state.src = props.config.src ? props.config.src : '';
 
-    if (props.slideIdx > 2) {
+    if (props.lazyLoad && props.slideIdx > 2) {
         observer.value = new IntersectionObserver(([image]) => {
             // lazy load images
             if (image.isIntersecting) {

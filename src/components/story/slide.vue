@@ -13,6 +13,7 @@
             :index="idx"
             :ratio="defaultRatio"
             :slideIdx="slideIdx"
+            :lazyLoad="lazyLoad"
             :lang="lang"
             :class="determinePanelOrder(idx)"
             :background="!!config.backgroundImage && background"
@@ -44,6 +45,9 @@ const props = defineProps({
         type: String
     },
     background: {
+        type: Boolean
+    },
+    lazyLoad: {
         type: Boolean
     }
 });

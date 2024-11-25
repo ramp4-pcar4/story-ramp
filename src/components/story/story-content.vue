@@ -46,6 +46,7 @@
                         :slideIdx="idx"
                         :lang="lang"
                         :background="hasBackground"
+                        :lazyLoad="config.lazyLoad ?? true"
                         @slide-changed="handleSlideChange"
                     ></slide>
                 </div>
@@ -107,7 +108,14 @@ onMounted(() => {
         setTimeout(() => {
             const decodedHash = decodeURIComponent(hash);
             const el = document.getElementById(decodedHash);
-            el?.scrollIntoView();
+            if (el) {
+                // Calculate the offset of the header and horizontal ToC (if applicable).
+                const offsetPosition =
+                    el?.getBoundingClientRect().top -
+                    (document.getElementById('h-navbar')?.clientHeight || 0) -
+                    (document.getElementById('story-header')?.clientHeight || 0);
+                window.scrollTo({ top: offsetPosition });
+            }
         }, 200);
     }
 

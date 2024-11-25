@@ -12,6 +12,7 @@ export interface StoryRampConfig {
     returnTop?: boolean;
     stylesheets?: string[];
     dateModified: string;
+    lazyLoad: boolean;
 }
 
 export interface ConfigFileStructure {
