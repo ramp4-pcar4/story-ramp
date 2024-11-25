@@ -35,7 +35,7 @@
                 {
                     "config": "00000000-0000-0000-0000-000000000000/ramp-config/CommunityDirectory.json",
                     "type": "map",
-                    "teleportGrid": "left",
+                    "teleportGrid": "right",
                     "scrollguard": true
                 }
             ],
@@ -565,6 +565,7 @@
     "contextLink": "https://www.canada.ca/en/environment-climate-change/services/national-pollutant-release-inventory/tools-resources-data/exploredata.html",
     "contextLabel": "Explore National Pollutant Release Inventory data",
     "lang": "en",
+    "lazyLoad": false,
     "breadcrumbs": [
         {
             "title": "Environment and natural resources",
