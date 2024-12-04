@@ -12,6 +12,7 @@
                         :point="point"
                         :index="index"
                         @poi-changed="handlePoint"
+                        @return-home="returnHome"
                     ></PointOfInterestItem>
                 </div>
             </div>
@@ -20,7 +21,12 @@
         <div class="h-full align-middle w-full interactive-container sticky" v-else>
             <div class="interactive-content z-50">
                 <div v-for="(point, index) in config.points" :key="`poi-` + index" class="point-of-interest-container">
-                    <PointOfInterestItem :point="point" :index="index" @poi-changed="handlePoint"></PointOfInterestItem>
+                    <PointOfInterestItem
+                        :point="point"
+                        :index="index"
+                        @poi-changed="handlePoint"
+                        @return-home="returnHome"
+                    ></PointOfInterestItem>
                 </div>
             </div>
             <div :id="`ramp-map-${slideIdx}`" class="bg-gray-200 h-story rv-map sticky interactive-content"></div>
@@ -140,10 +146,20 @@ const handlePoint = (id: string, oid: number, layerIndex?: number) => {
 
             // Add the new highlight in.
             const g = await targetLayer.getGraphic(oid, { getGeom: true, getStyle: true });
-            await instance.geo.map.zoomMapTo(g.geometry, 4622324.434309);
+            props.config.duration
+                ? await instance.geo.map.zoomMapTo(g.geometry, 4622324.434309, true, props.config.duration)
+                : await instance.geo.map.zoomMapTo(g.geometry, 4622324.434309);
             await hl.addHilight(g);
         });
     });
+};
+
+const returnHome = async () => {
+    // zoom out to home extent=
+    const extentSet = rInstance.value.geo.map.getExtentSet();
+    props.config.duration
+        ? await rInstance.value.geo.map.zoomMapTo(extentSet.fullExtent, null, true, props.config.duration)
+        : await rInstance.value.geo.map.zoomMapTo(extentSet.fullExtent);
 };
 </script>
 
