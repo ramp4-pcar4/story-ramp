@@ -283,6 +283,10 @@
                     "default": "",
                     "enum": ["", "left", "right"]
                 },
+                "duration": {
+                    "type": "number",
+                    "description": "Animation duration of zoom."
+                },
                 "points": {
                     "type": "array",
                     "description": "A list of points of interest.",
