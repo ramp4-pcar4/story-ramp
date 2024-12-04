@@ -1,5 +1,5 @@
 <template>
-    <div class="sticky z-10 grid-background" style="top: 60px; height: 100vh">
+    <div class="sticky z-10 grid-background overflow-hidden" style="top: 60px; height: 100vh">
         <!-- Vue3 transition for switching between a slide with no background a slide with a background. -->
         <Transition name="fade" mode="out-in">
             <div v-if="state.newImage !== 'none'" class="w-full h-full">
@@ -11,7 +11,7 @@
                 />
                 <img
                     class="fade-in transition-img w-full h-full object-cover"
-                    :class="{ 'transition-hide': activeImage === 1 }"
+                    :class="[cssClasses, { 'transition-hide': activeImage === 1 }]"
                     :src="state.newImage"
                     id="primaryImage"
                     role="presentation"
@@ -34,6 +34,9 @@ const props = defineProps({
     },
     configFileStructure: {
         type: Object as PropType<ConfigFileStructure>
+    },
+    cssClasses: {
+        type: String
     }
 });
 
