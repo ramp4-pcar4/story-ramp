@@ -1,0 +1,26 @@
+.textPanelOutline {
+    border: 2px solid black;
+}
+
+.right-align {
+    margin-left: auto !important;
+    margin-right: 10% !important;
+    max-width: 600px;
+}
+
+.img-zoomies {
+    margin: auto;
+    animation: zoom-in-zoom-out 8s ease infinite;
+}
+
+@keyframes zoom-in-zoom-out {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
