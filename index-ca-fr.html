@@ -67,8 +67,15 @@
             });
 
             document.addEventListener('Storylines-Loaded', (payload) => {
-                const breadcrumbs = payload.detail.config.breadcrumbs;
+                const breadcrumbs = payload.detail.config.breadcrumbs ?? []; // default to an empty array if this property isn't defined.
                 const breadcrumbList = document.querySelectorAll('#wb-bc > .container > .breadcrumb')[0];
+                const firstElement = breadcrumbList.children[0]; // should be the `Canada.ca` breadcrumb.
+
+                // Reset the breadcrumb list.
+                breadcrumbList.innerHTML = ``;
+
+                // Add the `Canada.ca` element back to the list of breadcrumbs.
+                breadcrumbList.appendChild(firstElement);
 
                 // Create an HTML li element for each of the breadcrumbs to add and then append them to the breadcrumb list.
                 breadcrumbs.forEach((b) => {
