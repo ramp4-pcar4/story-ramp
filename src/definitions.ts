@@ -1,4 +1,5 @@
 import JSZip from 'jszip';
+import { Options as nouiOptions } from 'nouislider';
 
 export interface StoryRampConfig {
     title: string;
@@ -199,6 +200,7 @@ export interface TimeSliderConfig {
     start: number[];
     attribute: string;
     layers?: string[];
+    sliderConfig?: nouiOptions;
 }
 
 export interface DynamicPanel extends BasePanel {
