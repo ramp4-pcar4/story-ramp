@@ -30,7 +30,7 @@ import MarkdownIt from 'markdown-it';
 import Fullscreen from './fullscreen.vue';
 
 const poi = ref();
-const emit = defineEmits(['poi-changed']);
+const emit = defineEmits(['return-home', 'poi-changed']);
 
 const md = new MarkdownIt({ html: true });
 const mdContent = ref('');
@@ -87,7 +87,9 @@ const intersectionHandler = (entries: IntersectionObserverEntry[], observer: Int
         const attribs = props.point.target;
 
         if (point.isIntersecting) {
-            emit('poi-changed', attribs.layerId, attribs.oid, attribs.layerIndex);
+            attribs.returnHome
+                ? emit('return-home')
+                : emit('poi-changed', attribs.layerId, attribs.oid, attribs.layerIndex);
         }
     });
 };

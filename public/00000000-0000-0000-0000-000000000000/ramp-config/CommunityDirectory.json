@@ -230,8 +230,8 @@
                     {
                         "id": "EXT_NRCAN_Lambert_3978",
                         "default": {
-                            "xmin": -14122466.687850542,
-                            "xmax": -11280232.228095304,
+                            "xmin": -15122466.687850542,
+                            "xmax": -12280232.228095304,
                             "ymin": 6247479.46145181,
                             "ymax": 8125995.868587801,
                             "spatialReference": {
@@ -243,8 +243,8 @@
                     {
                         "id": "EXT_ESRI_World_AuxMerc_3857",
                         "default": {
-                            "xmin": -14122466.687850542,
-                            "xmax": -11280232.228095304,
+                            "xmin": -15122466.687850542,
+                            "xmax": -12280232.228095304,
                             "ymin": 6247479.46145181,
                             "ymax": 8125995.868587801,
                             "spatialReference": {
@@ -443,7 +443,7 @@
                     },
                     "mergeGrids": [
                         {
-                            "gridId": "CommunityDirectory",
+                            "gridId": "Community Directory",
                             "layers": [
                                 {
                                     "layerId": "CD"

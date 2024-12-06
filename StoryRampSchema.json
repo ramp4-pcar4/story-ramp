@@ -243,6 +243,25 @@
                     "type": "string",
                     "description": "Supporting text content for the map."
                 },
+                "zoomDetails": {
+                    "type": "object",
+                    "description": "Attributes to zoom to point of interest.",
+                    "properties": {
+                        "x": {
+                            "type": "number",
+                            "description": "X coordinate of point."
+                        },
+                        "y": {
+                            "type": "number",
+                            "description": "Y coordinate of point."
+                        },
+                        "zoom": {
+                            "type": "number",
+                            "description": "Scale value when zooming map."
+                        },
+                        "required": ["x", "y", "zoom"]
+                    }
+                },
                 "customTemplates": {
                     "type": "array",
                     "description": "An array of custom template names that will need to be registered on the map component.",
@@ -282,6 +301,10 @@
                     "description": "Specifies where to teleport areas of interest outside of RAMP instance.",
                     "default": "",
                     "enum": ["", "left", "right"]
+                },
+                "duration": {
+                    "type": "number",
+                    "description": "Animation duration of zoom."
                 },
                 "points": {
                     "type": "array",
