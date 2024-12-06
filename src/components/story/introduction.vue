@@ -103,7 +103,6 @@ const state = reactive({
 onMounted(() => {
     state.logo = props.config.logo ? props.config.logo.src : '';
     state.backgroundImage = props.config.backgroundImage ?? '';
-
     // obtain logo and background image from ZIP file if it exists
     if (props.configFileStructure) {
         const logo = props.config.logo?.src;
@@ -112,20 +111,38 @@ onMounted(() => {
         if (logo) {
             const logoSrc = `${logo.substring(logo.indexOf('/') + 1)}`;
             const logoFile = props.configFileStructure.zip.file(logoSrc);
+            const logoType = logoSrc.split('.').at(-1);
+            const logoName = logo.replace(/^.*[\\/]/, '');
             if (logoFile) {
-                logoFile.async('blob').then((res: Blob) => {
-                    state.logo = props.config.logo.src = URL.createObjectURL(res);
-                });
+                if (logoType !== 'svg') {
+                    logoFile.async('blob').then((res: Blob) => {
+                        state.logo = props.config.logo.src = URL.createObjectURL(res);
+                    });
+                } else {
+                    logoFile.async('text').then((res) => {
+                        const image = new File([res], logoName, { type: 'image/svg+xml' });
+                        state.logo = props.config.logo.src = URL.createObjectURL(image);
+                    });
+                }
             }
         }
 
         if (background) {
             const bgSrc = `${background.substring(background.indexOf('/') + 1)}`;
             const bgFile = props.configFileStructure.zip.file(bgSrc);
+            const bgType = bgSrc.split('.').at(-1);
+            const bgName = logo.replace(/^.*[\\/]/, '');
             if (bgFile) {
-                bgFile.async('blob').then((res: Blob) => {
-                    state.backgroundImage = props.config.backgroundImage = URL.createObjectURL(res);
-                });
+                if (bgType !== 'svg') {
+                    bgFile.async('blob').then((res: Blob) => {
+                        state.backgroundImage = props.config.backgroundImage = URL.createObjectURL(res);
+                    });
+                } else {
+                    bgFile.async('blob').then((res: Blob) => {
+                        const image = new File([res], bgName, { type: 'image/svg+xml' });
+                        state.backgroundImage = props.config.backgroundImage = URL.createObjectURL(image);
+                    });
+                }
             }
         }
     }
