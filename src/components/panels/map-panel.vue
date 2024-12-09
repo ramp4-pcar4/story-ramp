@@ -36,7 +36,7 @@
 
 <script setup lang="ts">
 import type { PropType } from 'vue';
-import { onMounted, ref } from 'vue';
+import { onBeforeUnmount, onMounted, ref } from 'vue';
 import MarkdownIt from 'markdown-it';
 import { i18n } from '@storylines/lang';
 import { createInstance } from 'ramp-pcar';
@@ -70,6 +70,7 @@ const grid = ref();
 const intersectTimeoutHandle = ref(-1);
 const mapComponent = ref<Element | undefined>(undefined);
 const md = new MarkdownIt({ html: true });
+const zoomEvent = ref<number | undefined>(undefined);
 
 onMounted(() => {
     const observer = new IntersectionObserver(
@@ -155,12 +156,44 @@ const setupMap = (config: any) => {
         });
     }
 
+    async function zoomAnimation() {
+        // extract zoom extent details from storylines map config
+        const zoomPoint = new rInstance.geo.geom.Point('pointOfInterest', [
+            props.config.zoomDetails?.x,
+            props.config.zoomDetails?.y
+        ]);
+
+        // zoom in to specified point of interest
+        await rInstance.geo.map.zoomMapTo(zoomPoint, props.config.zoomDetails?.zoom, true, 3000);
+        // zoom out to home extent
+        const extentSet = rInstance.geo.map.getExtentSet();
+        await rInstance.geo.map.zoomMapTo(extentSet.fullExtent, null, true, 3000);
+
+        // repeat next zoom animation
+        setTimeout(() => {
+            zoomAnimation();
+        }, 1000);
+    }
+
+    if (props.config.zoomDetails) {
+        rInstance.event.on('map/created', () => {
+            // set continuous loop of zoom in/out animation
+            zoomAnimation();
+        });
+    }
+
     // Dispatch an event to indicate that the map has been loaded.
     const event = new CustomEvent('map-created', {
         detail: { rInstance: rInstance, customTemplates: props.config.customTemplates }
     });
     document.dispatchEvent(event);
 };
+
+onBeforeUnmount(() => {
+    if (zoomEvent.value) {
+        clearInterval(zoomEvent.value);
+    }
+});
 </script>
 
 <style lang="scss" scoped>
