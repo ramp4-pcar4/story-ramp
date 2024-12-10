@@ -25,9 +25,7 @@ const router = createRouter({
             return {
                 el: decodeURIComponent(to.hash),
                 behavior: 'smooth',
-                top:
-                    (document.getElementById('h-navbar')?.clientHeight || 0) +
-                    (document.getElementById('story-header')?.clientHeight || 0)
+                top: window.innerHeight / 6
             };
         }
     }
