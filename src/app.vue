@@ -1,5 +1,5 @@
 <template>
-    <div id="app" class="storyramp-app bg-white">
+    <div class="bg-white">
         <router-view :key="$route.path"></router-view>
     </div>
 </template>
