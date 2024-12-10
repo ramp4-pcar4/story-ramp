@@ -104,7 +104,8 @@ onMounted(() => {
                 }
                 return -1;
             }
-        }
+        },
+        ...props.config.sliderConfig,
     });
 
     slider.value.on('update', () => {
