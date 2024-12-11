@@ -129,6 +129,7 @@ export interface Slide {
     index: number;
     backgroundImage: string;
     includeInToc?: boolean;
+    bgCssClasses?: string;
 }
 
 export enum PanelType {
@@ -168,6 +169,11 @@ export interface MapPanel extends BasePanel {
     caption: string;
     scrollguard: boolean;
     teleportGrid?: string;
+    zoomDetails?: {
+        x: number;
+        y: number;
+        zoom: number;
+    };
     customTemplates: string[];
 }
 
@@ -178,6 +184,7 @@ export interface InteractiveMapPanel extends BasePanel {
     scrollguard: boolean;
     points: PointOfInterest[];
     teleportAOI?: string;
+    duration?: number;
 }
 
 export interface PointOfInterest {
@@ -191,6 +198,7 @@ export interface PointOfInterest {
 export interface PointOfInterestTarget {
     oid: number;
     layerId: string;
+    returnHome?: boolean;
     layerIndex?: number;
     icon?: string;
 }
