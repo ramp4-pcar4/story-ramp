@@ -7,7 +7,8 @@
             class="top-menu"
             :active-chapter-index="activeChapterIndex"
             :return-to-top="config.returnTop ?? true"
-            :slides="tocSlides"
+            :slides="config.slides"
+            :customToc="config.tableOfContents"
             :plugin="!!configFileStructure || !!plugin"
             :lang="lang"
             :style="{ top: headerHeight + 'px' }"
@@ -17,7 +18,8 @@
             class="side-menu"
             :active-chapter-index="activeChapterIndex"
             :return-to-top="config.returnTop ?? true"
-            :slides="tocSlides"
+            :slides="config.slides"
+            :customToc:="config.tableOfContents"
             :plugin="!!configFileStructure || !!plugin"
             :lang="lang"
             v-else
@@ -58,7 +60,7 @@
 
 <script setup lang="ts">
 import type { PropType } from 'vue';
-import { computed, onMounted, ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import { ConfigFileStructure, Slide, StoryRampConfig } from '@storylines/definitions';
 import 'intersection-observer';
@@ -91,11 +93,6 @@ const props = defineProps({
         type: Number
     }
 });
-
-// filter out which slides are visible in the table of contents while preserving original slide index
-const tocSlides = computed(() =>
-    props.config.slides.map((slide, idx) => ({ ...slide, index: idx })).filter((slide) => slide.includeInToc !== false)
-);
 
 const activeChapterIndex = ref(-1);
 const horizontalNavHeight = ref(0);

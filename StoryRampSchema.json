@@ -687,6 +687,46 @@
             "minItems": 1
         },
 
+        "tableOfContents": {
+            "type": "array",
+            "description": "Defines a custom table of contents structure.",
+            "items": {
+                "type": "object",
+                "description": "A table of contents item that resides on the root level.",
+                "properties": {
+                    "title": {
+                        "type": "string",
+                        "description": "Title description of table of contents item."
+                    },
+                    "slideIndex": {
+                        "type": "number",
+                        "description": "Slide index linked to this table of contents item."
+                    },
+                    "sublist": {
+                        "type": "array",
+                        "description": "List of sublist items that stem from this table of contents item.",
+                        "items": {
+                            "type": "object",
+                            "description": "A table of contents child item that resides inside a sublist.",
+                            "properties": {
+                                "title": {
+                                    "type": "string",
+                                    "description": "Title description of table of contents item."
+                                },
+                                "slideIndex": {
+                                    "type": "number",
+                                    "description": "Slide index linked to this table of contents item."
+                                }
+                            },
+                            "required": ["title", "slideIndex"]
+                        },
+                        "default": []
+                    }
+                },
+                "required": ["title", "slideIndex"]
+            }
+        },
+
         "tocOrientation": {
             "type": "string",
             "description": "Specifies the orientation of the table of contents navigation menu.",

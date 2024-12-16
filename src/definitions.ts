@@ -14,6 +14,7 @@ export interface StoryRampConfig {
     stylesheets?: string[];
     dateModified: string;
     lazyLoad: boolean;
+    tableOfContents?: MenuItem[];
 }
 
 export interface ConfigFileStructure {
@@ -29,6 +30,17 @@ export interface ConfigFileStructure {
     rampConfig: {
         [key: string]: JSZip;
     };
+}
+
+export interface MenuItem {
+    title: string;
+    slideIndex: number;
+    sublist?: [
+        {
+            title: string;
+            slideIndex: number;
+        }
+    ];
 }
 
 export interface DQVOptions {
@@ -127,7 +139,7 @@ export interface Slide {
     // panel: [BasePanel, BasePanel | undefined];
     panel: BasePanel[];
     index: number;
-    backgroundImage: string;
+    backgroundImage: string | undefined;
     includeInToc?: boolean;
     bgCssClasses?: string;
 }
