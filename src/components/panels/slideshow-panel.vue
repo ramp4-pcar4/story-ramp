@@ -20,10 +20,7 @@
                             :configFileStructure="configFileStructure"
                             :slideIdx="slideIdx"
                             :isSlideshowItem="true"
-                            class="carousel-item"
-                            :class="{
-                                'map-max-height': panelConfig.type === 'map'
-                            }"
+                            :class="panelConfig.type === 'map' ? 'map-carousel-item' : 'carousel-item'"
                         ></panel>
                     </slide>
 
@@ -109,13 +106,12 @@ window.addEventListener('resize', () => {
     padding-top: 5px;
 }
 
-.toc-horizontal .map-max-height {
-    height: calc(100vh - 4rem - 2.75rem) !important;
+.toc-horizontal .map-carousel-item {
+    height: calc(100vh - 4rem - 2.75rem - 2rem); // an extra 2rem is removed for the bottom navigation
 }
-.toc-vertical .map-max-height {
-    height: calc(100vh - 4rem) !important;
+.toc-vertical .map-carousel-item {
+    height: calc(100vh - 4rem - 2rem);
 }
-
 .carousel {
     height: auto;
     text-align: left;
@@ -187,7 +183,7 @@ window.addEventListener('resize', () => {
     }
 }
 .carousel-item {
-    // Max height of the carousel is 80vh, but set height to 100% to items appear in the center of the container.
+    // Max height of the carousel is 80vh, but set height to 100% so items appear in the center of the container.
     align-self: center;
     max-height: 80vh;
     top: 0px;
@@ -199,8 +195,9 @@ window.addEventListener('resize', () => {
         max-width: 100vw;
         background-color: white;
     }
-    .carousel-item {
-        max-height: 48vh;
+    .carousel-item,
+    .map-carousel-item {
+        max-height: 48vh !important;
         overflow-y: auto;
     }
     :deep(.fullscreenButton) {
