@@ -2,6 +2,7 @@ key,enValue,enValid,frValue,frValid
 chapters.title,Chapters,1,Chapitres,1
 chapters.return,Return to top,1,Retournez en haut,1
 chapters.menu,Toggle menu,1,Menu bascule,0
+chapters.menu.dropdown,Toggle dropdown menu,1,Basculer le menu déroulant,0
 chapters.untitled,Untitled Slide,1,Diapositive sans titre,0
 layer.loading,The layer is loading...,1,La couche est en cours de téléchargement...,1
 scrollguard.desc,Use ctrl + scroll to zoom the map,1,Utilisez les touches Ctrl et + pour faire un zoom de la carte,1

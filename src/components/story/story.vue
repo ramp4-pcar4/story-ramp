@@ -26,6 +26,7 @@
                         class="mobile-menu"
                         :active-chapter-index="activeChapterIndex"
                         :return-to-top="config.returnTop ?? true"
+                        :customToc="config.tableOfContents"
                         :slides="config.slides"
                         :lang="lang"
                     />
