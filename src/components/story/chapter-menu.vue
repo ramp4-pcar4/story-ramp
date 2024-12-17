@@ -143,71 +143,262 @@
                     }}</span>
                 </router-link>
             </li>
-            <li v-for="(slide, idx) in slides" :key="idx" :class="{ 'is-active': lastActiveIdx === slide.index }">
-                <!-- using router-link causes a page refresh which breaks plugin -->
-                <a
-                    class="flex items-center px-2 py-1 mx-1 cursor-pointer"
-                    @click="scrollToChapter(`${slide.index}-${slide.title.toLowerCase().replaceAll(' ', '-')}`)"
-                    v-tippy="{
-                        delay: '200',
-                        placement: 'right',
-                        content: slide.title,
-                        animateFill: true,
-                        animation: 'chapter-menu'
-                    }"
-                    v-if="plugin"
-                >
-                    <svg
-                        class="flex-shrink-0"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="#fff"
-                        stroke="#878787"
-                    >
-                        <path
-                            d="m19.325 16.229c-2.4415 1.4096-4.8829 2.8191-7.3244 4.2286-2.4415-1.4096-4.883-2.8192-7.3245-4.2288-3.55e-5 -2.8191-7.1e-5 -5.6383-1.066e-4 -8.4574 2.4415-1.4096 4.8829-2.8191 7.3244-4.2286 2.4415 1.4096 4.883 2.8192 7.3245 4.2288 3.7e-5 2.8191 7.4e-5 5.6383 1.1e-4 8.4574z"
-                            stroke-width=".93974"
-                        />
-                    </svg>
-                    <span class="flex-1 ml-4 overflow-hidden leading-normal overflow-ellipsis whitespace-nowrap">{{
-                        slide.title
-                    }}</span>
-                </a>
 
-                <router-link
-                    :to="{ hash: `#${slide.index}-${slide.title.toLowerCase().replaceAll(' ', '-')}` }"
-                    class="flex items-center px-2 py-1 mx-1"
-                    target
-                    v-tippy="{
-                        delay: '200',
-                        placement: 'right',
-                        content: slide.title,
-                        animateFill: true,
-                        animation: 'chapter-menu'
+            <!-- Build custom configured table of contents -->
+            <template v-if="customToc">
+                <li
+                    v-for="(item, idx) in customToc"
+                    :key="idx"
+                    :class="{
+                        'is-active': lastActiveIdx === item.slideIndex
                     }"
-                    v-else
                 >
-                    <svg
-                        class="flex-shrink-0"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="#fff"
-                        stroke="#878787"
+                    <div class="flex">
+                        <!-- using router-link causes a page refresh which breaks plugin -->
+                        <a
+                            class="flex flex-grow items-center px-2 py-1 mx-1 min-w-0 cursor-pointer"
+                            @click="scrollToChapter(getSlideId(item.slideIndex))"
+                            v-tippy="{
+                                delay: '200',
+                                placement: 'right',
+                                content: getTitle(item),
+                                animateFill: true,
+                                animation: 'chapter-menu'
+                            }"
+                            v-if="plugin"
+                        >
+                            <svg
+                                class="flex-shrink-0"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="#fff"
+                                stroke="#878787"
+                            >
+                                <path
+                                    d="m19.325 16.229c-2.4415 1.4096-4.8829 2.8191-7.3244 4.2286-2.4415-1.4096-4.883-2.8192-7.3245-4.2288-3.55e-5 -2.8191-7.1e-5 -5.6383-1.066e-4 -8.4574 2.4415-1.4096 4.8829-2.8191 7.3244-4.2286 2.4415 1.4096 4.883 2.8192 7.3245 4.2288 3.7e-5 2.8191 7.4e-5 5.6383 1.1e-4 8.4574z"
+                                    stroke-width=".93974"
+                                />
+                            </svg>
+                            <span
+                                class="flex-1 ml-4 overflow-hidden leading-normal overflow-ellipsis whitespace-nowrap"
+                                >{{ getTitle(item) }}</span
+                            >
+                        </a>
+
+                        <router-link
+                            :to="{ hash: `#${getSlideId(item.slideIndex)}` }"
+                            class="flex flex-grow items-center px-2 py-1 mx-1 min-w-0"
+                            target
+                            v-tippy="{
+                                delay: '200',
+                                placement: 'right',
+                                content: getTitle(item),
+                                animateFill: true,
+                                animation: 'chapter-menu'
+                            }"
+                            v-else
+                        >
+                            <svg
+                                class="flex-shrink-0"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="#fff"
+                                stroke="#878787"
+                            >
+                                <path
+                                    d="m19.325 16.229c-2.4415 1.4096-4.8829 2.8191-7.3244 4.2286-2.4415-1.4096-4.883-2.8192-7.3245-4.2288-3.55e-5 -2.8191-7.1e-5 -5.6383-1.066e-4 -8.4574 2.4415-1.4096 4.8829-2.8191 7.3244-4.2286 2.4415 1.4096 4.883 2.8192 7.3245 4.2288 3.7e-5 2.8191 7.4e-5 5.6383 1.1e-4 8.4574z"
+                                    stroke-width=".93974"
+                                />
+                            </svg>
+                            <span
+                                class="flex-1 ml-4 overflow-hidden leading-normal overflow-ellipsis whitespace-nowrap"
+                                >{{ getTitle(item) }}</span
+                            >
+                        </router-link>
+
+                        <button
+                            class="mr-2"
+                            v-if="item.sublist && item.sublist.length && isMenuOpen"
+                            @click="toggleSublist(idx)"
+                        >
+                            <svg
+                                data-v-b1261e08=""
+                                xmlns="http://www.w3.org/2000/svg"
+                                height="18"
+                                viewBox="0 0 24 24"
+                                width="18"
+                                class="rotate-180"
+                                v-if="isSublistToggled(idx)"
+                            >
+                                <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"></path>
+                            </svg>
+                            <svg
+                                data-v-b1261e08=""
+                                xmlns="http://www.w3.org/2000/svg"
+                                height="18"
+                                viewBox="0 0 24 24"
+                                width="18"
+                                v-else
+                            >
+                                <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"></path>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- Dropdown for sublists -->
+                    <ul v-show="isSublistToggled(idx)" class="dropdown-menu">
+                        <li
+                            v-for="(subItem, subIdx) in item.sublist"
+                            :key="subIdx"
+                            :class="{
+                                'is-active': lastActiveIdx === subItem.slideIndex
+                            }"
+                        >
+                            <a
+                                class="flex items-center px-2 py-1 mx-1"
+                                @click="scrollToChapter(getSlideId(subItem.slideIndex))"
+                                v-tippy="{
+                                    delay: '200',
+                                    placement: 'right',
+                                    content: subItem.title,
+                                    animateFill: true,
+                                    animation: 'chapter-menu'
+                                }"
+                                v-if="plugin"
+                            >
+                                <svg
+                                    class="flex-shrink-0"
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="#fff"
+                                    stroke="#878787"
+                                >
+                                    <path
+                                        d="m19.325 16.229c-2.4415 1.4096-4.8829 2.8191-7.3244 4.2286-2.4415-1.4096-4.883-2.8192-7.3245-4.2288-3.55e-5 -2.8191-7.1e-5 -5.6383-1.066e-4 -8.4574 2.4415-1.4096 4.8829-2.8191 7.3244-4.2286 2.4415 1.4096 4.883 2.8192 7.3245 4.2288 3.7e-5 2.8191 7.4e-5 5.6383 1.1e-4 8.4574z"
+                                        stroke-width=".93974"
+                                    />
+                                </svg>
+                                <span
+                                    class="flex-1 overflow-hidden leading-normal overflow-ellipsis whitespace-nowrap pl-8"
+                                    >{{ subItem.title }}</span
+                                >
+                            </a>
+
+                            <router-link
+                                :to="{ hash: `#${getSlideId(subItem.slideIndex)}` }"
+                                class="flex items-center px-2 py-1 mx-1"
+                                target
+                                v-tippy="{
+                                    delay: '200',
+                                    placement: 'right',
+                                    content: subItem.title,
+                                    animateFill: true,
+                                    animation: 'chapter-menu'
+                                }"
+                                v-else
+                            >
+                                <svg
+                                    class="flex-shrink-0"
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="#fff"
+                                    stroke="#878787"
+                                >
+                                    <path
+                                        d="m19.325 16.229c-2.4415 1.4096-4.8829 2.8191-7.3244 4.2286-2.4415-1.4096-4.883-2.8192-7.3245-4.2288-3.55e-5 -2.8191-7.1e-5 -5.6383-1.066e-4 -8.4574 2.4415-1.4096 4.8829-2.8191 7.3244-4.2286 2.4415 1.4096 4.883 2.8192 7.3245 4.2288 3.7e-5 2.8191 7.4e-5 5.6383 1.1e-4 8.4574z"
+                                        stroke-width=".93974"
+                                    />
+                                </svg>
+                                <span
+                                    class="flex-1 overflow-hidden leading-normal overflow-ellipsis whitespace-nowrap pl-8"
+                                    >{{ subItem.title }}</span
+                                >
+                            </router-link>
+                        </li>
+                    </ul>
+                </li>
+            </template>
+
+            <!-- Default table of contents -->
+            <template v-else>
+                <li
+                    v-for="(slide, idx) in tocSlides"
+                    :key="idx"
+                    :class="{ 'is-active': lastActiveIdx === slide.index }"
+                >
+                    <!-- using router-link causes a page refresh which breaks plugin -->
+                    <a
+                        class="flex items-center px-2 py-1 mx-1 cursor-pointer"
+                        @click="scrollToChapter(`${slide.index}-${slide.title.toLowerCase().replaceAll(' ', '-')}`)"
+                        v-tippy="{
+                            delay: '200',
+                            placement: 'right',
+                            content: slide.title,
+                            animateFill: true,
+                            animation: 'chapter-menu'
+                        }"
+                        v-if="plugin"
                     >
-                        <path
-                            d="m19.325 16.229c-2.4415 1.4096-4.8829 2.8191-7.3244 4.2286-2.4415-1.4096-4.883-2.8192-7.3245-4.2288-3.55e-5 -2.8191-7.1e-5 -5.6383-1.066e-4 -8.4574 2.4415-1.4096 4.8829-2.8191 7.3244-4.2286 2.4415 1.4096 4.883 2.8192 7.3245 4.2288 3.7e-5 2.8191 7.4e-5 5.6383 1.1e-4 8.4574z"
-                            stroke-width=".93974"
-                        />
-                    </svg>
-                    <span class="flex-1 ml-4 overflow-hidden leading-normal overflow-ellipsis whitespace-nowrap">{{
-                        slide.title
-                    }}</span>
-                </router-link>
-            </li>
+                        <svg
+                            class="flex-shrink-0"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="#fff"
+                            stroke="#878787"
+                        >
+                            <path
+                                d="m19.325 16.229c-2.4415 1.4096-4.8829 2.8191-7.3244 4.2286-2.4415-1.4096-4.883-2.8192-7.3245-4.2288-3.55e-5 -2.8191-7.1e-5 -5.6383-1.066e-4 -8.4574 2.4415-1.4096 4.8829-2.8191 7.3244-4.2286 2.4415 1.4096 4.883 2.8192 7.3245 4.2288 3.7e-5 2.8191 7.4e-5 5.6383 1.1e-4 8.4574z"
+                                stroke-width=".93974"
+                            />
+                        </svg>
+                        <span class="flex-1 ml-4 overflow-hidden leading-normal overflow-ellipsis whitespace-nowrap">{{
+                            slide.title
+                        }}</span>
+                    </a>
+
+                    <router-link
+                        :to="{ hash: `#${slide.index}-${slide.title.toLowerCase().replaceAll(' ', '-')}` }"
+                        class="flex items-center px-2 py-1 mx-1"
+                        target
+                        v-tippy="{
+                            delay: '200',
+                            placement: 'right',
+                            content: slide.title,
+                            animateFill: true,
+                            animation: 'chapter-menu'
+                        }"
+                        v-else
+                    >
+                        <svg
+                            class="flex-shrink-0"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="#fff"
+                            stroke="#878787"
+                        >
+                            <path
+                                d="m19.325 16.229c-2.4415 1.4096-4.8829 2.8191-7.3244 4.2286-2.4415-1.4096-4.883-2.8192-7.3245-4.2288-3.55e-5 -2.8191-7.1e-5 -5.6383-1.066e-4 -8.4574 2.4415-1.4096 4.8829-2.8191 7.3244-4.2286 2.4415 1.4096 4.883 2.8192 7.3245 4.2288 3.7e-5 2.8191 7.4e-5 5.6383 1.1e-4 8.4574z"
+                                stroke-width=".93974"
+                            />
+                        </svg>
+                        <span class="flex-1 ml-4 overflow-hidden leading-normal overflow-ellipsis whitespace-nowrap">{{
+                            slide.title
+                        }}</span>
+                    </router-link>
+                </li>
+            </template>
             <div class="h-10 flex-shrink-0"></div>
         </ul>
     </div>
@@ -215,8 +406,8 @@
 
 <script setup lang="ts">
 import type { PropType } from 'vue';
-import { ref, watch, onMounted } from 'vue';
-import { Slide } from '@storylines/definitions';
+import { computed, ref, watch, onMounted } from 'vue';
+import { MenuItem, Slide } from '@storylines/definitions';
 
 const props = defineProps({
     returnToTop: {
@@ -226,6 +417,10 @@ const props = defineProps({
     slides: {
         type: Array as PropType<Array<Slide>>,
         required: true
+    },
+    customToc: {
+        type: Array as PropType<Array<MenuItem>>,
+        required: false
     },
     activeChapterIndex: {
         type: Number,
@@ -245,6 +440,17 @@ const isMenuOpen = ref(false);
 const introExists = ref(false);
 const lastActiveIdx = ref(-1);
 
+const sublistToggled = ref({} as Record<number, boolean>);
+
+// filter out which slides are visible in the table of contents while preserving original slide index
+const tocSlides = computed(() => {
+    const slides = props.slides.map((slide, idx) => ({ ...slide, index: idx }));
+    if (!props.customToc) {
+        slides.filter((slide) => slide.includeInToc !== false);
+    }
+    return slides;
+});
+
 watch(
     () => props.activeChapterIndex,
     () => {
@@ -255,6 +461,11 @@ watch(
 onMounted(() => {
     const introSection = document.getElementById('intro');
     introExists.value = !!introSection;
+    if (props.customToc) {
+        props.customToc.forEach((item, idx) => {
+            sublistToggled.value[idx] = false;
+        });
+    }
 });
 
 const scrollToChapter = (id: string): void => {
@@ -264,8 +475,25 @@ const scrollToChapter = (id: string): void => {
     }
 };
 
+const getTitle = (slide: Slide | MenuItem): string => {
+    return slide.title !== '' ? slide.title : t('chapters.untitled');
+};
+
+const getSlideId = (slideIdx: number): string => {
+    const slide = props.slides.find((slide, idx) => idx === slideIdx);
+    return slide ? `${slideIdx}-${slide.title.toLowerCase().replaceAll(' ', '-')}` : '';
+};
+
+const toggleSublist = (index: number): void => {
+    sublistToggled.value[index] = !sublistToggled.value[index];
+};
+
+const isSublistToggled = (index: number): boolean => {
+    return sublistToggled.value[index];
+};
+
 const updateActiveIdx = () => {
-    const prevSlides = props.slides.filter((slide) => slide.index <= props.activeChapterIndex);
+    const prevSlides = tocSlides.value.filter((slide) => slide.index <= props.activeChapterIndex);
     lastActiveIdx.value = prevSlides.length ? prevSlides[prevSlides.length - 1].index : -1;
 };
 </script>
@@ -287,7 +515,7 @@ const updateActiveIdx = () => {
     display: none; /* Safari and Chrome */
 }
 
-.menu li {
+.menu > li {
     a:hover {
         text-decoration: none;
         color: inherit;
@@ -316,5 +544,34 @@ const updateActiveIdx = () => {
             font-weight: bold;
         }
     }
+}
+
+.dropdown-menu {
+    > li {
+        font-weight: normal;
+        svg {
+            fill: #fff !important;
+            stroke: #878787 !important;
+        }
+
+        span {
+            font-weight: normal !important;
+        }
+
+        &.is-active {
+            span {
+                font-weight: bold !important;
+            }
+
+            svg {
+                fill: var(--sr-accent-colour) !important;
+                stroke: var(--sr-accent-colour) !important;
+            }
+        }
+    }
+}
+
+.rotate-180 {
+    transform: rotate(-180deg);
 }
 </style>

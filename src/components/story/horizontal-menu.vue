@@ -46,48 +46,68 @@
                     :class="{
                         'is-active': lastActiveIdx === item.slideIndex
                     }"
-                    @mouseenter="showSublist(idx)"
-                    @mouseleave="hideSublist(idx)"
                 >
-                    <!-- using router-link causes a page refresh which breaks plugin -->
-                    <a
-                        class="flex items-center px-2 py-4 cursor-pointer"
-                        @click="scrollToChapter(getSlideId(item.slideIndex))"
-                        @focus="showSublist(idx)"
-                        @blur="hideSublist(idx)"
-                        v-tippy="{
-                            delay: '200',
-                            placement: 'right',
-                            content: getTitle(item),
-                            animateFill: true,
-                            animation: 'chapter-menu'
-                        }"
-                        v-if="plugin"
-                    >
-                        <span class="flex-1 overflow-hidden leading-normal overflow-ellipsis whitespace-nowrap">{{
-                            getTitle(item)
-                        }}</span>
-                    </a>
+                    <div class="flex">
+                        <!-- using router-link causes a page refresh which breaks plugin -->
+                        <a
+                            class="flex flex-grow items-center px-2 py-4 min-w-0 cursor-pointer"
+                            @click="scrollToChapter(getSlideId(item.slideIndex))"
+                            v-tippy="{
+                                delay: '200',
+                                placement: 'right',
+                                content: getTitle(item),
+                                animateFill: true,
+                                animation: 'chapter-menu'
+                            }"
+                            v-if="plugin"
+                        >
+                            <span class="flex-1 overflow-hidden leading-normal overflow-ellipsis whitespace-nowrap">{{
+                                getTitle(item)
+                            }}</span>
+                        </a>
 
-                    <router-link
-                        :to="{ hash: `#${getSlideId(item.slideIndex)}` }"
-                        @focus="showSublist(idx)"
-                        @blur="hideSublist(idx)"
-                        class="flex items-center px-2 py-1 pb-2"
-                        target
-                        v-tippy="{
-                            delay: '200',
-                            placement: 'right',
-                            content: getTitle(item),
-                            animateFill: true,
-                            animation: 'chapter-menu'
-                        }"
-                        v-else
-                    >
-                        <span class="flex-1 overflow-hidden leading-normal overflow-ellipsis whitespace-nowrap">{{
-                            getTitle(item)
-                        }}</span>
-                    </router-link>
+                        <router-link
+                            :to="{ hash: `#${getSlideId(item.slideIndex)}` }"
+                            class="flex flex-grow items-center px-2 py-1 pb-2 min-w-0"
+                            target
+                            v-tippy="{
+                                delay: '200',
+                                placement: 'right',
+                                content: getTitle(item),
+                                animateFill: true,
+                                animation: 'chapter-menu'
+                            }"
+                            v-else
+                        >
+                            <span class="flex-1 overflow-hidden leading-normal overflow-ellipsis whitespace-nowrap">{{
+                                getTitle(item)
+                            }}</span>
+                        </router-link>
+
+                        <button class="mr-2" v-if="item.sublist && item.sublist.length" @click="toggleSublist(idx)">
+                            <svg
+                                data-v-b1261e08=""
+                                xmlns="http://www.w3.org/2000/svg"
+                                height="18"
+                                viewBox="0 0 24 24"
+                                width="18"
+                                class="rotate-180"
+                                v-if="isSublistToggled(idx)"
+                            >
+                                <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"></path>
+                            </svg>
+                            <svg
+                                data-v-b1261e08=""
+                                xmlns="http://www.w3.org/2000/svg"
+                                height="18"
+                                viewBox="0 0 24 24"
+                                width="18"
+                                v-else
+                            >
+                                <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"></path>
+                            </svg>
+                        </button>
+                    </div>
 
                     <!-- Dropdown for sublists -->
                     <ul v-show="isSublistToggled(idx)" class="dropdown-menu">
@@ -277,12 +297,8 @@ const getSlideId = (slideIdx: number): string => {
     return slide ? `${slideIdx}-${slide.title.toLowerCase().replaceAll(' ', '-')}` : '';
 };
 
-const showSublist = (index: number): void => {
-    sublistToggled.value[index] = true;
-};
-
-const hideSublist = (index: number): void => {
-    sublistToggled.value[index] = false;
+const toggleSublist = (index: number): void => {
+    sublistToggled.value[index] = !sublistToggled.value[index];
 };
 
 const isSublistToggled = (index: number): boolean => {
