@@ -46,48 +46,37 @@
                     :class="{
                         'is-active': lastActiveIdx === item.slideIndex
                     }"
-                    @mouseenter="showSublist(idx)"
-                    @mouseleave="hideSublist(idx)"
                 >
-                    <!-- using router-link causes a page refresh which breaks plugin -->
-                    <a
-                        class="flex items-center px-2 py-4 cursor-pointer"
-                        @click="scrollToChapter(getSlideId(item.slideIndex))"
-                        @focus="showSublist(idx)"
-                        @blur="hideSublist(idx)"
-                        v-tippy="{
-                            delay: '200',
-                            placement: 'right',
-                            content: getTitle(item),
-                            animateFill: true,
-                            animation: 'chapter-menu'
-                        }"
-                        v-if="plugin"
-                    >
-                        <span class="flex-1 overflow-hidden leading-normal overflow-ellipsis whitespace-nowrap">{{
-                            getTitle(item)
-                        }}</span>
-                    </a>
-
-                    <router-link
-                        :to="{ hash: `#${getSlideId(item.slideIndex)}` }"
-                        @focus="showSublist(idx)"
-                        @blur="hideSublist(idx)"
-                        class="flex items-center px-2 py-1 pb-2"
-                        target
-                        v-tippy="{
-                            delay: '200',
-                            placement: 'right',
-                            content: getTitle(item),
-                            animateFill: true,
-                            animation: 'chapter-menu'
-                        }"
-                        v-else
-                    >
-                        <span class="flex-1 overflow-hidden leading-normal overflow-ellipsis whitespace-nowrap">{{
-                            getTitle(item)
-                        }}</span>
-                    </router-link>
+                    <toc-item :tocItem="item" :slides="slides" :verticalToc="false" :plugin="plugin">
+                        <button
+                            class="mr-1"
+                            :aria-label="$t('chapters.menu.dropdown')"
+                            v-if="item.sublist && item.sublist.length"
+                            @click="toggleSublist(idx)"
+                        >
+                            <svg
+                                data-v-b1261e08=""
+                                xmlns="http://www.w3.org/2000/svg"
+                                height="18"
+                                viewBox="0 0 24 24"
+                                width="18"
+                                class="rotate-180"
+                                v-if="isSublistToggled(idx)"
+                            >
+                                <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"></path>
+                            </svg>
+                            <svg
+                                data-v-b1261e08=""
+                                xmlns="http://www.w3.org/2000/svg"
+                                height="18"
+                                viewBox="0 0 24 24"
+                                width="18"
+                                v-else
+                            >
+                                <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"></path>
+                            </svg>
+                        </button>
+                    </toc-item>
 
                     <!-- Dropdown for sublists -->
                     <ul v-show="isSublistToggled(idx)" class="dropdown-menu">
@@ -102,42 +91,13 @@
                             ]"
                             class="border-b-2 border-gray-300"
                         >
-                            <a
-                                class="flex items-center px-2 py-1 mx-1"
-                                @click="scrollToChapter(getSlideId(subItem.slideIndex))"
-                                v-tippy="{
-                                    delay: '200',
-                                    placement: 'right',
-                                    content: subItem.title,
-                                    animateFill: true,
-                                    animation: 'chapter-menu'
-                                }"
-                                v-if="plugin"
-                            >
-                                <span
-                                    class="flex-1 overflow-hidden leading-normal overflow-ellipsis whitespace-nowrap"
-                                    >{{ subItem.title }}</span
-                                >
-                            </a>
-
-                            <router-link
-                                :to="{ hash: `#${getSlideId(subItem.slideIndex)}` }"
-                                class="flex items-center px-2 py-1 mx-1"
-                                target
-                                v-tippy="{
-                                    delay: '200',
-                                    placement: 'right',
-                                    content: subItem.title,
-                                    animateFill: true,
-                                    animation: 'chapter-menu'
-                                }"
-                                v-else
-                            >
-                                <span
-                                    class="flex-1 overflow-hidden leading-normal overflow-ellipsis whitespace-nowrap"
-                                    >{{ subItem.title }}</span
-                                >
-                            </router-link>
+                            <toc-item
+                                :tocItem="subItem"
+                                :slides="slides"
+                                :parentItem="false"
+                                :verticalToc="false"
+                                :plugin="plugin"
+                            ></toc-item>
                         </li>
                     </ul>
                 </li>
@@ -153,41 +113,12 @@
                         separator: (!returnToTop && idx !== 0) || returnToTop
                     }"
                 >
-                    <!-- using router-link causes a page refresh which breaks plugin -->
-                    <a
-                        class="flex items-center px-2 py-1 mx-1 cursor-pointer"
-                        @click="scrollToChapter(`${slide.index}-${slide.title.toLowerCase().replaceAll(' ', '-')}`)"
-                        v-tippy="{
-                            delay: '200',
-                            placement: 'bottom',
-                            content: getTitle(slide),
-                            animateFill: true,
-                            animation: 'chapter-menu'
-                        }"
-                        v-if="plugin"
-                    >
-                        <span class="flex-1 overflow-hidden leading-normal overflow-ellipsis whitespace-nowrap">{{
-                            getTitle(slide)
-                        }}</span>
-                    </a>
-
-                    <router-link
-                        :to="{ hash: `#${slide.index}-${slide.title.toLowerCase().replaceAll(' ', '-')}` }"
-                        class="flex items-center px-2 py-1 mx-1"
-                        target
-                        v-tippy="{
-                            delay: '200',
-                            placement: 'bottom',
-                            content: getTitle(slide),
-                            animateFill: true,
-                            animation: 'chapter-menu'
-                        }"
-                        v-else
-                    >
-                        <span class="flex-1 overflow-hidden leading-normal overflow-ellipsis whitespace-nowrap">{{
-                            getTitle(slide)
-                        }}</span>
-                    </router-link>
+                    <toc-item
+                        :tocItem="{ ...slide, slideIndex: idx }"
+                        :slides="slides"
+                        :verticalToc="false"
+                        :plugin="plugin"
+                    ></toc-item>
                 </li>
             </template>
         </ul>
@@ -198,9 +129,7 @@
 import type { PropType } from 'vue';
 import { computed, ref, watch, onMounted } from 'vue';
 import { MenuItem, Slide } from '@storylines/definitions';
-
-import { useI18n } from 'vue-i18n';
-const { t } = useI18n();
+import TocItem from '@storylines/components/panels/helpers/toc-item.vue';
 
 const props = defineProps({
     returnToTop: {
@@ -268,21 +197,8 @@ const scrollToChapter = (id: string): void => {
     }
 };
 
-const getTitle = (slide: Slide | MenuItem): string => {
-    return slide.title !== '' ? slide.title : t('chapters.untitled');
-};
-
-const getSlideId = (slideIdx: number): string => {
-    const slide = props.slides.find((slide, idx) => idx === slideIdx);
-    return slide ? `${slideIdx}-${slide.title.toLowerCase().replaceAll(' ', '-')}` : '';
-};
-
-const showSublist = (index: number): void => {
-    sublistToggled.value[index] = true;
-};
-
-const hideSublist = (index: number): void => {
-    sublistToggled.value[index] = false;
+const toggleSublist = (index: number): void => {
+    sublistToggled.value[index] = !sublistToggled.value[index];
 };
 
 const isSublistToggled = (index: number): boolean => {
@@ -340,6 +256,7 @@ const updateActiveIdx = () => {
     a:visited {
         color: inherit;
     }
+
     &.is-active {
         background-color: var(--sr-accent-colour);
         font-weight: bold;
