@@ -27,6 +27,7 @@
             <BackgroundImage
                 :src="backgroundImage"
                 :configFileStructure="configFileStructure"
+                :cssClasses="backgroundCss"
                 @background-changed="handleBackgroundChange"
             ></BackgroundImage>
 
@@ -39,7 +40,7 @@
                     :id="`${idx}-${slide.title.toLowerCase().replaceAll(' ', '-')}`"
                     :name="`${idx}-${slide.title.toLowerCase().replaceAll(' ', '-')}`"
                 >
-                    <slide
+                    <storylines-slide
                         :config="slide"
                         :configFileStructure="configFileStructure"
                         :class="addPanelPadding(idx)"
@@ -48,7 +49,7 @@
                         :background="hasBackground"
                         :lazyLoad="config.lazyLoad ?? true"
                         @slide-changed="handleSlideChange"
-                    ></slide>
+                    ></storylines-slide>
                 </div>
             </scrollama>
         </div>
@@ -59,13 +60,13 @@
 import type { PropType } from 'vue';
 import { computed, onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
-import { ConfigFileStructure, StoryRampConfig } from '@storylines/definitions';
+import { ConfigFileStructure, Slide, StoryRampConfig } from '@storylines/definitions';
 import 'intersection-observer';
 
 import ChapterMenu from './chapter-menu.vue';
 import HorizontalMenu from './horizontal-menu.vue';
 import BackgroundImage from './background-image.vue';
-import Slide from './slide.vue';
+import StorylinesSlide from './slide.vue';
 import Scrollama from '@storylines/components/panels/helpers/scrollama.vue';
 
 const route = useRoute();
@@ -100,6 +101,7 @@ const activeChapterIndex = ref(-1);
 const horizontalNavHeight = ref(0);
 const backgroundImage = ref<string>('none');
 const hasBackground = ref<boolean>(false); // different from above; this considers animation time
+const backgroundCss = ref<string>('');
 
 onMounted(() => {
     const hash = route?.hash.substring(1);
@@ -125,8 +127,10 @@ onMounted(() => {
 });
 
 const handleSlideChange = (event: number): void => {
-    const img = props.config.slides[event].backgroundImage;
-    backgroundImage.value = !!img ? img : 'none';
+    const img = (props.config.slides[event] as Slide).backgroundImage;
+    backgroundImage.value = img ? img : 'none';
+    const cssClasses = (props.config.slides[event] as Slide).bgCssClasses;
+    backgroundCss.value = cssClasses ? cssClasses : '';
 };
 
 /**
@@ -147,7 +151,11 @@ const stepEnter = ({ element }: { element: HTMLElement }): void => {
 
 // add top padding for a panel with bg image, on the condition that the previous panel did not have a bg image
 const addPanelPadding = (idx: number): string => {
-    if (idx > 0 && !props.config.slides[idx - 1].backgroundImage && props.config.slides[idx].backgroundImage) {
+    if (
+        idx > 0 &&
+        !(props.config.slides[idx - 1] as Slide).backgroundImage &&
+        (props.config.slides[idx] as Slide).backgroundImage
+    ) {
         return 'pt-8';
     } else {
         return '';
