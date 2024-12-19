@@ -147,6 +147,7 @@ const handlePoint = (id: string, oid: number, layerIndex?: number) => {
             // Add the new highlight in.
             const g = await targetLayer.getGraphic(oid, { getGeom: true, getStyle: true });
             await instance.geo.map.zoomMapTo(g.geometry, 4622324.434309, true, props.config.duration || undefined);
+            await hl.addHilight(g);
         });
     });
 };
