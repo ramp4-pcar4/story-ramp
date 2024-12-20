@@ -329,6 +329,88 @@
             ]
         }
     ],
+    "tableOfContents": [
+        {
+            "title": "Apercu",
+            "slideIndex": 0,
+            "sublist": [
+                {
+                    "title": "Gisements de sables bitumineux",
+                    "slideIndex": 1
+                }
+            ]
+        },
+        {
+            "title": "Extraction de sables bitumineux",
+            "slideIndex": 2,
+            "sublist": [
+                {
+                    "title": "Extraction des sables bitumineux (2)",
+                    "slideIndex": 3
+                },
+                {
+                    "title": "Où sont situées les installations?",
+                    "slideIndex": 4
+                }
+            ]
+        },
+        {
+            "title": "Substances de l'INRP déclarées par les installations d’exploitation minière de sables bitumineux",
+            "slideIndex": 5,
+            "sublist": [
+                {
+                    "title": "Substances de l'INRP déclarées par les installations d’exploitation minière de sables bitumineux MAP",
+                    "slideIndex": 6
+                },
+                {
+                    "title": "Rejets de principaux contaminants atmosphériques de mines de sables bitumineux",
+                    "slideIndex": 7
+                },
+                {
+                    "title": "Résidus miniers déclarés par les installations d’exploitation minière à ciel ouvert des sables bitumineux",
+                    "slideIndex": 8
+                },
+                {
+                    "title": "Résidus miniers déclarés à l’INRP par les installations d’exploitation minière à ciel ouvert de sables bitumineux",
+                    "slideIndex": 9
+                },
+                {
+                    "title": "Résidus miniers déclarés à l’INRP par les installations d’exploitation minière à ciel ouvert de sables bitumineux MAP",
+                    "slideIndex": 10
+                }
+            ]
+        },
+        {
+            "title": "Tendances dans les résidus miniers déclarés par les installations d’exploitation minière à ciel ouvert",
+            "slideIndex": 11
+        },
+        {
+            "title": "Installations in situ",
+            "slideIndex": 12,
+            "sublist": [
+                {
+                    "title": "Rejets à l’air déclarés par les installations in situ",
+                    "slideIndex": 13
+                },
+                {
+                    "title": "Tendances entourant les substances déclarées à l’INRP par les installations in situ",
+                    "slideIndex": 14
+                },
+                {
+                    "title": "Rejets à l’air déclarés à l’INRP par les installations in situ",
+                    "slideIndex": 15
+                },
+                {
+                    "title": "Gestion des répercussions sur l’environnement",
+                    "slideIndex": 16
+                }
+            ]
+        },
+        {
+            "title": "Finale",
+            "slideIndex": 17
+        }
+    ],
     "contextLink": "https://www.canada.ca/en/environment-climate-change/services/national-pollutant-release-inventory/tools-resources-data/exploredata.html",
     "contextLabel": "Explore National Pollutant Release Inventory data",
     "lang": "en",

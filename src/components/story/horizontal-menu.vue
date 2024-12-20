@@ -37,61 +37,99 @@
                     }}</span>
                 </router-link>
             </li>
-            <li
-                v-for="(slide, idx) in slides"
-                :key="idx"
-                :class="{
-                    'is-active': lastActiveIdx === slide.index,
-                    separator: (!returnToTop && idx !== 0) || returnToTop
-                }"
-            >
-                <!-- using router-link causes a page refresh which breaks plugin -->
-                <a
-                    class="flex items-center px-2 py-1 mx-1 cursor-pointer"
-                    @click="scrollToChapter(`${slide.index}-${slide.title.toLowerCase().replaceAll(' ', '-')}`)"
-                    v-tippy="{
-                        delay: '200',
-                        placement: 'bottom',
-                        content: getTitle(slide),
-                        animateFill: true,
-                        animation: 'chapter-menu'
-                    }"
-                    v-if="plugin"
-                >
-                    <span class="flex-1 overflow-hidden leading-normal overflow-ellipsis whitespace-nowrap">{{
-                        getTitle(slide)
-                    }}</span>
-                </a>
 
-                <router-link
-                    :to="{ hash: `#${slide.index}-${slide.title.toLowerCase().replaceAll(' ', '-')}` }"
-                    class="flex items-center px-2 py-1 mx-1"
-                    target
-                    v-tippy="{
-                        delay: '200',
-                        placement: 'bottom',
-                        content: getTitle(slide),
-                        animateFill: true,
-                        animation: 'chapter-menu'
+            <!-- Build custom configured table of contents -->
+            <template v-if="customToc">
+                <li
+                    v-for="(item, idx) in customToc"
+                    :key="idx"
+                    :class="{
+                        'is-active': lastActiveIdx === item.slideIndex
                     }"
-                    v-else
                 >
-                    <span class="flex-1 overflow-hidden leading-normal overflow-ellipsis whitespace-nowrap">{{
-                        getTitle(slide)
-                    }}</span>
-                </router-link>
-            </li>
+                    <toc-item :tocItem="item" :slides="slides" :verticalToc="false" :plugin="plugin">
+                        <button
+                            class="mr-1"
+                            :aria-label="$t('chapters.menu.dropdown')"
+                            v-if="item.sublist && item.sublist.length"
+                            @click="toggleSublist(idx)"
+                        >
+                            <svg
+                                data-v-b1261e08=""
+                                xmlns="http://www.w3.org/2000/svg"
+                                height="18"
+                                viewBox="0 0 24 24"
+                                width="18"
+                                class="rotate-180"
+                                v-if="isSublistToggled(idx)"
+                            >
+                                <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"></path>
+                            </svg>
+                            <svg
+                                data-v-b1261e08=""
+                                xmlns="http://www.w3.org/2000/svg"
+                                height="18"
+                                viewBox="0 0 24 24"
+                                width="18"
+                                v-else
+                            >
+                                <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"></path>
+                            </svg>
+                        </button>
+                    </toc-item>
+
+                    <!-- Dropdown for sublists -->
+                    <ul v-show="isSublistToggled(idx)" class="dropdown-menu">
+                        <li
+                            v-for="(subItem, subIdx) in item.sublist"
+                            :key="subIdx"
+                            :class="[
+                                {
+                                    'border-t-2': subIdx === 0,
+                                    'is-active': lastActiveIdx === subItem.slideIndex
+                                }
+                            ]"
+                            class="border-b-2 border-gray-300"
+                        >
+                            <toc-item
+                                :tocItem="subItem"
+                                :slides="slides"
+                                :parentItem="false"
+                                :verticalToc="false"
+                                :plugin="plugin"
+                            ></toc-item>
+                        </li>
+                    </ul>
+                </li>
+            </template>
+
+            <!-- Default table of contents -->
+            <template v-else>
+                <li
+                    v-for="(slide, idx) in tocSlides"
+                    :key="idx"
+                    :class="{
+                        'is-active': lastActiveIdx === slide.index,
+                        separator: (!returnToTop && idx !== 0) || returnToTop
+                    }"
+                >
+                    <toc-item
+                        :tocItem="{ ...slide, slideIndex: idx }"
+                        :slides="slides"
+                        :verticalToc="false"
+                        :plugin="plugin"
+                    ></toc-item>
+                </li>
+            </template>
         </ul>
     </div>
 </template>
 
 <script setup lang="ts">
 import type { PropType } from 'vue';
-import { ref, watch, onMounted } from 'vue';
-import { Slide } from '@storylines/definitions';
-
-import { useI18n } from 'vue-i18n';
-const { t } = useI18n();
+import { computed, ref, watch, onMounted } from 'vue';
+import { MenuItem, Slide } from '@storylines/definitions';
+import TocItem from '@storylines/components/panels/helpers/toc-item.vue';
 
 const props = defineProps({
     returnToTop: {
@@ -101,6 +139,10 @@ const props = defineProps({
     slides: {
         type: Array as PropType<Array<Slide>>,
         required: true
+    },
+    customToc: {
+        type: Array as PropType<Array<MenuItem>>,
+        required: false
     },
     activeChapterIndex: {
         type: Number,
@@ -119,6 +161,17 @@ const props = defineProps({
 const introExists = ref(false);
 const lastActiveIdx = ref(-1);
 
+const sublistToggled = ref({} as Record<number, boolean>);
+
+// filter out which slides are visible in the table of contents while preserving original slide index
+const tocSlides = computed(() => {
+    const slides = props.slides.map((slide, idx) => ({ ...slide, index: idx }));
+    if (!props.customToc) {
+        slides.filter((slide) => slide.includeInToc !== false);
+    }
+    return slides;
+});
+
 watch(
     () => props.activeChapterIndex,
     () => {
@@ -129,6 +182,12 @@ watch(
 onMounted(() => {
     const introSection = document.getElementById('intro');
     introExists.value = !!introSection;
+
+    if (props.customToc) {
+        props.customToc.forEach((item, idx) => {
+            sublistToggled.value[idx] = false;
+        });
+    }
 });
 
 const scrollToChapter = (id: string): void => {
@@ -138,12 +197,16 @@ const scrollToChapter = (id: string): void => {
     }
 };
 
-const getTitle = (slide: Slide): string => {
-    return slide.title !== '' ? slide.title : t('chapters.untitled');
+const toggleSublist = (index: number): void => {
+    sublistToggled.value[index] = !sublistToggled.value[index];
+};
+
+const isSublistToggled = (index: number): boolean => {
+    return sublistToggled.value[index];
 };
 
 const updateActiveIdx = () => {
-    const prevSlides = props.slides.filter((slide) => slide.index <= props.activeChapterIndex);
+    const prevSlides = tocSlides.value.filter((slide) => slide.index <= props.activeChapterIndex);
     lastActiveIdx.value = prevSlides.length ? prevSlides[prevSlides.length - 1].index : -1;
 };
 </script>
@@ -159,21 +222,23 @@ const updateActiveIdx = () => {
     display: flex;
     justify-content: center;
 }
-.navbar ul {
+
+.navbar > ul {
     display: flex;
     list-style-type: none;
     text-align: center;
     justify-content: center;
     flex-wrap: wrap;
-    overflow: hidden;
     width: 100%;
     padding: 5px;
     margin: auto;
 }
-.navbar ul li {
+
+.navbar > ul > li {
     float: left;
     width: 12%;
     border-radius: 8px;
+    position: relative;
     a {
         text-overflow: ellipsis;
     }
@@ -191,11 +256,13 @@ const updateActiveIdx = () => {
     a:visited {
         color: inherit;
     }
+
     &.is-active {
         background-color: var(--sr-accent-colour);
         font-weight: bold;
     }
 }
+
 .separator {
     position: relative;
 }
@@ -209,5 +276,22 @@ const updateActiveIdx = () => {
     height: 80%;
     width: 1px;
     background-color: #e0e0e0;
+}
+
+.dropdown-menu {
+    position: absolute;
+    width: 100%;
+    background-color: rgb(241, 242, 244);
+    box-sizing: border-box;
+
+    > li {
+        background-color: rgb(241, 242, 244);
+        font-weight: normal;
+
+        &.is-active {
+            background-color: var(--sr-accent-colour);
+            font-weight: bold;
+        }
+    }
 }
 </style>

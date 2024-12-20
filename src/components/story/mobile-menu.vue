@@ -37,7 +37,7 @@
 
         <ul v-show="isMenuOpen" class="dropdown-nav-content bg-white pb-10 w-72 z-10 border-r border-gray-200">
             <li v-if="introExists && returnToTop">
-                <button class="flex py-1 px-3" @click="scrollToChapter('intro')" v-if="plugin">
+                <a class="flex py-1 px-3" @click="scrollToChapter('intro')" v-if="plugin">
                     <svg
                         class="flex-shrink-0"
                         viewBox="0 0 24 24"
@@ -76,7 +76,7 @@
                     <span class="flex-1 ml-4 overflow-hidden leading-normal overflow-ellipsis whitespace-nowrap">{{
                         $t('chapters.return')
                     }}</span>
-                </button>
+                </a>
 
                 <router-link :to="{ hash: '#intro' }" class="flex py-1 px-3" target v-else>
                     <svg
@@ -119,71 +119,76 @@
                     }}</span>
                 </router-link>
             </li>
-            <li v-for="(slide, idx) in tocSlides" :key="idx" :class="{ 'is-active': lastActiveIdx === slide.index }">
-                <button
-                    class="flex py-1 px-3"
-                    @click="scrollToChapter(`${slide.index}-${slide.title.toLowerCase().replaceAll(' ', '-')}`)"
-                    v-tippy="{
-                        delay: '200',
-                        placement: 'top',
-                        offset: [0, 0],
-                        content: slide.title,
-                        animateFill: true,
-                        animation: 'chapter-menu'
+
+            <!-- Build custom configured table of contents -->
+            <template v-if="customToc">
+                <li
+                    v-for="(item, idx) in customToc"
+                    :key="idx"
+                    :class="{
+                        'is-active': lastActiveIdx === item.slideIndex
                     }"
-                    v-if="plugin"
                 >
-                    <svg
-                        class="flex-shrink-0"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="#fff"
-                        stroke="#878787"
-                    >
-                        <path
-                            d="m19.325 16.229c-2.4415 1.4096-4.8829 2.8191-7.3244 4.2286-2.4415-1.4096-4.883-2.8192-7.3245-4.2288-3.55e-5 -2.8191-7.1e-5 -5.6383-1.066e-4 -8.4574 2.4415-1.4096 4.8829-2.8191 7.3244-4.2286 2.4415 1.4096 4.883 2.8192 7.3245 4.2288 3.7e-5 2.8191 7.4e-5 5.6383 1.1e-4 8.4574z"
-                            stroke-width=".93974"
-                        />
-                    </svg>
-                    <span class="flex-1 ml-4 overflow-hidden leading-normal overflow-ellipsis whitespace-nowrap">{{
-                        slide.title
-                    }}</span>
-                </button>
-                <router-link
-                    :to="{ hash: `#${slide.index}-${slide.title.toLowerCase().replaceAll(' ', '-')}` }"
-                    class="flex py-1 px-3"
-                    target
-                    v-tippy="{
-                        delay: '200',
-                        placement: 'top',
-                        offset: [0, 0],
-                        content: slide.title,
-                        animateFill: true,
-                        animation: 'chapter-menu'
-                    }"
-                    v-else
+                    <toc-item :tocItem="item" :slides="slides" :plugin="plugin">
+                        <button
+                            class="mr-1"
+                            :aria-label="$t('chapters.menu.dropdown')"
+                            v-if="item.sublist && item.sublist.length && isMenuOpen"
+                            @click="toggleSublist(idx)"
+                        >
+                            <svg
+                                data-v-b1261e08=""
+                                xmlns="http://www.w3.org/2000/svg"
+                                height="18"
+                                viewBox="0 0 24 24"
+                                width="18"
+                                class="rotate-180"
+                                v-if="isSublistToggled(idx)"
+                            >
+                                <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"></path>
+                            </svg>
+                            <svg
+                                data-v-b1261e08=""
+                                xmlns="http://www.w3.org/2000/svg"
+                                height="18"
+                                viewBox="0 0 24 24"
+                                width="18"
+                                v-else
+                            >
+                                <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"></path>
+                            </svg>
+                        </button>
+                    </toc-item>
+
+                    <!-- Dropdown for sublists -->
+                    <ul v-show="isSublistToggled(idx)" class="dropdown-menu">
+                        <li
+                            v-for="(subItem, subIdx) in item.sublist"
+                            :key="subIdx"
+                            :class="{
+                                'is-active': lastActiveIdx === subItem.slideIndex
+                            }"
+                        >
+                            <toc-item
+                                :tocItem="subItem"
+                                :slides="slides"
+                                :parentItem="false"
+                                :plugin="plugin"
+                            ></toc-item>
+                        </li>
+                    </ul>
+                </li>
+            </template>
+
+            <template v-else>
+                <li
+                    v-for="(slide, idx) in tocSlides"
+                    :key="idx"
+                    :class="{ 'is-active': lastActiveIdx === slide.index }"
                 >
-                    <svg
-                        class="flex-shrink-0"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="#fff"
-                        stroke="#878787"
-                    >
-                        <path
-                            d="m19.325 16.229c-2.4415 1.4096-4.8829 2.8191-7.3244 4.2286-2.4415-1.4096-4.883-2.8192-7.3245-4.2288-3.55e-5 -2.8191-7.1e-5 -5.6383-1.066e-4 -8.4574 2.4415-1.4096 4.8829-2.8191 7.3244-4.2286 2.4415 1.4096 4.883 2.8192 7.3245 4.2288 3.7e-5 2.8191 7.4e-5 5.6383 1.1e-4 8.4574z"
-                            stroke-width=".93974"
-                        />
-                    </svg>
-                    <span class="flex-1 ml-4 overflow-hidden leading-normal overflow-ellipsis whitespace-nowrap">{{
-                        slide.title
-                    }}</span>
-                </router-link>
-            </li>
+                    <toc-item :tocItem="{ ...slide, slideIndex: idx }" :slides="slides" :plugin="plugin"></toc-item>
+                </li>
+            </template>
         </ul>
     </div>
 </template>
@@ -191,7 +196,8 @@
 <script setup lang="ts">
 import type { PropType } from 'vue';
 import { computed, ref, watch, onMounted } from 'vue';
-import { Slide } from '@storylines/definitions';
+import { MenuItem, Slide } from '@storylines/definitions';
+import TocItem from '@storylines/components/panels/helpers/toc-item.vue';
 
 const props = defineProps({
     returnToTop: {
@@ -201,6 +207,10 @@ const props = defineProps({
     slides: {
         type: Array as PropType<Array<Slide>>,
         required: true
+    },
+    customToc: {
+        type: Array as PropType<Array<MenuItem>>,
+        required: false
     },
     activeChapterIndex: {
         type: Number,
@@ -219,10 +229,16 @@ const isMenuOpen = ref(false);
 const introExists = ref(true);
 const lastActiveIdx = ref(-1);
 
+const sublistToggled = ref({} as Record<number, boolean>);
+
 // filter out which slides are visible in the table of contents while preserving original slide index
-const tocSlides = computed(() =>
-    props.slides.map((slide, idx) => ({ ...slide, index: idx })).filter((slide) => slide.includeInToc !== false)
-);
+const tocSlides = computed(() => {
+    const slides = props.slides.map((slide, idx) => ({ ...slide, index: idx }));
+    if (!props.customToc) {
+        slides.filter((slide) => slide.includeInToc !== false);
+    }
+    return slides;
+});
 
 watch(
     () => props.activeChapterIndex,
@@ -234,6 +250,12 @@ watch(
 onMounted(() => {
     const introSection = document.getElementById('intro');
     introExists.value = !!introSection;
+
+    if (props.customToc) {
+        props.customToc.forEach((item, idx) => {
+            sublistToggled.value[idx] = false;
+        });
+    }
 });
 
 const scrollToChapter = (id: string): void => {
@@ -241,6 +263,14 @@ const scrollToChapter = (id: string): void => {
     if (el) {
         el.scrollIntoView({ behavior: 'smooth' });
     }
+};
+
+const toggleSublist = (index: number): void => {
+    sublistToggled.value[index] = !sublistToggled.value[index];
+};
+
+const isSublistToggled = (index: number): boolean => {
+    return sublistToggled.value[index];
 };
 
 const updateActiveIdx = () => {
@@ -272,7 +302,7 @@ const updateActiveIdx = () => {
         color: inherit;
     }
 
-    a:hover svg {
+    a:hover :deep(svg) {
         stroke: var(--sr-accent-colour);
     }
 
@@ -281,13 +311,38 @@ const updateActiveIdx = () => {
     }
 
     &.is-active {
-        svg {
+        :deep(svg) {
             fill: var(--sr-accent-colour);
             stroke: var(--sr-accent-colour);
         }
 
-        span {
+        :deep(span) {
             font-weight: bold;
+        }
+    }
+}
+
+.dropdown-menu {
+    > li {
+        font-weight: normal;
+        :deep(svg) {
+            fill: #fff !important;
+            stroke: #878787 !important;
+        }
+
+        :deep(span) {
+            font-weight: normal !important;
+        }
+
+        &.is-active {
+            :deep(span) {
+                font-weight: bold !important;
+            }
+
+            :deep(svg) {
+                fill: var(--sr-accent-colour) !important;
+                stroke: var(--sr-accent-colour) !important;
+            }
         }
     }
 }
