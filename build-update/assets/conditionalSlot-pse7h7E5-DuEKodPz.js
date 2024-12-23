@@ -1,0 +1,1 @@
+import{oV as i}from"./story-u82SUoyt.js";import{c as n}from"./observers-tBXut0i3-BDAbO-z3.js";let t;const r={childList:!0};function a(o){t||(t=n("mutation",c)),t.observe(o.el,r)}function m(o){t.unobserve(o.el)}function c(o){o.forEach(({target:e})=>{i(e)})}export{a as i,m as s};

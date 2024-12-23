@@ -1,0 +1,1 @@
+import{c9 as f}from"./story-u82SUoyt.js";function m(t,e,r=0){const n=f(t,0,i);for(let o=0;o<4;o++)e[r+o]=Math.floor(256*u(n*c[o]))}function a(t,e=0){let r=0;for(let n=0;n<4;n++)r+=t[e+n]*l[n];return r}const c=[1,256,65536,16777216],l=[1/256,1/65536,1/16777216,1/4294967296],i=a(new Uint8ClampedArray([255,255,255,255]));function u(t){return t-Math.floor(t)}export{a,m as l};
