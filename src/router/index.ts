@@ -1,5 +1,5 @@
 //import StoryV from '@storylines/components/story/story.vue';
-import { createRouter, createWebHashHistory, RouteLocationNormalized } from 'vue-router';
+import { createRouter, createWebHashHistory, type RouteLocationNormalized } from 'vue-router';
 
 const routes = [
     {
