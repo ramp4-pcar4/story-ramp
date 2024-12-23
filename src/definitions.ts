@@ -1,5 +1,5 @@
 import JSZip from 'jszip';
-import { Options as nouiOptions } from 'nouislider';
+import type { Options as nouiOptions } from 'nouislider';
 
 export interface StoryRampConfig {
     title: string;
