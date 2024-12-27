@@ -59,6 +59,66 @@
             ]
         },
         {
+            "title": "Interactive Image",
+            "panel": [
+                {
+                    "type": "interactive-image",
+                    "defaultImage": {
+                        "id": "default",
+                        "src":"00000000-0000-0000-0000-000000000000/assets/en/GettyImages-187242601__1554821467033__w1920.jpg"
+                    },
+                    "images": [{
+                        "id": "image-1",
+                        "src": "00000000-0000-0000-0000-000000000000/assets/en/GettyImages-516166467__1554821531978__w1920.jpg"
+                    }],
+                    "panels": [
+                        {
+                            "id": "panel-1",
+                            "panel": {
+                                "title": "Hello World",
+                                "content": "I am a text panel. I am a child of the dynamic panel config. ![](00000000-0000-0000-0000-000000000000/assets/en/GettyImages-187242601__1554821467033__w1920.jpg)",
+                                "type": "text",
+                                "cssClasses": "textPanelOutline"
+                            }
+                        },
+                        {
+                            "id": "panel-2",
+                            "panel": {
+                                "src": "00000000-0000-0000-0000-000000000000/assets/en/GettyImages-187242601__1554821467033__w1920.jpg",
+                                "type": "image"
+                            }
+                        },
+                        {
+                            "id": "panel-3",
+                            "panel": {
+                                "type": "text",
+                                "title": "MORE STUFF",
+                                "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris rhoncus, magna in pulvinar tincidunt, magna velit feugiat sem, nec rhoncus lectus tortor quis turpis. Vivamus erat velit, feugiat at nisl lacinia, pulvinar tempus nunc. Nulla suscipit vulputate dapibus. Fusce tincidunt neque nunc, sed porta lacus elementum vitae. Suspendisse imperdiet interdum ipsum, id aliquet lectus aliquet sit amet. Aliquam erat volutpat. Nulla convallis nisl sodales nunc ullamcorper pulvinar. Nulla ornare justo id sapien porta gravida. Cras condimentum, felis id pretium malesuada, lorem lorem viverra nisi, sit amet molestie mi nulla nec velit. Integer semper lorem scelerisque tellus iaculis finibus. Aliquam efficitur sodales elit nec sodales. Sed vitae ipsum quis eros vulputate luctus."
+                            }
+                        }
+                    ],
+                    "zones": [
+                        {
+                            "panelId": "panel-2",
+                            "top": "5%",
+                            "left": "5%",
+                            "width": "25%",
+                            "height": "25%"
+                        },
+                        {
+                            "panelId": "panel-3",
+                            "imageId": "image-1",
+                            "top": "20%",
+                            "left": "80%",
+                            "width": "10%",
+                            "height": "50%"
+                        }
+                    ]
+                }
+            ],
+            "includeInToc": false
+        },
+        {
             "title": "Community Directory PowerBI Map",
             "panel": [
                 {

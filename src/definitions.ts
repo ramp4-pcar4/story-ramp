@@ -135,6 +135,7 @@ export interface Slide {
 export enum PanelType {
     Text = 'text',
     Image = 'image',
+    InteractiveImage = 'interactive-image',
     Map = 'map',
     InteractiveMap = 'interactive-map',
     Chart = 'chart',
@@ -221,6 +222,40 @@ export interface DynamicPanel extends BasePanel {
 export interface DynamicChildItem {
     id: string;
     panel: BasePanel;
+}
+
+export interface InteractiveImagePanel extends BasePanel {
+    type: PanelType.InteractiveImage;
+    title: string;
+    titleTag: string;
+    zones: InteractiveImageZone[];
+    panels: DynamicChildItem[];
+    images: Image[];
+    defaultImage: Image;
+    width?: number;
+    height?: number;
+    class?: string;    
+    caption?: string;
+    reversed?: boolean;
+    hideReturn?: boolean;
+    contentWidth?: string;
+}
+
+export interface InteractiveImageZone {
+    imageId?: string;
+    panelId: string;
+    class?: string;
+    top: string;
+    left: string;
+    width: string;
+    height: string;
+    disableHover?: boolean;
+}
+
+export interface Image {
+    src: string;
+    id: string;
+    altText?: string;
 }
 
 export interface ImagePanel extends BasePanel {
