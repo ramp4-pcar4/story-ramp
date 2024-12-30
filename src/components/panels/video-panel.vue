@@ -9,6 +9,7 @@
         <template v-if="config.videoType === 'YouTube'">
             <iframe
                 class="media-player"
+                :title="config.title"
                 :src="config.src"
                 :height="config.height ? `${config.height}` : '500px'"
                 allowfullscreen
