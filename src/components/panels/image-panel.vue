@@ -75,11 +75,20 @@ onMounted((): void => {
         const image = props.config;
         const assetSrc = `${image.src.substring(image.src.indexOf('/') + 1)}`;
         const imageFile = props.configFileStructure?.zip.file(assetSrc);
+        const imageType = assetSrc.split('.').at(-1);
+        const imageName = image.src.replace(/^.*[\\/]/, '');
         if (imageFile) {
             // Convert the image to a blob so it can be displayed locally.
-            imageFile.async('blob').then((res: Blob) => {
-                state.src = props.config.src = URL.createObjectURL(res);
-            });
+            if (imageType !== 'svg') {
+                imageFile.async('blob').then((res: Blob) => {
+                    state.src = props.config.src = URL.createObjectURL(res);
+                });
+            } else {
+                imageFile.async('text').then((res) => {
+                    const image = new File([res], imageName, { type: 'image/svg+xml' });
+                    state.src = props.config.src = URL.createObjectURL(image);
+                });
+            }
         }
     }
 
