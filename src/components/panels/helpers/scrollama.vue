@@ -45,6 +45,7 @@ function setup() {
         const opts: any = {
             step: Array.from(rootElement.value.children),
             progress: 'step-progress' in attrs,
+            offset: 0.1,
             ...attrs
         };
 
