@@ -63,8 +63,8 @@
 <script setup lang="ts">
 import type { PropType } from 'vue';
 import { onMounted, ref } from 'vue';
-import { TimeSliderConfig } from '@storylines/definitions';
-import noUiSlider, { API, PipsMode } from 'nouislider';
+import type { TimeSliderConfig } from '@storylines/definitions';
+import noUiSlider, { type API, PipsMode } from 'nouislider';
 
 const props = defineProps({
     config: {
@@ -105,7 +105,7 @@ onMounted(() => {
                 return -1;
             }
         },
-        ...props.config.sliderConfig,
+        ...props.config.sliderConfig
     });
 
     slider.value.on('update', () => {

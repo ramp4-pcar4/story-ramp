@@ -1,4 +1,4 @@
-import { TimeSliderConfig } from '@storylines/definitions';
+import type { TimeSliderConfig } from '@storylines/definitions';
 import TimeSlider from './time-slider.vue';
 import { createApp, h } from 'vue';
 import VueTippy from 'vue-tippy';

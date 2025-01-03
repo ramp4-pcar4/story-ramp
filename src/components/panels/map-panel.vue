@@ -40,7 +40,7 @@ import { onMounted, ref } from 'vue';
 import MarkdownIt from 'markdown-it';
 import { i18n } from '@storylines/lang';
 import { createInstance } from 'ramp-pcar';
-import { ConfigFileStructure, MapPanel, TimeSliderConfig } from '@storylines/definitions';
+import type { ConfigFileStructure, MapPanel, TimeSliderConfig } from '@storylines/definitions';
 import { TimeSliderFixture } from '@storylines/components/panels/helpers/time-slider/index';
 
 const props = defineProps({
@@ -275,7 +275,15 @@ const setupMap = (config: any) => {
     white-space: unset !important;
 }
 
-$font-list: 'Montserrat', -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji,
+$font-list:
+    'Montserrat',
+    -apple-system,
+    BlinkMacSystemFont,
+    Segoe UI,
+    Helvetica,
+    Arial,
+    sans-serif,
+    Apple Color Emoji,
     Segoe UI Emoji;
 :deep(.ramp-app) {
     height: 100%;
