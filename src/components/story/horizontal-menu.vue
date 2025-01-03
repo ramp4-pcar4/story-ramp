@@ -46,6 +46,8 @@
                     :class="{
                         'is-active': lastActiveIdx === item.slideIndex
                     }"
+                    ref="itemContainer"
+                    @focusout="handleFocus(idx)"
                 >
                     <toc-item :tocItem="item" :slides="slides" :verticalToc="false" :plugin="plugin">
                         <button
@@ -60,18 +62,7 @@
                                 height="18"
                                 viewBox="0 0 24 24"
                                 width="18"
-                                class="rotate-180"
-                                v-if="isSublistToggled(idx)"
-                            >
-                                <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"></path>
-                            </svg>
-                            <svg
-                                data-v-b1261e08=""
-                                xmlns="http://www.w3.org/2000/svg"
-                                height="18"
-                                viewBox="0 0 24 24"
-                                width="18"
-                                v-else
+                                :class="{ 'rotate-180': sublistToggled === idx }"
                             >
                                 <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"></path>
                             </svg>
@@ -79,7 +70,7 @@
                     </toc-item>
 
                     <!-- Dropdown for sublists -->
-                    <ul v-show="isSublistToggled(idx)" class="dropdown-menu">
+                    <ul v-show="sublistToggled === idx" class="dropdown-menu">
                         <li
                             v-for="(subItem, subIdx) in item.sublist"
                             :key="subIdx"
@@ -127,7 +118,7 @@
 
 <script setup lang="ts">
 import type { PropType } from 'vue';
-import { computed, ref, watch, onMounted } from 'vue';
+import { computed, ref, watch, onMounted, onBeforeUnmount } from 'vue';
 import { MenuItem, Slide } from '@storylines/definitions';
 import TocItem from '@storylines/components/panels/helpers/toc-item.vue';
 
@@ -161,7 +152,8 @@ const props = defineProps({
 const introExists = ref(false);
 const lastActiveIdx = ref(-1);
 
-const sublistToggled = ref({} as Record<number, boolean>);
+const sublistToggled = ref<number>(-1);
+const itemContainer = ref(null);
 
 // filter out which slides are visible in the table of contents while preserving original slide index
 const tocSlides = computed(() => {
@@ -183,12 +175,29 @@ onMounted(() => {
     const introSection = document.getElementById('intro');
     introExists.value = !!introSection;
 
-    if (props.customToc) {
-        props.customToc.forEach((item, idx) => {
-            sublistToggled.value[idx] = false;
-        });
-    }
+    document.addEventListener('click', handleMouseClick);
 });
+
+onBeforeUnmount(() => {
+    document.removeEventListener('click', handleMouseClick);
+});
+
+const hideSublists = (): void => {
+    sublistToggled.value = -1;
+};
+
+const handleMouseClick = (event: MouseEvent): void => {
+    const target = event.target as HTMLElement;
+    const tocItem = target.closest('.toc-item');
+    const sublistItem = target.closest('.dropdown-menu');
+
+    // ignore if clicking on sublist toggle button, its svg icon or any sublist item in dropdown
+    if ((tocItem && tocItem.querySelector('button')?.contains(target)) || sublistItem) {
+        return;
+    } else {
+        hideSublists();
+    }
+};
 
 const scrollToChapter = (id: string): void => {
     const el = document.getElementById(id);
@@ -198,16 +207,21 @@ const scrollToChapter = (id: string): void => {
 };
 
 const toggleSublist = (index: number): void => {
-    sublistToggled.value[index] = !sublistToggled.value[index];
-};
-
-const isSublistToggled = (index: number): boolean => {
-    return sublistToggled.value[index];
+    sublistToggled.value = sublistToggled.value !== index ? index : -1;
 };
 
 const updateActiveIdx = () => {
     const prevSlides = tocSlides.value.filter((slide) => slide.index <= props.activeChapterIndex);
     lastActiveIdx.value = prevSlides.length ? prevSlides[prevSlides.length - 1].index : -1;
+};
+
+const handleFocus = (idx: number) => {
+    setTimeout(() => {
+        const tocItems = itemContainer.value;
+        if (tocItems && tocItems[idx] && !(tocItems[idx] as HTMLElement).contains(document.activeElement)) {
+            sublistToggled.value = -1;
+        }
+    }, 0);
 };
 </script>
 
@@ -293,5 +307,9 @@ const updateActiveIdx = () => {
             font-weight: bold;
         }
     }
+}
+
+.rotate-180 {
+    transform: rotate(-180deg);
 }
 </style>

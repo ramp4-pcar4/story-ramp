@@ -1,5 +1,5 @@
 <template>
-    <div :class="{ flex: parentItem }">
+    <div class="toc-item" :class="{ flex: parentItem }">
         <!-- using router-link causes a page refresh which breaks plugin -->
         <a
             class="flex items-center px-2 py-1 mx-1 cursor-pointer"
