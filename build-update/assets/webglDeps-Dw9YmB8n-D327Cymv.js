@@ -1,7 +1,0 @@
-import{r as _}from"./BufferObject-DqJSjWFs-BhAkLLcP.js";import{V as c}from"./Program-1XjJitsM-EcoGUBaj.js";import{G as y,a as j}from"./Program-1XjJitsM-EcoGUBaj.js";import{gj as v}from"./story-DE9AooAy.js";import{s as p}from"./NestedMap-Ddo7BfvO-BpVPk8mz.js";import{c as P,d as V}from"./ProgramTemplate-B_NcbdFz-Q2ML1liD.js";import{c as A}from"./VertexArrayObject-C4kjI814-BP6Di09J.js";import"./main-CsLUkpBy.js";class ${constructor(e){this._rctx=e,this._store=new p}dispose(){this._store.forAll(e=>e.dispose()),this._store.clear()}acquire(e,t,o,i){const r=this._store.get(e,t);if(r!=null)return r.ref(),r;const s=new c(this._rctx,e,t,o,i);return s.ref(),this._store.set(e,t,s),s}get test(){}}function l(f){const{options:e,value:t}=f;return typeof e[t]=="number"}function x(f){let e="";for(const t in f){const o=f[t];if(typeof o=="boolean")o&&(e+=`#define ${t}
-`);else if(typeof o=="number")e+=`#define ${t} ${o.toFixed()}
-`;else if(typeof o=="object")if(l(o)){const{value:i,options:r,namespace:s}=o,n=s?`${s}_`:"";for(const a in r)e+=`#define ${n}${a} ${r[a].toFixed()}
-`;e+=`#define ${t} ${n}${i}
-`}else{const i=o.options;let r=0;for(const s in i)e+=`#define ${i[s]} ${(r++).toFixed()}
-`;e+=`#define ${t} ${i[o.value]}
-`}}return e}export{_ as BufferObject,y as FramebufferObject,c as Program,$ as ProgramCache,j as Renderbuffer,P as ShaderCompiler,v as Texture,A as VertexArrayObject,V as createProgram,x as glslifyDefineMap};
