@@ -6,7 +6,7 @@
         :class="!!config.reversed ? 'sm:flex-row-reverse' : 'sm:flex-row'"
     >
         <div
-            class="sticky max-w-none min-w-0 mb-5 mx-1 py-0 sm:py-5 z-40"
+            class="sticky prose max-w-none min-w-0 mb-5 mx-1 py-0 sm:py-5 z-40"
             :class="{ 'has-background': background, 'flex-1': !!config.contentWidth === false }"
             :style="{
                 width: !isMobile ? `${config.contentWidth}` : undefined
@@ -154,7 +154,7 @@ const zoneClick = (zone: InteractiveImageZone): void => {
     });
     if (zone.imageId) {
         const image = props.config.images.find((img) => {
-            return zone.imageId = img.id;
+            return zone.imageId == img.id;
         });
         if (image) {
             activeImage.value = image;
@@ -191,7 +191,7 @@ const zoneMouseEnter = (zone: InteractiveImageZone): void => {
     }
     if (zone.imageId) {
         activeImage.value = props.config.images.find((img) => {
-            return zone.imageId = img.id;
+            return zone.imageId == img.id;
         }) || activeImage.value;
     }
 }
