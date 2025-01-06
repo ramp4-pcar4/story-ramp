@@ -77,13 +77,13 @@
 
 <script setup lang="ts">
 import { getCurrentInstance, onMounted, ref } from 'vue';
-import { useRoute, RouteLocationNormalized } from 'vue-router';
+import { useRoute, type RouteLocationNormalized } from 'vue-router';
 
 import MobileMenu from './mobile-menu.vue';
 import StoryContent from '@storylines/components/story/story-content.vue';
 import Intro from '@storylines/components/story/introduction.vue';
 
-import { StoryRampConfig } from '@storylines/definitions';
+import type { StoryRampConfig } from '@storylines/definitions';
 import { VueSpinnerOval } from 'vue3-spinners';
 
 const route = useRoute();
