@@ -70,7 +70,7 @@
                     </toc-item>
 
                     <!-- Dropdown for sublists -->
-                    <ul v-show="sublistToggled === idx" class="dropdown-menu">
+                    <ul v-show="sublistToggled === idx" class="sublist-menu">
                         <li
                             v-for="(subItem, subIdx) in item.sublist"
                             :key="subIdx"
@@ -189,7 +189,7 @@ const hideSublists = (): void => {
 const handleMouseClick = (event: MouseEvent): void => {
     const target = event.target as HTMLElement;
     const tocItem = target.closest('.toc-item');
-    const sublistItem = target.closest('.dropdown-menu');
+    const sublistItem = target.closest('.sublist-menu');
 
     // ignore if clicking on sublist toggle button, its svg icon or any sublist item in dropdown
     if ((tocItem && tocItem.querySelector('button')?.contains(target)) || sublistItem) {
@@ -292,7 +292,7 @@ const handleFocus = (idx: number) => {
     background-color: #e0e0e0;
 }
 
-.dropdown-menu {
+.sublist-menu {
     position: absolute;
     width: 100%;
     background-color: rgb(241, 242, 244);

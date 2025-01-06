@@ -161,7 +161,7 @@
                     </toc-item>
 
                     <!-- Dropdown for sublists -->
-                    <ul v-show="isSublistToggled(idx)" class="dropdown-menu">
+                    <ul v-show="isSublistToggled(idx)" class="sublist-menu">
                         <li
                             v-for="(subItem, subIdx) in item.sublist"
                             :key="subIdx"
@@ -322,7 +322,7 @@ const updateActiveIdx = () => {
     }
 }
 
-.dropdown-menu {
+.sublist-menu {
     > li {
         font-weight: normal;
         :deep(svg) {
