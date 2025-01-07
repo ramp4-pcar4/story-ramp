@@ -44,7 +44,8 @@
                     v-for="(item, idx) in customToc"
                     :key="idx"
                     :class="{
-                        'is-active': lastActiveIdx === item.slideIndex
+                        'is-active': lastActiveIdx === item.slideIndex,
+                        separator: (!returnToTop && idx !== 0) || returnToTop
                     }"
                     ref="itemContainer"
                     @focusout="handleFocus(idx)"
@@ -70,17 +71,17 @@
                     </toc-item>
 
                     <!-- Dropdown for sublists -->
-                    <ul v-show="sublistToggled === idx" class="sublist-menu">
+                    <ul v-show="sublistToggled === idx" class="sublist-menu mt-1">
                         <li
                             v-for="(subItem, subIdx) in item.sublist"
                             :key="subIdx"
                             :class="[
                                 {
-                                    'border-t-2': subIdx === 0,
+                                    'border-t-2': subIdx !== 0,
                                     'is-active': lastActiveIdx === subItem.slideIndex
                                 }
                             ]"
-                            class="border-b-2 border-gray-300"
+                            class="border-gray-300"
                         >
                             <toc-item
                                 :tocItem="subItem"
@@ -295,11 +296,11 @@ const handleFocus = (idx: number) => {
 .sublist-menu {
     position: absolute;
     width: 100%;
-    background-color: rgb(241, 242, 244);
+    background-color: rgb(255, 255, 255);
     box-sizing: border-box;
 
     > li {
-        background-color: rgb(241, 242, 244);
+        background-color: rgb(255, 255, 255);
         font-weight: normal;
 
         &.is-active {
