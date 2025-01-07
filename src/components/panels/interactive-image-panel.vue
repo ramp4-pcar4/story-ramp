@@ -6,7 +6,7 @@
         :class="!!config.reversed ? 'sm:flex-row-reverse' : 'sm:flex-row'"
     >
         <div
-            class="sticky max-w-none min-w-0 mb-5 mx-1 py-0 sm:py-5 z-40"
+            class="sticky prose max-w-none min-w-0 mb-5 mx-1 py-0 sm:py-5 z-40"
             :class="{ 'has-background': background, 'flex-1': !!config.contentWidth === false }"
             :style="{
                 width: !isMobile ? `${config.contentWidth}` : undefined
@@ -14,7 +14,7 @@
         >
             <component
                 :is="config.titleTag || 'h2'"
-                class="px-10 mb-0 chapter-title top-20"
+                class="px-10 image-title mb-0 chapter-title top-20"
                 :style="activeIdx !== defaultPanel.id ? 'margin-top: 0px;' : ''"
             >
                 {{ config.title }}
@@ -27,7 +27,7 @@
                     :class="config.class"
                     :alt="activeImage?.altText || ''"
                     :style="{ width: `${config.width}px`, height: `${config.height}px` }"
-                    class="mx-auto flex object-contain sm:max-w-screen sm:max-h-screen"
+                    class="mx-auto flex object-contain sm:max-w-screen sm:max-h-screen story-graphic"
                 />
                 <div 
                     v-for="zone in config.zones" 
@@ -154,7 +154,7 @@ const zoneClick = (zone: InteractiveImageZone): void => {
     });
     if (zone.imageId) {
         const image = props.config.images.find((img) => {
-            return zone.imageId = img.id;
+            return zone.imageId == img.id;
         });
         if (image) {
             activeImage.value = image;
@@ -175,7 +175,7 @@ const zoneClick = (zone: InteractiveImageZone): void => {
         }, 10);
 
         setTimeout(() => {
-            const elTop = isMobile ? img.value?.getBoundingClientRect().top : content.value?.$el.getBoundingClientRect().top;
+            const elTop = el.value?.getBoundingClientRect().top;
             window.scrollTo({
                 top: window.scrollY + elTop - calculateScrollOffset(),
                 left: 0,
@@ -191,7 +191,7 @@ const zoneMouseEnter = (zone: InteractiveImageZone): void => {
     }
     if (zone.imageId) {
         activeImage.value = props.config.images.find((img) => {
-            return zone.imageId = img.id;
+            return zone.imageId == img.id;
         }) || activeImage.value;
     }
 }
@@ -232,7 +232,7 @@ const clickBack = (): void => {
     }, 10);
 
     setTimeout(() => {
-        const elTop = content.value?.$el.getBoundingClientRect().top;
+        const elTop = el.value?.getBoundingClientRect().top;
         window.scrollTo({
             top: window.scrollY + elTop - calculateScrollOffset(),
             left: 0,
@@ -291,6 +291,12 @@ const clickBack = (): void => {
 }
 
 @media screen and (max-width: 640px) {
+    .image-title {
+        margin: 0em;
+        padding-top: 0.2em;
+        padding-bottom: 0.2em;
+        background: #fff;
+    }
 
     .return-button-container {
         position: sticky;
