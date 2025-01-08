@@ -7,7 +7,7 @@
             @click="scrollToChapter(getSlideId(tocItem.slideIndex))"
             v-tippy="{
                 delay: '200',
-                placement: 'right',
+                placement: verticalToc || !parentItem ? 'right' : 'top',
                 content: getTitle(tocItem),
                 animateFill: true,
                 animation: 'chapter-menu'
@@ -43,7 +43,7 @@
             target
             v-tippy="{
                 delay: '200',
-                placement: 'right',
+                placement: verticalToc || !parentItem ? 'right' : 'top',
                 content: getTitle(tocItem),
                 animateFill: true,
                 animation: 'chapter-menu'
