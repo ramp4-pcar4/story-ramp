@@ -217,6 +217,32 @@ export interface TimeSliderConfig {
     attribute: string;
     layers?: string[];
     sliderConfig?: nouiOptions;
+    formatters: TimeSliderFormatter[];
+}
+
+export interface TimeSliderFormatter {
+    mode: TimeSliderFormat;
+    internal?: boolean;
+    pips?: boolean;
+    aria?: boolean;
+    display?: boolean;
+}
+
+export interface ValueFormatter extends TimeSliderFormatter {
+    mode: TimeSliderFormat.Values;
+    values: string[];
+}
+
+export interface RangeFormatter extends TimeSliderFormatter {
+    mode: TimeSliderFormat.Ranges;
+    ranges: string[][];
+    separator?: string;
+}
+
+export enum TimeSliderFormat {
+    None = 'none',
+    Ranges = 'ranges',
+    Values = 'values'
 }
 
 export interface DynamicPanel extends BasePanel {

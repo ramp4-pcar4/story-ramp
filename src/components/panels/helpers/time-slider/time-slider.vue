@@ -31,8 +31,8 @@
             </svg>
         </button>
         <span class="my-2.5 text-base range-display"
-            ><span class="">{{ range[0] }}</span
-            ><span class="" v-if="range[1]"> - {{ range[1] }}</span></span
+            ><span class="">{{ displayFormat ? (displayFormat as any).to(parseInt(range[0]), 0) : range[0] }}</span
+            ><span class="" v-if="range[1]"> - {{ displayFormat ? (displayFormat as any).to(parseInt(range[1]), 1) : range[1] }}</span></span
         >
         <button
             class="absolute right-4 minimize-button"
@@ -63,8 +63,8 @@
 <script setup lang="ts">
 import type { PropType } from 'vue';
 import { onMounted, ref } from 'vue';
-import type { TimeSliderConfig } from '@storylines/definitions';
-import noUiSlider, { type API, PipsMode } from 'nouislider';
+import { RangeFormatter, TimeSliderConfig, TimeSliderFormat, TimeSliderFormatter, ValueFormatter } from '@storylines/definitions';
+import noUiSlider, { type API, Formatter, Options, PipsMode } from 'nouislider';
 
 const props = defineProps({
     config: {
@@ -85,9 +85,20 @@ const slider = ref<API>();
 const range = ref<string[]>(['', '']);
 const intervalID = ref(-1);
 
+const displayFormat = ref<Formatter | undefined>();
+let internalFormat: Formatter | undefined;
+let pipsFormat: Formatter | undefined;
+
 onMounted(() => {
-    sliderElement.value = sliderTarget.value as HTMLElement;
-    slider.value = noUiSlider.create(sliderElement.value, {
+    if (props.config.formatters) {
+        if (!Array.isArray(props.config.formatters)) {
+            setUpFormatters([props.config.formatters]);
+        } else {
+            setUpFormatters(props.config.formatters);
+        }
+    }
+
+    const sliderConfig: Options = {
         start: props.config.start,
         range: {
             min: props.config.range[0],
@@ -95,6 +106,8 @@ onMounted(() => {
         },
         connect: true,
         step: 1,
+        format: internalFormat,
+        ariaFormat: pipsFormat,
         pips: {
             mode: PipsMode.Steps,
             density: 1,
@@ -106,7 +119,12 @@ onMounted(() => {
             }
         },
         ...props.config.sliderConfig
-    });
+    };
+
+    sliderConfig.pips.format = pipsFormat;
+
+    sliderElement.value = sliderTarget.value as HTMLElement;
+    slider.value = noUiSlider.create(sliderElement.value, sliderConfig);
 
     slider.value.on('update', () => {
         const sliderValues = slider.value!.get() as string | string[];
@@ -157,7 +175,7 @@ onMounted(() => {
  * Begins looping through the values on the time slider
  */
 const startLoop = () => {
-    const sliderValues = slider.value!.get() as string | string[];
+    const sliderValues = slider.value!.get(true) as number | number[];
     if (Array.isArray(sliderValues)) {
         slider.value!.set(sliderValues.map(() => sliderValues[0]));
     }
@@ -198,6 +216,53 @@ const minimizeToggle = () => {
         (el.value.parentElement as HTMLElement).classList.remove('minimized');
     }
 };
+
+const setUpFormatters = (formatters: TimeSliderFormatter[]) => {
+    // Display format
+    displayFormat.value = createFormat(formatters.find(formatter => formatter.display === true)
+                            || formatters.find(formatter => formatter.display === undefined));
+    // Internal format
+    internalFormat = createFormat(formatters.find(formatter => formatter.internal === true));
+    // Pip format
+    pipsFormat = createFormat(formatters.find(formatter =>  formatter.pips === true)
+                        || formatters.find(formatter =>  formatter.pips === undefined));
+}
+
+const createFormat = (formatter: TimeSliderFormatter): Formatter | undefined => {
+    if (formatter === undefined) {
+        return undefined;
+    }
+
+    switch (formatter.mode) {
+        case TimeSliderFormat.Values:
+            const valueFormatter = formatter as ValueFormatter;
+            return {
+                to: (val: number, index?: number) => {
+                    return valueFormatter.values[val - 1];
+                },
+                from: (val: string) => {
+                    return valueFormatter.values.indexOf(val);
+                }
+            }
+    
+        case TimeSliderFormat.Ranges:
+            const rangeFormatter = formatter as RangeFormatter;
+            return {
+                to: (val: number, index?: number) => {
+                    if (index !== undefined) {
+                        return rangeFormatter.ranges[val - 1][index]
+                    } else {
+                        return rangeFormatter.ranges[val - 1].join( rangeFormatter.separator || '-');
+                    }
+                },
+                from: (val: string) => {
+                    return rangeFormatter.ranges.indexOf(val.split( rangeFormatter.separator || '-'));
+                }
+            }
+        default:
+            return undefined;
+    }
+}
 </script>
 
 <style lang="scss">

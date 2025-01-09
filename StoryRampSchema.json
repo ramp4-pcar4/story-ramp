@@ -421,6 +421,20 @@
                                 "description": "A layer ID"
                             }
                         },
+                        "formatters": {
+                            "anyOf": [
+                                {
+                                    "$ref": "#/$defs/timeSliderFormatter"
+                                },
+                                {
+                                    "type": "array",
+                                    "description": "An array of formatters that will take the values in the slider and make them readable.",
+                                    "items": {
+                                        "$ref": "#/$defs/timeSliderFormatter"
+                                    }
+                                }
+                            ]
+                        },
                         "sliderConfig": {
                             "type": "object",
                             "description": "A noUiSlider config object."
@@ -430,6 +444,68 @@
                 }
             },
             "required": ["config", "type"]
+        },
+
+        "timeSliderFormatter": {
+            "type": "object",
+            "description": "A formatter for use in the timeslider. Used to alias slider values into user readable versions.",
+            "oneOf": [
+                {
+                    "$ref": "#/$defs/timeSliderValuesFormatter"
+                },
+                {
+                    "$ref": "#/$defs/timeSliderRangesFormatter"
+                }
+            ]
+        },
+
+        "timeSliderValuesFormatter": {
+            "type": "object",
+            "description": "A formatter which maps slider values to the element at that index in the 'values' array.",
+            "properties": {
+                "mode": {
+                    "type": "string",
+                    "enum": ["values"]
+                },
+                "values": {
+                    "type": "array",
+                    "description": "An array of labels",
+                    "items": {
+                        "type": "string",
+                        "description": "A label for use in the timeslider"
+                    }
+                }
+            },
+            "required": ["mode", "values"]
+        },
+
+        "timeSliderRangesFormatter": {
+            "type": "object",
+            "description": "A formatter which concatenates ranges as needed.",
+            "properties": {
+                "mode": {
+                    "type": "string",
+                    "enum": ["ranges"]
+                },
+                "ranges": {
+                    "type": "array",
+                    "description": "An array of arrays of labels",
+                    "items": {
+                        "type": "array",
+                        "description": "An array of labels, ['January', 'March'] represents the full label 'January-March'",
+                        "items": {
+                            "type": "string",
+                            "description": "A partial label"
+                        }
+                    }
+                },
+                "separator": {
+                    "type": "string",
+                    "description": "A string (default '-') to join/separate the range values",
+                    "default": "-"
+                }
+            },
+            "required": ["mode", "ranges"]
         },
 
         "interactiveMapPanel": {

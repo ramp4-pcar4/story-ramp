@@ -494,8 +494,12 @@
                 {
                     "config": "00000000-0000-0000-0000-000000000000/ramp-config/TailingsfromMiningFacilities2010to2019(timeslider).json",
                     "timeSlider": {
-                        "range": [2010, 2019],
-                        "start": [2010, 2010],
+                        "range": [1, 4],
+                        "start": [1, 1],
+                        "formatters": {
+                            "mode": "ranges",
+                            "ranges": [["March", "May"], ["June", "August"], ["Sept", "Nov"], ["Dec", "Feb"]]
+                        },
                         "attribute": "Reporting_Year___Année"
                     },
                     "type": "map"
