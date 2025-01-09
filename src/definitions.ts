@@ -216,7 +216,16 @@ export interface TimeSliderConfig {
     start: number[];
     attribute: string;
     layers?: string[];
+    animation: {
+        playMode?: TimeSliderPlayMode;
+        interval?: number;
+    };
     sliderConfig?: nouiOptions;
+}
+
+export enum TimeSliderPlayMode {
+    Append = 'append',
+    Distinct = 'distinct'
 }
 
 export interface DynamicPanel extends BasePanel {

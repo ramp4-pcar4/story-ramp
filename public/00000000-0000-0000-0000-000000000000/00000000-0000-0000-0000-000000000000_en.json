@@ -496,6 +496,10 @@
                     "timeSlider": {
                         "range": [2010, 2019],
                         "start": [2010, 2010],
+                        "animation": {
+                            "playMode": "append",
+                            "interval": 500
+                        },
                         "attribute": "Reporting_Year___Année"
                     },
                     "type": "map"

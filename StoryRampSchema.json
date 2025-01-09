@@ -421,6 +421,23 @@
                                 "description": "A layer ID"
                             }
                         },
+                        "animation": {
+                            "type": "object",
+                            "description": "Configuration for the timeslider animation/play function",
+                            "properties": {
+                                "playMode": {
+                                    "type": "string",
+                                    "description": "The mode to determine behaviour when the play button is used. By default it loops through the values one at a time.",
+                                    "default": "distinct",
+                                    "enum": ["distinct", "append"]
+                                },
+                                "interval": {
+                                    "type": "number",
+                                    "description": "The interval between steps in the animation in ms. 1400 is default.",
+                                    "default": "1400"
+                                }
+                            }
+                        },
                         "sliderConfig": {
                             "type": "object",
                             "description": "A noUiSlider config object."
