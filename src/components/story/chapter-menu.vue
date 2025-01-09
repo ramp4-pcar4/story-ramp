@@ -149,7 +149,7 @@
                     v-for="(item, idx) in customToc"
                     :key="idx"
                     :class="{
-                        'is-active': lastActiveIdx === item.slideIndex
+                        'is-active': lastActiveIdx === item.slideIndex || isSublistActive(item.sublist)
                     }"
                 >
                     <toc-item :tocItem="item" :slides="slides" :plugin="plugin">
@@ -221,7 +221,7 @@
 <script setup lang="ts">
 import type { PropType } from 'vue';
 import { computed, ref, watch, onMounted } from 'vue';
-import { MenuItem, Slide } from '@storylines/definitions';
+import type { MenuItem, Slide } from '@storylines/definitions';
 import TocItem from '@storylines/components/panels/helpers/toc-item.vue';
 
 const props = defineProps({
@@ -266,6 +266,22 @@ const tocSlides = computed(() => {
     return slides;
 });
 
+const customTocSlides = computed(() => {
+    if (props.customToc) {
+        // for custom ToC extract slides including nested sublist items
+        let slides: MenuItem[] = [];
+        props.customToc.forEach((item) => {
+            slides.push(item);
+            if (item.sublist && item.sublist.length) {
+                item.sublist.forEach((subItem) => {
+                    slides.push(subItem);
+                });
+            }
+        });
+        return slides;
+    }
+});
+
 watch(
     () => props.activeChapterIndex,
     () => {
@@ -298,9 +314,21 @@ const isSublistToggled = (index: number): boolean => {
     return sublistToggled.value[index];
 };
 
+const isSublistActive = (sublist: MenuItem[] | undefined): boolean => {
+    if (sublist) {
+        return sublist.some(subItem => lastActiveIdx.value === subItem.slideIndex);
+    }
+    return false;
+};
+
 const updateActiveIdx = () => {
-    const prevSlides = tocSlides.value.filter((slide) => slide.index <= props.activeChapterIndex);
-    lastActiveIdx.value = prevSlides.length ? prevSlides[prevSlides.length - 1].index : -1;
+    if (props.customToc) {
+        const prevCustomSlides: MenuItem[] = customTocSlides.value!.filter((slide) => slide.slideIndex <= props.activeChapterIndex);
+        lastActiveIdx.value = prevCustomSlides.length ? prevCustomSlides[prevCustomSlides.length - 1].slideIndex : -1;
+    } else {
+        const prevSlides = tocSlides.value.filter((slide) => slide.index <= props.activeChapterIndex);
+        lastActiveIdx.value = prevSlides.length ? prevSlides[prevSlides.length - 1].index : -1;
+    }
 };
 </script>
 
