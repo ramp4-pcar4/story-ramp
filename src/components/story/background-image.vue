@@ -132,16 +132,26 @@ const getImageSource = (src: string): Promise<string> => {
         if (props.configFileStructure) {
             const assetSrc = `${src.substring(src.indexOf('/') + 1)}`;
             const imageFile = props.configFileStructure?.zip.file(assetSrc);
+            const imageType = assetSrc.split('.').at(-1);
+            const imageName = src.replace(/^.*[\\/]/, '');
             if (imageFile) {
-                // Convert the image to a blob so it can be displayed locally.
-                imageFile.async('blob').then((res: Blob) => {
-                    const blob = URL.createObjectURL(res);
+                if (imageType !== 'svg') {
+                    // Convert the image to a blob so it can be displayed locally.
+                    imageFile.async('blob').then((res: Blob) => {
+                        const blob = URL.createObjectURL(res);
 
-                    // Assign to blobStore and return the result.
-                    blobStore[src] = blob;
-                    resolve(blobStore[src]);
-                    return;
-                });
+                        // Assign to blobStore and return the result.
+                        blobStore[src] = blob;
+                        resolve(blobStore[src]);
+                        return;
+                    });
+                } else {
+                    imageFile.async('text').then((res) => {
+                        const image = new File([res], imageName, { type: 'image/svg+xml' });
+                        resolve(URL.createObjectURL(image));
+                        return;
+                    });
+                }
             } else {
                 resolve(src);
                 return;
