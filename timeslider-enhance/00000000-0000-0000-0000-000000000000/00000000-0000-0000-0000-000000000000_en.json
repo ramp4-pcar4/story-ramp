@@ -14,35 +14,6 @@
     },
     "slides": [
         {
-            "title": "Interactive Map with Zoomies",
-            "panel": [
-                {
-                    "config": "00000000-0000-0000-0000-000000000000/ramp-config/Locator_Map.json",
-                    "type": "interactive-map",
-                    "scrollguard": true,
-                    "title": "Interactive Map with Zoom to Salish Sea",
-                    "points": [
-                        {
-                            "title": "Home Extent",
-                            "text": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-                            "target": {
-                                "returnHome": true
-                            }
-                        },
-                        {
-                            "title": "Point of Interest",
-                            "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-                            "target": {
-                                "layerId": "Salish_Sea_Boundaries",
-                                "oid": 1
-                            }
-                        }
-                    ],
-                    "duration": 2000
-                }
-            ]
-        },
-        {
             "title": "Overview",
             "backgroundImage": "00000000-0000-0000-0000-000000000000/assets/en/GettyImages-516166467__1554821531978__w1920.jpg",
             "panel": [
@@ -675,7 +646,111 @@
             ]
         }
     ],
-    "tocOrientation": "vertical",
+    "tableOfContents": [
+        {
+            "title": "Overview",
+            "slideIndex": 0,
+            "sublist": [
+                {
+                    "title": "Community Directory",
+                    "slideIndex": 1
+                },
+                {
+                    "title": "Interactive Map",
+                    "slideIndex": 2
+                },
+                {
+                    "title": "RAMP Carousel",
+                    "slideIndex": 3
+                },
+                {
+                    "title": "Dynamic Panel",
+                    "slideIndex": 4
+                },
+                {
+                    "title": "YouTube Video",
+                    "slideIndex": 5
+                },
+                {
+                    "title": "Cumulative Effects Video",
+                    "slideIndex": 6
+                }
+            ]
+        },
+        {
+            "title": "Oil Sands Deposits",
+            "slideIndex": 7
+        },
+        {
+            "title": "Oil Sands Extraction",
+            "slideIndex": 8,
+            "sublist": []
+        },
+        {
+            "title": "In-situ Extraction",
+            "slideIndex": 9
+        },
+        {
+            "title": "Where are Facilities Located?",
+            "slideIndex": 10,
+            "sublist": [
+                {
+                    "title": "NPRI Substances Reported for Oil Sands Mining Faciltiies",
+                    "slideIndex": 11
+                },
+                {
+                    "title": "NPRI Substances Reported for Oil Sands Mining Facilities (2)",
+                    "slideIndex": 12
+                },
+                {
+                    "title": "Criteria Air Contaminant Releases From Oil Sands Mines",
+                    "slideIndex": 13
+                },
+                {
+                    "title": "Reported Mine Tailings From Oil Sands Surface Mining Facilities",
+                    "slideIndex": 14
+                },
+                {
+                    "title": "Reported Mine Tailings From Oil Sands Surface Mining Facilities (2)",
+                    "slideIndex": 15
+                },
+                {
+                    "title": "Trends in Mine Tailings Reported From Surface Mining Facilities",
+                    "slideIndex": 16
+                },
+                {
+                    "title": "Thermal in Situ Facilities",
+                    "slideIndex": 17
+                },
+                {
+                    "title": "NPRI Releases From Thermal in-situ Faciltiies",
+                    "slideIndex": 18
+                }
+            ]
+        },
+        {
+            "title": "Highcharts Demo (╯°□°)╯︵ ┻━┻",
+            "slideIndex": 19,
+            "sublist": [
+                {
+                    "title": "Dynamic Slideshow with Hybrid Chart",
+                    "slideIndex": 20
+                }
+            ]
+        },
+        {
+            "title": "Managing Environmental Impacts",
+            "slideIndex": 21,
+            "sublist": [
+                {
+                    "title": "Last Slide",
+                    "slideIndex": 22
+                }
+            ]
+        }
+    ],
+    "tocOrientation": "horizontal",
+    "returnTop": false,
     "stylesheets": ["00000000-0000-0000-0000-000000000000/styles/main.css"],
     "contextLink": "https://www.canada.ca/en/environment-climate-change/services/national-pollutant-release-inventory/tools-resources-data/exploredata.html",
     "contextLabel": "Explore National Pollutant Release Inventory data",
