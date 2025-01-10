@@ -63,7 +63,7 @@
 <script setup lang="ts">
 import type { PropType } from 'vue';
 import { onMounted, ref } from 'vue';
-import type { TimeSliderConfig } from '@storylines/definitions';
+import { TimeSliderConfig, TimeSliderPlayMode } from '@storylines/definitions';
 import noUiSlider, { type API, PipsMode } from 'nouislider';
 
 const props = defineProps({
@@ -156,25 +156,38 @@ onMounted(() => {
 /**
  * Begins looping through the values on the time slider
  */
-const startLoop = () => {
-    const sliderValues = slider.value!.get() as string | string[];
+ const startLoop = () => {
+    const sliderValues = slider.value!.get(true) as number | number[];
     if (Array.isArray(sliderValues)) {
         slider.value!.set(sliderValues.map(() => sliderValues[0]));
     }
     // delay happens before first call
-    intervalID.value = window.setInterval(moveHandleRight, 1400);
+    intervalID.value = window.setInterval(moveHandle, props.config.animation?.interval || 1400);
 };
 
 /**
- * Moves handle(s) one to the right of the first (leftmost) handle. Loops if the handles are at the end.
+ * Moves handle(s) according to the play mode specified in the config. Default behaviour is to move all handles to the right one position.
  */
-const moveHandleRight = () => {
+const moveHandle = () => {
     const sliderValues = slider.value!.get(true) as number | number[];
     let newValues;
     if (Array.isArray(sliderValues)) {
-        newValues = sliderValues.map(() => {
-            return sliderValues[0] === props.config.range[1] ? props.config.range[0] : sliderValues[0] + 1;
-        });
+        const nextMove = slider.value.steps()[sliderValues.length - 1][1]
+        switch (props.config.animation?.playMode) {
+            case TimeSliderPlayMode.Append:
+                // move only rightmost handle to the right
+                newValues = sliderValues.with(
+                                sliderValues.length - 1, 
+                                nextMove ? sliderValues[sliderValues.length - 1] + nextMove : props.config.range[0]);
+                break;
+            case TimeSliderPlayMode.Distinct:
+            default:
+                // move all handles one position to the right
+                newValues = sliderValues.map(() => {
+                    return nextMove ? sliderValues[sliderValues.length - 1] + nextMove : props.config.range[0];
+                });
+                break;
+        }
     } else {
         newValues = [sliderValues === props.config.range[1] ? props.config.range[0] : sliderValues + 1];
     }
