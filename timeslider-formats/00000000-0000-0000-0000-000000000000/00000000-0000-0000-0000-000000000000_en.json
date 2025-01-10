@@ -496,6 +496,10 @@
                     "timeSlider": {
                         "range": [1, 4],
                         "start": [1, 1],
+                        "animation": {
+                            "playMode": "append",
+                            "interval": 500
+                        },
                         "formatters": {
                             "mode": "ranges",
                             "ranges": [["March", "May"], ["June", "August"], ["Sept", "Nov"], ["Dec", "Feb"]]
@@ -652,101 +656,78 @@
             "slideIndex": 0,
             "sublist": [
                 {
-                    "title": "Community Directory",
+                    "title": "Interactive Content + Maps",
                     "slideIndex": 1
                 },
                 {
-                    "title": "Interactive Map",
-                    "slideIndex": 2
-                },
-                {
-                    "title": "RAMP Carousel",
-                    "slideIndex": 3
-                },
-                {
                     "title": "Dynamic Panel",
-                    "slideIndex": 4
-                },
-                {
-                    "title": "YouTube Video",
                     "slideIndex": 5
                 },
                 {
-                    "title": "Cumulative Effects Video",
+                    "title": "YouTube Video",
                     "slideIndex": 6
                 }
             ]
         },
         {
             "title": "Oil Sands Deposits",
-            "slideIndex": 7
-        },
-        {
-            "title": "Oil Sands Extraction",
-            "slideIndex": 8,
-            "sublist": []
+            "slideIndex": 8
         },
         {
             "title": "In-situ Extraction",
-            "slideIndex": 9
+            "slideIndex": 10
         },
         {
             "title": "Where are Facilities Located?",
-            "slideIndex": 10,
+            "slideIndex": 11,
             "sublist": [
                 {
                     "title": "NPRI Substances Reported for Oil Sands Mining Faciltiies",
-                    "slideIndex": 11
-                },
-                {
-                    "title": "NPRI Substances Reported for Oil Sands Mining Facilities (2)",
                     "slideIndex": 12
                 },
                 {
-                    "title": "Criteria Air Contaminant Releases From Oil Sands Mines",
+                    "title": "NPRI Substances Reported for Oil Sands Mining Facilities (2)",
                     "slideIndex": 13
                 },
                 {
-                    "title": "Reported Mine Tailings From Oil Sands Surface Mining Facilities",
+                    "title": "Criteria Air Contaminant Releases From Oil Sands Mines",
                     "slideIndex": 14
                 },
                 {
-                    "title": "Reported Mine Tailings From Oil Sands Surface Mining Facilities (2)",
+                    "title": "Reported Mine Tailings From Oil Sands Surface Mining Facilities",
                     "slideIndex": 15
                 },
                 {
-                    "title": "Trends in Mine Tailings Reported From Surface Mining Facilities",
+                    "title": "Reported Mine Tailings From Oil Sands Surface Mining Facilities (2)",
                     "slideIndex": 16
                 },
                 {
-                    "title": "Thermal in Situ Facilities",
+                    "title": "Trends in Mine Tailings Reported From Surface Mining Facilities",
                     "slideIndex": 17
                 },
                 {
-                    "title": "NPRI Releases From Thermal in-situ Faciltiies",
+                    "title": "Thermal in Situ Facilities",
                     "slideIndex": 18
+                },
+                {
+                    "title": "NPRI Releases From Thermal in-situ Faciltiies",
+                    "slideIndex": 19
                 }
             ]
         },
         {
             "title": "Highcharts Demo (╯°□°)╯︵ ┻━┻",
-            "slideIndex": 19,
+            "slideIndex": 20,
             "sublist": [
                 {
                     "title": "Dynamic Slideshow with Hybrid Chart",
-                    "slideIndex": 20
+                    "slideIndex": 21
                 }
             ]
         },
         {
             "title": "Managing Environmental Impacts",
-            "slideIndex": 21,
-            "sublist": [
-                {
-                    "title": "Last Slide",
-                    "slideIndex": 22
-                }
-            ]
+            "slideIndex": 22
         }
     ],
     "tocOrientation": "horizontal",
