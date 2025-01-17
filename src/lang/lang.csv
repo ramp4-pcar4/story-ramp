@@ -26,3 +26,15 @@ chart.downloadSVG,Download SVG,1,Télécharger SVG,1
 chart.downloadCSV,Download CSV,1,Télécharger CSV,1
 chart.downloadXLS,Download XLS,1,Télécharger XLS,1
 chart.viewData,View data table,1,Afficher le tableau de données,1
+month.jan,January,1,Janvier,1
+month.feb,February,1,Février,1
+month.mar,March,1,Mars,1
+month.apr,April,1,Avril,1
+month.may,May,1,Mai,1
+month.jun,June,1,Juin,1
+month.jul,July,1,Juillet,1
+month.aug,August,1,Août,1
+month.sep,September,1,Septembre,1
+month.oct,October,1,Octobre,1
+month.nov,November,1,Novembre,1
+month.dec,December,1,Décembre,1

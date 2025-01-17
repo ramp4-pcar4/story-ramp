@@ -215,6 +215,7 @@ export interface TimeSliderConfig {
     range: number[];
     start: number[];
     attribute: string;
+    arcgisDate?: boolean;
     layers?: string[];
     animation: {
         playMode?: TimeSliderPlayMode;
@@ -243,8 +244,14 @@ export interface RangeFormatter extends TimeSliderFormatter {
     separator?: string;
 }
 
+export interface DateFormatter extends TimeSliderFormatter {
+    mode: TimeSliderFormat.Date;
+    format: string;
+}
+
 export enum TimeSliderFormat {
     None = 'none',
+    Date = 'date',
     Ranges = 'ranges',
     Values = 'values'
 }

@@ -413,6 +413,11 @@
                             "type": "string",
                             "description": "The layer attribute that should be queried based on the slider values."
                         },
+                        "arcgisDate": {
+                            "type": "boolean",
+                            "description": "Whether the slider value should be converted into an arcGIS date/time format for the query",
+                            "default": "false"
+                        },
                         "layers": {
                             "type": "array",
                             "description": "An optional array of layer IDs for the slider to affect.",
@@ -468,12 +473,31 @@
             "description": "A formatter for use in the timeslider. Used to alias slider values into user readable versions.",
             "oneOf": [
                 {
+                    "$ref": "#/$defs/timeSliderDateFormatter"
+                },
+                {
                     "$ref": "#/$defs/timeSliderValuesFormatter"
                 },
                 {
                     "$ref": "#/$defs/timeSliderRangesFormatter"
                 }
             ]
+        },
+
+        "timeSliderDateFormatter": {
+            "type": "object",
+            "description": "A formatter that uses slider values as JS timestamps and converts them to readable formats",
+            "properties": {
+                "mode": {
+                    "type": "string",
+                    "enum": ["date"]
+                },
+                "format": {
+                    "type": "string",
+                    "description": "A format string describing the output of the formatter. 'Y' - year, 'M' - month, 'D' - day, 'h' - hour, 'm' - minute, 's' - second. Number of the same letter in a row is the length of the output (YY = 05, YYYY = 2025)."
+                }
+            },
+            "required": ["mode", "format"]
         },
 
         "timeSliderValuesFormatter": {
