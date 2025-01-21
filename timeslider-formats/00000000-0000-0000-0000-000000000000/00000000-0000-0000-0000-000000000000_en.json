@@ -37,14 +37,12 @@
                     "title": "Interactive Image test",
                     "defaultImage": {
                         "id": "default",
-                        "src": "00000000-0000-0000-0000-000000000000/assets/en/GettyImages-187242601__1554821467033__w1920.jpg"
+                        "src":"00000000-0000-0000-0000-000000000000/assets/en/GettyImages-187242601__1554821467033__w1920.jpg"
                     },
-                    "images": [
-                        {
-                            "id": "image-1",
-                            "src": "00000000-0000-0000-0000-000000000000/assets/en/GettyImages-516166467__1554821531978__w1920.jpg"
-                        }
-                    ],
+                    "images": [{
+                        "id": "image-1",
+                        "src": "00000000-0000-0000-0000-000000000000/assets/en/GettyImages-516166467__1554821531978__w1920.jpg"
+                    }],
                     "panels": [
                         {
                             "id": "panel-1",
@@ -230,7 +228,7 @@
                                     {
                                         "type": "chart",
                                         "src": "00000000-0000-0000-0000-000000000000/charts/en/chartConfig.json",
-                                        "caption": "caption for a chart"
+                                        "caption": "caption for a chart"                                        
                                     },
                                     {
                                         "type": "chart",
@@ -239,7 +237,7 @@
                                             "title": "Selenium releases and disposals in 2019",
                                             "subtitle": "",
                                             "type": "pie"
-                                        },
+                                        }, 
                                         "caption": "caption for another chart"
                                     }
                                 ]
@@ -354,6 +352,7 @@
         {
             "title": "In-situ extraction",
             "backgroundImage": "00000000-0000-0000-0000-000000000000/assets/en/GettyImages-187242601__1554821467033__w1920.jpg",
+
             "panel": [
                 {
                     "title": "In-situ extraction",
@@ -495,34 +494,11 @@
                 {
                     "config": "00000000-0000-0000-0000-000000000000/ramp-config/TailingsfromMiningFacilities2010to2019(timeslider).json",
                     "timeSlider": {
-                        "range": [
-                            1650412800000,
-                            1704067200000
-                        ],
-                        "start": [
-                            1650412800000,
-                            1650412800000
-                        ],
-                        "formatters": [
-                            {
-                                "mode": "date",
-                                "format": "MM DD, YYYY hh:mm UTC"
-                            },
-                            {
-                                "mode": "date",
-                                "pips": true,
-                                "format": "YY-M-DD"
-                            }
-                        ],
+                        "range": [2010, 2019],
+                        "start": [2010, 2010],
                         "animation": {
-                            "playMode": "append"
-                        },
-                        "sliderConfig": {
-                            "step": 604800000,
-                            "pips": {
-                                "mode": "range",
-                                "density": 4
-                            }
+                            "playMode": "append",
+                            "interval": 500
                         },
                         "attribute": "Reporting_Year___Année"
                     },
@@ -574,7 +550,7 @@
                     "items": [
                         {
                             "type": "chart",
-                            "src": "00000000-0000-0000-0000-000000000000/charts/en/chartConfig.json",
+                            "src": "00000000-0000-0000-0000-000000000000/charts/en/chartConfig.json", 
                             "caption": "Caption for first chart"
                         },
                         {
@@ -585,7 +561,7 @@
                                 "xAxisLabel": "Quantity (tonnes)",
                                 "subtitle": "",
                                 "type": "bar"
-                            },
+                            }, 
                             "caption": "caption for second chart"
                         },
                         {
@@ -595,7 +571,7 @@
                                 "title": "Figure 1: Percentage of total ethylene glycol releases for 2019, by sector",
                                 "subtitle": "",
                                 "type": "pie"
-                            },
+                            }, 
                             "caption": "caption for third chart"
                         }
                     ]
@@ -652,7 +628,7 @@
                 }
             ],
             "includeInToc": false
-        },
+        }, 
         {
             "title": "another chart slide",
             "backgroundImage": "00000000-0000-0000-0000-000000000000/assets/en/GettyImages-187242601__1554821467033__w1920.jpg",
@@ -660,12 +636,13 @@
                 {
                     "type": "chart",
                     "src": "00000000-0000-0000-0000-000000000000/charts/en/hybridChartConfig.json",
-                    "caption": "Caption for chart"
+                    "caption": "Caption for chart" 
                 },
                 {
                     "src": "00000000-0000-0000-0000-000000000000/assets/en/GettyImages-516166467__1554821531978__w1920.jpg",
                     "type": "image"
                 }
+
             ]
         }
     ],
@@ -751,9 +728,7 @@
     ],
     "tocOrientation": "horizontal",
     "returnTop": false,
-    "stylesheets": [
-        "00000000-0000-0000-0000-000000000000/styles/main.css"
-    ],
+    "stylesheets": ["00000000-0000-0000-0000-000000000000/styles/main.css"],
     "contextLink": "https://www.canada.ca/en/environment-climate-change/services/national-pollutant-release-inventory/tools-resources-data/exploredata.html",
     "contextLabel": "Explore National Pollutant Release Inventory data",
     "lang": "en",
