@@ -262,6 +262,8 @@ const createFormat = (formatter: TimeSliderFormatter | undefined): Formatter | u
             const valueFormatter = formatter as ValueFormatter;
             return {
                 to: (val: number, index?: number) => {
+                    if (isNaN(val)) { return ''}
+
                     return valueFormatter.values[val - 1];
                 },
                 from: (val: string) => {
@@ -273,6 +275,8 @@ const createFormat = (formatter: TimeSliderFormatter | undefined): Formatter | u
             const rangeFormatter = formatter as RangeFormatter;
             return {
                 to: (val: number, index?: number) => {
+                    if (isNaN(val)) { return ''}
+                    
                     if (index !== undefined) {
                         return rangeFormatter.ranges[val - 1][index]
                     } else {
@@ -288,6 +292,8 @@ const createFormat = (formatter: TimeSliderFormatter | undefined): Formatter | u
             const dateFormatter = formatter as DateFormatter;
             return {
                 to: (val: number, index?: number) => {
+                    if (isNaN(val)) { return ''}
+
                     const date = new Date(val);
 
                     const months = [
