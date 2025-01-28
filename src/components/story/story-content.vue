@@ -125,7 +125,7 @@ onMounted(() => {
 
 const handleSlideChange = (event: number): void => {
     const img = (props.config.slides[event] as Slide).backgroundImage;
-    backgroundImage.value = img ? img : 'none';
+    backgroundImage.value = !!img ? img : 'none';
     const cssClasses = (props.config.slides[event] as Slide).bgCssClasses;
     backgroundCss.value = cssClasses ? cssClasses : '';
 };
