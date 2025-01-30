@@ -199,6 +199,9 @@
                 },
                 "help": {
                     "location": "./help"
+                },
+                "scrollguard": {
+                    "enabled": true
                 }
             },
             "system": { "animate": true }

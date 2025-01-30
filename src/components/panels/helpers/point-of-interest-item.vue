@@ -1,5 +1,5 @@
 <template>
-    <div ref="poi" class="relative point-of-interest-content">
+    <div ref="poi" class="relative point-of-interest-content pointer-events-auto">
         <!-- Point Icon -->
         <div class="flex">
             <span
