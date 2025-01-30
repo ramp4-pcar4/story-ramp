@@ -18,8 +18,8 @@
             </div>
         </div>
 
-        <div class="h-full align-middle w-full interactive-container sticky" v-else>
-            <div class="interactive-content z-50">
+        <div class="h-full overlap-container align-middle w-full interactive-container sticky" v-else>
+            <div class="interactive-content z-50 pointer-events-none">
                 <div v-for="(point, index) in config.points" :key="`poi-` + index" class="point-of-interest-container">
                     <PointOfInterestItem
                         :point="point"
@@ -35,10 +35,10 @@
 </template>
 
 <script setup lang="ts">
-import { PropType } from 'vue';
+import type { PropType } from 'vue';
+import type { ConfigFileStructure, InteractiveMapPanel, PointOfInterest } from '@storylines/definitions';
 import { onMounted, ref } from 'vue';
 import { createInstance } from 'ramp-pcar';
-import { ConfigFileStructure, InteractiveMapPanel, PointOfInterest } from '@storylines/definitions';
 import PointOfInterestItem from './helpers/point-of-interest-item.vue';
 
 const props = defineProps({
@@ -177,6 +177,29 @@ const returnHome = async () => {
     :deep(.time-slider-container.minimized) {
         height: 50px;
     }
+
+    :deep(.sg) {
+        background-color: transparent;
+    }
+    :deep(.sg-label) {
+        background-color: #333;
+        top: 10% !important;
+        width: fit-content;
+        margin: 0 auto;
+        padding: 5px;
+    }
+}
+
+.overlap-container {
+    /* when the POIs overlay the map, have the panels appear to the right */
+    :deep(.panel-stack) {
+        width: 75vw;
+        justify-self: right;
+    }
+
+    .interactive-container {
+        width: 25vw;
+    }
 }
 
 .toc-horizontal {
@@ -226,6 +249,14 @@ const returnHome = async () => {
             width: 100%;
         }
     }
+
+    /* when the POIs overlay the map, have the panels appear to the right */
+    .overlap-container {
+        :deep(.panel-stack) {
+            width: 60vw;
+            justify-self: right;
+        }
+    }
 }
 
 :deep(rv-basemap-item .rv-basemap-thumb img) {
@@ -235,7 +266,15 @@ const returnHome = async () => {
     white-space: unset !important;
 }
 
-$font-list: 'Montserrat', -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji,
+$font-list:
+    'Montserrat',
+    -apple-system,
+    BlinkMacSystemFont,
+    Segoe UI,
+    Helvetica,
+    Arial,
+    sans-serif,
+    Apple Color Emoji,
     Segoe UI Emoji;
 :deep(.ramp-app) {
     height: 100%;
