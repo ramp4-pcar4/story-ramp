@@ -46,7 +46,7 @@
             <router-link
                 :to="{ hash: '#story' }"
                 class="inline-block mt-10 scroll-arrow"
-                title="scroll to story"
+                :title="$t('intro.scrollToStory')"
                 target
                 v-else
             >
