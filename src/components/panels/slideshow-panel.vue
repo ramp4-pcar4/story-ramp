@@ -194,6 +194,8 @@ window.addEventListener('resize', () => {
     .carousel-container {
         max-width: 100vw;
         background-color: white;
+        overflow-y: auto;
+        max-height: 60vh;
     }
     .carousel-item,
     .map-carousel-item {
