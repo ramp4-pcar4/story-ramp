@@ -14,6 +14,13 @@
 
         <div class="grid-teleport flex sm:flex-row flex-col w-full min-h-0 sm:h-story" v-if="config.teleportGrid">
             <div
+                :id="`ramp-map-${slideIdx}`"
+                class="rv-map flex-2 min-w-0 bg-gray-200"
+                :class="{
+                    'sm:order-2 order-1': config.teleportGrid === 'left'
+                }"
+            ></div>
+            <div
                 class="storylines-grid-container flex-1 min-w-0 min-h-0 ramp-styles"
                 :class="{
                     'sm:order-1 order-2': config.teleportGrid === 'left',
@@ -21,7 +28,6 @@
                 }"
                 ref="grid"
             ></div>
-            <div :id="`ramp-map-${slideIdx}`" class="rv-map flex-2 min-w-0 bg-gray-200"></div>
         </div>
         <div :id="`ramp-map-${slideIdx}`" class="rv-map w-full bg-gray-200 sm:h-story min-h-0 flex-1" v-else></div>
 
@@ -93,9 +99,9 @@ onMounted(() => {
 const init = async () => {
     // Find the correct map component based on whether there's a title component.
     if (props.config.title) {
-        mapComponent.value = props.config.teleportGrid ? el.value.children[1].children[1] : el.value.children[1];
+        mapComponent.value = props.config.teleportGrid ? el.value.children[1].children[0] : el.value.children[1];
     } else {
-        mapComponent.value = props.config.teleportGrid ? el.value.children[0].children[1] : el.value.children[0];
+        mapComponent.value = props.config.teleportGrid ? el.value.children[0].children[0] : el.value.children[0];
     }
 
     // If the configFileStructure object is provided (editor preview mode), grab the config from there.
