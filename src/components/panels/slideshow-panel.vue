@@ -15,13 +15,19 @@
                     :touchDrag="false"
                 >
                     <slide v-for="(panelConfig, index) in config.items" :key="index" :index="index">
-                        <panel
-                            :config="panelConfig"
-                            :configFileStructure="configFileStructure"
-                            :slideIdx="slideIdx"
-                            :isSlideshowItem="true"
-                            :class="panelConfig.type === 'map' ? 'map-carousel-item' : 'carousel-item'"
-                        ></panel>
+                        <template #default="{ isActive }">
+                            <panel
+                                :config="panelConfig"
+                                :configFileStructure="configFileStructure"
+                                :slideIdx="slideIdx"
+                                :isSlideshowItem="true"
+                                :class="{
+                                    'map-carousel-item': panelConfig.type === 'map',
+                                    'carousel-item': panelConfig.type !== 'map',
+                                    hidden: !isActive
+                                }"
+                            ></panel>
+                        </template>
                     </slide>
 
                     <template #addons>
