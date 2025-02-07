@@ -14,14 +14,22 @@
 
         <div class="grid-teleport flex sm:flex-row flex-col w-full min-h-0 sm:h-story" v-if="config.teleportGrid">
             <div
-                class="storylines-grid-container flex-1 min-w-0 min-h-0 ramp-styles"
-                :class="{
-                    'sm:order-1 order-2': config.teleportGrid === 'left',
-                    'order-2': config.teleportGrid === 'right'
-                }"
+                v-if="config.teleportGrid === 'left'"
+                class="storylines-grid-container flex-1 min-w-0 min-h-0 ramp-styles order-2"
                 ref="grid"
             ></div>
-            <div :id="`ramp-map-${slideIdx}`" class="rv-map flex-2 min-w-0 bg-gray-200"></div>
+            <div
+                :id="`ramp-map-${slideIdx}`"
+                class="rv-map flex-2 min-w-0 bg-gray-200"
+                :class="{
+                    'sm:order-2 order-1': config.teleportGrid === 'left'
+                }"
+            ></div>
+            <div
+                v-if="config.teleportGrid === 'right'"
+                class="storylines-grid-container flex-1 min-w-0 min-h-0 ramp-styles"
+                ref="grid"
+            ></div>
         </div>
         <div :id="`ramp-map-${slideIdx}`" class="rv-map w-full bg-gray-200 sm:h-story min-h-0 flex-1" v-else></div>
 
@@ -92,10 +100,13 @@ onMounted(() => {
 
 const init = async () => {
     // Find the correct map component based on whether there's a title component.
-    if (props.config.title) {
-        mapComponent.value = props.config.teleportGrid ? el.value.children[1].children[1] : el.value.children[1];
+    const mapIndex = !!props.config.title ? 1 : 0;
+    if (props.config.teleportGrid === 'left') {
+        mapComponent.value = el.value.children[mapIndex].children[1];
+    } else if (props.config.teleportGrid === 'right') {
+        mapComponent.value = el.value.children[mapIndex].children[0];
     } else {
-        mapComponent.value = props.config.teleportGrid ? el.value.children[0].children[1] : el.value.children[0];
+        mapComponent.value = el.value.children[mapIndex];
     }
 
     // If the configFileStructure object is provided (editor preview mode), grab the config from there.
