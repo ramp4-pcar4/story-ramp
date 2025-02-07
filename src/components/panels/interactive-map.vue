@@ -84,43 +84,51 @@ const init = async () => {
         ? el.value.children[0].children[0].children[0]
         : el.value.children[0].children[1];
 
-    fetch(props.config.config).then((data) => {
-        // parse JSON data
-        data.json().then((rampConfig: any) => {
-            rInstance.value = createInstance(mapComponent.value as HTMLElement, rampConfig);
-            const mapInstance = rInstance.value;
+    // parse JSON data
+    const data = await fetch(props.config.config);
 
-            // Remove the appbar on load if it exists.
-            mapInstance.event.on('map/created', () => {
-                if (mapInstance.fixture.get('appbar')) {
-                    mapInstance.fixture.remove('appbar');
-                }
+    if (data === undefined) {
+        console.error('An error occurred while fetching the map configuration.');
+    }
+
+    const rampConfig = await data.json();
+
+    rInstance.value = createInstance(mapComponent.value as HTMLElement, rampConfig);
+    const mapInstance = rInstance.value;
+
+    // Remove the appbar on load if it exists.
+    mapInstance.event.on('map/created', () => {
+        if (mapInstance.fixture.get('appbar')) {
+            mapInstance.fixture.remove('appbar');
+        }
+    });
+
+    // Set icons for the points of interest.
+    await mapInstance.geo.map.viewPromise;
+
+    props.config.points.forEach(async (point: PointOfInterest) => {
+        const target = point.target;
+
+        // Ignore "return home" points, as the map should already be showing the default
+        // extent on map initialization.
+        if (target.returnHome !== undefined) return;
+
+        const layer = mapInstance.geo.layer.getLayer(target.layerId);
+
+        await layer.loadPromise();
+
+        if (target.layerIndex !== undefined) {
+            // Layer is a map image layer.
+            const subLayer = layer.getSublayer(target.layerIndex);
+            await subLayer.loadPromise();
+            subLayer.getIcon(target.oid).then((icon: string) => {
+                point.target.icon = icon;
             });
-
-            // Set icons for the points of interest.
-            mapInstance.geo.map.viewPromise.then(() => {
-                props.config.points.forEach(async (point: PointOfInterest) => {
-                    const target = point.target;
-
-                    const layer = mapInstance.geo.layer.getLayer(target.layerId);
-                    layer.loadPromise().then(() => {
-                        if (target.layerIndex !== undefined) {
-                            // Layer is a map image layer.
-                            const subLayer = layer.getSublayer(target.layerIndex);
-                            subLayer.loadPromise().then(() => {
-                                subLayer.getIcon(target.oid).then((icon: string) => {
-                                    point.target.icon = icon;
-                                });
-                            });
-                        } else {
-                            layer.getIcon(target.oid).then((icon: string) => {
-                                point.target.icon = icon;
-                            });
-                        }
-                    });
-                });
+        } else {
+            layer.getIcon(target.oid).then((icon: string) => {
+                point.target.icon = icon;
             });
-        });
+        }
     });
 };
 

@@ -1,5 +1,5 @@
 <template>
-    <div class="graphic self-start justify-center flex flex-col h-full align-middle pb-5 w-full">
+    <div class="graphic self-start flex flex-col h-full align-middle pb-5 w-full">
         <fullscreen :expandable="config.fullscreen" :type="config.type">
             <img
                 ref="img"
@@ -105,8 +105,13 @@ onMounted((): void => {
 @media screen and (max-width: 640px) {
     .graphic {
         max-width: 100vw;
+        max-height: 60vh;
+        overflow-y: auto;
         background-color: white;
+
+        box-shadow: 1px 2px 5px #ddd;
     }
+
     .graphic-image {
         max-height: 38vh;
     }
