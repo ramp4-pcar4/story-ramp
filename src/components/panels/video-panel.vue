@@ -20,6 +20,7 @@
         <template v-if="config.videoType === 'local' || config.videoType === 'external'">
             <video
                 class="media-player"
+                ref="vid"
                 :src="videoBlobSrc ? videoBlobSrc : undefined"
                 :title="config.title"
                 :height="config.height ? `${config.height}` : '500px'"
@@ -39,47 +40,49 @@
         </template>
 
         <!-- title of the video with transcript -->
-        <figcaption class="bg-gray-200 rounded">
-            <button
-                class="flex w-full items-center justify-between p-4"
-                :class="{
-                    'hover:bg-gray-300': config.transcript,
-                    'cursor-pointer': config.transcript,
-                    'pointer-events-none': !transcriptContent
-                }"
-                @click="toggleTranscript()"
-            >
-                <span class="font-semibold"
-                    >{{ config.title }} <span v-if="config.transcript">({{ $t('video.transcript') }})</span></span
+        <figure>
+            <figcaption class="bg-gray-200 rounded">
+                <button
+                    class="flex w-full items-center justify-between p-4"
+                    :class="{
+                        'hover:bg-gray-300': config.transcript,
+                        'cursor-pointer': config.transcript,
+                        'pointer-events-none': !transcriptContent
+                    }"
+                    @click="toggleTranscript()"
                 >
-                <div class="float-right" v-if="config.transcript">
-                    <svg v-if="expandTranscript" class="h-6 w-6">
-                        <g id="chevron-down">
-                            <path
-                                d="M 7.41348,8.58407L 11.9995,13.1701L 16.5855,8.58407L 17.9995,9.99807L 11.9995,15.9981L 5.99948,9.99807L 7.41348,8.58407 Z "
-                            />
-                        </g>
-                    </svg>
-                    <svg v-else class="h-6 w-6">
-                        <g id="chevron-up">
-                            <path
-                                d="M 7.41351,15.4121L 11.9995,10.8261L 16.5855,15.4121L 17.9995,13.9981L 11.9995,7.99807L 5.99951,13.9981L 7.41351,15.4121 Z "
-                            />
-                        </g>
-                    </svg>
+                    <span class="font-semibold"
+                        >{{ config.title }} <span v-if="config.transcript">({{ $t('video.transcript') }})</span></span
+                    >
+                    <div class="float-right" v-if="config.transcript">
+                        <svg v-if="expandTranscript" class="h-6 w-6">
+                            <g id="chevron-down">
+                                <path
+                                    d="M 7.41348,8.58407L 11.9995,13.1701L 16.5855,8.58407L 17.9995,9.99807L 11.9995,15.9981L 5.99948,9.99807L 7.41348,8.58407 Z "
+                                />
+                            </g>
+                        </svg>
+                        <svg v-else class="h-6 w-6">
+                            <g id="chevron-up">
+                                <path
+                                    d="M 7.41351,15.4121L 11.9995,10.8261L 16.5855,15.4121L 17.9995,13.9981L 11.9995,7.99807L 5.99951,13.9981L 7.41351,15.4121 Z "
+                                />
+                            </g>
+                        </svg>
+                    </div>
+                </button>
+                <div class="content border border-gray-300 p-4" v-show="expandTranscript">
+                    <div v-html="transcriptContent"></div>
                 </div>
-            </button>
-            <div class="content border border-gray-300 p-4" v-show="expandTranscript">
-                <div v-html="transcriptContent"></div>
-            </div>
-        </figcaption>
+            </figcaption>
+        </figure>
     </div>
 </template>
 
 <script setup lang="ts">
 import type { PropType } from 'vue';
-import { onBeforeMount, onMounted, ref } from 'vue';
-import { ConfigFileStructure, VideoPanel } from '@storylines/definitions';
+import type { ConfigFileStructure, VideoPanel } from '@storylines/definitions';
+import { onBeforeMount, onBeforeUnmount, onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import MarkdownIt from 'markdown-it';
 
@@ -93,6 +96,13 @@ const props = defineProps({
     },
     configFileStructure: {
         type: Object as PropType<ConfigFileStructure>
+    },
+    slideIdx: {
+        type: Number,
+        default: 0
+    },
+    lazyLoad: {
+        type: Boolean
     }
 });
 
@@ -101,12 +111,15 @@ const langs = ref<Record<string, string>>({ en: 'English', fr: 'French' });
 
 const videoBlobSrc = ref('');
 const captionsBlobSrc = ref('');
-const transcriptBlobSrc = ref('');
+// const transcriptBlobSrc = ref('');
 const fileType = ref('');
 const expandTranscript = ref(false);
 
 const rawTranscript = ref('');
 const transcriptContent = ref('');
+
+const vid = ref<HTMLVideoElement>();
+const observer = ref<IntersectionObserver | undefined>(undefined);
 
 onBeforeMount(() => {
     lang.value = (route?.params.lang as string) ? (route?.params.lang as string) : 'en';
@@ -119,6 +132,16 @@ onBeforeMount(() => {
 });
 
 onMounted(() => {
+    // lazy load videos
+    if (props.lazyLoad && props.slideIdx > 2) {
+        observer.value = new IntersectionObserver(([video]) => {
+            if (video.isIntersecting) {
+                vid.value?.load();
+                (observer.value as IntersectionObserver).disconnect();
+            }
+        });
+    }
+
     if (props.configFileStructure) {
         // get video file from config file structure
         if (props.config.videoType === 'local') {
@@ -148,6 +171,16 @@ onMounted(() => {
                 });
             });
         }
+    }
+
+    if (vid.value) {
+        observer.value?.observe(vid.value as HTMLVideoElement);
+    }
+});
+
+onBeforeUnmount(() => {
+    if (observer.value) {
+        (observer.value as IntersectionObserver).disconnect();
     }
 });
 

@@ -23,7 +23,7 @@
 <script setup lang="ts">
 import { reactive, ref, onMounted, getCurrentInstance } from 'vue';
 import type { PropType } from 'vue';
-import { ImagePanel, ConfigFileStructure } from '@storylines/definitions';
+import type { ImagePanel, ConfigFileStructure } from '@storylines/definitions';
 
 import MarkdownIt from 'markdown-it';
 import Fullscreen from '@storylines/components/panels/helpers/fullscreen.vue';
