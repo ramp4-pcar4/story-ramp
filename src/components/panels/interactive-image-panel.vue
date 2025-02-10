@@ -6,7 +6,7 @@
         :class="!!config.reversed ? 'sm:flex-row-reverse' : 'sm:flex-row'"
     >
         <div
-            class="sticky prose max-w-none min-w-0 mb-5 mx-1 py-0 sm:py-5 z-40"
+            class="sticky prose max-w-none min-w-0 mb-5 mx-1 py-0 sm:self-start sm:py-5 z-40"
             :class="{ 'has-background': background, 'flex-1': !!config.contentWidth === false }"
             :style="{
                 width: !isMobile ? `${config.contentWidth}` : undefined
@@ -29,19 +29,24 @@
                     :style="{ width: `${config.width}px`, height: `${config.height}px` }"
                     class="mx-auto flex object-contain sm:max-w-screen sm:max-h-screen story-graphic"
                 />
-                <div 
-                    v-for="zone in config.zones" 
-                    class="absolute cursor-pointer interactive-zone" 
-                    tabindex="0" 
-                    :class="zone.class" 
-                    :style="{ width: `${zone.width}`, height: `${zone.height}`, top: `${zone.top}`, left: `${zone.left}` }" 
-                    @focusin="zoneMouseEnter(zone)" 
-                    @focusout="zoneMouseLeave(zone)" 
-                    @keypress.enter="zoneClick(zone)" 
-                    @click="zoneClick(zone)" 
-                    @mouseenter="zoneMouseEnter(zone)" 
-                    @mouseleave="zoneMouseLeave(zone)">
-                </div>
+                <div
+                    v-for="zone in config.zones"
+                    class="absolute cursor-pointer interactive-zone"
+                    tabindex="0"
+                    :class="zone.class"
+                    :style="{
+                        width: `${zone.width}`,
+                        height: `${zone.height}`,
+                        top: `${zone.top}`,
+                        left: `${zone.left}`
+                    }"
+                    @focusin="zoneMouseEnter(zone)"
+                    @focusout="zoneMouseLeave(zone)"
+                    @keypress.enter="zoneClick(zone)"
+                    @click="zoneClick(zone)"
+                    @mouseenter="zoneMouseEnter(zone)"
+                    @mouseleave="zoneMouseLeave(zone)"
+                ></div>
             </div>
         </div>
 
@@ -84,7 +89,13 @@
 <script setup lang="ts">
 import type { PropType } from 'vue';
 import { defineAsyncComponent, getCurrentInstance, onMounted, ref } from 'vue';
-import { BasePanel, ConfigFileStructure, Image, InteractiveImagePanel, InteractiveImageZone } from '@storylines/definitions';
+import type {
+    BasePanel,
+    ConfigFileStructure,
+    Image,
+    InteractiveImagePanel,
+    InteractiveImageZone
+} from '@storylines/definitions';
 
 const panel = defineAsyncComponent(() => import('./panel.vue'));
 
@@ -118,7 +129,9 @@ const defaultPanel = props.config.panels[0];
 // By default, the active config is set to the first child in the children list.
 const activeConfig = ref<BasePanel>(defaultPanel.panel);
 const currentDefaultImage = ref<Image>(props.config.defaultImage);
-const activeImage = ref<Image | undefined>(props.slideIdx && props.slideIdx > 2 ? undefined : props.config.defaultImage);
+const activeImage = ref<Image | undefined>(
+    props.slideIdx && props.slideIdx > 2 ? undefined : props.config.defaultImage
+);
 const activeIdx = ref(defaultPanel.id);
 const isMobile = ref(false);
 
@@ -183,25 +196,26 @@ const zoneClick = (zone: InteractiveImageZone): void => {
             });
         }, 50);
     }
-}
+};
 
 const zoneMouseEnter = (zone: InteractiveImageZone): void => {
     if (zone.disableHover) {
         return;
     }
     if (zone.imageId) {
-        activeImage.value = props.config.images.find((img) => {
-            return zone.imageId == img.id;
-        }) || activeImage.value;
+        activeImage.value =
+            props.config.images.find((img) => {
+                return zone.imageId == img.id;
+            }) || activeImage.value;
     }
-}
+};
 
 const zoneMouseLeave = (zone: InteractiveImageZone): void => {
     if (zone.disableHover) {
         return;
     }
     activeImage.value = currentDefaultImage.value;
-}
+};
 
 // Calculate the scroll offset based on whether the table of contents is horizontal or vertical.
 const calculateScrollOffset = (): number => {
