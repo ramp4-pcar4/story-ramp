@@ -150,12 +150,12 @@ const handlePoint = (id: string, oid: number, layerIndex?: number) => {
         // Once the layer has loaded, zoom into the point.
         targetLayer.loadPromise().then(async () => {
             // Remove old highlights.
-            await hl.removeHilight();
+            await hl?.removeHilight();
 
             // Add the new highlight in.
             const g = await targetLayer.getGraphic(oid, { getGeom: true, getStyle: true });
             await instance.geo.map.zoomMapTo(g.geometry, 4622324.434309, true, props.config.duration || undefined);
-            await hl.addHilight(g);
+            await hl?.addHilight(g);
         });
     });
 };
