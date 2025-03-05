@@ -199,7 +199,9 @@ const addPanelPadding = (idx: number): string => {
         width: 1px;
         left: 0;
         // modified tailwind shadow
-        box-shadow: -3px 0px 6px 0px rgba(0, 0, 0, 0.1), -2px 0 4px 0px rgba(0, 0, 0, 0.06);
+        box-shadow:
+            -3px 0px 6px 0px rgba(0, 0, 0, 0.1),
+            -2px 0 4px 0px rgba(0, 0, 0, 0.06);
     }
 
     // above
@@ -210,7 +212,9 @@ const addPanelPadding = (idx: number): string => {
         height: 1px;
         top: 0;
         // modified tailwind shadow
-        box-shadow: 0 -3px 6px 0px rgba(0, 0, 0, 0.1), 0 -2px 4px 0px rgba(0, 0, 0, 0.06);
+        box-shadow:
+            0 -3px 6px 0px rgba(0, 0, 0, 0.1),
+            0 -2px 4px 0px rgba(0, 0, 0, 0.06);
     }
 
     // below
@@ -220,7 +224,9 @@ const addPanelPadding = (idx: number): string => {
         //width: 100%;
         height: 1px;
         bottom: 0;
-        box-shadow: 0 3px 6px 0px rgba(0, 0, 0, 0.1), 0 2px 4px 0px rgba(0, 0, 0, 0.06);
+        box-shadow:
+            0 3px 6px 0px rgba(0, 0, 0, 0.1),
+            0 2px 4px 0px rgba(0, 0, 0, 0.06);
     }
 }
 .top-menu {

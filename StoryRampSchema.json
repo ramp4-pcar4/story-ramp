@@ -805,7 +805,7 @@
                 },
                 "type": {
                     "type": "string",
-                    "enum": ["slideshow"]
+                    "enum": ["slideshow", "slideshowImage", "slideshowChart"]
                 }
             },
             "required": ["items", "type"]
