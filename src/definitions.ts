@@ -154,6 +154,8 @@ export enum PanelType {
     Video = 'video',
     Audio = 'audio',
     Slideshow = 'slideshow',
+    SlideshowImage = 'slideshowImage',
+    SlideshowChart = 'slideshowChart',
     Dynamic = 'dynamic',
     Loading = 'loading'
 }
@@ -288,7 +290,7 @@ export interface InteractiveImagePanel extends BasePanel {
     defaultImage: Image;
     width?: number;
     height?: number;
-    class?: string;    
+    class?: string;
     caption?: string;
     reversed?: boolean;
     hideReturn?: boolean;
@@ -345,6 +347,20 @@ export interface AudioPanel extends BasePanel {
 export interface SlideshowPanel extends BasePanel {
     type: PanelType.Slideshow;
     items: Array<ChartPanel | TextPanel | ImagePanel | MapPanel>;
+    loop?: boolean;
+    caption?: string;
+}
+
+export interface SlideshowImagePanel extends BasePanel {
+    type: PanelType.SlideshowImage;
+    items: Array<ImagePanel>;
+    loop?: boolean;
+    caption?: string;
+}
+
+export interface SlideshowChartPanel extends BasePanel {
+    type: PanelType.SlideshowChart;
+    items: Array<ChartPanel>;
     loop?: boolean;
     caption?: string;
 }

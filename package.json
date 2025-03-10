@@ -1,7 +1,7 @@
 {
     "name": "ramp-storylines_demo-scenarios-pcar",
     "description": "A user-configurable story product featuring interactive maps, charts and dynamic multimedia content alongside text.",
-    "version": "3.2.9",
+    "version": "3.2.11",
     "private": false,
     "license": "MIT",
     "type": "module",
@@ -16,8 +16,8 @@
         "lint": "eslint . --fix",
         "format": "prettier --write src/"
     },
-    "main": "./dist/storylines-viewer.umd.js",
-    "module": "./dist/storylines-viewer.mjs",
+    "main": "./dist/storylines-viewer.umd.cjs",
+    "module": "./dist/storylines-viewer.js",
     "files": [
         "dist"
     ],

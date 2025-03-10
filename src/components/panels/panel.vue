@@ -82,6 +82,8 @@ const getTemplate = (): Component => {
         [PanelType.Audio]: AudioPanel,
         [PanelType.Video]: VideoPanel,
         [PanelType.Slideshow]: SlideshowPanel,
+        [PanelType.SlideshowImage]: SlideshowPanel,
+        [PanelType.SlideshowChart]: SlideshowPanel,
         [PanelType.Chart]: ChartPanel,
         [PanelType.Dynamic]: DynamicPanel,
         [PanelType.Loading]: LoadingPanel
