@@ -28,6 +28,7 @@
         <div class="grid-container z-20 story-scrollama w-full flex-grow min-w-0">
             <BackgroundImage
                 :src="backgroundImage"
+                :altText="backgroundImageAlt"
                 :configFileStructure="configFileStructure"
                 :cssClasses="backgroundCss"
                 @background-changed="handleBackgroundChange"
@@ -97,6 +98,7 @@ const props = defineProps({
 const activeChapterIndex = ref(-1);
 const horizontalNavHeight = ref(0);
 const backgroundImage = ref<string>('none');
+const backgroundImageAlt = ref<string>('');
 const hasBackground = ref<boolean>(false); // different from above; this considers animation time
 const backgroundCss = ref<string>('');
 
@@ -125,7 +127,9 @@ onMounted(() => {
 
 const handleSlideChange = (event: number): void => {
     const img = (props.config.slides[event] as Slide).backgroundImage;
+    const altText = (props.config.slides[event] as Slide).backgroundAltText;
     backgroundImage.value = !!img ? img : 'none';
+    backgroundImageAlt.value = !!altText ? altText : '';
     const cssClasses = (props.config.slides[event] as Slide).bgCssClasses;
     backgroundCss.value = cssClasses ? cssClasses : '';
 };

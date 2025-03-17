@@ -15,16 +15,23 @@
 
             <div class="point-of-interest-text" :class="{ 'no-image': !point.image }" v-if="point.title || point.text">
                 <h1 class="text-xl font-bold" v-html="point.title"></h1>
-                <span class="prose" v-html="mdContent"></span>
+                <span class="prose" v-html="isMobile && expandable ? truncatedContent : mdContent"></span>
+                <a
+                    class="show-more"
+                    @click="expandable = false"
+                    target="_self"
+                    v-if="isMobile && expandable"
+                    >{{ $t('text.showMore') }}</a
+                >
             </div>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
-import { PropType } from 'vue';
 import { onMounted, ref } from 'vue';
-import { PointOfInterest } from '@storylines/definitions';
+import type { PropType } from 'vue';
+import type { PointOfInterest } from '@storylines/definitions';
 import MarkdownIt from 'markdown-it';
 
 import Fullscreen from './fullscreen.vue';
@@ -34,7 +41,11 @@ const emit = defineEmits(['return-home', 'poi-changed']);
 
 const md = new MarkdownIt({ html: true });
 const mdContent = ref('');
+const truncatedContent = ref('');
 const threshold = ref(0.6);
+
+const isMobile = ref(false);
+const expandable = ref(false);
 
 const props = defineProps({
     point: {
@@ -49,12 +60,23 @@ onMounted(() => {
             .render(props.point.text)
             .replace(/<table/g, '<div class="table-container"><table')
             .replace(/<\/table>/g, '</table></div>');
+
+        // check if the content exceeds the height limit (can adjust this threshold or make configurable)
+        const MAX_LENGTH = 325;
+        if (mdContent.value.length > MAX_LENGTH) {
+            expandable.value = true;
+            truncatedContent.value = mdContent.value.slice(0, MAX_LENGTH) + '...';
+        } else {
+            truncatedContent.value = mdContent.value;
+        }
     }
+    isMobile.value = window.innerWidth <= 640;
 
     // Modify the threshold based on the height of the client window vs the height of the element. Re-observe the element afterwards.
     const resizeObserver = new ResizeObserver(function (e) {
         poiObserver.disconnect();
 
+        isMobile.value = window.innerWidth <= 640;
         const clientHeight = window.innerHeight;
         const poiHeight = poi.value.clientHeight;
         if (poiHeight > clientHeight * 0.6) {
@@ -107,9 +129,11 @@ const intersectionHandler = (entries: IntersectionObserverEntry[], observer: Int
 .point-of-interest-text {
     padding: 15px 30px;
 }
+
 .no-image {
     padding-top: 30px;
 }
+
 .point-of-interest-icon {
     top: -16px;
     left: 11.5vw;
@@ -122,6 +146,15 @@ const intersectionHandler = (entries: IntersectionObserverEntry[], observer: Int
 @media screen and (max-width: 640px) {
     .point-of-interest-content {
         width: 40vw;
+    }
+
+    .no-image {
+        padding-top: 15px;
+    }
+
+    .show-more {
+        color: #0078ff;
+        cursor: pointer;
     }
 }
 </style>

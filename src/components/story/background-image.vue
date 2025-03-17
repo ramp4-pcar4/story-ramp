@@ -8,11 +8,13 @@
                     class="fade-in transition-img w-full h-full object-cover"
                     role="presentation"
                     :src="state.oldImage"
+                    :alt="altText || ''"
                 />
                 <img
                     class="fade-in transition-img w-full h-full object-cover"
                     :class="[cssClasses, { 'transition-hide': activeImage === 1 }]"
                     :src="state.newImage"
+                    :alt="altText || ''"
                     id="primaryImage"
                     role="presentation"
                 />
@@ -23,14 +25,18 @@
 </template>
 
 <script setup lang="ts">
-import { watch, reactive, ref, PropType } from 'vue';
-import { ConfigFileStructure } from '@storylines/definitions';
+import { watch, reactive, ref } from 'vue';
+import type { PropType } from 'vue';
+import type { ConfigFileStructure } from '@storylines/definitions';
 
 const emit = defineEmits(['background-changed']);
 const props = defineProps({
     src: {
         type: String,
         required: true
+    },
+    altText: {
+        type: String
     },
     configFileStructure: {
         type: Object as PropType<ConfigFileStructure>
