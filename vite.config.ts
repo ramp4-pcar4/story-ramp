@@ -12,7 +12,8 @@ const baseConfig: UserConfigExport = {
         viteStaticCopy({
             targets: [
                 { src: 'scripts/*', dest: './scripts' },
-                { src: 'help', dest: './' }
+                { src: 'help', dest: './' },
+                { src: 'StorylinesSchema.json', dest: './' }
             ]
         })
     ],
