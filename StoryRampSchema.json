@@ -20,6 +20,10 @@
                     "type": "string",
                     "description": "An image to display in the background of the slide."
                 },
+                "backgroundAltText": {
+                    "type": "string",
+                    "description": "Alt text for the background image."
+                },
                 "includeInToc": {
                     "type": "boolean",
                     "description": "Optional attribute that indicates whether or not to include slide in table of contents. Defaults to true.",
@@ -917,6 +921,10 @@
                 "backgroundImage": {
                     "type": "string",
                     "description": "A background image for the introduction slide."
+                },
+                "backgroundAltText": {
+                    "type": "string",
+                    "description": "Alt text for the background image."
                 },
                 "titleColour": {
                     "type": "string",

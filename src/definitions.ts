@@ -140,6 +140,7 @@ export interface Slide {
     panel: BasePanel[];
     index: number;
     backgroundImage: string | undefined;
+    backgroundAltText?: string;
     includeInToc?: boolean;
     bgCssClasses?: string;
 }
