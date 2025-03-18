@@ -112,7 +112,6 @@
                     "type": "interactive-map",
                     "scrollguard": true,
                     "title": "Map Title Test",
-                    "teleportAOI": "right",
                     "points": [
                         {
                             "title": "Point of Interest A",
@@ -125,8 +124,8 @@
                             }
                         },
                         {
-                            "title": "Point of Interest B",
-                            "text": "This is another point of interest. This one does not include an image.",
+                            "title": "Did you know that many thousands of birds migrate to and from the Salish Sea each year?",
+                            "text": "The Salish Sea is an important area for many marine birds. Some spend the entire year here, but others are only temporary visitors. Scroll through this interactive map to follow the annual migration of a Glaucous-winged Gull. To make it easier to follow, we will call this bird “Frostwing”.<br/><br/><span class='font-bold text-xl'>The Journey Begins</span><br/><i>March 11 to March 19</i><br/>Frostwing begins its journey in the area near White Rock, BC. During this period, Frostwing stops by the area near Comox, BC most likely to take advantage of the rich food sources provided by spawning Pacific Herring.</p>",
                             "target": {
                                 "layerId": "OilSandsFacilityLocations2019",
                                 "oid": 1
@@ -248,6 +247,7 @@
         {
             "title": "Dynamic Panel Test",
             "backgroundImage": "00000000-0000-0000-0000-000000000000/assets/en/GettyImages-516166467__1554821531978__w1920.jpg",
+            "backgroundAltText": "Background image for dynamic panel",
             "panel": [
                 {
                     "title": "This Slide Is Dynamic!",
