@@ -3,7 +3,7 @@
     "title": "StoryRAMP Config Schema",
     "type": "object",
     "additionalProperties": false,
-
+    "version": "1.0.0",
     "$defs": {
         "slide": {
             "type": "object",
