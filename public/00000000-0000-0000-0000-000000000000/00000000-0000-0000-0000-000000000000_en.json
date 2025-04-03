@@ -155,52 +155,41 @@
             "includeInToc": false
         },
         {
-            "title": "Interactive Map - Overlap",
+            "title": "Scrolly Map Tests",
             "panel": [
                 {
-                    "config": "00000000-0000-0000-0000-000000000000/ramp-config/OilSandsFacilityLocations2019.json",
+                    "config": "00000000-0000-0000-0000-000000000000/ramp-config/WQMS-map-6.json",
                     "type": "interactive-map",
                     "scrollguard": true,
-                    "title": "Map Title Test",
+                    "title": "Scrolly Map Tests",
                     "points": [
                         {
                             "title": "Point of Interest A",
-                            "text": "This is a test point of interest. This is *a test* to make sure **markdown** works. Below is a link to Google.<br /><br /><a href='https://google.ca/'>Link to Google</a>",
-                            "image": "00000000-0000-0000-0000-000000000000/assets/en/NPRIpictogramme-2016data-EN__1553797637582__w1430.jpg",
-                            "altText": "An image.",
+                            "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam volutpat felis purus, quis fringilla nunc porta eget. Morbi eu ligula mi. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Curabitur fringilla gravida arcu, congue pellentesque nisi fringilla quis. Mauris ac placerat diam. Maecenas tellus leo, sodales at turpis tristique, hendrerit malesuada mi. Aliquam lobortis quis enim et ultrices. Nam a neque mauris. Duis faucibus enim sed nisi dictum ullamcorper. Vivamus maximus sit amet quam ac congue. Nunc mattis et enim ut vehicula. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Sed risus metus, commodo in enim in, convallis vehicula enim. Fusce eget rhoncus mi. Donec nec dictum elit. Praesent dapibus nulla purus, eget dignissim metus consequat quis. Suspendisse ex velit, volutpat quis est eget, euismod suscipit dui. Vivamus accumsan dictum fringilla. Aliquam ex urna, gravida in molestie sit amet, varius eget est. In vel consectetur nunc.",
                             "target": {
-                                "layerId": "OilSandsFacilityLocations2019",
-                                "oid": 12
-                            }
+                                "returnHome": true
+                            },
+                            "hideLayers": ["Great Lakes"]
                         },
                         {
                             "title": "Point of Interest B",
-                            "text": "This is another point of interest. This one does not include an image.",
+                            "text": "Sed mollis quis magna at maximus. Fusce posuere lectus lacus, commodo fringilla elit placerat vitae. Integer sollicitudin lectus nec ligula maximus, vel volutpat augue fringilla. Donec commodo turpis odio, id tincidunt enim dignissim in. Donec eu ligula eu enim aliquam blandit sit amet sit amet odio. Ut sollicitudin, ligula sed convallis auctor, sapien enim eleifend urna, sed semper massa eros at velit. Morbi eu velit eget nisi convallis ornare ac et nisl. Vivamus eu pharetra mauris, quis efficitur nunc. Donec laoreet porta lectus, a faucibus ligula dictum volutpat. Etiam congue purus vitae ligula pulvinar, ut eleifend lorem ultricies. Donec semper sapien lorem, vitae pulvinar turpis volutpat in. Curabitur egestas lacus in efficitur condimentum. Sed consequat dui nec augue mollis iaculis. Pellentesque id aliquet mauris.",
                             "target": {
-                                "layerId": "OilSandsFacilityLocations2019",
-                                "oid": 1
+                                "returnHome": true
                             }
                         },
                         {
                             "title": "Point of Interest C",
-                            "text": "This is a third point of interest. This one includes an image, but also has a ton of text. Maecenas quis ipsum eleifend, finibus erat ut, finibus eros. Pellentesque facilisis iaculis nunc ut luctus. Curabitur luctus pulvinar nulla, id viverra orci viverra id. Nulla eget eleifend est. Maecenas quis ipsum eleifend, finibus erat ut, finibus eros. Pellentesque facilisis iaculis nunc ut luctus. Curabitur luctus pulvinar nulla, id viverra orci viverra id. Nulla eget eleifend est. Maecenas quis ipsum eleifend, finibus erat ut, finibus eros. Pellentesque facilisis iaculis nunc ut luctus. Curabitur luctus pulvinar nulla, id viverra orci viverra id. Nulla eget eleifend est. Maecenas quis ipsum eleifend, finibus erat ut, finibus eros. Pellentesque facilisis iaculis nunc ut luctus. Curabitur luctus pulvinar nulla, id viverra orci viverra id. Nulla eget eleifend est.",
-                            "altText": "Another image.",
-                            "image": "00000000-0000-0000-0000-000000000000/assets/en/GettyImages-187242601__1554821467033__w1920.jpg",
+                            "text": "Integer euismod nunc et justo fermentum elementum vitae quis sapien. Vivamus at egestas libero, eget malesuada nunc. Aenean vel lacus non enim iaculis mollis id sed elit. Interdum et malesuada fames ac ante ipsum primis in faucibus. Mauris efficitur leo ac dolor suscipit, a ultrices mi iaculis. Maecenas sollicitudin odio eu leo euismod mattis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam faucibus magna felis, ac volutpat nisl ornare et. Aenean eget maximus libero, sit amet cursus lacus. Quisque est mi, interdum quis lorem et, tincidunt posuere erat. Nullam et dui ac ligula tristique ullamcorper nec varius mauris. Curabitur bibendum fermentum purus, vulputate accumsan nunc cursus bibendum. Maecenas blandit justo ac ante pretium, eget commodo est suscipit. Vestibulum placerat laoreet velit, nec vulputate nisl fermentum a.",
                             "target": {
-                                "layerId": "OilSandsFacilityLocations2019",
-                                "oid": 5
-                            }
-                        },
-                        {
-                            "image": "00000000-0000-0000-0000-000000000000/assets/en/GettyImages-187242601__1554821467033__w1920.jpg",
-                            "altText": "A third image.",
-                            "target": {
-                                "layerId": "OilSandsFacilityLocations2019",
-                                "oid": 6
-                            }
+                                "layerId": "Tributary Sites",
+                                "oid": 7
+                            },
+                            "hideLayers": ["Great Lakes", "Great Lakes Subbasins"]
                         }
-                    ]
-                }
+                    ],
+                    "duration": 2000
+                }   
             ],
             "includeInToc": false
         },
