@@ -319,7 +319,8 @@
                                 "title": "Overtime job",
                                 "videoType": "external",
                                 "caption": "00000000-0000-0000-0000-000000000000/assets/en/video1-en.mp4.vtt",
-                                "src": "https://wet-boew.github.io/wet-boew-attachments/videos/video1-en.mp4"
+                                "src": "https://wet-boew.github.io/wet-boew-attachments/videos/video1-en.mp4",
+                                "autoplay": true
                             }
                         },
                         {
@@ -361,11 +362,13 @@
             "panel": [
                 {
                     "type": "video",
-                    "title": "What are cumulative effects?",
-                    "videoType": "YouTube",
-                    "src": "https://www.youtube.com/embed/4kTq-hnrMHI",
-                    "width": "60%",
-                    "transcript": "00000000-0000-0000-0000-000000000000/assets/en/cumulative-effects.md"
+                    "title": "Overtime job",
+                    "videoType": "local",
+                    "src": "00000000-0000-0000-0000-000000000000/assets/en/video1-en.mp4",
+                    "caption": "00000000-0000-0000-0000-000000000000/assets/en/video1-en.mp4.vtt",
+                    "transcript": "00000000-0000-0000-0000-000000000000/assets/en/cpts-lg-en.html",
+                    "width": "85%",
+                    "autoplay": true
                 }
             ],
             "includeInToc": false

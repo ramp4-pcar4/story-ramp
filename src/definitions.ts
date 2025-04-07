@@ -337,6 +337,7 @@ export interface VideoPanel extends BasePanel {
     width?: number;
     height?: number;
     caption?: string;
+    autoplay?: boolean;
 }
 
 export interface AudioPanel extends BasePanel {

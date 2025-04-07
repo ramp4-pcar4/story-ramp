@@ -25,6 +25,8 @@
                 :title="config.title"
                 :height="config.height ? `${config.height}` : '500px'"
                 :poster="config.thumbnailUrl"
+                :autoplay="config.autoplay"
+                :muted="config.autoplay"
                 controls
             >
                 <source v-if="!videoBlobSrc" :type="fileType" :src="videoBlobSrc ? videoBlobSrc : config.src" />
