@@ -16,13 +16,9 @@
             <div class="point-of-interest-text" :class="{ 'no-image': !point.image }" v-if="point.title || point.text">
                 <h1 class="text-xl font-bold" v-html="point.title"></h1>
                 <span class="prose" v-html="isMobile && expandable ? truncatedContent : mdContent"></span>
-                <a
-                    class="show-more"
-                    @click="expandable = false"
-                    target="_self"
-                    v-if="isMobile && expandable"
-                    >{{ $t('text.showMore') }}</a
-                >
+                <a class="show-more" @click="expandable = false" target="_self" v-if="isMobile && expandable">{{
+                    $t('text.showMore')
+                }}</a>
             </div>
         </div>
     </div>
@@ -30,11 +26,11 @@
 
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
+import MarkdownIt from 'markdown-it';
+import Fullscreen from './fullscreen.vue';
+
 import type { PropType } from 'vue';
 import type { PointOfInterest } from '@storylines/definitions';
-import MarkdownIt from 'markdown-it';
-
-import Fullscreen from './fullscreen.vue';
 
 const poi = ref();
 const emit = defineEmits(['return-home', 'poi-changed']);
@@ -106,12 +102,10 @@ const intersectionHandler = (entries: IntersectionObserverEntry[], observer: Int
             return;
         }
 
+        const hideLayers = props.point.hideLayers;
         const attribs = props.point.target;
-
         if (point.isIntersecting) {
-            attribs.returnHome
-                ? emit('return-home')
-                : emit('poi-changed', attribs.layerId, attribs.oid, attribs.layerIndex);
+            attribs.returnHome ? emit('return-home', hideLayers) : emit('poi-changed', attribs, hideLayers);
         }
     });
 };

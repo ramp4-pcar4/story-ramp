@@ -619,6 +619,14 @@
                 },
                 "target": {
                     "$ref": "#/$defs/pointOfInterestTarget"
+                },
+                "hideLayers": {
+                    "type": "array",
+                    "description": "A list of layer IDs to hide when scrolled to point.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "default": []
                 }
             },
             "required": ["target"]
@@ -639,6 +647,10 @@
                 "layerIndex": {
                     "type": "number",
                     "description": "If the target layer is a map image layer, the index of the sublayer to target."
+                },
+                "scale": {
+                    "type": "number",
+                    "description": "Scale of map to zoom to for point."
                 }
             },
             "required": ["oid", "layerId"]

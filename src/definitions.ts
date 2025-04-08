@@ -204,6 +204,7 @@ export interface PointOfInterest {
     image: string;
     altText: string;
     target: PointOfInterestTarget;
+    hideLayers: string[];
 }
 
 export interface PointOfInterestTarget {
@@ -212,6 +213,7 @@ export interface PointOfInterestTarget {
     returnHome?: boolean;
     layerIndex?: number;
     icon?: string;
+    scale?: number;
 }
 
 export interface TimeSliderConfig {

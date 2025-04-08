@@ -132,11 +132,21 @@ const init = async () => {
     });
 };
 
-const handlePoint = (id: string, oid: number, layerIndex?: number) => {
+const handlePoint = (
+    attribs: { layerId: string; oid: number; layerIndex?: number; scale?: number },
+    layersToHide?: string[]
+) => {
+    const { layerId: id, oid, layerIndex, scale } = attribs;
     if (!id || !oid) return;
 
     rInstance.value.geo.map.viewPromise.then(() => {
         const instance = rInstance.value;
+
+        // toggle off visibility for all specified layers
+        instance.geo.layer.allActiveLayers().forEach((layer: any) => {
+            layer.visibility = !(layersToHide && layersToHide.includes(layer.id));
+        });
+
         const hl = instance.fixture.get('hilight');
         const layer = instance.geo.layer.getLayer(id);
 
@@ -154,13 +164,23 @@ const handlePoint = (id: string, oid: number, layerIndex?: number) => {
 
             // Add the new highlight in.
             const g = await targetLayer.getGraphic(oid, { getGeom: true, getStyle: true });
-            await instance.geo.map.zoomMapTo(g.geometry, 4622324.434309, true, props.config.duration || undefined);
+            await instance.geo.map.zoomMapTo(
+                g.geometry,
+                scale || 4622324.434309,
+                true,
+                props.config.duration || undefined
+            );
             await hl?.addHilight(g);
         });
     });
 };
 
-const returnHome = async () => {
+const returnHome = async (layersToHide?: string[]) => {
+    // toggle off visibility for all specified layers
+    rInstance.value.geo.layer.allActiveLayers().forEach((layer: any) => {
+        layer.visibility = !(layersToHide && layersToHide.includes(layer.id));
+    });
+
     // zoom out to home extent=
     const extentSet = rInstance.value.geo.map.getExtentSet();
     await rInstance.value.geo.map.zoomMapTo(extentSet.fullExtent, null, true, props.config.duration || undefined);
