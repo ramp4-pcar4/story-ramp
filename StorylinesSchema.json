@@ -755,6 +755,11 @@
                     "type": "string",
                     "description": "Overlaying subtitles on the video, input should be a .vtt file."
                 },
+                "autoplay": {
+                    "type": "boolean",
+                    "description": "Whether the video should autoplay when the video element is created.",
+                    "default": false
+                },
                 "type": {
                     "type": "string",
                     "enum": ["video"]
