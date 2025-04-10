@@ -22,13 +22,18 @@ const router = createRouter({
     history: createWebHashHistory(),
     scrollBehavior: function (to: RouteLocationNormalized) {
         if (to.hash) {
-            return {
-                el: decodeURIComponent(to.hash),
-                behavior: 'smooth',
-                top:
-                    (document.getElementById('h-navbar')?.clientHeight || 0) +
-                    (document.getElementById('story-header')?.clientHeight || 0)
-            };
+            // Delay is needed to allow slides to force load when lazy loading is enabled
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve({
+                        el: decodeURIComponent(to.hash),
+                        behavior: 'smooth',
+                        top:
+                            (document.getElementById('h-navbar')?.clientHeight || 0) +
+                            (document.getElementById('story-header')?.clientHeight || 0)
+                    });
+                }, 100);
+            });
         }
     }
 });

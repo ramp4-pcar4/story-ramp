@@ -40,6 +40,7 @@
             :to="{ hash: `#${getSlideId(tocItem.slideIndex)}` }"
             class="flex items-center px-2 py-1 mx-1"
             :class="{ 'flex-grow min-w-0': parentItem, 'pb-2': parentItem && !verticalToc }"
+            @click="emitScrollEvent"
             target
             v-tippy="{
                 delay: '200',
@@ -118,10 +119,22 @@ const props = defineProps({
     }
 });
 
+const emit = defineEmits(['scroll-to-slide']);
+
+const emitScrollEvent = () => {
+    console.log('scroll to slide');
+    console.log(props.tocItem.slideIndex);
+    emit('scroll-to-slide', props.tocItem.slideIndex);
+};
+
 const scrollToChapter = (id: string): void => {
     const el = document.getElementById(id);
     if (el) {
-        el.scrollIntoView({ behavior: 'smooth' });
+        // Delay is needed to allow slides to force load when lazy loading is enabled
+        emitScrollEvent();
+        setTimeout(() => {
+            el.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
     }
 };
 
