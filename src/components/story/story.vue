@@ -28,6 +28,7 @@
                         :return-to-top="config.returnTop ?? true"
                         :customToc="config.tableOfContents"
                         :slides="config.slides"
+                        @scroll-to-slide="setTargetIndex"
                         :lang="lang"
                     />
                     <div class="flex-none w-mobile-full truncate">
@@ -53,7 +54,13 @@
             <intro :config="config.introSlide"></intro>
 
             <div class="w-full mx-auto pb-10 mb-6" id="story">
-                <story-content :config="config" :lang="lang" :headerHeight="headerHeight" @step="updateActiveIndex" />
+                <story-content
+                    :config="config"
+                    :lang="lang"
+                    :headerHeight="headerHeight"
+                    @step="updateActiveIndex"
+                    :targetIndex="targetIndex"
+                />
             </div>
 
             <footer class="p-8 pt-2 text-right text-sm">
@@ -85,16 +92,23 @@ import Intro from '@storylines/components/story/introduction.vue';
 
 import type { StoryRampConfig } from '@storylines/definitions';
 import { VueSpinnerOval } from 'vue3-spinners';
+import { EventBus } from '../../event-bus';
 
 const route = useRoute();
 
 const config = ref<StoryRampConfig | undefined>(undefined);
 const loadStatus = ref('loading');
 const activeChapterIndex = ref(-1);
+const targetIndex = ref(-1);
 const headerHeight = ref(0);
 const lang = ref('en');
 
 onMounted(() => {
+    EventBus.on('scroll-to-slide', (params) => {
+        console.log('story.vue has received scroll-to-slide');
+        console.log(+params.slideIndex);
+        targetIndex.value = +params.slideIndex;
+    });
     const uid = route.params.uid as string;
     lang.value = (route.params.lang as string) ? (route.params.lang as string) : 'en';
     if (uid) {
@@ -125,6 +139,10 @@ const beforeRouteUpdate = (to: RouteLocationNormalized, from: RouteLocationNorma
     }
     fetchConfig(uid, lang.value);
     next();
+};
+
+const setTargetIndex = (index) => {
+    targetIndex.value = index;
 };
 
 /**
@@ -194,6 +212,9 @@ const addStylesheets = (paths: string[]): void => {
 };
 
 const updateActiveIndex = (idx: number): void => {
+    console.log(' ');
+    console.log('updateActiveIndex');
+    console.log(idx);
     activeChapterIndex.value = idx;
     // determine header height
     const headerH = document.getElementById('story-header');
