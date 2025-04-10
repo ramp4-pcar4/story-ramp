@@ -19,6 +19,7 @@
             :class="config.cssClasses"
             :isSlideshowItem="isSlideshowItem"
             :lazyLoad="lazyLoad"
+            :forceLoad="forceLoad"
             :background="background"
         ></component>
     </div>
@@ -61,6 +62,9 @@ const props = defineProps({
         type: Boolean
     },
     lazyLoad: {
+        type: Boolean
+    },
+    forceLoad: {
         type: Boolean
     },
     isSlideshowItem: {

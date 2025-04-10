@@ -21,7 +21,7 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, ref, onMounted, getCurrentInstance } from 'vue';
+import { getCurrentInstance, onMounted, onUpdated, reactive, ref } from 'vue';
 import type { PropType } from 'vue';
 import type { ImagePanel, ConfigFileStructure } from '@storylines/definitions';
 
@@ -45,6 +45,9 @@ const props = defineProps({
     },
     lazyLoad: {
         type: Boolean
+    },
+    forceLoad: {
+        type: Boolean
     }
 });
 
@@ -55,17 +58,33 @@ const state = reactive({
 });
 
 const observer = ref<IntersectionObserver | undefined>(undefined);
+const loaded = ref<Boolean>(false);
+
+onUpdated(() => {
+    // Only needs to occur once.
+    if (!loaded.value && props.forceLoad) {
+        (img.value as Element).setAttribute('src', props.config.src);
+        getCurrentInstance()?.proxy?.$forceUpdate();
+        loaded.value = true;
+    }
+});
 
 onMounted((): void => {
     state.src = props.config.src ? props.config.src : '';
+    loaded.value = !props.lazyLoad; // if lazy loading is enabled, the image content will initially not be loaded
 
     if (props.lazyLoad && props.slideIdx > 2) {
         observer.value = new IntersectionObserver(([image]) => {
+            // dont want video to be loaded a second time if it was force loaded already
+            if (loaded.value) {
+                (observer.value as IntersectionObserver).disconnect();
+            }
             // lazy load images
-            if (image.isIntersecting) {
+            else if (image.isIntersecting) {
                 (img.value as Element).setAttribute('src', props.config.src);
                 getCurrentInstance()?.proxy?.$forceUpdate();
                 (observer.value as IntersectionObserver).disconnect();
+                loaded.value = true;
             }
         });
     }

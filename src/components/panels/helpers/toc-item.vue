@@ -118,10 +118,16 @@ const props = defineProps({
     }
 });
 
+const emit = defineEmits(['scroll-to-slide']);
+
 const scrollToChapter = (id: string): void => {
     const el = document.getElementById(id);
     if (el) {
-        el.scrollIntoView({ behavior: 'smooth' });
+        // Delay is needed to allow slides to force load when lazy loading is enabled
+        emit('scroll-to-slide', props.tocItem.slideIndex);
+        setTimeout(() => {
+            el.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
     }
 };
 
