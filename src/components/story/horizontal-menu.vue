@@ -50,7 +50,13 @@
                     ref="itemContainer"
                     @focusout="handleFocus(idx)"
                 >
-                    <toc-item :tocItem="item" :slides="slides" :verticalToc="false" :plugin="plugin">
+                    <toc-item
+                        :tocItem="item"
+                        :slides="slides"
+                        :verticalToc="false"
+                        :plugin="plugin"
+                        @scroll-to-slide="scrollToTarget"
+                    >
                         <button
                             class="mr-1"
                             :aria-label="$t('chapters.menu.dropdown')"
@@ -89,6 +95,7 @@
                                 :parentItem="false"
                                 :verticalToc="false"
                                 :plugin="plugin"
+                                @scroll-to-slide="scrollToTarget"
                             ></toc-item>
                         </li>
                     </ul>
@@ -110,6 +117,7 @@
                         :slides="slides"
                         :verticalToc="false"
                         :plugin="plugin"
+                        @scroll-to-slide="scrollToTarget"
                     ></toc-item>
                 </li>
             </template>
@@ -155,6 +163,8 @@ const lastActiveIdx = ref(-1);
 
 const sublistToggled = ref<number>(-1);
 const itemContainer = ref(null);
+
+const emit = defineEmits(['scroll-to-slide']);
 
 // filter out which slides are visible in the table of contents while preserving original slide index
 const tocSlides = computed(() => {
@@ -214,6 +224,14 @@ const handleMouseClick = (event: MouseEvent): void => {
     }
 };
 
+const scrollToTarget = (index) => {
+    console.log('CURRENT SLIDE INDEX');
+    console.log(props.activeChapterIndex);
+    console.log('DESTINATION SLIDE INDEX');
+    console.log(index);
+    emit('scroll-to-slide', index);
+};
+
 const scrollToChapter = (id: string): void => {
     const el = document.getElementById(id);
     if (el) {
@@ -227,14 +245,16 @@ const toggleSublist = (index: number): void => {
 
 const isSublistActive = (sublist: MenuItem[] | undefined): boolean => {
     if (sublist) {
-        return sublist.some(subItem => lastActiveIdx.value === subItem.slideIndex);
+        return sublist.some((subItem) => lastActiveIdx.value === subItem.slideIndex);
     }
     return false;
 };
 
 const updateActiveIdx = () => {
     if (props.customToc) {
-        const prevCustomSlides: MenuItem[] = customTocSlides.value!.filter((slide) => slide.slideIndex <= props.activeChapterIndex);
+        const prevCustomSlides: MenuItem[] = customTocSlides.value!.filter(
+            (slide) => slide.slideIndex <= props.activeChapterIndex
+        );
         lastActiveIdx.value = prevCustomSlides.length ? prevCustomSlides[prevCustomSlides.length - 1].slideIndex : -1;
     } else {
         const prevSlides = tocSlides.value.filter((slide) => slide.index <= props.activeChapterIndex);
