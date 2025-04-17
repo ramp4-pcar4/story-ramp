@@ -62,8 +62,8 @@
                     config.contextLabel
                 }}</a>
                 |
-                <a href="https://github.com/ramp4-pcar4/story-ramp" target="_NEW" class="font-semibold text-blue-700"
-                    >ramp4-pcar4/story-ramp</a
+                <a href="https://github.com/ramp4-pcar4/storylines" target="_NEW" class="font-semibold text-blue-700"
+                    >ramp4-pcar4/storylines</a
                 >
             </footer>
 

@@ -65,11 +65,11 @@ updateActiveIndex(idx: number): void {
 
 ```
 
-Here is a [demo](https://ramp4-pcar4.github.io/story-ramp/main/#/en/00000000-0000-0000-0000-000000000000) of what a Storylines product would look like.
+Here is a [demo](https://ramp4-pcar4.github.io/storylines/main/#/en/00000000-0000-0000-0000-000000000000) of what a Storylines product would look like.
 
 **5. Creating Storylines config:**
 
-To create a Storylines config from scratch, please refer to the schema documnentation provided [here](https://github.com/ramp4-pcar4/story-ramp/blob/main/StoryRampSchema.json). A demo config can be found [here](https://github.com/ramp4-pcar4/story-ramp/blob/main/public/00000000-0000-0000-0000-000000000000/00000000-0000-0000-0000-000000000000_en.json).
+To create a Storylines config from scratch, please refer to the schema documnentation provided [here](https://github.com/ramp4-pcar4/storylines/blob/main/StoryRampSchema.json). A demo config can be found [here](https://github.com/ramp4-pcar4/storylines/blob/main/public/00000000-0000-0000-0000-000000000000/00000000-0000-0000-0000-000000000000_en.json).
 
 Alternatively, the [storylines editor](https://github.com/ramp4-pcar4/storylines-editor) can be leveraged to help construct a complete configuration folder.
 
