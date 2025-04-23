@@ -78,7 +78,7 @@
 
 <script setup lang="ts">
 import type { PropType } from 'vue';
-import { MenuItem, Slide } from '@storylines/definitions';
+import type { MenuItem, Slide } from '@storylines/definitions';
 
 import { useI18n } from 'vue-i18n';
 const { t } = useI18n();
