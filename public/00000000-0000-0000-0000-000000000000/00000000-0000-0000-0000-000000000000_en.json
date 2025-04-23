@@ -689,94 +689,13 @@
             ]
         }
     ],
-    "tableOfContents": [
-        {
-            "title": "Overview",
-            "slideIndex": 0,
-            "sublist": [
-                {
-                    "title": "Interactive Content + Maps",
-                    "slideIndex": 1
-                },
-                {
-                    "title": "Dynamic Panel",
-                    "slideIndex": 5
-                },
-                {
-                    "title": "YouTube Video",
-                    "slideIndex": 6
-                }
-            ]
-        },
-        {
-            "title": "Oil Sands Deposits",
-            "slideIndex": 8
-        },
-        {
-            "title": "In-situ Extraction",
-            "slideIndex": 10
-        },
-        {
-            "title": "Where are Facilities Located?",
-            "slideIndex": 11,
-            "sublist": [
-                {
-                    "title": "NPRI Substances Reported for Oil Sands Mining Faciltiies",
-                    "slideIndex": 12
-                },
-                {
-                    "title": "NPRI Substances Reported for Oil Sands Mining Facilities (2)",
-                    "slideIndex": 13
-                },
-                {
-                    "title": "Criteria Air Contaminant Releases From Oil Sands Mines",
-                    "slideIndex": 14
-                },
-                {
-                    "title": "Reported Mine Tailings From Oil Sands Surface Mining Facilities",
-                    "slideIndex": 15
-                },
-                {
-                    "title": "Reported Mine Tailings From Oil Sands Surface Mining Facilities (2)",
-                    "slideIndex": 16
-                },
-                {
-                    "title": "Trends in Mine Tailings Reported From Surface Mining Facilities",
-                    "slideIndex": 17
-                },
-                {
-                    "title": "Thermal in Situ Facilities",
-                    "slideIndex": 18
-                },
-                {
-                    "title": "NPRI Releases From Thermal in-situ Faciltiies",
-                    "slideIndex": 19
-                }
-            ]
-        },
-        {
-            "title": "Highcharts Demo (╯°□°)╯︵ ┻━┻",
-            "slideIndex": 20,
-            "sublist": [
-                {
-                    "title": "Dynamic Slideshow with Hybrid Chart",
-                    "slideIndex": 21
-                }
-            ]
-        },
-        {
-            "title": "Managing Environmental Impacts",
-            "slideIndex": 22
-        }
-    ],
-    "tocOrientation": "horizontal",
-    "returnTop": false,
+    "tocOrientation": "vertical",
     "stylesheets": ["00000000-0000-0000-0000-000000000000/styles/main.css"],
     "contextLink": "https://www.canada.ca/en/environment-climate-change/services/national-pollutant-release-inventory/tools-resources-data/exploredata.html",
     "contextLabel": "Explore National Pollutant Release Inventory data",
     "lang": "en",
     "lazyLoad": false,
-    "breadcrumbs": [
+    "breadcrumbs": [    
         {
             "title": "Environment and natural resources",
             "href": "https://www.canada.ca/en/services/environment.html"

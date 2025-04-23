@@ -186,7 +186,7 @@
                     :key="idx"
                     :class="{ 'is-active': lastActiveIdx === slide.index }"
                 >
-                    <toc-item :tocItem="{ ...slide, slideIndex: idx }" :slides="slides" :plugin="plugin"></toc-item>
+                    <toc-item :tocItem="{ ...slide, slideIndex: slide.index }" :slides="slides" :plugin="plugin"></toc-item>
                 </li>
             </template>
         </ul>
@@ -233,9 +233,9 @@ const sublistToggled = ref({} as Record<number, boolean>);
 
 // filter out which slides are visible in the table of contents while preserving original slide index
 const tocSlides = computed(() => {
-    const slides = props.slides.map((slide, idx) => ({ ...slide, index: idx }));
+    let slides = props.slides.map((slide, idx) => ({ ...slide, index: idx }));
     if (!props.customToc) {
-        slides.filter((slide) => slide.includeInToc !== false);
+        slides = slides.filter((slide) => slide.includeInToc !== false);
     }
     return slides;
 });
