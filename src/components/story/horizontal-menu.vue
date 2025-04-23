@@ -106,7 +106,7 @@
                     }"
                 >
                     <toc-item
-                        :tocItem="{ ...slide, slideIndex: idx }"
+                        :tocItem="{ ...slide, slideIndex: slide.index }"
                         :slides="slides"
                         :verticalToc="false"
                         :plugin="plugin"
@@ -158,8 +158,8 @@ const itemContainer = ref(null);
 
 // filter out which slides are visible in the table of contents while preserving original slide index
 const tocSlides = computed(() => {
-    const slides = props.slides.map((slide, idx) => ({ ...slide, index: idx }));
-    slides.filter((slide) => slide.includeInToc !== false);
+    let slides = props.slides.map((slide, idx) => ({ ...slide, index: idx }));
+    slides = slides.filter((slide) => slide.includeInToc !== false);
     return slides;
 });
 
