@@ -1,12 +1,12 @@
 {
     "name": "ramp-storylines_demo-scenarios-pcar",
     "description": "A user-configurable story product featuring interactive maps, charts and dynamic multimedia content alongside text.",
-    "version": "3.2.13",
+    "version": "3.3.0",
     "private": false,
     "license": "MIT",
     "type": "module",
-    "repository": "https://github.com/ramp4-pcar4/story-ramp",
-    "bugs": "https://github.com/ramp4-pcar4/story-ramp/issues",
+    "repository": "https://github.com/ramp4-pcar4/storylines",
+    "bugs": "https://github.com/ramp4-pcar4/storylines/issues",
     "scripts": {
         "dev": "vite",
         "build": "vite build",
