@@ -7,7 +7,7 @@
             <button
                 class="flex items-center flex-shrink-0 px-2 py-1 mx-1 overflow-hidden"
                 :aria-label="$t('chapters.menu')"
-                @click="isMenuOpen = !isMenuOpen"
+                @click="toggleMenu"
                 v-tippy="{
                     delay: '200',
                     placement: 'right',
@@ -210,7 +210,11 @@
                     :key="idx"
                     :class="{ 'is-active': lastActiveIdx === slide.index }"
                 >
-                    <toc-item :tocItem="{ ...slide, slideIndex: slide.index }" :slides="slides" :plugin="plugin"></toc-item>
+                    <toc-item
+                        :tocItem="{ ...slide, slideIndex: slide.index }"
+                        :slides="slides"
+                        :plugin="plugin"
+                    ></toc-item>
                 </li>
             </template>
             <div class="h-10 flex-shrink-0"></div>
@@ -282,6 +286,14 @@ const customTocSlides = computed(() => {
     }
 });
 
+const toggleMenu = () => {
+    isMenuOpen.value = !isMenuOpen.value;
+    // This causes slideshow panels and interactive maps to resize
+    setTimeout(() => {
+        window.dispatchEvent(new Event('resize'));
+    }, 500);
+};
+
 watch(
     () => props.activeChapterIndex,
     () => {
@@ -316,14 +328,16 @@ const isSublistToggled = (index: number): boolean => {
 
 const isSublistActive = (sublist: MenuItem[] | undefined): boolean => {
     if (sublist) {
-        return sublist.some(subItem => lastActiveIdx.value === subItem.slideIndex);
+        return sublist.some((subItem) => lastActiveIdx.value === subItem.slideIndex);
     }
     return false;
 };
 
 const updateActiveIdx = () => {
     if (props.customToc) {
-        const prevCustomSlides: MenuItem[] = customTocSlides.value!.filter((slide) => slide.slideIndex <= props.activeChapterIndex);
+        const prevCustomSlides: MenuItem[] = customTocSlides.value!.filter(
+            (slide) => slide.slideIndex <= props.activeChapterIndex
+        );
         lastActiveIdx.value = prevCustomSlides.length ? prevCustomSlides[prevCustomSlides.length - 1].slideIndex : -1;
     } else {
         const prevSlides = tocSlides.value.filter((slide) => slide.index <= props.activeChapterIndex);

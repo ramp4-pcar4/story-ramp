@@ -2,10 +2,13 @@
     <div ref="el" class="h-full align-middle w-full">
         <!-- if teleporting areas of interest to side of RAMP container -->
         <div class="flex teleport-container sm:flex-row flex-col h-full w-full" v-if="config.teleportAOI">
-            <div class="overflow-x-auto overflow-y-hidden sm:self-start flex-2 sticky z-40">
+            <div
+                class="overflow-x-auto overflow-y-hidden sm:self-start flex-2 sticky z-40"
+                :style="{ width: `${width}px` }"
+            >
                 <div :id="`ramp-map-${slideIdx}`" class="bg-gray-200 rv-map"></div>
             </div>
-            <div class="flex-1">
+            <div class="flex-1" :style="{ width: `${width}px` }">
                 <div v-for="(point, index) in config.points" :key="`poi-` + index" class="point-of-interest-container">
                     <PointOfInterestItem
                         class="point-of-interest"
@@ -19,7 +22,7 @@
         </div>
 
         <div class="h-full overlap-container align-middle w-full interactive-container sticky" v-else>
-            <div class="interactive-content z-50 pointer-events-none">
+            <div class="interactive-content z-50 pointer-events-none" :style="{ width: `${width}px` }">
                 <div v-for="(point, index) in config.points" :key="`poi-` + index" class="point-of-interest-container">
                     <PointOfInterestItem
                         :point="point"
@@ -29,7 +32,11 @@
                     ></PointOfInterestItem>
                 </div>
             </div>
-            <div :id="`ramp-map-${slideIdx}`" class="bg-gray-200 h-story rv-map sticky interactive-content"></div>
+            <div
+                :id="`ramp-map-${slideIdx}`"
+                class="bg-gray-200 h-story rv-map sticky interactive-content"
+                :style="{ width: `${width}px` }"
+            ></div>
         </div>
     </div>
 </template>
@@ -60,6 +67,7 @@ const props = defineProps({
 /* Component refs */
 const el = ref();
 const mapComponent = ref<Element | undefined>(undefined);
+const width = ref(-1);
 
 const rInstance = ref();
 
@@ -76,6 +84,14 @@ onMounted(() => {
     }
 
     init();
+
+    setTimeout(() => {
+        width.value = el.value.clientWidth - 5;
+    }, 100);
+});
+
+window.addEventListener('resize', () => {
+    width.value = el.value.clientWidth - 5;
 });
 
 const init = async () => {
