@@ -1,6 +1,10 @@
-# RAMP Storylines (formerly StoryRAMP)
+# Storylines (formerly StoryRAMP)
 
-This project is an implementation of [RAMP2 FGP Visualiser](https://github.com/fgpv-vpgf/fgpv-vpgf), [Highcharts](https://www.highcharts.com/), and a number of other libraries, with the goal to provide a standards and guidelines compliant alternative to ArcGIS StoryMap, suitable for use in the Government of Canada's web presence.
+Storylines is a storytelling platform developed in Vue 3. Interactive mapping, multimedia, charting, and many more features can be quickly and easily assembled into an attractive web application with no coding or design experience required. This framework is developed and maintained by the Web Mapping Team at Environment and Climate Change Canada. 
+
+This project is an implementation of [RAMP4 (the Reusable Accessible Mapping Platform)](https://github.com/ramp4-pcar4/ramp4-pcar4), [Highcharts](https://www.highcharts.com/), and a number of other libraries, with a goal of providing a standards and guidelines-compliant alternative to existing COTS products, suitable for use in the Government of Canada's web presence.
+
+Storylines' source code is provided free and without warranty. For inquiries, please contact [applicationsdecartographieweb-webmappingapplications@ec.gc.ca](mailto:applicationsdecartographieweb-webmappingapplications@ec.gc.ca).
 
 ## Plugin Usage
 
@@ -65,13 +69,13 @@ updateActiveIndex(idx: number): void {
 
 ```
 
-Here is a [demo](https://ramp4-pcar4.github.io/storylines/main/#/en/00000000-0000-0000-0000-000000000000) of what a Storylines product would look like.
+A wide-ranging [demo](https://ramp4-pcar4.github.io/storylines/main/#/en/00000000-0000-0000-0000-000000000000) Storylines features is available.
 
 **5. Creating Storylines config:**
 
-To create a Storylines config from scratch, please refer to the schema documnentation provided [here](https://github.com/ramp4-pcar4/storylines/blob/main/StoryRampSchema.json). A demo config can be found [here](https://github.com/ramp4-pcar4/storylines/blob/main/public/00000000-0000-0000-0000-000000000000/00000000-0000-0000-0000-000000000000_en.json).
+To create a Storylines config from scratch, please refer to the schema documnentation provided [here](https://github.com/ramp4-pcar4/storylines/blob/main/StorylinesSchema.json). A demo config can be found [here](https://github.com/ramp4-pcar4/storylines/blob/main/public/00000000-0000-0000-0000-000000000000/00000000-0000-0000-0000-000000000000_en.json).
 
-Alternatively, the [storylines editor](https://github.com/ramp4-pcar4/storylines-editor) can be leveraged to help construct a complete configuration folder.
+Alternatively, R.E.S.P.E.C.T. (RAMP-Enhanced Storylines Product Editor & Creation Tool), AKA the [Storylines Editor](https://github.com/ramp4-pcar4/storylines-editor) can be leveraged to help construct a complete configuration folder. 
 
 ## Project setup
 
@@ -103,11 +107,13 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ## Live examples
 
-- [NPRI Sector Overview: Oil Sands Extraction](https://environmental-maps.canada.ca/RAMP-Storylines/index-ca-en.html#/en/410b88da-0ed1-4749-903f-5e76c24e2e5f)
-- [NPRI Sector Overview: Pulp and Paper](https://environmental-maps.canada.ca/RAMP-Storylines/index-ca-en.html#/en/f6f7baf4-cccb-4521-a037-b4691b0f0d49)
-- [NPRI Substance Overview: Ethylene Glycol](https://environmental-maps.canada.ca/RAMP-Storylines/index-ca-en.html#/en/ea24000c-7dc3-49a9-baac-c55d28dcaeb9)
+- [Priority Places for Species at Risk](https://environmental-maps.canada.ca/CWS_Storylines/index-ca-en.html#/en/priority_places-lieux_prioritaires)
+- [Salish Sea Marine Bird Monitoring & Conservation Program](https://environmental-maps.qa.ec.gc.ca/Storylines-Scenarios/index-ca-en.html#/en/wings_over_water-ailes_audessus_de_leau)
+- [Terrestrial Cumulative Effects Initiative](https://environmental-maps.canada.ca/Storylines-Scenarios/index-ca-en.html#/en/TCEI-IECT)
 
-## Future goals
+## Related products
 
-- [ ] use [RAMP4](https://github.com/ramp4-pcar4/ramp4-pcar4) mapping platform
-- [ ] development of a web-based editor
+- [RAMP4 - Reusable Accessible Mapping Platform v4](https://github.com/ramp4-pcar4/ramp4-pcar4)
+- [RAMP4 Configuration Editor](https://github.com/ramp4-pcar4/config-editor)
+- [RESPECT - RAMP-Enhanced Storylines Product Editor & Creation Tool](https://github.com/ramp4-pcar4/storylines-editor)
+- [Highcharts Editor](https://github.com/ramp4-pcar4/highcharts-editor)
