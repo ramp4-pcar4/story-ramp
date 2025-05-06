@@ -221,7 +221,7 @@ const returnHome = async (layersToHide?: string[]) => {
 .overlap-container {
     /* when the POIs overlay the map, have the panels appear to the right */
     :deep(.panel-stack) {
-        width: 75vw;
+        width: 75%;
         justify-self: right;
     }
 
@@ -243,7 +243,7 @@ const returnHome = async (layersToHide?: string[]) => {
         height: calc(100vh - 4rem) !important;
     }
     .interactive-container {
-        grid-template-columns: repeat(1, calc(100vw - 4.1rem));
+        grid-template-columns: repeat(1, calc(100% - 5px));
     }
 }
 
@@ -281,7 +281,7 @@ const returnHome = async (layersToHide?: string[]) => {
     /* when the POIs overlay the map, have the panels appear to the right */
     .overlap-container {
         :deep(.panel-stack) {
-            width: 60vw;
+            width: 60%;
             justify-self: right;
         }
     }

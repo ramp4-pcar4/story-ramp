@@ -227,14 +227,16 @@ const toggleSublist = (index: number): void => {
 
 const isSublistActive = (sublist: MenuItem[] | undefined): boolean => {
     if (sublist) {
-        return sublist.some(subItem => lastActiveIdx.value === subItem.slideIndex);
+        return sublist.some((subItem) => lastActiveIdx.value === subItem.slideIndex);
     }
     return false;
 };
 
 const updateActiveIdx = () => {
     if (props.customToc) {
-        const prevCustomSlides: MenuItem[] = customTocSlides.value!.filter((slide) => slide.slideIndex <= props.activeChapterIndex);
+        const prevCustomSlides: MenuItem[] = customTocSlides.value!.filter(
+            (slide) => slide.slideIndex <= props.activeChapterIndex
+        );
         lastActiveIdx.value = prevCustomSlides.length ? prevCustomSlides[prevCustomSlides.length - 1].slideIndex : -1;
     } else {
         const prevSlides = tocSlides.value.filter((slide) => slide.index <= props.activeChapterIndex);

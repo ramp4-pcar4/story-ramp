@@ -4,7 +4,7 @@
             <div
                 ref="slideshow"
                 class="carousel-container self-center px-10 mx-auto bg-gray-200_"
-                :style="{ width: `${width}px` }"
+                :style="{ width: '100%' }"
             >
                 <carousel
                     ref="carousel"
