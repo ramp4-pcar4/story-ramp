@@ -18,7 +18,7 @@
 </head>
 <body>
     <!-- template top and no-script fallback -->
-    <div id="def-top">
+    <div id="lp-header">
         <header>
             <div id="wb-bnr" class="container">
                 <div class="row">
@@ -54,7 +54,7 @@
     </div>
 
     <!-- template footer and no-script fallback -->
-    <div id="def-footer">
+    <div id="lp-footer">
         <footer id="wb-info">
             <h2 class="wb-inv">À propos de ce site</h2>
             <div class="gc-sub-footer">
@@ -102,35 +102,8 @@
         // Build new URL route.
         var newURLRoute = hasEditor ? 'editor/' + productID : productID;
 
-        //var defTop = document.getElementById('def-top');
-        //defTop.outerHTML = wet.builder.top({
-        //    lngLinks: [
-        //        {
-        //            lang: 'en',
-        //            href: 'index-lp-ca-en.html#/en/' + newURLRoute,
-        //            text: 'English'
-        //        }
-        //    ]
-        //});
-
-        document.addEventListener('Storylines-Loaded', (payload) => {
-            const breadcrumbs = payload.detail.config.breadcrumbs ?? []; // default to an empty array if this property isn't defined.
-            const breadcrumbList = document.querySelectorAll('#wb-bc > .container > .breadcrumb')[0];
-            const firstElement = breadcrumbList.children[0]; // should be the `Canada.ca` breadcrumb.
-
-            // Reset the breadcrumb list.
-            breadcrumbList.innerHTML = ``;
-
-            // Add the `Canada.ca` element back to the list of breadcrumbs.
-            breadcrumbList.appendChild(firstElement);
-
-            // Create an HTML li element for each of the breadcrumbs to add and then append them to the breadcrumb list.
-            breadcrumbs.forEach((b) => {
-                const node = document.createElement('li');
-                node.innerHTML = `<a href="${b.href}">${b.title}</a>`;
-                breadcrumbList.appendChild(node);
-            });
-        });
+        var langChange = document.getElementById('langToggle');
+        langChange.href = 'index-lp-ca-en.html#/en/' + newURLRoute;
 
         document.querySelectorAll('.wb-sl').forEach(function (skipLink) {
             skipLink.setAttribute('href', url.href.split(/#[^\/]/)[0] + '#' + skipLink.href.split('#')[1]);
@@ -143,11 +116,6 @@
             }
         }, 200);
     </script>
-
-    <!--<script>
-        var defFooter = document.getElementById('def-footer');
-        defFooter.outerHTML = wet.builder.footer({});
-    </script>-->
 
 
     <style>/* purgecss start ignore */
