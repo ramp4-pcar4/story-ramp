@@ -14,18 +14,23 @@
                     :mouseDrag="false"
                     :touchDrag="false"
                 >
-                    <slide v-for="(panelConfig, index) in config.items" :key="index" :index="index">
+                    <slide
+                        v-for="(panelConfig, index) in config.items"
+                        :key="index"
+                        :index="index"
+                        :class="{
+                            'map-carousel-item': panelConfig.type === 'map',
+                            'carousel-item': panelConfig.type !== 'map'
+                        }"
+                    >
                         <template #default="{ isActive }">
                             <panel
                                 :config="panelConfig"
                                 :configFileStructure="configFileStructure"
                                 :slideIdx="slideIdx"
                                 :isSlideshowItem="true"
-                                :class="{
-                                    'map-carousel-item': panelConfig.type === 'map',
-                                    'carousel-item': panelConfig.type !== 'map',
-                                    hidden: !isActive
-                                }"
+                                class="h-full"
+                                :class="!isActive ? 'invisible' : 'visible'"
                             ></panel>
                         </template>
                     </slide>
@@ -63,7 +68,7 @@
 <script setup lang="ts">
 import type { PropType } from 'vue';
 import { ref, onMounted } from 'vue';
-import { ConfigFileStructure, SlideshowPanel } from '@storylines/definitions';
+import type { ConfigFileStructure, SlideshowPanel } from '@storylines/definitions';
 import { Carousel, Navigation, Pagination, Slide } from 'vue3-carousel';
 import 'vue3-carousel/dist/carousel.css';
 
@@ -119,7 +124,7 @@ window.addEventListener('resize', () => {
     height: calc(100vh - 4rem - 2rem);
 }
 .carousel {
-    height: auto;
+    align-items: center;
     text-align: left;
 
     :deep(.carousel__prev > svg),
@@ -191,7 +196,6 @@ window.addEventListener('resize', () => {
 .carousel-item {
     // Max height of the carousel is 80vh, but set height to 100% so items appear in the center of the container.
     align-self: center;
-    max-height: 80vh;
     top: 0px;
     overflow-y: auto;
 }
