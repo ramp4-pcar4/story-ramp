@@ -34,7 +34,6 @@ import MapPanel from './map-panel.vue';
 import InteractiveMap from './interactive-map.vue';
 import ImagePanel from './image-panel.vue';
 import InteractiveImagePanel from './interactive-image-panel.vue';
-import AudioPanel from './audio-panel.vue';
 import VideoPanel from './video-panel.vue';
 import SlideshowPanel from './slideshow-panel.vue';
 import ChartPanel from './chart-panel.vue';
@@ -83,7 +82,6 @@ const getTemplate = (): Component => {
         [PanelType.InteractiveMap]: InteractiveMap,
         [PanelType.Image]: ImagePanel,
         [PanelType.InteractiveImage]: InteractiveImagePanel,
-        [PanelType.Audio]: AudioPanel,
         [PanelType.Video]: VideoPanel,
         [PanelType.Slideshow]: SlideshowPanel,
         [PanelType.SlideshowImage]: SlideshowPanel,
