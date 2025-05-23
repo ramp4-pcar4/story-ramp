@@ -1,10 +1,12 @@
 <template>
     <div class="toc-item" :class="{ flex: parentItem }">
         <!-- using router-link causes a page refresh which breaks plugin -->
-        <a
+        <span
             class="flex items-center px-2 py-1 mx-1 cursor-pointer"
             :class="{ 'flex-grow pb-2 min-w-0': parentItem, 'pb-2': parentItem && !verticalToc }"
             @click="scrollToChapter(getSlideId(tocItem.slideIndex))"
+            @keydown.enter="scrollToChapter(getSlideId(tocItem.slideIndex))"
+            tabindex="0"
             v-tippy="{
                 delay: '200',
                 placement: verticalToc || !parentItem ? 'right' : 'top',
@@ -34,7 +36,7 @@
                 :class="{ 'ml-4': verticalToc && parentItem, 'pl-8': verticalToc && !parentItem }"
                 >{{ getTitle(tocItem) }}</span
             >
-        </a>
+        </span>
 
         <router-link
             :to="{ hash: `#${getSlideId(tocItem.slideIndex)}` }"

@@ -37,9 +37,10 @@
 
         <ul class="nav-content menu">
             <li v-if="introExists && returnToTop">
-                <a
+                <span
                     class="flex items-center px-2 py-1 mx-1 cursor-pointer"
                     @click="scrollToChapter('intro')"
+                    @keydown.enter="scrollToChapter('intro')"
                     v-tippy="{
                         delay: '200',
                         placement: 'right',
@@ -47,6 +48,7 @@
                         animateFill: true,
                         animation: 'chapter-menu'
                     }"
+                    tabindex="0"
                     v-if="plugin"
                 >
                     <svg
@@ -87,7 +89,7 @@
                     <span class="flex-1 ml-4 overflow-hidden leading-normal overflow-ellipsis whitespace-nowrap">{{
                         $t('chapters.return')
                     }}</span>
-                </a>
+                </span>
 
                 <router-link
                     :to="{ hash: '#intro' }"
