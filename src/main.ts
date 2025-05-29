@@ -18,7 +18,7 @@ const app = createApp(App);
 
 app.use(router)
     .use(i18n)
-    .use(HighchartsVue, { tagName: 'charts' })
+    .use(HighchartsVue, { tagName: 'highchart' })
     .use(VueTippy, {
         directive: 'tippy',
         component: 'tippy'

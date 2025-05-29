@@ -7,7 +7,7 @@
             :aria-label="title"
             v-if="!loading"
         >
-            <charts :options="chartOptions"></charts>
+            <highchart :options="chartOptions"></highchart>
         </div>
     </div>
 </template>
