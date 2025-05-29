@@ -61,7 +61,9 @@ export default defineConfig(() => {
                 input: {
                     main: '/index.html',
                     en: '/index-ca-en.html',
-                    fr: '/index-ca-fr.html'
+                    fr: '/index-ca-fr.html',
+                    lpen: '/index-lp-ca-en.html',
+                    lpfr: '/index-lp-ca-fr.html',
                 }
             }
         });
