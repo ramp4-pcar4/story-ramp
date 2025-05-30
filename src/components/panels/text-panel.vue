@@ -4,7 +4,7 @@
         :class="{ 'has-background': background }"
         :style="{ color: config.textColour ?? '#000' }"
     >
-        <component :is="config.titleTag || 'h2'" class="px-10 mb-0 chapter-title top-20">
+        <component v-if="config.title" :is="config.titleTag || 'h2'" class="px-10 mb-0 chapter-title top-20">
             {{ config.title }}
         </component>
 
