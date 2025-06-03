@@ -221,7 +221,6 @@
                     ></toc-item>
                 </li>
             </template>
-            <div class="h-10 flex-shrink-0"></div>
         </ul>
     </div>
 </template>
