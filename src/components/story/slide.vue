@@ -72,7 +72,7 @@ onMounted(() => {
         observer.value?.disconnect();
 
         const clientHeight = window.innerHeight;
-        const poiHeight = (slide.value as Element).clientHeight;
+        const poiHeight = (slide.value as Element)?.clientHeight;
         if (poiHeight > clientHeight * defaultThreshold) {
             scrollThreshold.value = ((clientHeight * defaultThreshold) / poiHeight) * defaultThreshold;
         }

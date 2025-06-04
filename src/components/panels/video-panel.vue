@@ -190,9 +190,7 @@ onMounted(() => {
         }
     }
 
-    if (vid.value) {
-        observer.value?.observe(vid.value as HTMLVideoElement);
-    }
+    observer.value?.observe(vid.value as HTMLVideoElement);
 });
 
 onBeforeUnmount(() => {

@@ -74,7 +74,7 @@ onMounted(() => {
 
         isMobile.value = window.innerWidth <= 640;
         const clientHeight = window.innerHeight;
-        const poiHeight = poi.value.clientHeight;
+        const poiHeight = poi.value?.clientHeight;
         if (poiHeight > clientHeight * 0.6) {
             threshold.value = ((clientHeight * 0.6) / poiHeight) * 0.6;
         }
@@ -82,17 +82,16 @@ onMounted(() => {
         poiObserver = new IntersectionObserver(intersectionHandler, {
             threshold: threshold.value
         });
-
-        poiObserver.observe(poi.value);
+        poiObserver.observe(poi.value as Element);
     });
-    resizeObserver.observe(poi.value);
+    resizeObserver.observe(poi.value as Element);
 
     // Hook up the initial intersection observer.
     let poiObserver = new IntersectionObserver(intersectionHandler, {
         threshold: threshold.value
     });
 
-    poiObserver.observe(poi.value);
+    poiObserver.observe(poi.value as Element);
 });
 
 const intersectionHandler = (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => {
