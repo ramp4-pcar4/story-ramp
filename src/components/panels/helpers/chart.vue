@@ -225,7 +225,7 @@ const parseCSVFile = (data: CSVFile): void => {
             renderTo: 'dv-chart-container',
             type: dqvOptions?.type,
             ...(dqvOptions?.height &&
-                el.value.clientHeight >= dqvOptions.height && {
+                el.value?.clientHeight >= dqvOptions.height && {
                     height: dqvOptions.height
                 }),
             ...(dqvOptions?.width && el.value.clientWidth >= dqvOptions.width && { width: dqvOptions.width })

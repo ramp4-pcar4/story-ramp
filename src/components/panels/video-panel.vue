@@ -190,9 +190,13 @@ onMounted(() => {
         }
     }
 
-    if (vid.value) {
-        observer.value?.observe(vid.value as HTMLVideoElement);
+    if (!vid.value) {
+        // TODO remove this if no one ever sees this message by Dec 2025
+        console.error('video-panel: Bound element did not exist after mount');
+        console.trace();
     }
+
+    observer.value?.observe(vid.value as HTMLVideoElement);
 });
 
 onBeforeUnmount(() => {

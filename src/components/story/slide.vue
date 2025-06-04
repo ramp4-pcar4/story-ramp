@@ -67,12 +67,18 @@ const observer = ref<IntersectionObserver | undefined>(undefined);
 onMounted(() => {
     const panels = props.config.panel;
 
+    if (!slide.value) {
+        // TODO remove this if no one ever sees this message by Dec 2025
+        console.error('slide: Bound element did not exist after mount');
+        console.trace();
+    }
+
     // Modify the threshold based on the height of the client window vs the height of the element. Re-observe the element afterwards.
     const resizeObserver = new ResizeObserver(function (e) {
         observer.value?.disconnect();
 
         const clientHeight = window.innerHeight;
-        const poiHeight = (slide.value as Element).clientHeight;
+        const poiHeight = (slide.value as Element)?.clientHeight;
         if (poiHeight > clientHeight * defaultThreshold) {
             scrollThreshold.value = ((clientHeight * defaultThreshold) / poiHeight) * defaultThreshold;
         }
