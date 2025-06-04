@@ -95,7 +95,7 @@ onMounted(() => {
         { threshold: [0] }
     );
 
-    observer.observe(el.value);
+    el.value && observer.observe(el.value as Element);
 });
 
 const init = async () => {

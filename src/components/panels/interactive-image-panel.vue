@@ -169,7 +169,7 @@ onMounted(() => {
         });
     }
 
-    observer.value?.observe(img.value as Element);
+    img.value && observer.value?.observe(img.value as Element);
 
     // Check for a switch from normal view to mobile view. Fixed text panel width will need to be adjusted.
     isMobile.value = window.innerWidth <= 640;

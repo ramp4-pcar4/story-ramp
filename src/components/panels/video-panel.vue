@@ -191,7 +191,7 @@ onMounted(() => {
     }
 
     if (vid.value) {
-        observer.value?.observe(vid.value as HTMLVideoElement);
+        vid.value && observer.value?.observe(vid.value as HTMLVideoElement);
     }
 });
 
