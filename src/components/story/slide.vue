@@ -72,7 +72,7 @@ onMounted(() => {
         observer.value?.disconnect();
 
         const clientHeight = window.innerHeight;
-        const poiHeight = (slide.value as Element).clientHeight;
+        const poiHeight = (slide.value as Element)?.clientHeight;
         if (poiHeight > clientHeight * defaultThreshold) {
             scrollThreshold.value = ((clientHeight * defaultThreshold) / poiHeight) * defaultThreshold;
         }
@@ -89,9 +89,9 @@ onMounted(() => {
             }
         );
 
-        observer.value.observe(slide.value as Element);
+        slide.value && observer.value.observe(slide.value as Element);
     });
-    resizeObserver.observe(slide.value as Element);
+    slide.value && resizeObserver.observe(slide.value as Element);
 
     observer.value = new IntersectionObserver(
         ([slide]) => {
@@ -103,7 +103,7 @@ onMounted(() => {
         { rootMargin: '0px', threshold: scrollThreshold.value }
     );
 
-    observer.value?.observe(slide.value as Element);
+    slide.value && observer.value?.observe(slide.value as Element);
 
     // check if there is one text panel and one non-text panel in the slide and user did not specify a width in config
     if (panels.length == 2 && !panels[0]?.width && !panels[1]?.width) {

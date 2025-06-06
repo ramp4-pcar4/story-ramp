@@ -111,7 +111,7 @@ onMounted((): void => {
         }
     }
 
-    observer.value?.observe(img.value as Element);
+    img.value && observer.value?.observe(img.value as Element);
 });
 </script>
 
