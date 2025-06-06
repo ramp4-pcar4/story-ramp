@@ -13,13 +13,14 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
+import { defineAsyncComponent, ref, onMounted } from 'vue';
 import type { PropType } from 'vue';
 import type { TextPanel } from '@storylines/definitions';
 
 import MarkdownIt from 'markdown-it';
 import Scrollama from './helpers/scrollama.vue';
-import TextContent from './helpers/text-content.vue';
+
+const TextContent = defineAsyncComponent(() => import('./helpers/text-content.vue'));
 
 const props = defineProps({
     config: {
