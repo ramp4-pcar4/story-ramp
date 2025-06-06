@@ -25,7 +25,7 @@
                     target
                     v-tippy="{
                         delay: '200',
-                        placement: 'bottom',
+                        placement: 'top',
                         content: $t('chapters.return'),
                         animateFill: true,
                         animation: 'chapter-menu'

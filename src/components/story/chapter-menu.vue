@@ -7,16 +7,18 @@
             <button
                 class="flex items-center flex-shrink-0 px-2 py-1 mx-1 overflow-hidden"
                 :aria-label="$t('chapters.menu')"
+                :tabindex="isMenuOpen ? 0 : -1"
                 @click="isMenuOpen = !isMenuOpen"
-                v-tippy="{
-                    delay: '200',
-                    placement: 'right',
-                    content: $t('chapters.title'),
-                    onShow: () => !isMenuOpen,
-                    animateFill: true
-                }"
             >
                 <svg
+                    v-tippy="{
+                        delay: 200,
+                        placement: 'right',
+                        content: $t('chapters.title'),
+                        onShow: () => !isMenuOpen,
+                        animateFill: true,
+                        animation: 'chapter-menu'
+                    }"
                     class="flex-shrink-0"
                     width="24"
                     height="24"
