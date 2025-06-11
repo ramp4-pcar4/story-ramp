@@ -169,6 +169,12 @@ onMounted(() => {
         });
     }
 
+    if (!img.value) {
+        // TODO remove this if no one ever sees this message by Dec 2025
+        console.error('interactive-image-panel: Bound element did not exist after mount');
+        console.trace();
+    }
+
     observer.value?.observe(img.value as Element);
 
     // Check for a switch from normal view to mobile view. Fixed text panel width will need to be adjusted.

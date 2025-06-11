@@ -95,7 +95,13 @@ onMounted(() => {
         { threshold: [0] }
     );
 
-    observer.observe(el.value);
+    if (!el.value) {
+        // TODO remove this if no one ever sees this message by Dec 2025
+        console.error('map-panel: Bound element did not exist after mount');
+        console.trace();
+    }
+
+    observer.observe(el.value as Element);
 });
 
 const init = async () => {

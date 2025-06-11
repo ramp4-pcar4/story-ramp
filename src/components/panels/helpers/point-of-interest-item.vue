@@ -68,13 +68,19 @@ onMounted(() => {
     }
     isMobile.value = window.innerWidth <= 640;
 
+    if (!poi.value) {
+        // TODO remove this if no one ever sees this message by Dec 2025
+        console.error('point-of-interest-item: Bound element did not exist after mount');
+        console.trace();
+    }
+
     // Modify the threshold based on the height of the client window vs the height of the element. Re-observe the element afterwards.
     const resizeObserver = new ResizeObserver(function (e) {
         poiObserver.disconnect();
 
         isMobile.value = window.innerWidth <= 640;
         const clientHeight = window.innerHeight;
-        const poiHeight = poi.value.clientHeight;
+        const poiHeight = poi.value?.clientHeight;
         if (poiHeight > clientHeight * 0.6) {
             threshold.value = ((clientHeight * 0.6) / poiHeight) * 0.6;
         }
@@ -82,17 +88,16 @@ onMounted(() => {
         poiObserver = new IntersectionObserver(intersectionHandler, {
             threshold: threshold.value
         });
-
-        poiObserver.observe(poi.value);
+        poiObserver.observe(poi.value as Element);
     });
-    resizeObserver.observe(poi.value);
+    resizeObserver.observe(poi.value as Element);
 
     // Hook up the initial intersection observer.
     let poiObserver = new IntersectionObserver(intersectionHandler, {
         threshold: threshold.value
     });
 
-    poiObserver.observe(poi.value);
+    poiObserver.observe(poi.value as Element);
 });
 
 const intersectionHandler = (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => {
