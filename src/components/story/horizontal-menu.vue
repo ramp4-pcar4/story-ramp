@@ -1,5 +1,5 @@
 <template>
-    <div id="h-navbar" class="navbar h-11 sticky">
+    <div id="h-navbar" class="navbar sticky">
         <ul>
             <li v-if="introExists && returnToTop">
                 <a
@@ -282,6 +282,7 @@ const handleFocus = (idx: number) => {
 
 .navbar > ul {
     display: flex;
+    row-gap: 5px;
     list-style-type: none;
     text-align: center;
     justify-content: center;
@@ -292,6 +293,7 @@ const handleFocus = (idx: number) => {
 }
 
 .navbar > ul > li {
+    background-color: white;
     float: left;
     width: 12%;
     border-radius: 8px;
