@@ -1,5 +1,5 @@
 <template>
-    <div id="h-navbar" class="navbar h-11 sticky">
+    <div id="h-navbar" class="navbar sticky">
         <ul>
             <li v-if="introExists && returnToTop">
                 <a
@@ -45,7 +45,7 @@
                     :key="idx"
                     :class="{
                         'is-active': lastActiveIdx === item.slideIndex || isSublistActive(item.sublist),
-                        separator: (!returnToTop && idx !== 0) || returnToTop
+                        separator: (!returnToTop && idx % 8 !== 0) || (returnToTop && (idx + 1) % 8 !== 0)
                     }"
                     ref="itemContainer"
                     @focusout="handleFocus(idx)"
@@ -109,7 +109,7 @@
                     :key="idx"
                     :class="{
                         'is-active': lastActiveIdx === slide.index,
-                        separator: (!returnToTop && idx !== 0) || returnToTop
+                        separator: (!returnToTop && idx % 8 !== 0) || (returnToTop && (idx + 1) % 8 !== 0)
                     }"
                 >
                     <toc-item
@@ -282,6 +282,7 @@ const handleFocus = (idx: number) => {
 
 .navbar > ul {
     display: flex;
+    row-gap: 5px;
     list-style-type: none;
     text-align: center;
     justify-content: center;
